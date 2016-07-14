@@ -1,0 +1,426 @@
+<template>
+    <require from="https://x.newtouchwork.com/jspm_packages/github/wlzc/semantic-ui.src@1.0.2/semantic.min.css"></require>
+    <!-- <div class="pushable nx-body nx-left-sidebar-menu-labeled-icon"> -->
+    <div class="pushable nx-body">
+        <div class="ui top fixed menu nx-top-fixed-menu">
+            <a class="item nx-menu-toggle"><i class="sidebar icon"></i></a>
+            <div class="right menu">
+                <a class="item"><i class="bullseye icon"></i>Insight大会</a>
+                <a class="item"><i class="mobile icon"></i>App</a>
+                <a class="item nx-menu-item-msg nx-menu-item-pp"><i class="alarm icon"></i>消息中心</a>
+                <div class="ui flowing basic popup bottom right nx-pp-msg">
+                    <div class="nx-container">
+                        <div class="nx-header">
+                            当前你有 <span style="font-weight: bold;">2</span> 条未读消息
+                            <div class="nx-link-more">
+                                <i class="angle double right icon"></i>
+                                <a class="link" style="cursor: pointer;">查看更多</a>
+                            </div>
+                        </div>
+                        <div class="nx-content">
+                            <div class="ui relaxed divided list">
+                                <div class="item">
+                                    <i class="large cloud middle aligned icon"></i>
+                                    <div class="content">
+                                        <a class="header">青云QingCloud 推出 Android 控制台，完善移动运维平台</a>
+                                        <div class="description">发布于: 2016-03-28 11:43:19</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="large cloud middle aligned icon"></i>
+                                    <div class="content">
+                                        <a class="header">ChangeLogs 20160324：RDS 服务支持 MySQL 5.7 版...</a>
+                                        <div class="description">发布于: 2016-03-24 10:12:21</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="item nx-menu-item-ticket nx-menu-item-pp"><i class="ticket icon"></i>工单</a>
+                <div class="ui flowing basic popup bottom right nx-pp-msg">
+                    <div class="nx-container">
+                        <div class="nx-header">
+                            <button class="ui black button"><i class="icon ticket"></i>创建工单</button>
+                            <div class="nx-link-more" style="margin-top: 8px;">
+                                <i class="angle double right icon"></i>
+                                <a class="link" style="cursor: pointer;">查看更多</a>
+                            </div>
+                        </div>
+                        <div class="nx-content">
+                            <div class="ui message">当前你有0个未解决的工单</div>
+                        </div>
+                    </div>
+                </div>
+                <a class="item"><i class="dollar icon"></i>消费记录</a>
+                <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover">
+                    <i class="help circle icon"></i>帮助
+                    <div class="menu">
+                        <div class="header">选择帮助类型</div>
+                        <div class="item"><i class="newspaper icon"></i>用户指南</div>
+                        <div class="item"><i class="university icon"></i>ICP备案</div>
+                        <div class="item"><i class="life ring icon"></i>常见问题</div>
+                        <div class="item"><i class="code icon"></i>API Docs</div>
+                        <div class="item"><i class="terminal icon"></i>CLI Docs</div>
+                        <div class="item"><i class="configure icon"></i>SDK Docs</div>
+                        <div class="divider"></div>
+                        <div class="item"><i class="treatment icon"></i>服务健康状态</div>
+                    </div>
+                </div>
+                <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover">
+                    <img src="https://x.newtouchwork.com/images/head.png" class="ui avatar image" />
+                    <span style="position: relative;">jack2chen<a class="floating ui yellow empty circular label nx-floating-lbl"></a></span>
+                    <div class="menu">
+                        <div class="header">选择账户操作</div>
+                        <div class="item">
+                            <i class="settings icon"></i>
+                            <span style="position: relative;">账户信息<a class="floating ui yellow empty circular label nx-floating-lbl"></a></span>
+                        </div>
+                        <div class="item"><i class="lock icon"></i>账户安全</div>
+                        <div class="item"><i class="money icon"></i>账户钱包</div>
+                        <div class="divider"></div>
+                        <div class="item"><i class="sign out icon"></i>登出</div>
+                    </div>
+                </div>
+                <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover">
+                    <i class="lock icon"></i>账户锁
+                    <div class="menu">
+                        <div class="header">选择操作类型</div>
+                        <div class="item"><i class="add icon"></i>创建账户锁</div>
+                    </div>
+                </div>
+                <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover">
+                    <i class="world icon"></i></a>
+                    <div class="menu">
+                        <div class="header">选择界面语言</div>
+                        <div class="item">简体中文</div>
+                        <div class="item">English</div>
+                    </div>
+                </div>
+                <a class="item"><i class="wait icon"></i></a>
+            </div>
+        </div>
+        <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu">
+            <!-- <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu labeled icon"> -->
+            <div class="nx-logo">
+                <img src="https://x.newtouchwork.com/images/logo16px.png">
+                <span>新致云</span>
+            </div>
+            <a class="item nx-labeled-icon-item">
+                <i class="marker icon"></i> <span>上海1区 (SH1)</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link"><i class="circle icon"></i>上海1区 (SH1)</div>
+                        <!-- <div class="divider"></div> -->
+                        <div class="item link">上海2区 (SH2)</div>
+                        <!-- <div class="divider"></div> -->
+                        <div class="item link">大连1区 (DL1)</div>
+                    </div>
+                </div>
+            </a>
+            <div class="ui inverted dropdown item nx-dd-region nx-dd-action-hide">
+                <i class="marker icon"></i>
+                <div class="text">上海1区 (SH1)</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <div class="item">上海1区 (SH1)</div>
+                    <!-- <div class="divider"></div> -->
+                    <div class="item">上海2区 (SH2)</div>
+                    <!-- <div class="divider"></div> -->
+                    <div class="item">大连1区 (DL1)</div>
+                </div>
+            </div>
+            <div class="header item nx-header nx-no-border">SH1</div>
+            <a class="item nx-no-border nx-labeled-icon-item">
+                <i class="dashboard icon nx-icon"></i> <span>总览</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link"> 总览</div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border nx-labeled-icon-item">
+                <i class="laptop icon nx-icon"></i> <span>计算与网络</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link">
+                            <i class="circle icon"></i> 主机
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 映像
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 私有网络
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 路由器
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 负载均衡器
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 公网IP
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 内网域名别名
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border nx-labeled-icon-item">
+                <i class="disk outline icon nx-icon"></i> <span>存储</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link">
+                            <i class="circle icon"></i> 硬盘
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> Virtual SAN
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> NAS
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 备份
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border nx-labeled-icon-item">
+                <i class="lightning icon nx-icon"></i> <span>安全</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link">
+                            <i class="circle icon"></i> 防火墙
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> SSH密钥
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border nx-labeled-icon-item">
+                <i class="database icon nx-icon"></i> <span>数据库与缓存</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link">
+                            <i class="circle icon"></i> 关系型数据库
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> MongoDB
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 缓存
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border nx-labeled-icon-item">
+                <i class="connectdevelop icon nx-icon"></i> <span>大数据平台</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link">
+                            <i class="circle icon"></i> Hadoop
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> Spark
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> Elasticsearch
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> ZooKeeper
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 消息队列
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border nx-labeled-icon-item">
+                <i class="settings icon nx-icon"></i> <span>管理</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link">
+                            <i class="circle icon"></i> 监控告警
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 定时器
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 自动伸缩
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 资源编排
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 标签
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 操作日志
+                        </div>
+                        <div class="item link">
+                            <i class="circle icon"></i> 回收站
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="ui inverted accordion nx-ad-menu">
+                <div class="title">
+                    <i class="laptop icon nx-icon"></i>
+                    <i class="dropdown icon"></i> 计算与网络
+                </div>
+                <div class="content">
+                    <a class="item">
+                        <i class="circle icon"></i> 主机
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 映像
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 私有网络
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 路由器
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 负载均衡器
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 公网IP
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 内网域名别名
+                    </a>
+                </div>
+                <div class="title">
+                    <i class="disk outline icon nx-icon"></i>
+                    <i class="dropdown icon"></i> 存储
+                </div>
+                <div class="content">
+                    <a class="item">
+                        <i class="circle icon"></i> 硬盘
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> Virtual SAN
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> NAS
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 备份
+                    </a>
+                </div>
+                <div class="title">
+                    <i class="lightning icon nx-icon"></i>
+                    <i class="dropdown icon"></i> 安全
+                </div>
+                <div class="content">
+                    <a class="item">
+                        <i class="circle icon"></i> 防火墙
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> SSH密钥
+                    </a>
+                </div>
+                <div class="title">
+                    <i class="database icon nx-icon"></i>
+                    <i class="dropdown icon"></i> 数据库与缓存
+                </div>
+                <div class="content">
+                    <a class="item">
+                        <i class="circle icon"></i> 关系型数据库
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> MongoDB
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 缓存
+                    </a>
+                </div>
+                <div class="title">
+                    <i class="connectdevelop icon nx-icon"></i>
+                    <i class="dropdown icon"></i> 大数据平台
+                </div>
+                <div class="content">
+                    <a class="item">
+                        <i class="circle icon"></i> Hadoop
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> Spark
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> Elasticsearch
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> ZooKeeper
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 消息队列
+                    </a>
+                </div>
+                <div class="title">
+                    <i class="settings icon nx-icon"></i>
+                    <i class="dropdown icon"></i> 管理
+                </div>
+                <div class="content">
+                    <a class="item">
+                        <i class="circle icon"></i> 监控告警
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 定时器
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 自动伸缩
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 资源编排
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 标签
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 操作日志
+                    </a>
+                    <a class="item">
+                        <i class="circle icon"></i> 回收站
+                    </a>
+                </div>
+            </div>
+            <div class="header item nx-header nx-no-border">GLOBAL</div>
+            <a class="item nx-no-border">
+                <i class="users icon nx-icon"></i> <span>子账户</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link"> 子账户</div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border">
+                <i class="privacy icon nx-icon"></i> <span>API密钥</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link"> API密钥</div>
+                    </div>
+                </div>
+            </a>
+            <a class="item nx-no-border">
+                <i class="list layout icon nx-icon"></i> <span>通知列表</span>
+                <div class="nx-second-menu">
+                    <div class="ui inverted vertical menu">
+                        <div class="item link"> 通知列表</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="pusher">
+            <div class="ui basic segment">
+                <h3 class="ui header">Application Content</h3>
+                <p style="word-wrap: break-word;">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+                <p></p>
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</template>
