@@ -83,7 +83,7 @@ switch (ENV) {
             require('@easy-webpack/config-html')(),
 
             require('@easy-webpack/config-css')
-            ({ filename: 'styles.css', allChunks: !!ELECTRON, sourceMap: false }),
+            ({ filename: 'common.css', allChunks: !!ELECTRON, sourceMap: false }),
 
             require('@easy-webpack/config-fonts-and-images')(),
             require('@easy-webpack/config-global-bluebird')(),
@@ -111,7 +111,7 @@ switch (ENV) {
             require('@easy-webpack/config-html')(),
 
             require('@easy-webpack/config-css')
-            ({ filename: 'styles.css', allChunks: !!ELECTRON, sourceMap: false }),
+            ({ filename: 'common.css', allChunks: !!ELECTRON, sourceMap: false }),
 
             require('@easy-webpack/config-fonts-and-images')(),
             require('@easy-webpack/config-global-bluebird')(),
@@ -136,10 +136,11 @@ switch (ENV) {
             require('@easy-webpack/config-html')(),
 
             require('@easy-webpack/config-css')
-            ({ filename: 'styles.css', allChunks: !!ELECTRON, sourceMap: false }),
+            ({ filename: 'common.css', allChunks: !!ELECTRON, sourceMap: false }),
 
             require('@easy-webpack/config-fonts-and-images')(),
             require('@easy-webpack/config-global-bluebird')(),
+
             require('@easy-webpack/config-global-jquery')(),
             require('@easy-webpack/config-global-regenerator')(),
             require('@easy-webpack/config-generate-index-html')

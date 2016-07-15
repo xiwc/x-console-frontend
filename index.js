@@ -4,8 +4,8 @@
  */
 
 // 这里加载font-awesome是为了尽可能早的显示fa-spinner(加载进度图标)
-import './styles/styles.css';
-import 'font-awesome/css/font-awesome.css';
+import './static/css/common.css';
+import './static/vender/semantic-ui/semantic.css';
 
 // 如果不需要Promise垫片可以注释掉(同时需要从config/webpack.config.js中移除)
 import * as Bluebird from 'bluebird';
