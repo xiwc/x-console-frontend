@@ -241,3 +241,55 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
 .nx-history .nx-content .item .right .content .desc {
     margin-top: 10px;
 }
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container {
+    width: 230px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .message {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .message:after {
+    clear: both;
+    content: '';
+    display: block;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .message .label {
+    float: left;
+    font-size: 1.5em;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .message .value {
+    float: right;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .actions {
+    text-align: center;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .actions .item {
+    display: inline-block;
+    text-align: center;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .actions .item:before {
+    display: none;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .actions .item .icon {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.nx-top-fixed-menu .nx-pp-dollar .nx-container .more {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
