@@ -36,5 +36,20 @@ export class App {
                     hide: 300
                 }
             });
+
+        var historyTimer = null;
+        $('.nx-menu-item-history').hover(function() {
+            $('.nx-history').show();
+        }, function(evt) {
+            historyTimer = setTimeout(function() {
+                $('.nx-history').hide();
+            }, 200);
+        });
+
+        $('.nx-history').hover(function() {
+            historyTimer && clearTimeout(historyTimer);
+        }, function(evt) {
+            $('.nx-history').hide();
+        });
     }
 }
