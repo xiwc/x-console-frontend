@@ -147,6 +147,11 @@
     font-size: 1.2em;
 }
 
+.ui.visible.inverted.vertical.sidebar.menu.nx-left-sidebar-menu .nx-no-border i.nx-icon {
+    margin-left: 4px;
+    margin-right: 2px;
+}
+
 .nx-left-sidebar-menu-labeled-icon .ui.visible.inverted.vertical.sidebar.menu.nx-left-sidebar-menu {
     font-size: 1em;
 }

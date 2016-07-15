@@ -1,5 +1,5 @@
 import 'jquery';
-import '../static/vender/semantic-ui/semantic';
+import '../../static/vender/semantic-ui/semantic';
 
 export class App {
 

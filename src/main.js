@@ -16,7 +16,7 @@ bootstrap(async(aurelia) => {
     rootElement.setAttribute('aurelia-app', '');
 
     await aurelia.start();
-    aurelia.setRoot('app', rootElement);
+    aurelia.setRoot('app/app', rootElement);
 
     // 如果你想你的站点可以离线访问(Service Worker), 
     // 安装并且开启@easy-webpack/config-offline依赖包(在webpack.config.js中), 并且取消注释下面的代码
