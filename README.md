@@ -3,6 +3,14 @@
 
 该项目配置使用Babel转换器以便于你的应用程序可以使用其他语言. 在任何的标准文本编辑器下应该都运行的很好. 该骨架项目使用NPM来进行包管理,使用Webpack来打包扎捆.
 
+## Doc
+> https://www.npmjs.com/package/wurl https://github.com/websanova/js-url 
+> https://www.npmjs.com/package/toastr https://github.com/CodeSeven/toastr 
+> https://www.npmjs.com/package/js-cookie https://github.com/js-cookie/js-cookie  
+> https://www.npmjs.com/package/underscore https://github.com/jashkenas/underscore 
+> https://www.npmjs.com/package/underscore.string https://github.com/epeli/underscore.string 
+> https://www.npmjs.com/package/lodash https://github.com/lodash/lodash 
+
 ## 入门指南(Getting started)
 
 开始之前确保你安装了最近版本的[NodeJS](http://nodejs.org/)环境 *>=4.0* (NPM 3).
