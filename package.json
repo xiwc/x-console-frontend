@@ -85,7 +85,8 @@
     "aurelia-templating-router": "^1.0.0-rc.1.0.0",
     "bluebird": "^3.4.1",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^1.11.2"
+    "jquery": "^1.11.2",
+    "wlzc-semantic-ui": "^1.0.0"
   },
   "devDependencies": {
     "@easy-webpack/config-aurelia": "^2.0.1",
