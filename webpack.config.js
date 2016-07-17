@@ -55,6 +55,7 @@ const coreBundles = {
     ]
 }
 
+// 基础配置
 const baseConfig = {
     entry: {
         'app': ['./src/main'],
@@ -63,11 +64,19 @@ const baseConfig = {
     },
     output: {
         path: outDir,
+    },
+    externals: {
+        // jquery: "jQuery"
+    },
+    resolve: {
+        alias: {
+            vender: path.resolve(__dirname, 'static/vender'),
+            nm: path.resolve(__dirname, "node_modules")
+        }
     }
 }
 
 // 高级配置:
-
 switch (ENV) {
     case 'production': // 生产环境
         config = generateConfig(

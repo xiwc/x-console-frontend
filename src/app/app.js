@@ -1,5 +1,7 @@
 import 'jquery';
-import '../../static/vender/semantic-ui/semantic';
+// import '../../static/vender/semantic-ui/semantic';
+// import 'vender/semantic-ui/semantic';
+import 'wlzc-semantic-ui/semantic';
 
 export class App {
 
