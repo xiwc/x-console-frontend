@@ -1,10 +1,10 @@
 <template>
     <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu">
         <!-- <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu labeled icon"> -->
-        <div class="nx-logo">
+        <a class="nx-logo" href="/#/home">
             <img src="https://x.newtouchwork.com/images/logo16px.png">
             <span>新致云</span>
-        </div>
+        </a>
         <a class="item nx-labeled-icon-item">
             <i class="marker icon"></i> <span>上海1区 (SH1)</span>
             <div class="nx-second-menu">
@@ -30,14 +30,17 @@
             </div>
         </div>
         <div class="header item nx-header nx-no-border">SH1</div>
-        <a class="item nx-no-border">
+        <a class="item nx-no-border nx-wide-item" href="/#/dashboard">
             <i class="dashboard icon nx-icon"></i> <span>总览</span>
+        </a>
+        <div class="item nx-no-border nx-labeled-icon-item" href="/#/dashboard">
+            <i class="dashboard icon nx-icon"></i>
             <div class="nx-second-menu">
                 <div class="ui inverted vertical menu">
-                    <div class="item link"> 总览</div>
+                    <a class="item link" href="/#/dashboard"> 总览</a>
                 </div>
             </div>
-        </a>
+        </div>
         <a class="item nx-no-border nx-labeled-icon-item">
             <i class="laptop icon nx-icon"></i> <span>计算与网络</span>
             <div class="nx-second-menu">
@@ -287,29 +290,38 @@
             </div>
         </div>
         <div class="header item nx-header nx-no-border">GLOBAL</div>
-        <a class="item nx-no-border">
+        <a class="item nx-no-border nx-wide-item">
             <i class="users icon nx-icon"></i> <span>子账户</span>
+        </a>
+        <div class="item nx-no-border nx-labeled-icon-item">
+            <i class="users icon nx-icon"></i>
             <div class="nx-second-menu">
                 <div class="ui inverted vertical menu">
-                    <div class="item link"> 子账户</div>
+                    <a class="item link"> 子账户</a>
                 </div>
             </div>
-        </a>
-        <a class="item nx-no-border">
+        </div>
+        <a class="item nx-no-border nx-wide-item">
             <i class="privacy icon nx-icon"></i> <span>API密钥</span>
+        </a>
+        <div class="item nx-no-border nx-labeled-icon-item">
+            <i class="privacy icon nx-icon"></i>
             <div class="nx-second-menu">
                 <div class="ui inverted vertical menu">
                     <div class="item link"> API密钥</div>
                 </div>
             </div>
-        </a>
-        <a class="item nx-no-border">
+        </div>
+        <a class="item nx-no-border nx-wide-item">
             <i class="list layout icon nx-icon"></i> <span>通知列表</span>
+        </a>
+        <div class="item nx-no-border nx-labeled-icon-item">
+            <i class="list layout icon nx-icon"></i>
             <div class="nx-second-menu">
                 <div class="ui inverted vertical menu">
-                    <div class="item link"> 通知列表</div>
+                    <a class="item link"> 通知列表</a>
                 </div>
             </div>
-        </a>
+        </div>
     </div>
 </template>

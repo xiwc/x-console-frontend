@@ -8,6 +8,7 @@ import './static/css/common.css';
 // import './static/vender/semantic-ui/semantic.css';
 // import 'vender/semantic-ui/semantic.css';
 import 'wlzc-semantic-ui/semantic.css';
+import 'wlzc-animate.css';
 
 // 如果不需要Promise垫片可以注释掉(同时需要从config/webpack.config.js中移除)
 import * as Bluebird from 'bluebird';

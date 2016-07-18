@@ -9,6 +9,7 @@
 }
 
 .nx-logo {
+    display: block;
     height: 47px;
     color: white;
     background-color: rgba(76, 57, 57, 0.66);
@@ -83,6 +84,7 @@
     display: none;
 }
 
+.nx-left-sidebar-menu-labeled-icon .nx-wide-item,
 .nx-left-sidebar-menu-labeled-icon .nx-dd-region,
 .nx-left-sidebar-menu-labeled-icon .nx-ad-menu {
     display: none!important;

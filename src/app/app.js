@@ -5,6 +5,31 @@ import 'wlzc-semantic-ui/semantic';
 
 export class App {
 
+    // 配置路由
+    configureRouter(config, router) {
+
+        // config.title = 'X资源管理控制台';
+        config.map([{
+            route: ['home'],
+            name: 'home',
+            moduleId: 'home',
+            nav: false,
+            label: '主页'
+        }, {
+            route: ['dashboard'],
+            name: 'dashboard',
+            moduleId: 'dashboard',
+            nav: false,
+            label: '总览'
+        }, {
+            route: '',
+            redirect: 'home'
+        }]);
+
+        this.router = router;
+
+    }
+
     /**
      * 当视图被附加到DOM中时被调用
      */
