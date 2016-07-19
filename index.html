@@ -17,7 +17,9 @@
         <div class="message">
             <%- webpackConfig.metadata.title %>
         </div>
-        <i class="fa fa-spinner fa-spin"></i>
+        <div class="ui active dimmer">
+            <div class="ui massive text loader"></div>
+        </div>
     </div>
     <% if (webpackConfig.metadata.ENV === 'development') { %>
         <!-- Webpack Dev Server reload -->
