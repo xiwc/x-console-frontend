@@ -4,6 +4,12 @@ body {
     font-size: 12px!important;
 }
 
+.nx-start.ui.massive.loader:after,
+.nx-start.ui.massive.loader:before {
+    width: 5rem;
+    height: 5rem;
+}
+
 .page-host {
     position: absolute;
     left: 0;
