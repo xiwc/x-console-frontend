@@ -1,9 +1,19 @@
-import 'jquery';
+// import 'jquery';
 // import '../../static/vender/semantic-ui/semantic';
 // import 'vender/semantic-ui/semantic';
 import 'wlzc-semantic-ui/semantic';
+import 'toastr/build/toastr.css';
 
 export class App {
+
+    /**
+     * 构造函数
+     */
+    constructor() {
+        // toastr弹出消息提示插件全局配置设置
+        toastr.options.positionClass = 'toast-bottom-center';
+        toastr.options.preventDuplicates = true;
+    }
 
     // 配置路由
     configureRouter(config, router) {

@@ -1,6 +1,8 @@
 "use strict";
 require('regenerator-runtime/runtime');
 
+const webpack = require('webpack');
+
 /**
  * 想要了解怎么使用Easy Webpack, 可以看看这里的README: https://github.com/easy-webpack/core
  **/
@@ -73,7 +75,13 @@ const baseConfig = {
             vender: path.resolve(__dirname, 'static/vender'),
             nm: path.resolve(__dirname, "node_modules")
         }
-    }
+    },
+    plugins: [new webpack.ProvidePlugin({
+        _: "lodash",
+        Cookie: 'js-cookie',
+        wurl: 'wurl',
+        toastr: 'toastr'
+    })]
 }
 
 // 高级配置:
