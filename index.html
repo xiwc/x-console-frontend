@@ -13,13 +13,8 @@
 </head>
 
 <body>
-    <div class="splash">
-        <div class="message">
-            <%- webpackConfig.metadata.title %>
-        </div>
-        <div class="ui active dimmer">
-            <div class="ui massive text loader"></div>
-        </div>
+    <div class="ui active dimmer">
+        <div class="ui massive text loader"></div>
     </div>
     <% if (webpackConfig.metadata.ENV === 'development') { %>
         <!-- Webpack Dev Server reload -->
