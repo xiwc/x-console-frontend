@@ -32,8 +32,14 @@ export class App {
             nav: false,
             label: '总览'
         }, {
+            route: ['host'],
+            name: 'host',
+            moduleId: 'host/host',
+            nav: false,
+            label: '主机'
+        }, {
             route: '',
-            redirect: 'home'
+            redirect: 'dashboard'
         }]);
 
         this.router = router;
