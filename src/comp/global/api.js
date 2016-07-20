@@ -202,8 +202,15 @@ $(document).ajaxError(function(event, xhr, settings, exception) {
     var code = xhr && xhr.responseJSON && xhr.responseJSON.code;
     code = code ? code : 'SYSTEM_ERROR';
 
+    // TODO i18n tr not impl.
     // 全局错误拦截提示
-    toastr.error(_.tr('error.' + code), null, {
+    // toastr.error(_.tr('error.' + code), null, {
+    //     "closeButton": true,
+    //     "progressBar": true,
+    //     "positionClass": "toast-top-center",
+    //     "preventDuplicates": true
+    // });
+    toastr.error('网络连接错误！', null, {
         "closeButton": true,
         "progressBar": true,
         "positionClass": "toast-top-center",
