@@ -1,0 +1,15 @@
+<template>
+    <div ref="mdLogout" class="ui small modal nt-modal-w400 nt-modal-t44">
+        <div class="header">
+            <h4>${title ? title : i18n.tr('memo.memoEdit.operateSure')}</h4>
+            <i class="close icon" click.delegate="hide()"></i>
+        </div>
+        <div class="content">
+            <p>${content ? content : i18n.tr('router.confirmOperate')}</p>
+        </div>
+        <div class="actions" style="background-color: white;border-top: none;">
+            <div class="ui cancel basic blue button" style="float: left;">${"comp.cancel" | t}</div>
+            <div class="ui ok blue button">${"comp.confirm" | t}</div>
+        </div>
+    </div>
+</template>

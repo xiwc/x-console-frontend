@@ -1,0 +1,66 @@
+<template>
+    <div class="ui basic vertical animated button" style="position: fixed; top: 1px; left: 1px; z-index: 9999;" click.delegate="debugHandler($event)">
+        <div class="hidden content">${"comp.setting" | t}</div>
+        <div class="visible content">
+            <i class="settings icon"></i>
+        </div>
+    </div>
+    <div class="ui modal" ref="mdDebug">
+        <div class="header">
+            Debug设置
+        </div>
+        <div class="content">
+            <div class="ui segment top attached">
+                <div class="ui search" ref="uiSearch">
+                    <div class="ui icon input">
+                        <input class="prompt" value.bind="searchText" type="text" placeholder="Search api...">
+                        <i title="清除过滤条件" click.delegate="clearHandler()" class="remove link icon popup"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+            </div>
+            <div class="ui bottom attached segment" style="max-height: 300px; overflow-y: auto;">
+                <div class="ui celled grid">
+                    <div class="row">
+                        <div class="four wide column">
+                            <div class="ui toggle checkbox popup" ref="chkAll" title="全选 / 反选" data-variation="inverted">
+                                <input type="checkbox">
+                                <label><b>${"comp.name" | t}</b></label>
+                            </div>
+                        </div>
+                        <div class="nine wide column">
+                            <label><b>URL(Real</b></label>
+                            <label><b> / </b></label>
+                            <label><b>Mock)</b></label>
+                        </div>
+                        <div class="three wide column">
+                            <label><b>参数</b></label>
+                        </div>
+                    </div>
+                    <div ref="rowApi" class="row" repeat.for="api of filterApiArr" show.bind="!api.isHidden">
+                        <div class="four wide column">
+                            <div class="ui toggle checkbox chk-api">
+                                <input value.bind="api.name" type="checkbox">
+                                <label><b>${api.value.method}</b></label>
+                            </div>
+                            <br>
+                            <br>
+                            <label class="popup" title.bind="api.name" data-position="bottom center"><b>${api.name | abbreviate:25}</b></label>
+                        </div>
+                        <div class="nine wide column">
+                            <p>${api.value.real}</p>
+                            <p><a target="_blank" href="${api.value.mock}">${api.value.mock}</a></p>
+                        </div>
+                        <div class="three wide column">
+                            <label class="popup" if.bind="api.hasPayload" data-html="${api.payload}" data-position="left center"><b>浮动查看参数</b></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel negative button">${"comp.cancel" | t}</div>
+            <div class="ui ok positive button">${"comp.makeSure" | t}</div>
+        </div>
+    </div>
+</template>

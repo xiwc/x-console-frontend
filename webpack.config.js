@@ -2,6 +2,7 @@
 require('regenerator-runtime/runtime');
 
 const webpack = require('webpack');
+const AureliaWebpackPlugin = require('aurelia-webpack-plugin')
 
 /**
  * 想要了解怎么使用Easy Webpack, 可以看看这里的README: https://github.com/easy-webpack/core
@@ -76,7 +77,7 @@ const baseConfig = {
             nm: path.resolve(__dirname, "node_modules")
         }
     },
-    plugins: [new webpack.ProvidePlugin({
+    plugins: [new webpack.ProvidePlugin({ // http://webpack.github.io/docs/list-of-plugins.html#provideplugin
         _: "lodash",
         Cookie: 'js-cookie',
         wurl: 'wurl',

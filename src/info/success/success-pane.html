@@ -1,0 +1,37 @@
+<style type="text/css">
+.nt-info-success .ui.message .ui.form button.ui.disabled.button {
+    float: left;
+    margin-left: 2em;
+    width: 145px;
+    border-radius: 40px;
+    background: #CBCBCB;
+    color: #808080;
+    font-size: 1.5em;
+    padding: 0.25em 1.5em!important;
+}
+</style>
+<template>
+    <div class="ui segment container nt-info-success" style="box-shadow:none;border:none;">
+        <div class="ui message" style="height: 500px;background: #fff;box-shadow:none;border:none;">
+            <form class="ui form">
+                <div class="content" style="margin-top: 10em;text-align: center;width: 40%;margin: 100px auto;">
+                    <div style="width: 100%;float: left;">
+                        <img style="top: -1.5em;float: left;margin-left: 5em;" class="ui Tiny image" src="/images/mail.png">
+                        <h1 style="font-size: 3.5em;color: #3397e4;margin-bottom: 10px;float: left;margin-left: 10px;">${"comp.verifySuccess" | t}</h1>
+                    </div>
+                    <div if-locale="zh|en" style="width: 100%;float: left;">
+                        <button class="ui disabled button">5秒</button>
+                        <p style="float: left;margin-top: 0;font-size: 1.5em;color: #808080;">后进入新致云！</p>
+                    </div>
+                    <div if-locale="jp" style="width: 100%;float: left;">あと
+                        <button class="ui disabled button">5秒</button>
+                        <p style="float: left;margin-top: 0;font-size: 1.5em;color: #808080;">で新致クラウドに入る</p>
+                    </div>
+                    <div style="width: 100%;float: left;">
+                        <button class="ui blue button" style="width: 350px;margin-top: 20px;padding: 1.25em 1.5em!important;">${"comp.directJoin" | t}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
