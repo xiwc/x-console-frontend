@@ -180,12 +180,13 @@ $(document).ajaxSuccess(function(event, xhr, settings) {
                 return;
             }
 
-            toastr.error(_.tr('error.' + xhr.responseJSON.code), null, {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-center",
-                "preventDuplicates": true
-            });
+            // TODO i18n tr not impl.
+            // toastr.error(_.tr('error.' + xhr.responseJSON.code), null, {
+            //     "closeButton": true,
+            //     "progressBar": true,
+            //     "positionClass": "toast-top-center",
+            //     "preventDuplicates": true
+            // });
         }
     }
 });
