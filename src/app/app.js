@@ -18,27 +18,44 @@ export class App {
     configureRouter(config, router) {
 
         // config.title = 'X资源管理控制台';
+        // config.map([{
+        //     route: ['home'],
+        //     name: 'home',
+        //     moduleId: 'home',
+        //     nav: false,
+        //     label: '主页'
+        // }, {
+        //     route: ['dashboard'],
+        //     name: 'dashboard',
+        //     moduleId: 'dashboard',
+        //     nav: false,
+        //     label: '总览'
+        // }, {
+        //     route: ['host'],
+        //     name: 'host',
+        //     moduleId: 'host/host',
+        //     nav: false,
+        //     label: '主机'
+        // }, {
+        //     route: '',
+        //     redirect: 'dashboard'
+        // }]);
+
         config.map([{
-            route: ['home'],
-            name: 'home',
-            moduleId: 'home',
-            nav: false,
-            label: '主页'
+            route: ['server'],
+            name: 'server',
+            moduleId: 'server/server',
+            nav: true,
+            title: '云服务器'
         }, {
-            route: ['dashboard'],
-            name: 'dashboard',
-            moduleId: 'dashboard',
-            nav: false,
-            label: '总览'
-        }, {
-            route: ['host'],
-            name: 'host',
-            moduleId: 'host/host',
-            nav: false,
-            label: '主机'
+            route: ['network'],
+            name: 'network',
+            moduleId: 'network/network',
+            nav: true,
+            title: '专用VPC网络'
         }, {
             route: '',
-            redirect: 'dashboard'
+            redirect: 'server'
         }]);
 
         this.router = router;

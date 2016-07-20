@@ -7,6 +7,8 @@ from 'aurelia-framework';
 @containerless
 export class Sidebar {
 
+    @bindable router = null;
+
     /**
      * 当视图被附加到DOM中时被调用
      */
