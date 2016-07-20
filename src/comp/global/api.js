@@ -3,12 +3,15 @@ window.nsApiFunc = (function() {
 
     // API全局共享定义(real:真实远程调用URL, mock:自定义调试数据URL.)
     var api = {
-        // 'v1.team.teamBean': {
-        //     real: '/v1/team/teamBean',
-        //     mock: '/mock/yangyang/v1/team/teamBean.json',
-        //     ismock: true,
-        //     method: 'get'
-        // }
+        'v1.host.hostList.get': { // TODO demo ajax method config.
+            // real: 'v1/host/host-list',
+            real: 'https://x.newtouchwork.com/styles/common.css',
+            mock: '/mock/v1/host/host-list.get.json',
+            ismock: true,
+            method: 'get',
+            payload: {},
+            desc: '获取主机列表'
+        }
     };
 
     // api debug配置初始化
