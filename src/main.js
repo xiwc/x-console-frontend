@@ -35,7 +35,7 @@ bootstrap(async(aurelia) => {
     //         debug: false
     //     });
     // })
-    .globalResources(['comp/debug/debug', 'comp/global/converter', 'comp/dimmer', 'comp/dimmer-url', 'comp/modal-confirm', 'comp/task', 'comp/if-locale', 'comp/attr', 'comp/cls-locale']);
+    .globalResources(['comp/debug/debug', 'comp/global/converter', 'comp/dimmer', 'comp/dimmer-url', 'comp/task', 'comp/if-locale', 'comp/attr', 'comp/cls-locale']);
 
 
     // 可以打开注释开启过渡动画
