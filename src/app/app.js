@@ -2,7 +2,6 @@
 // import '../../static/vender/semantic-ui/semantic';
 // import 'vender/semantic-ui/semantic';
 import 'wlzc-semantic-ui/semantic';
-import 'toastr/build/toastr.css';
 
 export class App {
 
