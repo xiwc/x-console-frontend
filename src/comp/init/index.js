@@ -9,6 +9,34 @@
 **/
 export function configure(aurelia, params) {
 
+    /**
+     * 检查用户登录状态
+     */
+    + function() {
+
+        // 解析URL中的ACCESS_TOKEN, 存放到cookie中
+        // 该端代码逻辑放在靠前位置, 因为如果修改url地址, 会重新刷新加载该框架.
+        var token = wurl('?' + nsCons.ACCESS_TOKEN_NAME);
+
+        if (token) {
+
+            if (!_(['prod', 'test']).includes(nsParam.env)) {
+                Cookie.set(nsCons.ACCESS_TOKEN, token);
+            }
+
+            if ('pushState' in history) {
+                history.replaceState(null, '', _.removeUrlQuery(nsCons.ACCESS_TOKEN_NAME));
+            } else {
+                window.location.href = _.removeUrlQuery(nsCons.ACCESS_TOKEN_NAME);
+            }
+        }
+
+        nsCtx.accessToken = Cookie.get(nsCons.ACCESS_TOKEN);
+
+        return this;
+
+    }();
+
     // // toastr弹出消息提示插件全局配置设置
     // toastr.options.positionClass = 'toast-bottom-center';
     // toastr.options.preventDuplicates = true;
