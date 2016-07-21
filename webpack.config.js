@@ -113,7 +113,8 @@ const baseConfig = {
         _: "lodash",
         Cookie: 'js-cookie',
         wurl: 'wurl',
-        toastr: 'toastr'
+        toastr: 'toastr',
+        NProgress: 'NProgress'
     })]
 }
 

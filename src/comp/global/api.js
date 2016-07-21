@@ -218,6 +218,14 @@ $(document).ajaxError(function(event, xhr, settings, exception) {
     });
 });
 
+// 全局ajax调用进度表示
+$(document).on('ajaxStart', function() {
+    NProgress && NProgress.start();
+});
+$(document).on('ajaxStop', function() {
+    NProgress && NProgress.done();
+});
+
 // 扩展jquery ajax支持put delete方法.
 jQuery.each(["put", "delete"], function(i, method) {
 
