@@ -114,7 +114,7 @@ const baseConfig = {
         Cookie: 'js-cookie',
         wurl: 'wurl',
         toastr: 'toastr',
-        NProgress: 'NProgress'
+        NProgress: 'nprogress'
     })]
 }
 
