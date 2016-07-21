@@ -1,6 +1,3 @@
-// import 'jquery';
-// import '../../static/vender/semantic-ui/semantic';
-// import 'vender/semantic-ui/semantic';
 import 'wlzc-semantic-ui/semantic';
 
 export class App {
@@ -18,28 +15,6 @@ export class App {
     configureRouter(config, router) {
 
         // config.title = 'X资源管理控制台';
-        // config.map([{
-        //     route: ['home'],
-        //     name: 'home',
-        //     moduleId: 'home',
-        //     nav: false,
-        //     label: '主页'
-        // }, {
-        //     route: ['dashboard'],
-        //     name: 'dashboard',
-        //     moduleId: 'dashboard',
-        //     nav: false,
-        //     label: '总览'
-        // }, {
-        //     route: ['host'],
-        //     name: 'host',
-        //     moduleId: 'host/host',
-        //     nav: false,
-        //     label: '主机'
-        // }, {
-        //     route: '',
-        //     redirect: 'dashboard'
-        // }]);
 
         config.map([{
             route: ['server'],

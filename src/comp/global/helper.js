@@ -52,6 +52,22 @@
                 } else {
                     return (xhr && xhr.hasOwnProperty('nt_no_global_error')) ? xhr.nt_no_global_error : false;
                 }
+            },
+            toggleSidebar: (toHide) => {
+
+                var isFolded = $('.nx-body').hasClass('nx-left-sidebar-menu-labeled-icon');
+                if (_.isUndefined(toHide)) {
+                    $('.nx-body .nx-left-sidebar-menu').toggleClass('labeled icon');
+                    $('.nx-body').toggleClass('nx-left-sidebar-menu-labeled-icon');
+                } else {
+                    if (!toHide && isFolded) {
+                        $('.nx-body .nx-left-sidebar-menu').removeClass('labeled icon');
+                        $('.nx-body').removeClass('nx-left-sidebar-menu-labeled-icon');
+                    } else {
+                        $('.nx-body').addClass('nx-left-sidebar-menu-labeled-icon');
+                        $('.nx-body .nx-left-sidebar-menu').addClass('labeled icon');
+                    }
+                }
             }
         };
     })();
