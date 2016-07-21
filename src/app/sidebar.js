@@ -18,5 +18,6 @@ export class Sidebar {
                 return $('.nx-body').hasClass('nx-left-sidebar-menu-labeled-icon');
             }
         });
+
     }
 }

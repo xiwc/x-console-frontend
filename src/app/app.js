@@ -22,14 +22,37 @@ export class App {
             moduleId: 'server/server',
             nav: true,
             title: '云服务器',
-            icon: 'server'
+            icon: 'server',
+            type: 'common'
         }, {
             route: ['network'],
             name: 'network',
             moduleId: 'network/network',
             nav: true,
             title: '专用VPC网络',
-            icon: 'connectdevelop'
+            icon: 'connectdevelop',
+            type: 'common'
+        }, {
+            route: ['db-relational'],
+            name: 'db-relational',
+            moduleId: 'db/db-relational',
+            nav: true,
+            title: '数据库与缓存',
+            type: 'db'
+        },  {
+            route: ['db-mongo'],
+            name: 'db-mongo',
+            moduleId: 'db/db-mongo',
+            nav: true,
+            title: 'MongoDB',
+            type: 'db'
+        },  {
+            route: ['db-cache'],
+            name: 'db-cache',
+            moduleId: 'db/db-cache',
+            nav: true,
+            title: '缓存',
+            type: 'db'
         }, {
             route: '',
             redirect: 'server'
