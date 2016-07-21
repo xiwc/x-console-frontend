@@ -1,5 +1,42 @@
 <template>
-    <div class="ui basic segment container animated bounceInDown">
-        <div class="ui message">${msg}</div>
+    <div class="nx-main-body">
+        <div class="nx-second-view animated bounceInDown">
+            <router-view></router-view>
+        </div>
+        <div class="ui secondary vertical pointing menu animated bounceInLeft">
+            <a class="${row.isActive ? 'active' : ''} item" repeat.for="row of router.navigation" href.bind="row.href">
+			    ${row.title}
+			  </a>
+            <div class="ui vertical accordion" ref="accMenu">
+                <div class="item">
+                    <a class="title">
+                        <i class="dropdown icon"></i> 测试折叠菜单
+                    </a>
+                    <div class="content">
+                        <div class="item link">
+                            监控告警
+                        </div>
+                        <div class="item link">
+                            定时器
+                        </div>
+                        <div class="item link">
+                            自动伸缩
+                        </div>
+                        <div class="item link">
+                            资源编排
+                        </div>
+                        <div class="item link">
+                            标签
+                        </div>
+                        <div class="item link">
+                            操作日志
+                        </div>
+                        <div class="item link">
+                            回收站
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

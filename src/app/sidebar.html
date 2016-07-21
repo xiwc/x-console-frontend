@@ -34,7 +34,7 @@
             <i class="${row.config.icon} icon nx-icon"></i> <span>${row.title}</span>
         </a>
         <div class="${router.currentInstruction.config.type == 'db' ? 'active' : ''} item nx-no-border nx-labeled-icon-item">
-            <i class="database icon nx-icon"></i> <span>数据库与缓存</span>
+            <i class="database icon nx-icon"></i> <span>测试折叠菜单</span>
             <div class="nx-second-menu">
                 <div class="ui inverted vertical menu">
                     <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" if.bind="(row.config.type == 'db')" title="${row.title}">
@@ -43,71 +43,16 @@
                 </div>
             </div>
         </div>
-        <!-- <a class="item nx-no-border nx-labeled-icon-item">
-            <i class="settings icon nx-icon"></i> <span>管理</span>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link">
-                        <i class="circle icon"></i> 监控告警
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 定时器
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 自动伸缩
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 资源编排
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 标签
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 操作日志
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 回收站
-                    </div>
-                </div>
-            </div>
-        </a> -->
         <div class="ui inverted accordion nx-ad-menu">
             <div class="title">
                 <i class="database icon nx-icon"></i>
-                <i class="dropdown icon"></i> 数据库与缓存
+                <i class="dropdown icon"></i> 测试折叠菜单
             </div>
             <div class="content">
                 <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" if.bind="(row.config.type == 'db')" title="${row.title}">
                     <i class="circle icon"></i> ${row.title}
                 </a>
             </div>
-            <!-- <div class="title">
-                <i class="settings icon nx-icon"></i>
-                <i class="dropdown icon"></i> 管理
-            </div>
-            <div class="content">
-                <a class="item">
-                    <i class="circle icon"></i> 监控告警
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 定时器
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 自动伸缩
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 资源编排
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 标签
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 操作日志
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 回收站
-                </a>
-            </div> -->
         </div>
         <div class="header item nx-header nx-no-border">GLOBAL</div>
         <a class="item nx-no-border nx-pp" title="子账户" data-variation="inverted" data-position="right center">

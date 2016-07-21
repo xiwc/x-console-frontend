@@ -37,7 +37,7 @@ export class App {
             name: 'db-relational',
             moduleId: 'db/db-relational',
             nav: true,
-            title: '数据库与缓存',
+            title: '关系型数据库',
             type: 'db'
         },  {
             route: ['db-mongo'],
