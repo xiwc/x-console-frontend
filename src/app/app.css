@@ -114,7 +114,12 @@
 }
 
 .nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu {
-    display: block!important;
+    // display: block!important;
+    display: block;
+}
+
+.nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu.hidden {
+    display: none!important;
 }
 
 .nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu.ui.sidebar {

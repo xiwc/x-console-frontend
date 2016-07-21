@@ -39,14 +39,14 @@ export class App {
             nav: true,
             title: '关系型数据库',
             type: 'db'
-        },  {
+        }, {
             route: ['db-mongo'],
             name: 'db-mongo',
             moduleId: 'db/db-mongo',
             nav: true,
             title: 'MongoDB',
             type: 'db'
-        },  {
+        }, {
             route: ['db-cache'],
             name: 'db-cache',
             moduleId: 'db/db-cache',
@@ -109,6 +109,11 @@ export class App {
             historyTimer && clearTimeout(historyTimer);
         }, function(evt) {
             $('.nx-history').hide();
+        });
+
+        $('body').on('click', '.nx-left-sidebar-menu .nx-labeled-icon-item .nx-second-menu .menu .item', function(event) {
+            $(this).closest('.nx-second-menu').addClass('hidden');
+            _.delay(() => { $(this).closest('.nx-second-menu').removeClass('hidden'); }, 100);
         });
     }
 }
