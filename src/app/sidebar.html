@@ -31,7 +31,7 @@
         </div>
         <div class="header item nx-header nx-no-border">SH1</div>
         <a class="${row.isActive ? 'active' : ''} item nx-no-border nx-pp" repeat.for="row of router.navigation" href.bind="row.href" title="${row.title}" data-variation="inverted" data-position="right center">
-            <i class="dashboard icon nx-icon"></i> <span>${row.title}</span>
+            <i class="${row.config.icon} icon nx-icon"></i> <span>${row.title}</span>
         </a>
         <!-- <a class="item nx-no-border nx-pp" href="/#/dashboard" title="总览" data-variation="inverted" data-position="right center">
             <i class="dashboard icon nx-icon"></i> <span>总览</span>

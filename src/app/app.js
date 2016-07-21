@@ -46,13 +46,15 @@ export class App {
             name: 'server',
             moduleId: 'server/server',
             nav: true,
-            title: '云服务器'
+            title: '云服务器',
+            icon: 'server'
         }, {
             route: ['network'],
             name: 'network',
             moduleId: 'network/network',
             nav: true,
-            title: '专用VPC网络'
+            title: '专用VPC网络',
+            icon: 'connectdevelop'
         }, {
             route: '',
             redirect: 'server'
