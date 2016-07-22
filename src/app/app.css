@@ -339,3 +339,18 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
 
 
 /* second memu end */
+
+
+/* 二级左侧菜单 start */
+
+.nx-main-body > .ui.vertical.menu > a.item,
+.nx-main-body > .ui.vertical.menu > .accordion > .content > a.item {
+    padding-left: 21px;
+}
+
+.nx-main-body > .ui.vertical.menu > .accordion {
+    padding: 4px 0;
+}
+
+
+/* 二级左侧菜单 end */
