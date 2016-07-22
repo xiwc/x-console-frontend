@@ -1,0 +1,15 @@
+<template>
+    <div ref="mdLogout" class="ui small modal">
+        <!-- <i class="close icon"></i> -->
+        <div class="header">
+            ${title ? title : '操作确认'}
+        </div>
+        <div class="content">
+            <p>${content ? content : '您确认要执行选定操作吗?'}</p>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>
