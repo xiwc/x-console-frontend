@@ -11,6 +11,13 @@ export class ServerDashboard {
     }
 
     /**
+     * 当视图被附加到DOM中时被调用
+     */
+    attached() {
+        $('.nx-pp', this.container).popup();
+    }
+
+    /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
      * @param  {[object]} params                参数
      * @param  {[object]} routeConfig           路由配置
