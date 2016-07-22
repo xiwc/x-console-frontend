@@ -3,12 +3,21 @@ window.nsApiFunc = (function() {
 
     // API全局共享定义(real:真实远程调用URL, mock:自定义调试数据URL.)
     var api = {
-        // 'v1.team.teamBean': {
-        //     real: '/v1/team/teamBean',
-        //     mock: '/mock/yangyang/v1/team/teamBean.json',
-        //     ismock: true,
-        //     method: 'get'
-        // }
+        'host.hostList.get': { // TODO demo ajax method config.
+            // real: 'v1/host/host-list',
+            real: 'https://x.newtouchwork.com/styles/common.css',
+            mock: '/mock/v2/host/host-list.get.json',
+            ismock: true,
+            method: 'get',
+            payload: {},
+            desc: '获取主机列表'
+        },
+        'user.userInfo.get': { // TODO demo ajax method config.
+            real: '/v2/user/userInfo',
+            mock: '/mock/v2/user/userInfo.get.json',
+            ismock: false,
+            method: 'get'
+        },
     };
 
     // api debug配置初始化
@@ -171,12 +180,13 @@ $(document).ajaxSuccess(function(event, xhr, settings) {
                 return;
             }
 
-            toastr.error(_.tr('error.' + xhr.responseJSON.code), null, {
-                "closeButton": true,
-                "progressBar": true,
-                "positionClass": "toast-top-center",
-                "preventDuplicates": true
-            });
+            // TODO i18n tr not impl.
+            // toastr.error(_.tr('error.' + xhr.responseJSON.code), null, {
+            //     "closeButton": true,
+            //     "progressBar": true,
+            //     "positionClass": "toast-top-center",
+            //     "preventDuplicates": true
+            // });
         }
     }
 });
@@ -192,13 +202,28 @@ $(document).ajaxError(function(event, xhr, settings, exception) {
     var code = xhr && xhr.responseJSON && xhr.responseJSON.code;
     code = code ? code : 'SYSTEM_ERROR';
 
+    // TODO i18n tr not impl.
     // 全局错误拦截提示
-    toastr.error(_.tr('error.' + code), null, {
+    // toastr.error(_.tr('error.' + code), null, {
+    //     "closeButton": true,
+    //     "progressBar": true,
+    //     "positionClass": "toast-top-center",
+    //     "preventDuplicates": true
+    // });
+    toastr.error('网络连接错误！', null, {
         "closeButton": true,
         "progressBar": true,
         "positionClass": "toast-top-center",
         "preventDuplicates": true
     });
+});
+
+// 全局ajax调用进度表示
+$(document).on('ajaxStart', function() {
+    NProgress && NProgress.start();
+});
+$(document).on('ajaxStop', function() {
+    NProgress && NProgress.done();
 });
 
 // 扩展jquery ajax支持put delete方法.

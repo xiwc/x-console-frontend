@@ -1,3 +1,4 @@
+import "isomorphic-fetch";
 import { bootstrap } from 'aurelia-bootstrapper-webpack';
 import "comp/global/config";
 import "comp/global/helper";
@@ -6,37 +7,36 @@ import "comp/global/api";
 bootstrap(async(aurelia) => {
     aurelia.use
         .standardConfiguration()
-        .developmentLogging()
-        // .feature('comp/init')
+        // .developmentLogging()
+        .feature('comp/init')
         // .plugin('aurelia-i18n', (i18n) => {
+    //     // 添加i18n对象为全局对象
+    //     _.i18n = i18n;
+    //     _.tr = _(i18n.tr).bind(i18n);
 
-        //     // 添加i18n对象为全局对象
-        //     _.i18n = i18n;
-        //     _.tr = _(i18n.tr).bind(i18n);
+    //     var lng = Cookie.get(nsCons.I18N_LNG);
+    //     lng = lng ? lng.replace(/["']/g, '') : 'zh';
 
-        //     var lng = Cookie.get(nsCons.I18N_LNG);
-        //     lng = lng ? lng.replace(/["']/g, '') : 'zh';
+    //     // // 同步当前语言到数据库
+    //     // if (lng != nsCtx.user.language) {
+    //     //     nsCtx.user.language = lng; // 同步ctx
+    //     //     _.saveLng(lng); // TODO 是否要提醒用户同步失败或者成功?
+    //     // }
 
-        //     // // 同步当前语言到数据库
-        //     // if (lng != nsCtx.user.language) {
-        //     //     nsCtx.user.language = lng; // 同步ctx
-        //     //     _.saveLng(lng); // TODO 是否要提醒用户同步失败或者成功?
-        //     // }
+    //     // 设置cookie
+    //     Cookie.set(nsCons.I18N_LNG, lng);
 
-        //     // 设置cookie
-        //     Cookie.set(nsCons.I18N_LNG, lng);
-
-        //     i18n.setup({
-        //         resGetPath: '/locale/__lng__/__ns__.json',
-        //         lng: lng,
-        //         attributes: ['t', 'i18n'],
-        //         getAsync: false,
-        //         sendMissing: false,
-        //         fallbackLng: 'zh',
-        //         debug: false
-        //     });
-        // })
-        .globalResources(['comp/debug/debug', 'comp/global/converter', 'comp/dimmer', 'comp/dimmer-url', 'comp/modal-confirm', 'comp/task', 'comp/if-locale', 'comp/attr', 'comp/cls-locale']);
+    //     i18n.setup({
+    //         resGetPath: '/locale/__lng__/__ns__.json',
+    //         lng: lng,
+    //         attributes: ['t', 'i18n'],
+    //         getAsync: false,
+    //         sendMissing: false,
+    //         fallbackLng: 'zh',
+    //         debug: false
+    //     });
+    // })
+    .globalResources(['comp/debug/debug', 'comp/global/converter', 'comp/dimmer', 'comp/dimmer-url', 'comp/task', 'comp/if-locale', 'comp/attr', 'comp/cls-locale']);
 
 
     // 可以打开注释开启过渡动画

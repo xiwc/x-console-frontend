@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+    <link rel="shortcut icon" href="/static/img/logo16px.png">
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <style type="text/css">
+    html,
+    body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .container {
+        margin: auto;
+        width: 250px;
+        /* padding-top: 200px; */
+        -webkit-box-pack: center;
+        height: 100%;
+        -webkit-box-align: center;
+        display: -webkit-box;
+    }
+    
+    .container fieldset {
+        padding: 20px;
+        padding-top: 0px;
+    }
+    
+    .container input {
+        width: 198px;
+    }
+    
+    .container .space {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .container button {
+        height: 30px;
+    }
+    
+    .container .error {
+        margin-bottom: 0;
+        color: red;
+        font-weight: bold;
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <fieldset>
+            <legend>STEP开发登录页面</legend>
+            <div class="space"><a href="/index.html?debug=all">index.html?debug=all</a></div>
+            <div class="space"><a href="/index.html?debug">index.html?debug</a></div>
+            <hr>
+            <form>
+                <div>
+                    <label>用户名:</label>
+                    <input name="loginName" type="text">
+                </div>
+                <div class="space">
+                    <label>密&nbsp;码:</label>
+                    <input name="password" type="password">
+                </div>
+            </form>
+            <button id="submit" type="button">提交</button>
+            <span class="error">网络链接错误！</span>
+        </fieldset>
+    </div>
+    <script>
+    jQuery(document).ready(function($) {
+
+        $('input[name="password"]', 'form').on('keyup', function(evt) {
+
+            if (evt.keyCode === 13) {
+                $('#submit').click();
+            }
+        });
+
+        $('#submit').click(function(event) {
+
+            $('.error', 'fieldset').hide();
+
+            $('button,input', 'fieldset').attr('disabled', 'disabled');
+
+            $('button', 'fieldset').text('提交中...');
+
+            $.post('/v2/authentication/login/token', {
+                loginName: $('input[name="loginName"]', 'form').val(),
+                password: $('input[name="password"]', 'form').val()
+            }, function(data, textStatus, xhr) {
+                if (data.code == "SUCCESS") {
+                    window.location.href = '/index.html?accessToken=' + data.entity.accessToken;
+                } else {
+                    alert(data.message);
+                    $('.error', 'fieldset').text(data.message).show();
+                }
+            }).error(function() {
+                $('.error', 'fieldset').text('网络链接错误！').show();
+            }).complete(function() {
+                $('button,input', 'fieldset').removeAttr('disabled');
+                $('button', 'fieldset').text('提交');
+            });
+        });
+    });
+    </script>
+</body>
+
+</html>

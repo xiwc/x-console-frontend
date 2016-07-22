@@ -1,0 +1,74 @@
+{
+  "millis": 34,
+  "code": "SUCCESS",
+  "message": "操作成功",
+  "entity": {
+    "serviceResultCode": null,
+    "accessToken": null,
+    "userId": "ff8081814ea9846c014eaade93da1419",
+    "loginName": "xiweicheng",
+    "mailDomain": null,
+    "mobile": "18721764335",
+    "email": "weicheng.xi@newtouch.cn",
+    "position": null,
+    "companyId": null,
+    "realName": "席维成",
+    "icon": "https://file.newtouch.com/yangyangteset2/1a3759b1-0b76-4353-80d2-1044fa75bc57.png",
+    "lastUpdateTime": null,
+    "firstLoading": null,
+    "roomList": null,
+    "singleRoomList": null,
+    "openfireIp": null,
+    "skillList": [
+      {
+        "serviceResultCode": null,
+        "accessToken": null,
+        "tagName": "任性",
+        "tagType": null,
+        "tagCode": "任性",
+        "parentId": null,
+        "tagId": "ff80818150760dea015076690ac905df",
+        "systemFlag": "1",
+        "categoryId": null,
+        "categoryName": null,
+        "skillId": null
+      }
+    ],
+    "imageForPhone": null,
+    "status": "16002",
+    "otherInfo": null,
+    "userDesc": "篮球 乒乓球",
+    "degree": "47003",
+    "career": "前端架构师",
+    "sex": "48002",
+    "addr": "中国 上海",
+    "companyName": "新致软件",
+    "extraMessage": null,
+    "totalCount": null,
+    "nameALL": "xiweicheng",
+    "nameShort": "xwc",
+    "ifFriend": null,
+    "isOnLine": null,
+    "userType": "17001",
+    "emails": [
+      {
+        "email": "weicheng.xi@newtouch.cn",
+        "type": "default"
+      }
+    ],
+    "mobiles": [
+      {
+        "mobile": "18721764335",
+        "type": "default"
+      }
+    ],
+    "webEmails": [
+      {
+        "email": "weicheng.xi@newtouch.cn",
+        "type": "default",
+        "status": "16002"
+      }
+    ],
+    "language": "zh"
+  }
+}

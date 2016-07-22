@@ -1,0 +1,12 @@
+<template>
+    <div class="nx-main-body">
+        <div class="nx-second-view animated bounceInDown">
+            <router-view></router-view>
+        </div>
+        <div class="ui secondary vertical pointing menu animated bounceInLeft">
+            <a class="${row.isActive ? 'active' : ''} item" repeat.for="row of router.navigation" href.bind="row.href">
+			    ${row.title}
+			  </a>
+        </div>
+    </div>
+</template>

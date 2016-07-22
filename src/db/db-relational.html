@@ -1,0 +1,24 @@
+<template>
+    <div class="nx-main-body">
+        <div class="nx-second-view animated bounceInDown">
+            <router-view></router-view>
+        </div>
+        <div class="ui secondary vertical pointing menu animated bounceInLeft">
+            <a repeat.for="row of router.navigation" if.bind="(row.config.type == 'common')" class="${row.isActive ? 'active' : ''} item" href.bind="row.href">
+                ${row.title}
+            </a>
+            <div class="ui vertical accordion" ref="accMenu">
+                <!-- <div class="item"> -->
+                    <div class="${router.currentInstruction.config.type == 'test' ? 'active' : ''} title">
+                        <i class="dropdown icon"></i> 测试折叠菜单
+                    </div>
+                    <div class="${router.currentInstruction.config.type == 'test' ? 'active' : ''} content">
+                        <a repeat.for="row of router.navigation" if.bind="(row.config.type == 'test')" class="${row.isActive ? 'active' : ''} item" href.bind="row.href">
+                            ${row.title}
+                        </a>
+                    </div>
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,3 +1,5 @@
+/* TODO 有些不再使用的样式(左侧菜单栏布局)需要删除 */
+
 .ui.top.fixed.menu {
     padding-left: 180px;
 }
@@ -112,7 +114,12 @@
 }
 
 .nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu {
-    display: block!important;
+    // display: block!important;
+    display: block;
+}
+
+.nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu.hidden {
+    display: none!important;
 }
 
 .nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu.ui.sidebar {
@@ -249,6 +256,9 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
     margin-top: 10px;
 }
 
+
+/* top fixed menu start */
+
 .nx-top-fixed-menu .nx-pp-dollar .nx-container {
     width: 230px;
     padding-top: 10px;
@@ -300,3 +310,47 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.nx-top-fixed-menu.ui.top.fixed.menu {
+    box-shadow: none!important;
+}
+
+
+/* top fixed menu end */
+
+
+/* second memu start */
+
+.nx-main-body .ui.vertical.menu {
+    background-color: #D9DEE4;
+    position: absolute;
+    top: 35px;
+    bottom: 0;
+}
+
+.nx-main-body .nx-second-view {
+    padding-left: 180px;
+}
+
+.nx-main-body .ui.secondary.pointing.menu a.item:hover {
+    background-color: #F4F6F8;
+    /* color: rgba(0, 0, 0, 0.87); */
+}
+
+
+/* second memu end */
+
+
+/* 二级左侧菜单 start */
+
+.nx-main-body > .ui.vertical.menu > a.item,
+.nx-main-body > .ui.vertical.menu > .accordion > .content > a.item {
+    padding-left: 21px;
+}
+
+.nx-main-body > .ui.vertical.menu > .accordion {
+    padding: 4px 0;
+}
+
+
+/* 二级左侧菜单 end */

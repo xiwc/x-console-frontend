@@ -22,6 +22,37 @@ const rootDir = path.resolve();
 const srcDir = path.resolve('src');
 const outDir = path.resolve('dist');
 
+let envs = [
+
+    // 开发
+    {
+        // active: true,
+        yangyang: 'http://192.168.7.254:8081/yangyang/',
+        platform: 'http://192.168.7.254:8080/platform/'
+    },
+    // 测试
+    {
+        active: true,
+        yangyang: 'https://step.newtouchwork.com',
+        platform: 'https://www.newtouchwork.com'
+    },
+    // 生产
+    {
+        // active: true,
+        yangyang: 'https://step.newtouch.com',
+        platform: 'https://www.newtouch.com'
+    }
+];
+
+let env = envs[0];
+
+for (var i in envs) {
+    if (envs[i].active) {
+        env = envs[i];
+        break;
+    }
+}
+
 const coreBundles = {
     bootstrap: [
         'aurelia-polyfills',
@@ -66,7 +97,8 @@ const baseConfig = {
         'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
     },
     output: {
-        path: outDir,
+        path: outDir
+            // publicPath: "/mock/"
     },
     externals: {
         // jquery: "jQuery"
@@ -81,7 +113,8 @@ const baseConfig = {
         _: "lodash",
         Cookie: 'js-cookie',
         wurl: 'wurl',
-        toastr: 'toastr'
+        toastr: 'toastr',
+        NProgress: 'nprogress'
     })]
 }
 
@@ -189,6 +222,23 @@ if (ENV === 'test') {
         config,
         require('@easy-webpack/config-test-coverage-istanbul')()
     );
+}
+
+if (ENV === 'test' || ENV === 'development') {
+    // http://webpack.github.io/docs/webpack-dev-server.html#proxy 
+    // https://github.com/nodejitsu/node-http-proxy#options
+    config.devServer.proxy = {
+        '/v2/authentication/login/token': {
+            target: env.platform,
+            changeOrigin: true,
+            secure: false
+        },
+        '/v2/*': {
+            target: env.yangyang,
+            changeOrigin: true,
+            secure: false
+        }
+    }
 }
 
 module.exports = config;

@@ -1,7 +1,7 @@
 <template>
     <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu">
         <!-- <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu labeled icon"> -->
-        <a class="nx-logo" href="/#/home">
+        <a class="nx-logo" href="/#/">
             <img src="https://x.newtouchwork.com/images/logo16px.png">
             <span>新致云</span>
         </a>
@@ -30,298 +30,39 @@
             </div>
         </div>
         <div class="header item nx-header nx-no-border">SH1</div>
-        <a class="item nx-no-border nx-wide-item" href="/#/dashboard">
-            <i class="dashboard icon nx-icon"></i> <span>总览</span>
+        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item nx-no-border nx-pp" href.bind="row.href" if.bind="(row.config.type == 'common')" title="${row.title}" data-variation="inverted" data-position="right center">
+            <i class="${row.config.icon} icon nx-icon"></i> <span>${row.title}</span>
         </a>
-        <div class="item nx-no-border nx-labeled-icon-item" href="/#/dashboard">
-            <i class="dashboard icon nx-icon"></i>
+        <div class="${router.currentInstruction.config.type == 'db' ? 'active' : ''} item nx-no-border nx-labeled-icon-item">
+            <i class="database icon nx-icon"></i> <span>测试折叠菜单</span>
             <div class="nx-second-menu">
                 <div class="ui inverted vertical menu">
-                    <a class="item link" href="/#/dashboard"> 总览</a>
+                    <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" if.bind="(row.config.type == 'db')" title="${row.title}">
+                        <i class="circle icon"></i> ${row.title}
+                    </a>
                 </div>
             </div>
         </div>
-        <a class="item nx-no-border nx-labeled-icon-item">
-            <i class="laptop icon nx-icon"></i> <span>计算与网络</span>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link">
-                        <i class="circle icon"></i> 主机
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 映像
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 私有网络
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 路由器
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 负载均衡器
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 公网IP
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 内网域名别名
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a class="item nx-no-border nx-labeled-icon-item">
-            <i class="disk outline icon nx-icon"></i> <span>存储</span>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link">
-                        <i class="circle icon"></i> 硬盘
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> Virtual SAN
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> NAS
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 备份
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a class="item nx-no-border nx-labeled-icon-item">
-            <i class="lightning icon nx-icon"></i> <span>安全</span>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link">
-                        <i class="circle icon"></i> 防火墙
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> SSH密钥
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a class="item nx-no-border nx-labeled-icon-item">
-            <i class="database icon nx-icon"></i> <span>数据库与缓存</span>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link">
-                        <i class="circle icon"></i> 关系型数据库
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> MongoDB
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 缓存
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a class="item nx-no-border nx-labeled-icon-item">
-            <i class="connectdevelop icon nx-icon"></i> <span>大数据平台</span>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link">
-                        <i class="circle icon"></i> Hadoop
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> Spark
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> Elasticsearch
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> ZooKeeper
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 消息队列
-                    </div>
-                </div>
-            </div>
-        </a>
-        <a class="item nx-no-border nx-labeled-icon-item">
-            <i class="settings icon nx-icon"></i> <span>管理</span>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link">
-                        <i class="circle icon"></i> 监控告警
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 定时器
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 自动伸缩
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 资源编排
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 标签
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 操作日志
-                    </div>
-                    <div class="item link">
-                        <i class="circle icon"></i> 回收站
-                    </div>
-                </div>
-            </div>
-        </a>
         <div class="ui inverted accordion nx-ad-menu">
             <div class="title">
-                <i class="laptop icon nx-icon"></i>
-                <i class="dropdown icon"></i> 计算与网络
-            </div>
-            <div class="content">
-                <a class="item">
-                    <i class="circle icon"></i> 主机
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 映像
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 私有网络
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 路由器
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 负载均衡器
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 公网IP
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 内网域名别名
-                </a>
-            </div>
-            <div class="title">
-                <i class="disk outline icon nx-icon"></i>
-                <i class="dropdown icon"></i> 存储
-            </div>
-            <div class="content">
-                <a class="item">
-                    <i class="circle icon"></i> 硬盘
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> Virtual SAN
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> NAS
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 备份
-                </a>
-            </div>
-            <div class="title">
-                <i class="lightning icon nx-icon"></i>
-                <i class="dropdown icon"></i> 安全
-            </div>
-            <div class="content">
-                <a class="item">
-                    <i class="circle icon"></i> 防火墙
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> SSH密钥
-                </a>
-            </div>
-            <div class="title">
                 <i class="database icon nx-icon"></i>
-                <i class="dropdown icon"></i> 数据库与缓存
+                <i class="dropdown icon"></i> 测试折叠菜单
             </div>
             <div class="content">
-                <a class="item">
-                    <i class="circle icon"></i> 关系型数据库
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> MongoDB
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 缓存
-                </a>
-            </div>
-            <div class="title">
-                <i class="connectdevelop icon nx-icon"></i>
-                <i class="dropdown icon"></i> 大数据平台
-            </div>
-            <div class="content">
-                <a class="item">
-                    <i class="circle icon"></i> Hadoop
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> Spark
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> Elasticsearch
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> ZooKeeper
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 消息队列
-                </a>
-            </div>
-            <div class="title">
-                <i class="settings icon nx-icon"></i>
-                <i class="dropdown icon"></i> 管理
-            </div>
-            <div class="content">
-                <a class="item">
-                    <i class="circle icon"></i> 监控告警
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 定时器
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 自动伸缩
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 资源编排
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 标签
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 操作日志
-                </a>
-                <a class="item">
-                    <i class="circle icon"></i> 回收站
+                <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" if.bind="(row.config.type == 'db')" title="${row.title}">
+                    <i class="circle icon"></i> ${row.title}
                 </a>
             </div>
         </div>
         <div class="header item nx-header nx-no-border">GLOBAL</div>
-        <a class="item nx-no-border nx-wide-item">
+        <a class="item nx-no-border nx-pp" title="子账户" data-variation="inverted" data-position="right center">
             <i class="users icon nx-icon"></i> <span>子账户</span>
         </a>
-        <div class="item nx-no-border nx-labeled-icon-item">
-            <i class="users icon nx-icon"></i>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <a class="item link"> 子账户</a>
-                </div>
-            </div>
-        </div>
-        <a class="item nx-no-border nx-wide-item">
+        <a class="item nx-no-border nx-pp" title="API密钥" data-variation="inverted" data-position="right center">
             <i class="privacy icon nx-icon"></i> <span>API密钥</span>
         </a>
-        <div class="item nx-no-border nx-labeled-icon-item">
-            <i class="privacy icon nx-icon"></i>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <div class="item link"> API密钥</div>
-                </div>
-            </div>
-        </div>
-        <a class="item nx-no-border nx-wide-item">
+        <a class="item nx-no-border nx-pp" title="通知列表" data-variation="inverted" data-position="right center">
             <i class="list layout icon nx-icon"></i> <span>通知列表</span>
         </a>
-        <div class="item nx-no-border nx-labeled-icon-item">
-            <i class="list layout icon nx-icon"></i>
-            <div class="nx-second-menu">
-                <div class="ui inverted vertical menu">
-                    <a class="item link"> 通知列表</a>
-                </div>
-            </div>
-        </div>
     </div>
 </template>

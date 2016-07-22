@@ -1,8 +1,4 @@
-// import 'jquery';
-// import '../../static/vender/semantic-ui/semantic';
-// import 'vender/semantic-ui/semantic';
 import 'wlzc-semantic-ui/semantic';
-import 'toastr/build/toastr.css';
 
 export class App {
 
@@ -19,21 +15,47 @@ export class App {
     configureRouter(config, router) {
 
         // config.title = 'X资源管理控制台';
+
         config.map([{
-            route: ['home'],
-            name: 'home',
-            moduleId: 'home',
-            nav: false,
-            label: '主页'
+            route: ['server'],
+            name: 'server',
+            moduleId: 'server/server',
+            nav: true,
+            title: '云服务器',
+            icon: 'server',
+            type: 'common'
         }, {
-            route: ['dashboard'],
-            name: 'dashboard',
-            moduleId: 'dashboard',
-            nav: false,
-            label: '总览'
+            route: ['network'],
+            name: 'network',
+            moduleId: 'network/network',
+            nav: true,
+            title: '专用VPC网络',
+            icon: 'connectdevelop',
+            type: 'common'
+        }, {
+            route: ['db-relational'],
+            name: 'db-relational',
+            moduleId: 'db/db-relational',
+            nav: true,
+            title: '关系型数据库',
+            type: 'db'
+        }, {
+            route: ['db-mongo'],
+            name: 'db-mongo',
+            moduleId: 'db/db-mongo',
+            nav: true,
+            title: 'MongoDB',
+            type: 'db'
+        }, {
+            route: ['db-cache'],
+            name: 'db-cache',
+            moduleId: 'db/db-cache',
+            nav: true,
+            title: '缓存',
+            type: 'db'
         }, {
             route: '',
-            redirect: 'home'
+            redirect: 'server'
         }]);
 
         this.router = router;
@@ -87,6 +109,11 @@ export class App {
             historyTimer && clearTimeout(historyTimer);
         }, function(evt) {
             $('.nx-history').hide();
+        });
+
+        $('body').on('click', '.nx-left-sidebar-menu .nx-labeled-icon-item .nx-second-menu .menu .item', function(event) {
+            $(this).closest('.nx-second-menu').addClass('hidden');
+            _.delay(() => { $(this).closest('.nx-second-menu').removeClass('hidden'); }, 100);
         });
     }
 }
