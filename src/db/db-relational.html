@@ -4,6 +4,7 @@
             <router-view></router-view>
         </div>
         <div class="ui secondary vertical pointing menu animated bounceInLeft">
+            <div class="header item">关系型数据库</div>
             <a repeat.for="row of router.navigation" if.bind="(row.config.type == 'common')" class="${row.isActive ? 'active' : ''} item" href.bind="row.href">
                 ${row.title}
             </a>

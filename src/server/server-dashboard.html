@@ -1,5 +1,178 @@
 <template>
-    <div class="ui basic segment container animated bounceInDown">
-        <div class="ui message">${msg}</div>
+    <require from="./server-dashboard.css"></require>
+    <require from="comp/ui/ui-nav"></require>
+    <div class="nx-server-dashboard animated bounceInDown">
+        <ui-nav></ui-nav>
+        <div class="ui basic segment">
+            <h3 class="ui dividing header">资源配额使用情况</h3>
+        </div>
+        <div class="ui four column grid container" ref="container">
+            <div class="two column row">
+                <div class="column">
+                    <h5 class="ui header">计算</h5>
+                    <!-- <div class="ui segment"> -->
+                    <table class="ui table">
+                        <tbody>
+                            <tr>
+                                <td class="six wide">主机(个)</td>
+                                <td class="ten wide">
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(个)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>CPU(核)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(核)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>内存(GB)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(GB)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>快照(个)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(个)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- </div> -->
+                </div>
+                <div class="column">
+                    <h5 class="ui header">网络</h5>
+                    <!-- <div class="ui segment"> -->
+                    <table class="ui table">
+                        <tbody>
+                            <tr>
+                                <td class="six wide">私有网络(个)</td>
+                                <td class="ten wide">
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(个)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>路由器(个)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(个)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>公网IP(个)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(个)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>带宽(Mbps)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(Mbps)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="two column row">
+                <div class="column">
+                    <h5 class="ui header">存储</h5>
+                    <!-- <div class="ui segment"> -->
+                    <table class="ui table">
+                        <tbody>
+                            <tr>
+                                <td class="six wide">性能型硬盘(块)</td>
+                                <td class="ten wide">
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(块)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>性能型硬盘容量(GB)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(GB)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>容量型硬盘(块)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(块)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>容量型硬盘容量(GB)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(GB)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- </div> -->
+                </div>
+                <div class="column">
+                    <h5 class="ui header">安全</h5>
+                    <!-- <div class="ui segment"> -->
+                    <table class="ui table">
+                        <tbody>
+                            <tr>
+                                <td class="six wide">安全组(个)</td>
+                                <td class="ten wide">
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(个)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>SSH密钥(个)</td>
+                                <td>
+                                    <div class="ui teal progress nx-pp" data-variation="inverted" data-percent="74" title="1/10(个)">
+                                        <div class="bar"></div>
+                                        <!-- <div class="label"></div> -->
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
     </div>
 </template>

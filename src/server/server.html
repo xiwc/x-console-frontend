@@ -4,6 +4,7 @@
             <router-view></router-view>
         </div>
         <div class="ui secondary vertical pointing menu animated bounceInLeft">
+            <div class="header item">云服务器</div>
             <a class="${row.isActive ? 'active' : ''} item" repeat.for="row of router.navigation" href.bind="row.href">
 			    ${row.title}
 			  </a>
