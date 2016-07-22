@@ -44,11 +44,11 @@
             </div>
         </div>
         <div class="ui inverted accordion nx-ad-menu">
-            <div class="title">
+            <div class="${router.currentInstruction.config.type == 'db' ? 'active' : ''} title">
                 <i class="database icon nx-icon"></i>
                 <i class="dropdown icon"></i> 测试折叠菜单
             </div>
-            <div class="content">
+            <div class="${router.currentInstruction.config.type == 'db' ? 'active' : ''} content">
                 <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" if.bind="(row.config.type == 'db')" title="${row.title}">
                     <i class="circle icon"></i> ${row.title}
                 </a>
