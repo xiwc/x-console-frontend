@@ -10,25 +10,43 @@ export class DbRelational {
             name: 'dashboard',
             moduleId: 'network/network-dashboard',
             nav: true,
-            title: '总览'
+            title: '总览',
+            type: 'common'
         }, {
             route: ['private'],
             name: 'private',
             moduleId: 'network/network-private',
             nav: true,
-            title: '私有网络'
+            title: '私有网络',
+            type: 'common'
         }, {
             route: ['router'],
             name: 'router',
             moduleId: 'network/network-router',
             nav: true,
-            title: '路由器'
+            title: '路由器',
+            type: 'common'
         }, {
             route: ['public'],
             name: 'public',
             moduleId: 'network/network-public',
             nav: true,
-            title: '公网IP'
+            title: '公网IP',
+            type: 'common'
+        }, {
+            route: ['alert'],
+            name: 'alert',
+            moduleId: 'comp/default/default-pane',
+            nav: true,
+            title: '监控告警',
+            type: 'test'
+        },  {
+            route: ['timer'],
+            name: 'timer',
+            moduleId: 'comp/default/default-pane',
+            nav: true,
+            title: '定时器',
+            type: 'test'
         }, {
             route: '',
             redirect: 'dashboard'
