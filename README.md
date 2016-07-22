@@ -4,6 +4,8 @@
 该项目配置使用Babel转换器以便于你的应用程序可以使用其他语言. 在任何的标准文本编辑器下应该都运行的很好. 该骨架项目使用NPM来进行包管理,使用Webpack来打包扎捆.
 
 ## Doc
+> http://semantic-ui.com/ http://192.168.7.253:81/  
+> http://aurelia.io/hub.html#/doc/persona/developer  
 > https://www.npmjs.com/package/wurl https://github.com/websanova/js-url 
 > https://www.npmjs.com/package/toastr https://github.com/CodeSeven/toastr 
 > https://www.npmjs.com/package/js-cookie https://github.com/js-cookie/js-cookie  
