@@ -1,12 +1,238 @@
 <template>
-    <div class="ui modal" ref="modal">
+    <require from="./server-host-create.css"></require>
+    <div class="ui large modal" ref="modal">
         <div class="header">创建主机</div>
         <div class="content">
-            <p></p>
+            <div class="ui celled padded grid">
+                <div class="ten wide column nx-steps-container" ref="stepsContainer">
+                    <div class="ui four top attached steps" style="margin-bottom: 0px;">
+                        <div class="active step" data-step="1">
+                            <i class="info icon"></i>
+                            <div class="content">
+                                <div class="title">选择规格</div>
+                            </div>
+                        </div>
+                        <div class="disabled step" data-step="2">
+                            <i class="info icon"></i>
+                            <div class="content">
+                                <div class="title">选择网络</div>
+                            </div>
+                        </div>
+                        <div class="disabled step" data-step="3">
+                            <i class="info icon"></i>
+                            <div class="content">
+                                <div class="title">选择镜像</div>
+                            </div>
+                        </div>
+                        <div class="disabled step" data-step="4">
+                            <i class="info icon"></i>
+                            <div class="content">
+                                <div class="title">信息设置</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="ui top attached tabular menu">
+                        <a class="item active" data-tab="first">First</a>
+                        <a class="item" data-tab="second">Second</a>
+                        <a class="item" data-tab="third">Third</a>
+                        <a class="item" data-tab="four">Four</a>
+                    </div> -->
+                    <div class="ui bottom attached tab segment active" data-step="1">
+                        <div class="ui form">
+                            <div class="inline field">
+                                <label>可用区域</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" value="1" name="zone">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text"></div>
+                                    <div class="menu">
+                                        <div class="item" data-value="1">上海1区</div>
+                                        <div class="item" data-value="2">上海2区</div>
+                                        <div class="item" data-value="3">上海3区</div>
+                                    </div>
+                                </div>
+                                <div class="nx-tip">
+                                    不同地域之间的产品内网不互通；订购后不支持更换地域。
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>主机类型</label>
+                                <div class="ui buttons">
+                                    <div class="ui button blue">经济适用型</div>
+                                    <div class="ui button">性能型</div>
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>CPU规格</label>
+                                <div class="ui buttons">
+                                    <div class="ui button blue">1核</div>
+                                    <div class="ui button">2核</div>
+                                    <div class="ui button">4核</div>
+                                    <div class="ui button">8核</div>
+                                    <div class="ui button">16核</div>
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>内存规格</label>
+                                <div class="ui buttons">
+                                    <div class="ui button blue">1GB</div>
+                                    <div class="ui button">2GB</div>
+                                    <div class="ui button">4GB</div>
+                                    <div class="ui button">8GB</div>
+                                    <div class="ui button">16GB</div>
+                                    <div class="ui button">32GB</div>
+                                    <div class="ui button">64GB</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-step="2">
+                        <div class="ui form">
+                            <div class="inline field">
+                                <label>网络类型</label>
+                                <div class="ui buttons">
+                                    <div class="ui button blue">经典网络</div>
+                                    <div class="ui button">私有网络</div>
+                                </div>
+                                <div class="nx-tip">
+                                    经典网络与私有网络不能互通，购买后不能更换网络类型
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>公网带宽</label>
+                                <div class="ui buttons">
+                                    <div class="ui button blue">按固定带宽</div>
+                                    <div class="ui button">按使用流量</div>
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>带宽大小</label>
+                                <!-- <div> -->
+                                <div class="ui right labeled input">
+                                    <input type="text" value="1">
+                                    <div class="ui basic label">
+                                        Mbps
+                                    </div>
+                                </div>
+                                <!-- </div> -->
+                                <div class="nx-tip">
+                                    带宽为0时代表不使用公网IP
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-step="3">
+                        <div class="ui form">
+                            <div class="inline field">
+                                <label>镜像类型</label>
+                                <div class="ui buttons">
+                                    <div class="ui button blue">系统镜像</div>
+                                    <div class="ui button">自有镜像</div>
+                                    <div class="ui button">共享镜像</div>
+                                    <div class="ui button">市场镜像</div>
+                                </div>
+                                <div class="nx-tip">
+                                    系统镜像由新致云统一提供的基础操作系统。
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>系统镜像</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" value="1" name="mirror">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">请选择系统镜像</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="1">CentOS</div>
+                                        <div class="item" data-value="2">Windows Server2008</div>
+                                        <div class="item" data-value="3">Ubuntu</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>系统版本</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" value="1" name="version">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">请选择系统镜像</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="1">CentOS5.0</div>
+                                        <div class="item" data-value="2">CentOS6.0</div>
+                                        <div class="item" data-value="3">CentOS7.0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui bottom attached tab segment" data-step="4">
+                        <div class="ui form">
+                            <div class="inline fields">
+                                <label>验证方式</label>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="auth" checked="checked">
+                                        <label>密码验证</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="auth">
+                                        <label>密钥验证</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>登录密码</label>
+                                <div class="ui input">
+                                    <input type="password" />
+                                </div>
+                                <div class="nx-tip">
+                                    8-30个字符；同时包含三项（大小写字母,数字或特殊符号）。
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>确认密码</label>
+                                <div class="ui input">
+                                    <input type="password" />
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>购买时长</label>
+                                <div class="ui selection dropdown">
+                                    <input type="hidden" value="1" name="datetime">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">请选择购买时长</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="1">1个月</div>
+                                        <div class="item" data-value="1">3个月</div>
+                                        <div class="item" data-value="1">10个月</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="inline field">
+                                <label>购买数量</label>
+                                <div class="ui right labeled input">
+                                    <input type="text" value="1">
+                                    <div class="ui basic label">
+                                        台
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ui basic segment">
+                        <button ref="btnCancel" click.delegate="cancelHandler()" class="ui cancel basic blue left floated button">取消</button>
+                        <button ref="btnPre" click.delegate="preHandler()" class="ui cancel basic blue left disabled floated button">上一步</button>
+                        <button ref="btnOk" click.delegate="okHandler()" class="ui ok blue right floated disabled button">确认</button>
+                        <button ref="btnNext" click.delegate="nextHandler()" class="ui ok blue right floated button">下一步</button>
+                    </div>
+                </div>
+                <div class="six wide column">
+                </div>
+            </div>
         </div>
-        <div class="actions">
+        <!-- <div class="actions">
             <div class="ui cancel basic blue left floated button">取消</div>
             <div class="ui ok blue button">确认</div>
-        </div>
+        </div> -->
     </div>
 </template>
