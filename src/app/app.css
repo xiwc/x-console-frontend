@@ -322,10 +322,16 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
 /* second memu start */
 
 .nx-main-body .ui.vertical.menu {
-    background-color: #D9DEE4;
+    /* background-color: #D9DEE4; */
+    background-color: #EAEDF1;
     position: absolute;
     top: 35px;
     bottom: 0;
+}
+
+.nx-main-body .ui.vertical.menu .header.item {
+    background-color: #D9DEE4;
+    font-size: 13px;
 }
 
 .nx-main-body .nx-second-view {
