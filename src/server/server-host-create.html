@@ -1,6 +1,6 @@
 <template>
     <require from="./server-host-create.css"></require>
-    <div class="ui large modal" ref="modal">
+    <div class="ui large modal nx-server-host-create" ref="modal">
         <div class="header">创建主机</div>
         <div class="content">
             <div class="ui celled padded grid">
@@ -226,7 +226,48 @@
                         <button ref="btnNext" click.delegate="nextHandler()" class="ui ok blue right floated button">下一步</button>
                     </div>
                 </div>
-                <div class="six wide column">
+                <div class="six wide column nx-total-container">
+                    <div class="ui form">
+                        <h2 class="ui dividing header">当前选购配置</h2>
+                        <div class="inline field">
+                            <label>区域:</label>
+                            <span>上海1区</span>
+                        </div>
+                        <div class="inline field">
+                            <label>规格:</label>
+                            <span>1核2GB(性能型)</span>
+                        </div>
+                        <div class="inline field">
+                            <label>镜像:</label>
+                            <span>CentOS</span>
+                            <span>(CentOS7.0)</span>
+                        </div>
+                        <div class="inline field">
+                            <label>网络:</label>
+                            <span>0 Mpbs(经典网络)</span>
+                        </div>
+                        <div class="inline field">
+                            <label>时长:</label>
+                            <span>1个月</span>
+                        </div>
+                        <div class="inline field">
+                            <label>数量:</label>
+                            <span>2台</span>
+                        </div>
+                        <div class="ui divider"></div>
+                        <div class="inline field">
+                            <label>主机规格费用:</label>
+                            <span><span class="nx-price">￥108.00</span>/月 x 1 x 2</span>
+                        </div>
+
+                        <div class="inline field">
+                            <label>公网流量费用:</label>
+                            <span><span class="nx-price">￥0.72</span>/GB</span>
+                        </div>
+                    </div>
+                    <h2 class="ui header">本次需付费:</h2>
+                    <h1 class="ui red header">￥216.00</h1>
+                    <div><a class="link nx-pointer">查看购买和计费说明 》</a></div>
                 </div>
             </div>
         </div>

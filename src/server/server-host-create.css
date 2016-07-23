@@ -1,3 +1,8 @@
-.nx-steps-container .tab {
+.nx-server-host-create .nx-steps-container .tab {
     min-height: 260px;
+}
+
+.nx-server-host-create .nx-total-container .nx-price {
+	color: red;
+	font-size: 16px;
 }

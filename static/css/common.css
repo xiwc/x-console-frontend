@@ -36,3 +36,7 @@ body {
     margin-top: 5px;
     color: #BFBFBF;
 }
+
+.nx-pointer {
+    cursor: pointer;
+}
