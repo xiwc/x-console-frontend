@@ -28,6 +28,8 @@ export class ServerHostCreate {
         this.stepCnt = this.steps.size();
 
         $(this.rangeBw).ionRangeSlider();
+
+        $('.ui.dropdown', this.stepsContainer).dropdown();
     }
 
     show() {
