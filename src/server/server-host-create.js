@@ -4,11 +4,11 @@ import {
 }
 from 'aurelia-framework';
 
-import 'ion-rangeslider/css/ion.rangeSlider.css';
+// import 'ion-rangeslider/css/ion.rangeSlider.css';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinModern.css';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinFlat.css';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinHTML5.css';
-import 'ion-rangeslider/css/ion.rangeSlider.skinNice.css';
+// import 'ion-rangeslider/css/ion.rangeSlider.skinNice.css';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinSimple.css';
 import 'ion-rangeslider';
 
