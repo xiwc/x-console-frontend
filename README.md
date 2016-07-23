@@ -13,6 +13,7 @@
 > https://www.npmjs.com/package/underscore.string https://github.com/epeli/underscore.string 
 > https://www.npmjs.com/package/lodash https://github.com/lodash/lodash 
 > https://github.com/github/fetch http://aurelia.io/hub.html#/doc/article/aurelia/fetch-client/latest/http-services/2  
+> http://ionden.com/a/plugins/ion.rangeSlider/demo.html https://github.com/IonDen/ion.rangeSlider  
 
 ## 入门指南(Getting started)
 

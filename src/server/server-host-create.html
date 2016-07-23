@@ -1,5 +1,6 @@
 <template>
     <require from="./server-host-create.css"></require>
+    <!-- <require from="rangeslider.js/dist/rangeslider.css"></require> -->
     <div class="ui large modal nx-server-host-create" ref="modal">
         <div class="header">创建主机</div>
         <div class="content">
@@ -106,13 +107,19 @@
                                 </div>
                             </div>
                             <div class="inline field">
-                                <label>带宽大小</label>
+                                <label style="position: relative; top: 25px;">带宽大小</label>
                                 <!-- <div> -->
-                                <div class="ui right labeled input">
-                                    <input type="text" value="1">
-                                    <div class="ui basic label">
-                                        Mbps
+                                <!-- <input ref="rangeBw" type="range" min="0" max="20" step="1" value="0" data-orientation="horizontal"> -->
+                                <div class="nx-range">
+                                    <div class="nx-range-slider">
+                                        <input ref="rangeBw" type="text" data-min="0" data-max="20" data-step="1" data-grid="true" data-postfix="Mbps">
                                     </div>
+                                    <!-- <div class="ui right labeled input nx-input">
+                                        <input type="text" value="0">
+                                        <div class="ui basic label">
+                                            Mbps
+                                        </div>
+                                    </div> -->
                                 </div>
                                 <!-- </div> -->
                                 <div class="nx-tip">
@@ -259,7 +266,6 @@
                             <label>主机规格费用:</label>
                             <span><span class="nx-price">￥108.00</span>/月 x 1 x 2</span>
                         </div>
-
                         <div class="inline field">
                             <label>公网流量费用:</label>
                             <span><span class="nx-price">￥0.72</span>/GB</span>
