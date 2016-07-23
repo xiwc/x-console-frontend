@@ -3,14 +3,7 @@ import {
     containerless
 }
 from 'aurelia-framework';
-// import {
-//     sync
-// }
-// from 'aurelia-templating-resources';
-// import 'rangeslider.js/dist/rangeslider.css';
-// import 'rangeslider.js';
 
-// import 'rangeslider.js/dist/rangeslider.css';
 import 'ion-rangeslider/css/ion.rangeSlider.css';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinModern.css';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinFlat.css';
@@ -22,10 +15,8 @@ import 'ion-rangeslider';
 @containerless
 export class ServerHostCreate {
 
-    // @sync('.nx-steps-container .steps .step')
     steps;
 
-    // @sync('.nx-steps-container .ui.tab')
     tabs;
 
     /**
@@ -35,43 +26,14 @@ export class ServerHostCreate {
         this.steps = $(this.stepsContainer).find('.steps .step');
         this.tabs = $(this.stepsContainer).find('.tab');
         this.stepCnt = this.steps.size();
-        // $(this.rangeBw).rangeslider();
+
         $(this.rangeBw).ionRangeSlider();
-        // $('input[type="range"]').rangeslider();
-        // $('input[type="range"]').ionRangeSlider();
-        // 
-        // $('input[type="range"]').rangeslider({
-
-        //     // Feature detection the default is `true`.
-        //     // Set this to `false` if you want to use
-        //     // the polyfill also in Browsers which support
-        //     // the native <input type="range"> element.
-        //     polyfill: true,
-
-        //     // Default CSS classes
-        //     rangeClass: 'rangeslider',
-        //     disabledClass: 'rangeslider--disabled',
-        //     horizontalClass: 'rangeslider--horizontal',
-        //     verticalClass: 'rangeslider--vertical',
-        //     fillClass: 'rangeslider__fill',
-        //     handleClass: 'rangeslider__handle',
-
-        //     // Callback function
-        //     onInit: function() {},
-
-        //     // Callback function
-        //     onSlide: function(position, value) {},
-
-        //     // Callback function
-        //     onSlideEnd: function(position, value) {}
-        // });
     }
 
     show() {
         $(this.modal).modal({
             onShow: () => {
                 this.reset();
-                // $(this.rangeBw).rangeslider();
             }
         }).modal('show');
     }

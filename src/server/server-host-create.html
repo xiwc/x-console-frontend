@@ -1,6 +1,5 @@
 <template>
     <require from="./server-host-create.css"></require>
-    <!-- <require from="rangeslider.js/dist/rangeslider.css"></require> -->
     <div class="ui large modal nx-server-host-create" ref="modal">
         <div class="header">创建主机</div>
         <div class="content">
@@ -44,12 +43,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="ui top attached tabular menu">
-                        <a class="item active" data-tab="first">First</a>
-                        <a class="item" data-tab="second">Second</a>
-                        <a class="item" data-tab="third">Third</a>
-                        <a class="item" data-tab="four">Four</a>
-                    </div> -->
                     <div class="ui bottom attached tab segment active" data-step="1">
                         <div class="ui form">
                             <div class="inline field">
@@ -120,8 +113,6 @@
                             </div>
                             <div class="inline field">
                                 <label style="position: relative; top: 25px;">带宽大小</label>
-                                <!-- <div> -->
-                                <!-- <input ref="rangeBw" type="range" min="0" max="20" step="1" value="0" data-orientation="horizontal"> -->
                                 <div class="nx-range">
                                     <div class="nx-range-slider">
                                         <input ref="rangeBw" type="text" data-min="0" data-max="20" data-step="1" data-grid="true" data-postfix="Mbps">
@@ -133,7 +124,6 @@
                                         </div>
                                     </div> -->
                                 </div>
-                                <!-- </div> -->
                                 <div class="nx-tip">
                                     带宽为0时代表不使用公网IP
                                 </div>
