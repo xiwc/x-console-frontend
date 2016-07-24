@@ -26,7 +26,7 @@ export class ServerDashboard {
      */
     activate(params, routeConfig, navigationInstruction) {
 
-        console.log(json({ name: 'json...' }));
+        // console.log(json({ name: 'json...' }));
 
         this.http.fetch(nsApi['host.hostList.get']).then((resp => {
             return resp.text();

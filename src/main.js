@@ -7,7 +7,7 @@ import "comp/global/api";
 bootstrap(async(aurelia) => {
     aurelia.use
         .standardConfiguration()
-        .developmentLogging()
+        // .developmentLogging()
         .feature('comp/init')
         // .plugin('aurelia-i18n', (i18n) => {
         //     // 添加i18n对象为全局对象
