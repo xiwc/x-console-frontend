@@ -61,6 +61,7 @@ window.nsParam = (function() {
             socketUrl: '//stest.newtouch.com',
             loginUrl: '//workdev.sh1.newtouch.com',
             logoutUrl: '//workdev.sh1.newtouch.com',
+            baseUrl: 'http://resource.sh1.newtouch.com/json/',
             userTwodimensionalcodeUrl: 'stepdev.sh1.newtouch.com'
         },
         self: { // 本机环境
@@ -69,6 +70,7 @@ window.nsParam = (function() {
             openfireUrl: '//192.168.7.7:7070/http-bind/',
             loginUrl: '//127.0.0.1',
             logoutUrl: '//127.0.0.1',
+            baseUrl: 'http://resource.sh1.newtouch.com/json/',
             userTwodimensionalcodeUrl: '127.0.0.1:81'
         },
         dev: { // 开发环境
@@ -77,6 +79,7 @@ window.nsParam = (function() {
             openfireUrl: '//192.168.7.7:7070/http-bind/',
             loginUrl: '//192.168.7.15',
             logoutUrl: '//192.168.7.15',
+            baseUrl: 'http://resource.sh1.newtouch.com/json/',
             userTwodimensionalcodeUrl: '192.168.7.15:81'
         },
         test: { // IDC测试环境
@@ -85,6 +88,7 @@ window.nsParam = (function() {
             openfireUrl: '//step.newtouchwork.com/http-bind/',
             loginUrl: '//www.newtouchwork.com',
             logoutUrl: '//www.newtouchwork.com',
+            baseUrl: 'http://resource.sh1.newtouch.com/json/',
             userTwodimensionalcodeUrl: 'step.newtouchwork.com'
         },
         prod: { // 生产环境
@@ -93,6 +97,7 @@ window.nsParam = (function() {
             openfireUrl: '//step.newtouch.com/http-bind/',
             loginUrl: '//www.newtouch.com',
             logoutUrl: '//www.newtouch.com',
+            baseUrl: 'http://resource.sh1.newtouch.com/json/',
             userTwodimensionalcodeUrl: 'step.newtouch.com'
         },
         stress: { // 压力测试环境
@@ -100,6 +105,7 @@ window.nsParam = (function() {
             socketUrl: '//218.245.64.3:45092',
             loginUrl: '//218.245.64.3:45079',
             logoutUrl: '//218.245.64.3:45079',
+            baseUrl: 'http://resource.sh1.newtouch.com/json/',
             userTwodimensionalcodeUrl: '218.245.64.3:45080'
         }
     };

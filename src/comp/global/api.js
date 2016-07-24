@@ -4,17 +4,24 @@ window.nsApiFunc = (function() {
     // API全局共享定义(real:真实远程调用URL, mock:自定义调试数据URL.)
     var api = {
         'host.hostList.get': { // TODO demo ajax method config.
-            // real: 'v1/host/host-list',
-            real: 'https://x.newtouchwork.com/styles/common.css',
-            mock: '/mock/v2/host/host-list.get.json',
+            real: 'hosts.json',
+            mock: 'mock/v2/host/hostList.get.json',
             ismock: true,
             method: 'get',
             payload: {},
             desc: '获取主机列表'
         },
+        'host.create.post': { // TODO demo ajax method config.
+            real: 'hostCreate.json',
+            mock: 'mock/v2/host/hostCreate.post.json',
+            ismock: true,
+            method: 'post',
+            payload: {},
+            desc: '创建主机'
+        },
         'user.userInfo.get': { // TODO demo ajax method config.
             real: '/v2/user/userInfo',
-            mock: '/mock/v2/user/userInfo.get.json',
+            mock: 'mock/v2/user/userInfo.get.json',
             ismock: false,
             method: 'get'
         },
@@ -88,17 +95,6 @@ window.nsApiFunc = (function() {
                 }
 
                 return val;
-            },
-            mock: function(name, index) {
-
-                for (var n in api) {
-
-                    if (api.hasOwnProperty(n) && name == n) {
-                        var prop = index ? 'mock_' + index : 'mock';
-                        nsApi[n] = api[n][prop];
-                    }
-
-                }
             }
         };
 
@@ -119,130 +115,3 @@ window.nsApiFunc = (function() {
 
     return apiFunc;
 })();
-
-// ajax全局配置选项设置
-$.ajaxSetup({
-    cache: false
-});
-
-$(document).ajaxSend(function(evt, request, settings) {
-
-    // 当使用mock API时,修改请求类型为GET方式
-    if (settings.url.indexOf('/mock/') === 0) {
-        settings.type = "GET";
-    }
-
-});
-
-// ajax请求成功, 拦截后台操作错误的提示消息
-$(document).ajaxSuccess(function(event, xhr, settings) {
-
-    if (xhr.responseJSON && xhr.responseJSON.code && xhr.responseJSON.code !== 'SUCCESS') {
-        if ('UNLOGIN' === xhr.responseJSON.code) {
-            var url = window.location.href;
-            url = url.replace(/[&]?accessToken[=]?[^&]*/g, '');
-
-            nsCtx.ajaxClose = true;
-            nsCtx.ajaxOperCache = [];
-            var clientNum = 0;
-            if (clientNum == 0) {
-                clientNum = 1;
-                var _form = $("<form></form>", {
-                    'id': 'oAuthForm',
-                    'method': 'post',
-                    'action': nsParam.loginUrl + '/oauth2/authorize'
-                }).appendTo($("body"));
-                var args = {
-                        client_id: '481c89100ea34c22ba1701fed70dd204',
-                        client_secret: 'step.newtouch.com',
-                        redirect_uri: url,
-                        response_type: 'code'
-                    }
-                    // 将隐藏域加入表单
-                for (var i in args) {
-                    _form.append($("<input>", {
-                        'type': 'hidden',
-                        'name': i,
-                        'value': args[i]
-                    }));
-                }
-                $('#oAuthForm').submit();
-                // 触发提交事件
-                setTimeout(function() {
-                    clientNum = 0;
-                }, 10000);
-                //表单删除 
-                _form.remove();
-            }
-        } else if (!xhr.responseJSON.address && xhr.responseJSON.code !== 100000) { //code==100000时是机器人接口
-            // ajax调用者设置不对当前请求全局错误提示.
-            if (_.noGlobalError(xhr)) {
-                return;
-            }
-
-            // TODO i18n tr not impl.
-            // toastr.error(_.tr('error.' + xhr.responseJSON.code), null, {
-            //     "closeButton": true,
-            //     "progressBar": true,
-            //     "positionClass": "toast-top-center",
-            //     "preventDuplicates": true
-            // });
-        }
-    }
-});
-
-// ajax请求失败, 提示网络请求错误消息
-$(document).ajaxError(function(event, xhr, settings, exception) {
-
-    // ajax调用者设置不对当前请求全局错误提示.
-    if (_.noGlobalError(xhr)) {
-        return;
-    }
-
-    var code = xhr && xhr.responseJSON && xhr.responseJSON.code;
-    code = code ? code : 'SYSTEM_ERROR';
-
-    // TODO i18n tr not impl.
-    // 全局错误拦截提示
-    // toastr.error(_.tr('error.' + code), null, {
-    //     "closeButton": true,
-    //     "progressBar": true,
-    //     "positionClass": "toast-top-center",
-    //     "preventDuplicates": true
-    // });
-    toastr.error('网络连接错误！', null, {
-        "closeButton": true,
-        "progressBar": true,
-        "positionClass": "toast-top-center",
-        "preventDuplicates": true
-    });
-});
-
-// 全局ajax调用进度表示
-$(document).on('ajaxStart', function() {
-    NProgress && NProgress.start();
-});
-$(document).on('ajaxStop', function() {
-    NProgress && NProgress.done();
-});
-
-// 扩展jquery ajax支持put delete方法.
-jQuery.each(["put", "delete"], function(i, method) {
-
-    jQuery[method] = function(url, data, callback, type) {
-        // shift arguments if data argument was omitted
-        if (jQuery.isFunction(data)) {
-            type = type || callback || 'json';
-            callback = data;
-            data = undefined;
-        }
-
-        return jQuery.ajax({
-            url: url,
-            type: method,
-            dataType: type,
-            data: data,
-            success: callback
-        });
-    };
-});
