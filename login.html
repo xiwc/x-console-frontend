@@ -146,8 +146,8 @@
         <h1>STEP开发登录页面</h1>
         <form action="" method="post" style="z-index: 9999;">
             <div>
-                <div class="space"><a href="/index.html?debug=all">index.html?debug=all</a></div>
-                <div class="space"><a href="/index.html?debug">index.html?debug</a></div>
+                <div class="space"><a href="/?debug=all">/?debug=all</a></div>
+                <div class="space"><a href="/?debug">/?debug</a></div>
             </div>
             <div>
                 <input type="text" name="username" class="username" placeholder="用户名" autocomplete="off" />
@@ -195,7 +195,7 @@
                 password: $('input[name="password"]', 'form').val()
             }, function(data, textStatus, xhr) {
                 if (data.code == "SUCCESS") {
-                    window.location.href = '/index.html?accessToken=' + data.entity.accessToken;
+                    window.location.href = '/?accessToken=' + data.entity.accessToken;
                 } else {
                     $("#ts").html(data.message);
                     is_show();

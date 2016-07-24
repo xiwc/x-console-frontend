@@ -55,8 +55,8 @@
     <div class="container">
         <fieldset>
             <legend>STEP开发登录页面</legend>
-            <div class="space"><a href="/index.html?debug=all">index.html?debug=all</a></div>
-            <div class="space"><a href="/index.html?debug">index.html?debug</a></div>
+            <div class="space"><a href="/?debug=all">/?debug=all</a></div>
+            <div class="space"><a href="/?debug">/?debug</a></div>
             <hr>
             <form>
                 <div>
@@ -95,7 +95,7 @@
                 password: $('input[name="password"]', 'form').val()
             }, function(data, textStatus, xhr) {
                 if (data.code == "SUCCESS") {
-                    window.location.href = '/index.html?accessToken=' + data.entity.accessToken;
+                    window.location.href = '/?accessToken=' + data.entity.accessToken;
                 } else {
                     alert(data.message);
                     $('.error', 'fieldset').text(data.message).show();
