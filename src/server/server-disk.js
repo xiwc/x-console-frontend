@@ -1,5 +1,4 @@
 export class ServerDisk {
 
-    msg = '硬盘';
-
+    steps = ['上海一区', '云服务器', '硬盘'];
 }

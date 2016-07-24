@@ -1,5 +1,11 @@
 <template>
-    <div class="ui basic segment container animated bounceInDown">
-        <div class="ui message">${msg}</div>
+    <require from="comp/ui/ui-nav"></require>
+    <div class="nx-server-snapshot animated bounceInDown">
+        <ui-nav steps.bind="steps"></ui-nav>
+        <div class="ui basic segment">
+            <div class="ui message">
+                ${steps[2]}
+            </div>
+        </div>
     </div>
 </template>

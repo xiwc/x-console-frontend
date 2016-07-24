@@ -1,5 +1,5 @@
 export class ServerSnapshot {
 
-    msg = '快照';
+    steps = ['上海一区', '云服务器', '快照'];
 
 }

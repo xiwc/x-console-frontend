@@ -1,5 +1,5 @@
 export class ServerSSH {
 
-    msg = 'SSH秘钥';
+    steps = ['上海一区', '云服务器', 'SSH秘钥'];
 
 }

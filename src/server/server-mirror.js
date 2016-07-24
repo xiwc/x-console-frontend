@@ -1,5 +1,5 @@
 export class ServerMirror {
 
-    msg = '镜像';
+    steps = ['上海一区', '云服务器', '镜像'];
 
 }

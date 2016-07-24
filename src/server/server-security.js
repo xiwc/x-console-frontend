@@ -1,5 +1,5 @@
 export class ServerSecurity {
 
-    msg = '安全组';
+    steps = ['上海一区', '云服务器', '安全组'];
 
 }
