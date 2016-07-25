@@ -3,9 +3,9 @@ window.nsApiFunc = (function() {
 
     // API全局共享定义(real:真实远程调用URL, mock:自定义调试数据URL.)
     var api = {
-        'host.hostList.get': { // TODO demo ajax method config.
+        'host.hosts.get': { // TODO demo ajax method config.
             real: 'hosts.json',
-            mock: 'mock/v2/host/hostList.get.json',
+            mock: 'mock/v2/host/hosts.get.json',
             ismock: true,
             method: 'get',
             payload: {},

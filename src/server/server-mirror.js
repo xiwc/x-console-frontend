@@ -65,9 +65,7 @@ export class ServerMirror {
 
     getMirrors() {
 
-        return this.http.fetch(nsApi['server.mirrors.get']).then((resp => {
-            return resp.json();
-        })).then((json) => {
+        return this.http.fetch(nsApi['server.mirrors.get']).then((json) => {
             this.mirrors = json.data;
         });
     }
