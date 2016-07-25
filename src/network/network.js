@@ -28,6 +28,12 @@ export class Network {
             nav: true,
             title: '公网IP'
         }, {
+            route: ['firewall'],
+            name: 'firewall',
+            moduleId: 'network/network-firewall',
+            nav: true,
+            title: '防火墙'
+        }, {
             route: '',
             redirect: 'dashboard'
         }]);
