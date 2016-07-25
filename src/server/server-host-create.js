@@ -15,6 +15,9 @@ import 'ion-rangeslider';
 @containerless
 export class ServerHostCreate {
 
+    @bindable
+    mirror;
+
     steps;
 
     tabs;
@@ -64,12 +67,15 @@ export class ServerHostCreate {
     preHandler() {
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
-        let step = parseInt($step.attr('data-step'));
+        let step = this.steps.index($step) + 1;
+        // let step = parseInt($step.attr('data-step'));
         if (step > 1) {
             $step.removeClass('active');
-            $(this.steps).filter(`.step[data-step="${step - 1}"]`).removeClass('disabled').addClass('active');
+            $step.prev().removeClass('disabled').addClass('active');
+            // $(this.steps).filter(`.step[data-step="${step - 1}"]`).removeClass('disabled').addClass('active');
             $tab.removeClass('active');
-            $(this.tabs).filter(`.tab[data-step="${step - 1}"]`).addClass('active');
+            $tab.prev().addClass('active');
+            // $(this.tabs).filter(`.tab[data-step="${step - 1}"]`).addClass('active');
             $(this.btnOk).addClass('disabled');
             $(this.btnNext).removeClass('disabled');
 
@@ -82,12 +88,15 @@ export class ServerHostCreate {
     nextHandler() {
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
-        let step = parseInt($step.attr('data-step'));
+        let step = this.steps.index($step) + 1;
+        // let step = parseInt($step.attr('data-step'));
         if (step < this.stepCnt) {
             $step.removeClass('active');
-            $(this.steps).filter(`.step[data-step="${step + 1}"]`).removeClass('disabled').addClass('active');
+            $step.next().removeClass('disabled').addClass('active');
+            // $(this.steps).filter(`.step[data-step="${step + 1}"]`).removeClass('disabled').addClass('active');
             $tab.removeClass('active');
-            $(this.tabs).filter(`.tab[data-step="${step + 1}"]`).addClass('active');
+            $tab.next().addClass('active');
+            // $(this.tabs).filter(`.tab[data-step="${step + 1}"]`).addClass('active');
             $(this.btnOk).addClass('disabled');
             $(this.btnPre).removeClass('disabled');
 

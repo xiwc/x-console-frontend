@@ -1,11 +1,63 @@
 <template>
     <require from="comp/ui/ui-nav"></require>
+    <require from="./server-host-create"></require>
     <div class="nx-server-mirror animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
-        <div class="ui basic segment">
-            <div class="ui message">
-                ${steps[2]}
+        <div class="ui basic segment nx-toolbar">
+            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新镜像列表" data-position="top left" data-inverted="">
+                <i class="refresh icon"></i>
+            </div>
+            <div class="ui primary button" click.delegate="createHandler()">
+                基于镜像创建主机
             </div>
         </div>
+        <div class="ui basic segment" ref="container">
+            <table class="ui compact celled definition table">
+                <thead class="full-width">
+                    <tr>
+                        <th>
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </th>
+                        <th>ID</th>
+                        <th>名称</th>
+                        <th>状态</th>
+                        <th>容量(G)</th>
+                        <th>平台</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td>centos58x86a</td>
+                        <td>CentOS 5.8 32bit</td>
+                        <td>可用</td>
+                        <td>20</td>
+                        <td>linux</td>
+                    </tr>
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td>centos58x86a</td>
+                        <td>CentOS 5.8 32bit</td>
+                        <td>可用</td>
+                        <td>20</td>
+                        <td>linux</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <server-host-create mirror.bind="selectMirror" server-host-create.ref="serverHostCreate"></server-host-create>
 </template>
