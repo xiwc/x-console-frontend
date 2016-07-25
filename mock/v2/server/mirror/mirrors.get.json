@@ -1,0 +1,16 @@
+{
+    "success": true,
+    "data": [{
+        "id": "centos58x86a",
+        "name": "CentOS 5.8 32bit",
+        "status": "可用",
+        "capacity": "20",
+        "platform": "linux"
+    }, {
+        "id": "centos58x86a",
+        "name": "CentOS 5.8 32bit",
+        "status": "可用",
+        "capacity": "20",
+        "platform": "linux"
+    }]
+}

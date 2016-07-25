@@ -16,7 +16,7 @@
                 <thead class="full-width">
                     <tr>
                         <th>
-                            <div class="ui fitted checkbox">
+                            <div ref="chkAll" class="ui fitted checkbox">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
@@ -29,31 +29,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr repeat.for="m of mirrors">
                         <td class="collapsing">
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox nx-check" chk.bind="m.checked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
                         </td>
-                        <td>centos58x86a</td>
-                        <td>CentOS 5.8 32bit</td>
-                        <td>可用</td>
-                        <td>20</td>
-                        <td>linux</td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing">
-                            <div class="ui fitted checkbox">
-                                <input type="checkbox">
-                                <label></label>
-                            </div>
-                        </td>
-                        <td>centos58x86a</td>
-                        <td>CentOS 5.8 32bit</td>
-                        <td>可用</td>
-                        <td>20</td>
-                        <td>linux</td>
+                        <td>${m.id}</td>
+                        <td>${m.name}</td>
+                        <td>${m.status}</td>
+                        <td>${m.capacity}</td>
+                        <td>${m.platform}</td>
                     </tr>
                 </tbody>
             </table>

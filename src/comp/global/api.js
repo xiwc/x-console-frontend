@@ -25,6 +25,12 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'get'
         },
+        'server.mirrors.get': { // TODO demo ajax method config.
+            real: 'mirrors.json',
+            mock: 'mock/v2/server/mirror/mirrors.get.json',
+            ismock: false,
+            method: 'get'
+        },
     };
 
     // api debug配置初始化
