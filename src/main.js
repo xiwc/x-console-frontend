@@ -7,12 +7,12 @@ import "comp/global/api";
 bootstrap(async(aurelia) => {
     aurelia.use
         .standardConfiguration()
-        .developmentLogging()
+        // .developmentLogging()
         .feature('comp/init')
         // .plugin('aurelia-i18n', (i18n) => {
-    //     // 添加i18n对象为全局对象
-    //     _.i18n = i18n;
-    //     _.tr = _(i18n.tr).bind(i18n);
+        //     // 添加i18n对象为全局对象
+        //     _.i18n = i18n;
+        //     _.tr = _(i18n.tr).bind(i18n);
 
     //     var lng = Cookie.get(nsCons.I18N_LNG);
     //     lng = lng ? lng.replace(/["']/g, '') : 'zh';

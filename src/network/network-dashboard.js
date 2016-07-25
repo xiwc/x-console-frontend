@@ -1,5 +1,5 @@
 export class NetworkDashboard {
 
-    msg = '总览';
+    steps = ['上海一区', '专用VPC网络', '总览'];
 
 }

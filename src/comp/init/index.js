@@ -1,60 +1,13 @@
 /**
-程序初次加载启动,进行一些初始化操作:
-1. 获取url中的access token写入cookie.
-2. 获取用户的基本信息.
-3. 设置toastr弹出消息提示插件全局配置设置
-4. ui form 验证提示信息国际化
-5. 加载localStorage中的debug设置
-6. 解析URL中的ACCESS_TOKEN, 存放到cookie中
-**/
+ * 程序初次加载启动,进行一些初始化操作:
+ */
+
+import { HttpClient } from 'aurelia-fetch-client';
+import config from './config';
+
 export function configure(aurelia, params) {
 
-    /**
-     * 检查用户登录状态
-     */
-    + function() {
-
-        // 解析URL中的ACCESS_TOKEN, 存放到cookie中
-        // 该端代码逻辑放在靠前位置, 因为如果修改url地址, 会重新刷新加载该框架.
-        var token = wurl('?' + nsCons.ACCESS_TOKEN_NAME);
-
-        if (token) {
-
-            if (!_(['prod', 'test']).includes(nsParam.env)) {
-                Cookie.set(nsCons.ACCESS_TOKEN, token);
-            }
-
-            if ('pushState' in history) {
-                history.replaceState(null, '', _.removeUrlQuery(nsCons.ACCESS_TOKEN_NAME));
-            } else {
-                window.location.href = _.removeUrlQuery(nsCons.ACCESS_TOKEN_NAME);
-            }
-        }
-
-        nsCtx.accessToken = Cookie.get(nsCons.ACCESS_TOKEN);
-
-        return this;
-
-    }();
-
-    // // toastr弹出消息提示插件全局配置设置
-    // toastr.options.positionClass = 'toast-bottom-center';
-    // toastr.options.preventDuplicates = true;
-
-    // // ui form长度表单验证规则重写,中文长度按2计算,英文按1计算.
-    // // http://jira00.x.newtouch.com/browse/STEP-1200
-    // $.fn.form.settings.rules.length = (value, requiredLength) => {
-    //     return (value !== undefined) ? (_.getByteLen(value) >= requiredLength) : false;
-    // };
-    // $.fn.form.settings.rules.minLength = (value, requiredLength) => {
-    //     return (value !== undefined) ? (_.getByteLen(value) >= requiredLength) : false;
-    // };
-    // $.fn.form.settings.rules.exactLength = (value, requiredLength) => {
-    //     return (value !== undefined) ? (_.getByteLen(value) == requiredLength) : false;
-    // };
-    // $.fn.form.settings.rules.maxLength = (value, maxLength) => {
-    //     return (value !== undefined) ? (_.getByteLen(value) <= maxLength) : false;
-    // };
+    config.context(aurelia).initHttp().initToken().initToastr();
 
     // // 异步加载初始化数据, 返回Promise对象延迟页面渲染
     // return new Promise((resolve, reject) => {

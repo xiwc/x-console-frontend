@@ -5,7 +5,7 @@
 
 // 这里加载font-awesome是为了尽可能早的显示fa-spinner(加载进度图标)
 import './static/css/common.css';
-import 'wlzc-semantic-ui/semantic.css';
+import 'vender/semantic-ui/semantic.css';
 import 'wlzc-animate.css';
 
 // 如果不需要Promise垫片可以注释掉(同时需要从config/webpack.config.js中移除)

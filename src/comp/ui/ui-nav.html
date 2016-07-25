@@ -3,7 +3,7 @@
     <div class="nx-ui-nav">
         <div class="ui large breadcrumb basic segment">
             <template repeat.for="step of steps">
-                <a class="section">${step}</a>
+                <a class="section ${$last ? 'active' : ''}">${step}</a>
                 <i if.bind="!$last" class="right chevron icon divider"></i>
             </template>
             <!-- <a class="section">上海一区</a>
