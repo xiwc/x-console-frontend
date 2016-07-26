@@ -6,6 +6,27 @@ export class ServerMirror {
 
     steps = ['上海一区', '云服务器', '镜像'];
 
+    // 选择的Mirror
+    selectMirror;
+
+    mirrors;
+
+    // mirrors = [{
+    //     "capacity": 0,
+    //     "id": "string",
+    //     "name": "string",
+    //     "platform": "linux",
+    //     "status": "string",
+    //     "version": "string1"
+    // }, {
+    //     "capacity": 0,
+    //     "id": "string",
+    //     "name": "string",
+    //     "platform": "windows server",
+    //     "status": "string",
+    //     "version": "string2"
+    // }];
+
     /**
      * 构造函数
      */
@@ -35,20 +56,21 @@ export class ServerMirror {
         });
     }
 
-    // 选择的Mirror
-    selectMirror = {
-
-    }
-
     refreshHandler() {
         this.getMirrors().then(() => {
-            $(this.chkAll).checkbox('set unchecked');
+            toastr.info('刷新成功!');
         });
     }
 
     createHandler() {
+
+        if (!this.selectMirror) {
+            toastr.error('请先选择一个镜像!');
+            return;
+        }
+
         this.serverHostCreate.show();
-        toastr.info('创建操作...');
+        // toastr.info('创建操作...');
     }
 
     /**
@@ -65,8 +87,20 @@ export class ServerMirror {
 
     getMirrors() {
 
-        return this.http.fetch(nsApi['server.mirrors.get']).then((json) => {
-            this.mirrors = json.data;
+        return this.http.fetch(nsApi.url('image.list.get', {
+            type: '1',
+            pageNo: '1'
+        })).then((resp) => {
+            this.mirrors = resp.data;
+        });
+    }
+
+    selectHandler(uiChk, mirror) {
+        $(uiChk).checkbox({
+            onChecked: () => {
+                this.selectMirror = mirror;
+                // console.log(mirror);
+            }
         });
     }
 

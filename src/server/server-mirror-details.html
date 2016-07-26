@@ -1,0 +1,59 @@
+<template>
+    <require from="./server-mirror-details.css"></require>
+    <require from="comp/ui/ui-nav"></require>
+    <require from="./server-host-create"></require>
+    <div class="nx-server-mirror-details animated bounceInDown">
+        <ui-nav steps.bind="steps"></ui-nav>
+        <div class="ui basic segment" ref="container">
+            <div class="ui celled grid">
+                <div class="three column row">
+                    <div class="column">
+                        <h3 class="ui header">基本属性</h3>
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>${details.id}</td>
+                                </tr>
+                                <tr>
+                                    <th>名称</th>
+                                    <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>描述</th>
+                                    <td>${details.desc}</td>
+                                </tr>
+                                <tr>
+                                    <th>状态</th>
+                                    <td>${details.status}</td>
+                                </tr>
+                                <tr>
+                                    <th>容量</th>
+                                    <td>${details.capacity}</td>
+                                </tr>
+                                <tr>
+                                    <th>可见范围</th>
+                                    <td>${details.scope}</td>
+                                </tr>
+                                <tr>
+                                    <th>平台</th>
+                                    <td>${details.platform}</td>
+                                </tr>
+                                <tr>
+                                    <th>创建时间</th>
+                                    <td>${details.createTime | dateFormat}</td>
+                                </tr>
+                                <tr>
+                                    <th>创建于</th>
+                                    <td>${details.createPeriod}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="column"></div>
+                    <div class="column"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

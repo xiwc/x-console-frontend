@@ -50,14 +50,14 @@
                         <div class="ui form">
                             <div class="inline field">
                                 <label>可用区域</label>
-                                <div class="ui selection dropdown">
+                                <div class="ui selection dropdown" ref="uiZones">
                                     <input type="hidden" value="1" name="zone">
                                     <i class="dropdown icon"></i>
                                     <div class="default text"></div>
                                     <div class="menu">
-                                        <div class="item" data-value="1">上海1区</div>
-                                        <div class="item" data-value="2">上海2区</div>
-                                        <div class="item" data-value="3">上海3区</div>
+                                        <div repeat.for="z of zones" class="item" data-value="${z.value}">${z.label}</div>
+                                        <!-- <div class="item" data-value="2">上海2区</div>
+                                        <div class="item" data-value="3">上海3区</div> -->
                                     </div>
                                 </div>
                                 <div class="nx-tip">
@@ -66,7 +66,7 @@
                             </div>
                             <div class="inline field">
                                 <label>主机类型</label>
-                                <ui-btn-grp items.bind="hostTypes"></ui-btn-grp>
+                                <ui-btn-grp select-cb.call="btnGrpSelectHandler()" items.bind="hostTypes"></ui-btn-grp>
                                 <!-- <div class="ui buttons">
                                     <div class="ui button blue">经济适用型</div>
                                     <div class="ui button">性能型</div>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="inline field">
                                 <label>CPU规格</label>
-                                <ui-btn-grp items.bind="cpuTypes"></ui-btn-grp>
+                                <ui-btn-grp select-cb.call="btnGrpSelectHandler('cpu')" items.bind="cpuTypes"></ui-btn-grp>
                                 <!-- <div class="ui buttons">
                                     <div class="ui button blue">1核</div>
                                     <div class="ui button">2核</div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="inline field">
                                 <label>内存规格</label>
-                                <ui-btn-grp items.bind="memTypes"></ui-btn-grp>
+                                <ui-btn-grp select-cb.call="btnGrpSelectHandler()" items.bind="memTypes"></ui-btn-grp>
                                 <!-- <div class="ui buttons">
                                     <div class="ui button blue">1GB</div>
                                     <div class="ui button">2GB</div>
@@ -102,7 +102,7 @@
                         <div class="ui form">
                             <div class="inline field">
                                 <label>网络类型</label>
-                                <ui-btn-grp items.bind="netTypes"></ui-btn-grp>
+                                <ui-btn-grp select-cb.call="btnGrpSelectHandler()" items.bind="netTypes"></ui-btn-grp>
                                 <!-- <div class="ui buttons">
                                     <div class="ui button blue">经典网络</div>
                                     <div class="ui button">私有网络</div>
@@ -113,7 +113,7 @@
                             </div>
                             <div class="inline field">
                                 <label>公网带宽</label>
-                                <ui-btn-grp items.bind="bwTypes"></ui-btn-grp>
+                                <ui-btn-grp select-cb.call="btnGrpSelectHandler()" items.bind="bwTypes"></ui-btn-grp>
                                 <!-- <div class="ui buttons">
                                     <div class="ui button blue">按固定带宽</div>
                                     <div class="ui button">按使用流量</div>
@@ -123,7 +123,7 @@
                                 <label style="position: relative; top: 25px;">带宽大小</label>
                                 <div class="nx-range">
                                     <div class="nx-range-slider">
-                                        <input ref="rangeBw" type="text" data-min="0" data-max="20" data-step="1" data-grid="true" data-postfix="Mbps">
+                                        <input ref="rangeBw" type="text" value="0" data-min="0" data-max="20" data-step="1" data-grid="true" data-postfix="Mbps">
                                     </div>
                                     <!-- <div class="ui right labeled input nx-input">
                                         <input type="text" value="0">
@@ -142,7 +142,7 @@
                         <div class="ui form">
                             <div class="inline field">
                                 <label>镜像类型</label>
-                                <ui-btn-grp items.bind="mirrorTypes"></ui-btn-grp>
+                                <ui-btn-grp select-cb.call="btnGrpSelectHandler()" items.bind="mirrorTypes"></ui-btn-grp>
                                 <!-- <div class="ui buttons">
                                     <div class="ui button blue">系统镜像</div>
                                     <div class="ui button">自有镜像</div>
@@ -155,81 +155,105 @@
                             </div>
                             <div class="inline field">
                                 <label>系统镜像</label>
-                                <div class="ui selection dropdown">
+                                <div class="ui selection dropdown" ref="uiMirrors">
                                     <input type="hidden" value="1" name="mirror">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">请选择系统镜像</div>
                                     <div class="menu">
-                                        <div class="item" data-value="1">CentOS</div>
-                                        <div class="item" data-value="2">Windows Server2008</div>
-                                        <div class="item" data-value="3">Ubuntu</div>
+                                        <div repeat.for="m of mirrors" class="item" data-value="${m.value}">${m.label}</div>
+                                        <!-- <div class="item" data-value="2">Windows Server2008</div>
+                                        <div class="item" data-value="3">Ubuntu</div> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="inline field">
                                 <label>系统版本</label>
-                                <div class="ui selection dropdown">
+                                <div class="ui selection dropdown" ref="uiVersions">
                                     <input type="hidden" value="1" name="version">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">请选择系统镜像</div>
                                     <div class="menu">
-                                        <div class="item" data-value="1">CentOS5.0</div>
-                                        <div class="item" data-value="2">CentOS6.0</div>
-                                        <div class="item" data-value="3">CentOS7.0</div>
+                                        <div repeat.for="v of versions" class="item" data-value="${v.value}">${v.label}</div>
+                                        <!-- <div class="item" data-value="2">CentOS6.0</div>
+                                        <div class="item" data-value="3">CentOS7.0</div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="ui bottom attached tab segment">
-                        <div class="ui form">
+                        <div class="ui form" ref="uiSettings">
+                            <div class="inline field">
+                                <label>登录名称</label>
+                                <!-- TODO when come from selected mirror -->
+                                <div class="ui basic label">${mirror ? (mirror.platform == 'linux' ? 'root' : 'administrator') : (totalConfig.mirror.value == '2' ? 'administrator' : 'root')}</div>
+                            </div>
                             <div class="inline fields">
                                 <label>验证方式</label>
                                 <div class="field">
-                                    <div class="ui radio checkbox">
+                                    <div class="ui radio checkbox" ref="uiPwd">
                                         <input type="radio" name="auth" checked="checked">
                                         <label>密码验证</label>
                                     </div>
                                 </div>
                                 <div class="field">
-                                    <div class="ui radio checkbox">
+                                    <div class="ui radio checkbox" ref="uiSshKey">
                                         <input type="radio" name="auth">
                                         <label>密钥验证</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="inline field">
+                            <div class="inline field" show.bind="authType == '1'">
                                 <label>登录密码</label>
                                 <div class="ui input">
-                                    <input type="password" />
-                                </div>
-                                <div class="nx-tip">
-                                    8-30个字符；同时包含三项（大小写字母,数字或特殊符号）。
+                                    <input type="password" name="password" />
                                 </div>
                             </div>
-                            <div class="inline field">
+                            <div class="nx-tip2">
+                                8-30个字符；同时包含三项（大小写字母,数字或特殊符号）。
+                            </div>
+                            <div class="inline field" show.bind="authType == '1'">
                                 <label>确认密码</label>
                                 <div class="ui input">
-                                    <input type="password" />
+                                    <input type="password" name="rePassword" />
+                                </div>
+                            </div>
+                            <div class="inline field" show.bind="authType == '2'">
+                                <label>登录密钥</label>
+                                <div class="ui selection dropdown" ref="uiSshKeys">
+                                    <input type="hidden" value="1" name="sshKey">
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text"></div>
+                                    <div class="menu">
+                                        <div repeat.for="k of sshKeys" class="item" data-value="${k.value}">${k.label}</div>
+                                    </div>
+                                </div>
+                                <!-- TODO -->
+                                <span class="nx-gray">没有密钥?</span> <a class="nx-pointer">新建</a>
+                            </div>
+                            <div class="inline field">
+                                <label>主机名称</label>
+                                <div class="ui input">
+                                    <input type="text" name="hostName" value.bind="totalConfig.hostName" />
                                 </div>
                             </div>
                             <div class="inline field">
                                 <label>购买时长</label>
-                                <div class="ui selection dropdown">
-                                    <input type="hidden" value="1" name="datetime">
+                                <div class="ui selection dropdown" ref="uiDuration">
+                                    <input type="hidden" value="1" name="duration">
                                     <i class="dropdown icon"></i>
                                     <div class="default text">请选择购买时长</div>
                                     <div class="menu">
-                                        <div class="item" data-value="1">1个月</div>
-                                        <div class="item" data-value="1">3个月</div>
-                                        <div class="item" data-value="1">10个月</div>
+                                        <div repeat.for="d of durations" class="item" data-value="${d.value}">${d.label}</div>
+                                        <!-- <div class="item" data-value="1">3个月</div>
+                                        <div class="item" data-value="1">10个月</div> -->
                                     </div>
                                 </div>
                             </div>
                             <div class="inline field">
                                 <label>购买数量</label>
                                 <div class="ui right labeled input">
-                                    <input type="text" value="1">
+                                    <input type="text" value.bind="totalConfig.count" name="count">
                                     <div class="ui basic label">
                                         台
                                     </div>
@@ -249,28 +273,37 @@
                         <h2 class="ui dividing header">当前选购配置</h2>
                         <div class="inline field">
                             <label>区域:</label>
-                            <span>上海1区</span>
+                            <span>${totalConfig.zone.label}</span>
+                            <!-- <span>上海1区</span> -->
                         </div>
                         <div class="inline field">
                             <label>规格:</label>
-                            <span>1核2GB(性能型)</span>
+                            <span>${totalConfig.cpuType.label + totalConfig.memType.label + '(' + totalConfig.hostType.label + ')'}</span>
+                            <!-- <span>1核2GB(性能型)</span> -->
                         </div>
-                        <div class="inline field">
+                        <div class="inline field" if.bind="!mirror">
                             <label>镜像:</label>
-                            <span>CentOS</span>
-                            <span>(CentOS7.0)</span>
+                            <span>${totalConfig.mirror.label}</span>
+                            <span>${'(' + totalConfig.version.label + ')'}</span>
+                        </div>
+                        <div class="inline field" if.bind="mirror">
+                            <label>镜像:</label>
+                            <span>${mirror.name}</span>
+                            <span>${'(' + mirror.version + ')'}</span>
                         </div>
                         <div class="inline field">
                             <label>网络:</label>
-                            <span>0 Mpbs(经典网络)</span>
+                            <span>${totalConfig.bwSize + ' Mpbs(' + totalConfig.netType.label + ')'}</span>
+                            <!-- <span>0 Mpbs(经典网络)</span> -->
                         </div>
                         <div class="inline field">
                             <label>时长:</label>
-                            <span>1个月</span>
+                            <span>${totalConfig.duration.label}</span>
+                            <!-- <span>1个月</span> -->
                         </div>
                         <div class="inline field">
                             <label>数量:</label>
-                            <span>2台</span>
+                            <span>${totalConfig.count}台</span>
                         </div>
                         <div class="ui divider"></div>
                         <div class="inline field">

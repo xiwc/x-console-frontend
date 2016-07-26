@@ -85,6 +85,7 @@
     "aurelia-templating-resources": "^1.0.0-rc.1.0.0",
     "aurelia-templating-router": "^1.0.0-rc.1.0.0",
     "bluebird": "^3.4.1",
+    "date-format": "0.0.2",
     "ion-rangeslider": "^2.1.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^1.11.2",

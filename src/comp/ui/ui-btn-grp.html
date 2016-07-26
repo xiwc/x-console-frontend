@@ -1,5 +1,5 @@
 <template>
     <div class="ui buttons">
-        <div repeat.for="item of items" click.delegate="selectHandler(item)" class="ui button ${item.selected ? 'blue' : ''}">${item.label}</div>
+        <div repeat.for="item of items" click.delegate="selectHandler(item)" class="ui button ${item.disabled ? 'disabled' : ''} ${item.selected ? 'blue' : ''}">${item.label}</div>
     </div>
 </template>

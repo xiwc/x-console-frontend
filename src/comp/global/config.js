@@ -34,6 +34,10 @@ window.nsCtx = (function() {
             resourceEmails: []
         },
 
+        // TODO 设置全局访问token
+        token: '1',
+        areaId: '1',
+
         isDebug: false, // 是否为debug
     }
 })();
@@ -70,7 +74,8 @@ window.nsParam = (function() {
             openfireUrl: '//192.168.7.7:7070/http-bind/',
             loginUrl: '//127.0.0.1',
             logoutUrl: '//127.0.0.1',
-            baseUrl: 'http://resource.sh1.newtouch.com/json/',
+            // baseUrl: 'http://resource.sh1.newtouch.com/json/',
+            baseUrl: 'http://218.245.64.3:45417/',
             userTwodimensionalcodeUrl: '127.0.0.1:81'
         },
         dev: { // 开发环境
