@@ -38,6 +38,10 @@ body {
     margin-left: 60px;
 }
 
+.nx-gray {
+    color: #BFBFBF;
+}
+
 .nx-pointer {
     cursor: pointer;
 }

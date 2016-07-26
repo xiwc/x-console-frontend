@@ -22,6 +22,8 @@ export class ServerHostCreate {
 
     tabs;
 
+    authType = '1'; // '1' : password | '2' : 'ssh key'
+
     // 总体选择配置信息
     totalConfig = {
         zone: '',
@@ -35,6 +37,12 @@ export class ServerHostCreate {
         duration: '',
         count: '1'
     };
+
+    sshKeys = [
+        { label: 'ssh-key01', value: '1' },
+        { label: 'ssh-key02', value: '2' },
+        { label: 'ssh-key03', value: '3' }
+    ];
 
     zones = [
         { label: '上海1区', value: '1' },
@@ -56,8 +64,17 @@ export class ServerHostCreate {
 
     durations = [
         { label: '1个月', value: '1' },
+        { label: '2个月', value: '2' },
         { label: '3个月', value: '3' },
-        { label: '10个月', value: '10' }
+        { label: '4个月', value: '4' },
+        { label: '5个月', value: '5' },
+        { label: '6个月', value: '6' },
+        { label: '7个月', value: '7' },
+        { label: '8个月', value: '8' },
+        { label: '9个月', value: '9' },
+        { label: '10个月', value: '10' },
+        { label: '11个月', value: '11' },
+        { label: '12个月', value: '12' }
     ];
 
     hostTypes = [{
@@ -180,6 +197,17 @@ export class ServerHostCreate {
         $('.ui.dropdown', this.stepsContainer).dropdown({
             onChange: () => {
                 this.getTotalConfig();
+            }
+        });
+
+        $(this.uiPwd).checkbox({
+            onChecked: () => {
+                this.authType = '1';
+            }
+        });
+        $(this.uiSshKey).checkbox({
+            onChecked: () => {
+                this.authType = '2';
             }
         });
     }
