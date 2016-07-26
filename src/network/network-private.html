@@ -1,8 +1,10 @@
 <template>
-	<require from="./server/server-host.css"></require>
+	<require from="./network.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-confirm-textbox"></require>
     <require from="comp/ui/ui-confirm"></require>
-    <!-- <require from="./server-host-create"></require> -->
+    <require from="./network-linkrouter"></require>
+
     <div class="nx-network-private animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -12,13 +14,12 @@
             <div class="ui primary button" click.delegate="createHandler()">
                 <i class="add icon"></i> 创建
             </div>
-
-            <div class="ui red button" click.delegate="delHandler()">
+            <div class="ui red button" click.delegate="delMoreHandler()">
                 删除
             </div>
            <div class="ui search">
                 <div class="ui icon input">
-                    <input class="prompt" type="text" placeholder="主机检索...">
+                    <input class="prompt" type="text" placeholder="检索...">
                     <i class="search link icon"></i>
                 </div>
                 <div class="results"></div>
@@ -30,7 +31,7 @@
                     <tr>
                         <th>
                             <div class="ui fitted checkbox">
-                                <input type="checkbox">
+                                <input type="checkbox" change.delegate="selectAll()" id="allCheckBox">
                                 <label></label>
                             </div>
                         </th>
@@ -42,7 +43,7 @@
                         <th>操作</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody1">
                     <tr>
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
@@ -50,22 +51,20 @@
                                 <label></label>
                             </div>
                         </td>
-                        <td>id-kdfgdfgdfgdf</td>
-                        <td>运行中</td>
-                        <td>性能型</td>
-                        <td>CentOS</td>
-                        <td>1核1G</td>
+                        <td><a href="/#/network/private-view">id-kdfgdfgdfgdf</a></td>
+                        <td>私有网络01</td>
+                        <td>路由器001</td>
+                        <td>18.18.18.18</td>
+                        <td>5天前</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide">
-                                <div class="text">更多操作</div>
-                                <i class="dropdown icon"></i>
-                                <div class="left menu">
-                                    <div class="item">修改名称</div>
+                                <div class="ui dropdown item">更多操作 <i class="dropdown icon"></i> <div class="menu">
+                                    <div class="item" click.delegate="updateName()">修改名称</div>
                                     <div class="divider"></div> 
-                                    <div class="item">修改路由器</div>
-                                   	<div class="item">离开路由器</div>
+                                    <div class="item" click.delegate="linkRouter()">连接路由器</div>
+                                    <div class="item" click.delegate="delRouter()">离开路由器</div>
                                     <div class="divider"></div>
-                                    <div class="item">删除</div>
+                                    <div class="item" click.delegate="delHandler()">删除</div>
                                 </div>
                             </div>
                         </td>
@@ -78,21 +77,19 @@
                             </div>
                         </td>
                         <td>id-sgssdfgsdfgsd</td>
-                        <td>运行中</td>
-                        <td>经济适用型</td>
-                        <td>Ubuntu</td>
-                        <td>2核4G</td>
+                        <td>私有网络02</td>
+                        <td>路由器002</td>
+                        <td>19.19.19.19</td>
+                        <td>10天前</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide">
-                                <div class="text">更多操作</div>
-                                <i class="dropdown icon"></i>
-                                <div class="left menu">
-                                     <div class="item">修改名称</div>
+                                <div class="ui dropdown item">更多操作 <i class="dropdown icon"></i> <div class="menu">
+                                    <div class="item" click.delegate="updateName()">修改名称</div>
                                     <div class="divider"></div> 
-                                    <div class="item">修改路由器</div>
-                                   	<div class="item">离开路由器</div>
+                                    <div class="item" click.delegate="linkRouter()">连接路由器</div>
+                                    <div class="item" click.delegate="delRouter()">离开路由器</div>
                                     <div class="divider"></div>
-                                    <div class="item">删除</div>
+                                    <div class="item" click.delegate="delHandler()">删除</div>
                                 </div>
                             </div>
                         </td>
@@ -101,5 +98,9 @@
             </table>
         </div>
     </div>
-    <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-confirm-textbox ui-confirm-textbox.ref="createconfirm" title.bind="createTitle"></ui-confirm-textbox>
+    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-confirm-textbox ui-confirm-textbox.ref="updateconfirm" title.bind="updateNameTitle"></ui-confirm-textbox>
+    <network-linkrouter network-linkrouter.ref="linRouterDialog"></network-linkrouter>
+    <ui-confirm ui-confirm.ref="deleteRouterconfirm" title.bind="deleteTite" content.bind="deleteRouterContent"></ui-confirm>
 </template>
