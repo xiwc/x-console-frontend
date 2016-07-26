@@ -48,7 +48,7 @@ export class ServerMirror {
 
     createHandler() {
         this.serverHostCreate.show();
-        toastr.info('创建操作...');
+        // toastr.info('创建操作...');
     }
 
     /**

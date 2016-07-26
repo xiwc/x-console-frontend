@@ -22,6 +22,44 @@ export class ServerHostCreate {
 
     tabs;
 
+    // 总体选择配置信息
+    totalConfig = {
+        zone: '',
+        hostType: '',
+        cpuType: '',
+        netType: '',
+        bwType: '',
+        bwSize: '',
+        auth: '',
+        pwd: '',
+        duration: '',
+        count: '1'
+    };
+
+    zones = [
+        { label: '上海1区', value: '1' },
+        { label: '上海2区', value: '2' },
+        { label: '上海3区', value: '3' }
+    ];
+
+    mirrors = [
+        { label: 'CentOS', value: '1' },
+        { label: 'Windows Server2008', value: '2' },
+        { label: 'Ubuntu', value: '3' }
+    ];
+
+    versions = [
+        { label: 'CentOS5.0', value: '1' },
+        { label: 'CentOS6.0', value: '2' },
+        { label: 'CentOS7.0', value: '3' }
+    ];
+
+    durations = [
+        { label: '1个月', value: '1' },
+        { label: '3个月', value: '3' },
+        { label: '10个月', value: '10' }
+    ];
+
     hostTypes = [{
         label: '经济适用型',
         value: '1',
@@ -132,9 +170,18 @@ export class ServerHostCreate {
         this.tabs = $(this.stepsContainer).find('.tab');
         this.stepCnt = this.steps.size();
 
-        $(this.rangeBw).ionRangeSlider();
+        $(this.rangeBw).ionRangeSlider({
+            onChange: () => {
+                // console.log($(this.rangeBw).val());
+                this.getTotalConfig();
+            }
+        });
 
-        $('.ui.dropdown', this.stepsContainer).dropdown();
+        $('.ui.dropdown', this.stepsContainer).dropdown({
+            onChange: () => {
+                this.getTotalConfig();
+            }
+        });
     }
 
     getSelectedItem(items) {
@@ -143,27 +190,47 @@ export class ServerHostCreate {
         }));
     }
 
+    getDropDownSelectedItem(uiDd, models) {
+        let val = $(uiDd).dropdown('get value');
+        let selected = null;
+        _.each(models, (item) => {
+            if (item.value == val) {
+                selected = item;
+                return false;
+            }
+        });
+
+        return selected;
+    }
+
     /**
      * 获取总体配置
      * @return {[type]} [description]
      */
     getTotalConfig() {
 
-        return {
-            hostType: this.getSelectedItem(this.hostTypes).value,
-            cpuType: this.getSelectedItem(this.cpuTypes).value,
-            memType: this.getSelectedItem(this.memTypes).value,
-            netType: this.getSelectedItem(this.netTypes).value,
-            netType: this.getSelectedItem(this.netTypes).value,
-            bwType: this.getSelectedItem(this.bwTypes).value,
-            mirrorType: this.getSelectedItem(this.mirrorTypes).value
-        };
+        return this.totalConfig = _.extend(this.totalConfig, {
+            zone: this.getDropDownSelectedItem(this.uiZones, this.zones),
+            mirror: this.getDropDownSelectedItem(this.uiMirrors, this.mirrors),
+            version: this.getDropDownSelectedItem(this.uiVersions, this.versions),
+            duration: this.getDropDownSelectedItem(this.uiDuration, this.durations),
+            hostType: this.getSelectedItem(this.hostTypes),
+            cpuType: this.getSelectedItem(this.cpuTypes),
+            memType: this.getSelectedItem(this.memTypes),
+            netType: this.getSelectedItem(this.netTypes),
+            bwType: this.getSelectedItem(this.bwTypes),
+            mirrorType: this.getSelectedItem(this.mirrorTypes),
+            bwSize: $(this.rangeBw).val(),
+            auth: '',
+            pwd: '',
+        })
     }
 
     show() {
         $(this.modal).modal({
             onShow: () => {
                 this.reset();
+                this.getTotalConfig();
             },
             onApprove: () => {
 
@@ -235,8 +302,12 @@ export class ServerHostCreate {
 
     okHandler() {
         console.log(this.getTotalConfig());
-        toastr.info(JSON.stringify(this.getTotalConfig()));
+        // toastr.info(JSON.stringify(this.getTotalConfig()));
         $(this.modal).modal('hide');
+    }
+
+    btnGrpSelectHandler() {
+        this.getTotalConfig();
     }
 
 }

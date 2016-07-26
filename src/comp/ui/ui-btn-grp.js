@@ -7,7 +7,7 @@ from 'aurelia-framework';
 @containerless
 export class UiBtnGrp {
 
-    @bindable router = null;
+    @bindable selectCb = null;
 
     @bindable items = [{
         label: '1核',
@@ -35,6 +35,7 @@ export class UiBtnGrp {
     selectHandler(item) {
         this.clearSelected();
         item.selected = true;
+        this.selectCb && this.selectCb();
     }
 
     getSelectedItem() {
