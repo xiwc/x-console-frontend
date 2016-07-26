@@ -182,7 +182,7 @@
                         </div>
                     </div>
                     <div class="ui bottom attached tab segment">
-                        <div class="ui form">
+                        <div class="ui form" ref="uiSettings">
                             <div class="inline fields">
                                 <label>验证方式</label>
                                 <div class="field">
@@ -201,16 +201,16 @@
                             <div class="inline field" show.bind="authType == '1'">
                                 <label>登录密码</label>
                                 <div class="ui input">
-                                    <input type="password" />
+                                    <input type="password" name="password" />
                                 </div>
-                                <div class="nx-tip">
-                                    8-30个字符；同时包含三项（大小写字母,数字或特殊符号）。
-                                </div>
+                            </div>
+                            <div class="nx-tip2">
+                                8-30个字符；同时包含三项（大小写字母,数字或特殊符号）。
                             </div>
                             <div class="inline field" show.bind="authType == '1'">
                                 <label>确认密码</label>
                                 <div class="ui input">
-                                    <input type="password" />
+                                    <input type="password" name="rePassword" />
                                 </div>
                             </div>
                             <div class="inline field" show.bind="authType == '2'">
@@ -241,7 +241,7 @@
                             <div class="inline field">
                                 <label>购买数量</label>
                                 <div class="ui right labeled input">
-                                    <input type="text" value.bind="totalConfig.count">
+                                    <input type="text" value.bind="totalConfig.count" name="count">
                                     <div class="ui basic label">
                                         台
                                     </div>

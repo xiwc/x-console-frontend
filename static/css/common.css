@@ -38,6 +38,13 @@ body {
     margin-left: 60px;
 }
 
+.nx-tip2 {
+    color: #BFBFBF;
+    margin-left: 60px;
+    margin-top: -10px;
+    margin-bottom: 5px;
+}
+
 .nx-gray {
     color: #BFBFBF;
 }
