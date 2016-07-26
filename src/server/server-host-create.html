@@ -183,6 +183,11 @@
                     </div>
                     <div class="ui bottom attached tab segment">
                         <div class="ui form" ref="uiSettings">
+                            <div class="inline field">
+                                <label>登录名称</label>
+                                <!-- TODO when come from selected mirror -->
+                                <div class="ui basic label">${mirror ? (mirror.platform == 'linux' ? 'root' : 'administrator') : (totalConfig.mirror.value == '2' ? 'administrator' : 'root')}</div>
+                            </div>
                             <div class="inline fields">
                                 <label>验证方式</label>
                                 <div class="field">
@@ -223,7 +228,14 @@
                                         <div repeat.for="k of sshKeys" class="item" data-value="${k.value}">${k.label}</div>
                                     </div>
                                 </div>
+                                <!-- TODO -->
                                 <span class="nx-gray">没有密钥?</span> <a class="nx-pointer">新建</a>
+                            </div>
+                            <div class="inline field">
+                                <label>主机名称</label>
+                                <div class="ui input">
+                                    <input type="text" name="hostName" value.bind="totalConfig.hostName" />
+                                </div>
                             </div>
                             <div class="inline field">
                                 <label>购买时长</label>

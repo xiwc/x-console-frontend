@@ -35,7 +35,8 @@ export class ServerHostCreate {
         auth: '',
         pwd: '',
         duration: '',
-        count: '1'
+        count: '1',
+        hostName: ''
     };
 
     sshKeys = [
@@ -226,9 +227,10 @@ export class ServerHostCreate {
         label: '经典网络',
         value: '1',
         selected: true
-    }, {
+    }, { // TODO 需要查询用户是否创建了私有网络;如果没有,则禁用.
         label: '私有网络',
         value: '2',
+        disabled: true,
         selected: false
     }];
 
@@ -240,6 +242,7 @@ export class ServerHostCreate {
     }, {
         label: '按使用流量',
         value: '2',
+        disabled: true,
         selected: false
     }];
 
@@ -310,6 +313,8 @@ export class ServerHostCreate {
         });
 
         this.pwdValidate();
+
+        this.initMemTypes(this.getSelectedItem(this.cpuTypes));
 
     }
 

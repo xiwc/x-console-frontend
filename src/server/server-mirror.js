@@ -13,14 +13,14 @@ export class ServerMirror {
         "capacity": 0,
         "id": "string",
         "name": "string",
-        "platform": "string",
+        "platform": "linux",
         "status": "string",
         "version": "string1"
     }, {
         "capacity": 0,
         "id": "string",
         "name": "string",
-        "platform": "string",
+        "platform": "windows server",
         "status": "string",
         "version": "string2"
     }];
@@ -66,7 +66,7 @@ export class ServerMirror {
             toastr.error('请先选择一个镜像!');
             return;
         }
-        
+
         this.serverHostCreate.show();
         // toastr.info('创建操作...');
     }
