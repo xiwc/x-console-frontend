@@ -28,10 +28,8 @@ export class ServerDashboard {
 
         // console.log(json({ name: 'json...' }));
 
-        this.http.fetch(nsApi['host.hostList.get']).then((resp => {
-            return resp.text();
-        })).then((body) => {
-            console.log(body);
+        this.http.fetch(nsApi['host.hosts.get']).then((resp) => {
+            console.log(resp);
         });
 
         // TODO ajax api mock demo.

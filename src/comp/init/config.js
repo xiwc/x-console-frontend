@@ -8,30 +8,30 @@ export class Config {
             config
                 .withBaseUrl(nsParam.baseUrl)
                 .withInterceptor({
-                    request(request) {
-                        if (request.url.indexOf('/mock/') > -1) {
-                            let url = request.url.replace(nsParam.baseUrl, '');
-                            request = new Request(url, {
+                    request(req) {
+                        if (req.url.indexOf('/mock/') > -1) {
+                            let url = req.url.replace(nsParam.baseUrl, '');
+                            req = new Request(url, {
                                 method: 'GET'
                             });
                         }
 
-                        // toastr.info(`Requesting ${request.method} ${request.url}`);
+                        // toastr.info(`Requesting ${req.method} ${req.url}`);
                         NProgress && NProgress.start();
 
-                        return request;
+                        return req;
                     },
-                    requestError(request) {
-                        // console.log(request);
+                    requestError(req) {
+                        // console.log(req);
                     },
-                    response(response) {
+                    response(resp) {
                         // toastr.info(`Received ${response.status} ${response.url}`);
                         NProgress && NProgress.done();
-                        return response;
+                        return resp.json();
                     },
-                    responseError(response) {
-                        toastr.error(response.message, '网络请求错误!');
-                        // console.log(response);
+                    responseError(resp) {
+                        toastr.error(resp.message, '网络请求错误!');
+                        console.log(resp);
                     }
                 });
         });
