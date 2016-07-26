@@ -55,14 +55,12 @@ export class ServerMirror {
     }
 
     refreshHandler() {
-        // this.getMirrors().then(() => {
-        //     $(this.chkAll).checkbox('set unchecked');
-        // });
+        this.getMirrors();
     }
 
     createHandler() {
 
-        if(!this.selectMirror) {
+        if (!this.selectMirror) {
             toastr.error('请先选择一个镜像!');
             return;
         }
@@ -80,12 +78,17 @@ export class ServerMirror {
      */
     activate(params, routeConfig, navigationInstruction) {
 
-        // this.getMirrors();
+        this.getMirrors();
     }
 
     getMirrors() {
 
-        return this.http.fetch(nsApi['server.mirrors.get']).then((json) => {
+        return this.http.fetch(nsApi.url('image.list.get', {
+            token: '1',
+            'areaId': '1',
+            'type': '1',
+            'pageNo': '1'
+        })).then((json) => {
             this.mirrors = json.data;
         });
     }

@@ -70,7 +70,8 @@ window.nsParam = (function() {
             openfireUrl: '//192.168.7.7:7070/http-bind/',
             loginUrl: '//127.0.0.1',
             logoutUrl: '//127.0.0.1',
-            baseUrl: 'http://resource.sh1.newtouch.com/json/',
+            // baseUrl: 'http://resource.sh1.newtouch.com/json/',
+            baseUrl: 'http://218.245.64.3:45417/',
             userTwodimensionalcodeUrl: '127.0.0.1:81'
         },
         dev: { // 开发环境

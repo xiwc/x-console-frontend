@@ -31,6 +31,12 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'get'
         },
+        'image.list.get': {
+            real: 'image/list',
+            mock: 'mock/image/list.get.json',
+            ismock: false,
+            method: 'get'
+        },
     };
 
     // api debug配置初始化
@@ -101,6 +107,13 @@ window.nsApiFunc = (function() {
                 }
 
                 return val;
+            },
+            url: function(name, params) {
+                var querys = [];
+                $.each(params, function(name, val) {
+                    querys.push(name + '=' + val);
+                });
+                return this[name] + '?' + querys.join('&');
             }
         };
 
