@@ -269,10 +269,15 @@
                             <span>${totalConfig.cpuType.label + totalConfig.memType.label + '(' + totalConfig.hostType.label + ')'}</span>
                             <!-- <span>1核2GB(性能型)</span> -->
                         </div>
-                        <div class="inline field">
+                        <div class="inline field" if.bind="!mirror">
                             <label>镜像:</label>
                             <span>${totalConfig.mirror.label}</span>
                             <span>${'(' + totalConfig.version.label + ')'}</span>
+                        </div>
+                        <div class="inline field" if.bind="mirror">
+                            <label>镜像:</label>
+                            <span>${mirror.label}</span>
+                            <span>${'(' + mirror.name + ')'}</span>
                         </div>
                         <div class="inline field">
                             <label>网络:</label>

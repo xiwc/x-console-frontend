@@ -21,8 +21,8 @@ export class Task {
 
     valueChanged(newValue) {
         this.task = newValue;
-        if (_(this.task).isFunction()) {
-            _(this.task).bind(this.bindingCtx, this.element)();
+        if (_.isFunction(this.task)) {
+            _.bind(this.task, this.bindingCtx, this.element)();
         }
     }
 

@@ -22,6 +22,12 @@ export class Server {
             nav: true,
             title: '镜像'
         }, {
+            route: ['mirror-details/:id'],
+            name: 'mirror-details',
+            moduleId: 'server/server-mirror-details',
+            nav: false,
+            title: '镜像详情'
+        }, {
             route: ['disk'],
             name: 'disk',
             moduleId: 'server/server-disk',
