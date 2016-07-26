@@ -116,11 +116,11 @@ export class ServerHostCreate {
         selected: false
     }, {
         label: '共享镜像',
-        value: '2',
+        value: '3',
         selected: false
     }, {
         label: '市场镜像',
-        value: '2',
+        value: '4',
         selected: false
     }];
 
