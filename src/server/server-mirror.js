@@ -55,7 +55,9 @@ export class ServerMirror {
     }
 
     refreshHandler() {
-        this.getMirrors();
+        this.getMirrors().then(() => {
+            toastr.info('刷新成功!');
+        });
     }
 
     createHandler() {
@@ -84,10 +86,8 @@ export class ServerMirror {
     getMirrors() {
 
         return this.http.fetch(nsApi.url('image.list.get', {
-            token: '1',
-            'areaId': '1',
-            'type': '1',
-            'pageNo': '1'
+            type: '1',
+            pageNo: '1'
         })).then((json) => {
             this.mirrors = json.data;
         });
@@ -97,7 +97,7 @@ export class ServerMirror {
         $(uiChk).checkbox({
             onChecked: () => {
                 this.selectMirror = mirror;
-                console.log(mirror);
+                // console.log(mirror);
             }
         });
     }

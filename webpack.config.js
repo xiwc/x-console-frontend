@@ -26,13 +26,14 @@ let envs = [
 
     // 开发
     {
-        // active: true,
+        active: true,
+        console: 'http://218.245.64.3:45417/',
         yangyang: 'http://192.168.7.254:8081/yangyang/',
         platform: 'http://192.168.7.254:8080/platform/'
     },
     // 测试
     {
-        active: true,
+        // active: true,
         yangyang: 'https://step.newtouchwork.com',
         platform: 'https://www.newtouchwork.com'
     },
@@ -237,6 +238,12 @@ if (ENV === 'test' || ENV === 'development') {
             target: env.yangyang,
             changeOrigin: true,
             secure: false
+        },
+        '/api/*': {
+            target: env.console,
+            rewrite: function(req) {
+                req.url = req.url.replace(/^\/api/, '');
+            }
         }
     }
 }

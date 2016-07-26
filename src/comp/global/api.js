@@ -32,7 +32,7 @@ window.nsApiFunc = (function() {
             method: 'get'
         },
         'image.list.get': {
-            real: 'image/list',
+            real: 'api/image/list',
             mock: 'mock/image/list.get.json',
             ismock: false,
             method: 'get'
@@ -109,6 +109,17 @@ window.nsApiFunc = (function() {
                 return val;
             },
             url: function(name, params) {
+
+                if (!params) {
+                    params = {
+                        token: nsCtx.token,
+                        areaId: nsCtx.areaId
+                    }
+                } else {
+                    params.token = nsCtx.token;
+                    params.areaId = nsCtx.areaId;
+                }
+
                 var querys = [];
                 $.each(params, function(name, val) {
                     querys.push(name + '=' + val);
