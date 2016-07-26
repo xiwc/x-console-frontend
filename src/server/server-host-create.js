@@ -22,6 +22,108 @@ export class ServerHostCreate {
 
     tabs;
 
+    hostTypes = [{
+        label: '经济适用型',
+        value: '1',
+        selected: true
+    }, {
+        label: '性能型',
+        value: '2',
+        selected: false
+    }];
+
+    cpuTypes = [{
+        label: '1核',
+        value: '1',
+        selected: true
+    }, {
+        label: '2核',
+        value: '2',
+        selected: false
+    }, {
+        label: '4核',
+        value: '4',
+        selected: false
+    }, {
+        label: '8核',
+        value: '8',
+        selected: false
+    }, {
+        label: '16核',
+        value: '16',
+        selected: false
+    }];
+
+    memTypes = [{
+        label: '1GB',
+        value: '1',
+        selected: true
+    }, {
+        label: '2GB',
+        value: '2',
+        selected: false
+    }, {
+        label: '4GB',
+        value: '4',
+        selected: false
+    }, {
+        label: '8GB',
+        value: '8',
+        selected: false
+    }, {
+        label: '16GB',
+        value: '16',
+        selected: false
+    }, {
+        label: '32GB',
+        value: '32',
+        selected: false
+    }, {
+        label: '64GB',
+        value: '64',
+        selected: false
+    }];
+
+    netTypes = [{
+        label: '经典网络',
+        value: '1',
+        selected: true
+    }, {
+        label: '私有网络',
+        value: '2',
+        selected: false
+    }];
+    
+    // 公网带宽
+    bwTypes = [{
+        label: '按固定带宽',
+        value: '1',
+        selected: true
+    }, {
+        label: '按使用流量',
+        value: '2',
+        selected: false
+    }];
+    
+    // 镜像类型
+    mirrorTypes = [{
+        label: '系统镜像',
+        value: '1',
+        selected: true
+    }, {
+        label: '自有镜像',
+        value: '2',
+        selected: false
+    }, {
+        label: '共享镜像',
+        value: '2',
+        selected: false
+    }, {
+        label: '市场镜像',
+        value: '2',
+        selected: false
+    }];
+
     /**
      * 当视图被附加到DOM中时被调用
      */
