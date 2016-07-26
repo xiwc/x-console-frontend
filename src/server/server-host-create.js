@@ -93,7 +93,7 @@ export class ServerHostCreate {
         value: '2',
         selected: false
     }];
-    
+
     // 公网带宽
     bwTypes = [{
         label: '按固定带宽',
@@ -104,7 +104,7 @@ export class ServerHostCreate {
         value: '2',
         selected: false
     }];
-    
+
     // 镜像类型
     mirrorTypes = [{
         label: '系统镜像',
@@ -137,10 +137,36 @@ export class ServerHostCreate {
         $('.ui.dropdown', this.stepsContainer).dropdown();
     }
 
+    getSelectedItem(items) {
+        return _.first(_.filter(items, (item) => {
+            return item.selected;
+        }));
+    }
+
+    /**
+     * 获取总体配置
+     * @return {[type]} [description]
+     */
+    getTotalConfig() {
+
+        return {
+            hostType: this.getSelectedItem(this.hostTypes).value,
+            cpuType: this.getSelectedItem(this.cpuTypes).value,
+            memType: this.getSelectedItem(this.memTypes).value,
+            netType: this.getSelectedItem(this.netTypes).value,
+            netType: this.getSelectedItem(this.netTypes).value,
+            bwType: this.getSelectedItem(this.bwTypes).value,
+            mirrorType: this.getSelectedItem(this.mirrorTypes).value
+        };
+    }
+
     show() {
         $(this.modal).modal({
             onShow: () => {
                 this.reset();
+            },
+            onApprove: () => {
+
             }
         }).modal('show');
     }
@@ -170,14 +196,11 @@ export class ServerHostCreate {
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
         let step = this.steps.index($step) + 1;
-        // let step = parseInt($step.attr('data-step'));
         if (step > 1) {
             $step.removeClass('active');
             $step.prev().removeClass('disabled').addClass('active');
-            // $(this.steps).filter(`.step[data-step="${step - 1}"]`).removeClass('disabled').addClass('active');
             $tab.removeClass('active');
             $tab.prev().addClass('active');
-            // $(this.tabs).filter(`.tab[data-step="${step - 1}"]`).addClass('active');
             $(this.btnOk).addClass('disabled');
             $(this.btnNext).removeClass('disabled');
 
@@ -191,14 +214,11 @@ export class ServerHostCreate {
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
         let step = this.steps.index($step) + 1;
-        // let step = parseInt($step.attr('data-step'));
         if (step < this.stepCnt) {
             $step.removeClass('active');
             $step.next().removeClass('disabled').addClass('active');
-            // $(this.steps).filter(`.step[data-step="${step + 1}"]`).removeClass('disabled').addClass('active');
             $tab.removeClass('active');
             $tab.next().addClass('active');
-            // $(this.tabs).filter(`.tab[data-step="${step + 1}"]`).addClass('active');
             $(this.btnOk).addClass('disabled');
             $(this.btnPre).removeClass('disabled');
 
@@ -214,6 +234,8 @@ export class ServerHostCreate {
     }
 
     okHandler() {
+        console.log(this.getTotalConfig());
+        toastr.info(JSON.stringify(this.getTotalConfig()));
         $(this.modal).modal('hide');
     }
 
