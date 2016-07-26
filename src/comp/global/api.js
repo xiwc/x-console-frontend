@@ -37,6 +37,12 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'get'
         },
+        'image.detail.get': {
+            real: 'api/image/detail/{id}',
+            mock: 'mock/image/detail.get.json',
+            ismock: false,
+            method: 'get'
+        },
     };
 
     // api debug配置初始化
@@ -110,12 +116,25 @@ window.nsApiFunc = (function() {
             },
             url: function(name, params) {
 
+                var _url = this[name];
+
                 if (!params) {
                     params = {
                         token: nsCtx.token,
                         areaId: nsCtx.areaId
                     }
                 } else {
+
+                    for (var name in params) {
+                        if (params.hasOwnProperty(name)) {
+                            var r = new RegExp('{' + name + '}', 'g');
+                            if (r.test(_url)) {
+                                _url = _url.replace(r, params[name]);
+                                delete params[name];
+                            }
+                        }
+                    }
+
                     params.token = nsCtx.token;
                     params.areaId = nsCtx.areaId;
                 }
@@ -124,7 +143,8 @@ window.nsApiFunc = (function() {
                 $.each(params, function(name, val) {
                     querys.push(name + '=' + val);
                 });
-                return this[name] + '?' + querys.join('&');
+
+                return _url + '?' + querys.join('&');
             }
         };
 

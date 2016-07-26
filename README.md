@@ -14,6 +14,7 @@
 > https://www.npmjs.com/package/lodash https://github.com/lodash/lodash 
 > https://github.com/github/fetch https://github.github.io/fetch/ http://aurelia.io/hub.html#/doc/article/aurelia/fetch-client/latest/http-services/2  
 > http://ionden.com/a/plugins/ion.rangeSlider/demo.html https://github.com/IonDen/ion.rangeSlider  
+> https://www.npmjs.com/package/date-format  
 
 ## 入门指南(Getting started)
 

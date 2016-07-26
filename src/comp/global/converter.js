@@ -1,3 +1,5 @@
+import dateFormat from 'date-format';
+
 /**
  * 该文件用于定义值的过滤转换器
  *
@@ -96,5 +98,16 @@ export class AbbreviatefileNameValueConverter {
         } else {
             return '';
         }
+    }
+}
+
+/**
+ * 时间格式化值转换器
+ * doc: https://www.npmjs.com/package/date-format
+ */
+export class DateFormatValueConverter {
+    toView(value, format='yyyy/MM/dd hh:mm:ss') {
+        // console.log(dateFormat);
+        return dateFormat.asString(format, new Date(value));
     }
 }

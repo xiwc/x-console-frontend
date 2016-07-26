@@ -1,4 +1,5 @@
 <template>
+    <require from="./server-mirror-details.css"></require>
     <require from="comp/ui/ui-nav"></require>
     <require from="./server-host-create"></require>
     <div class="nx-server-mirror-details animated bounceInDown">
@@ -40,7 +41,7 @@
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
-                                    <td>${details.createTime}</td>
+                                    <td>${details.createTime | dateFormat}</td>
                                 </tr>
                                 <tr>
                                     <th>创建于</th>

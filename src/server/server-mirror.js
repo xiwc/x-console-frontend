@@ -9,21 +9,23 @@ export class ServerMirror {
     // 选择的Mirror
     selectMirror;
 
-    mirrors = [{
-        "capacity": 0,
-        "id": "string",
-        "name": "string",
-        "platform": "linux",
-        "status": "string",
-        "version": "string1"
-    }, {
-        "capacity": 0,
-        "id": "string",
-        "name": "string",
-        "platform": "windows server",
-        "status": "string",
-        "version": "string2"
-    }];
+    mirrors;
+
+    // mirrors = [{
+    //     "capacity": 0,
+    //     "id": "string",
+    //     "name": "string",
+    //     "platform": "linux",
+    //     "status": "string",
+    //     "version": "string1"
+    // }, {
+    //     "capacity": 0,
+    //     "id": "string",
+    //     "name": "string",
+    //     "platform": "windows server",
+    //     "status": "string",
+    //     "version": "string2"
+    // }];
 
     /**
      * 构造函数
@@ -88,8 +90,8 @@ export class ServerMirror {
         return this.http.fetch(nsApi.url('image.list.get', {
             type: '1',
             pageNo: '1'
-        })).then((json) => {
-            this.mirrors = json.data;
+        })).then((resp) => {
+            this.mirrors = resp.data;
         });
     }
 

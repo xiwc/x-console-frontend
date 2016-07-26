@@ -1,18 +1,31 @@
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 export class ServerMirrorDetails {
 
     steps = ['上海一区', '云服务器', '镜像详情'];
 
-    details = {
-        "capacity": "string",
-        "createPeriod": "string",
-        "createTime": "2016-07-26T06:33:29.991Z",
-        "desc": "string",
-        "id": "string",
-        "name": "string",
-        "platform": "string",
-        "scope": "string",
-        "status": "string"
-    };
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
+
+    details;
+
+    // details = {
+    //     "capacity": "string",
+    //     "createPeriod": "string",
+    //     "createTime": "2016-07-26T06:33:29.991Z",
+    //     "desc": "string",
+    //     "id": "string",
+    //     "name": "string",
+    //     "platform": "string",
+    //     "scope": "string",
+    //     "status": "string"
+    // };
 
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
@@ -23,5 +36,10 @@ export class ServerMirrorDetails {
      */
     activate(params, routeConfig, navigationInstruction) {
         // toastr.info(params.id);
+        this.http.fetch(nsApi.url('image.detail.get', {
+            id: params.id
+        })).then((resp) => {
+            this.details = resp;
+        });
     }
 }
