@@ -299,14 +299,40 @@ export class ServerHostCreate {
         $(this.uiPwd).checkbox({
             onChecked: () => {
                 this.authType = '1';
+                this.pwdValidate();
             }
         });
         $(this.uiSshKey).checkbox({
             onChecked: () => {
                 this.authType = '2';
+                this.sshKeyValidate();
             }
         });
 
+        this.pwdValidate();
+
+    }
+
+    sshKeyValidate() {
+        $(this.uiSettings).form({
+            on: 'blur',
+            inline: true,
+            fields: {
+                count: {
+                    identifier: 'count',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '购买数量不能为空!'
+                    }, {
+                        type: 'integer[1..10]',
+                        prompt: '一次创建主机数量必须是介于1到10的整数!'
+                    }]
+                }
+            }
+        });
+    }
+
+    pwdValidate() {
         $(this.uiSettings).form({
             on: 'blur',
             inline: true,
@@ -482,7 +508,7 @@ export class ServerHostCreate {
 
     okHandler() {
 
-        if(!$(this.uiSettings).form('is valid')) {
+        if (!$(this.uiSettings).form('is valid')) {
             toastr.error('表单验证不合法,请修改表单不合法输入!');
             return;
         }
