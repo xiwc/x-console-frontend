@@ -50,17 +50,31 @@ export class ServerHostCreate {
         { label: '上海3区', value: '3' }
     ];
 
-    mirrors = [
-        { label: 'CentOS', value: '1' },
-        { label: 'Windows Server2008', value: '2' },
-        { label: 'Ubuntu', value: '3' }
-    ];
+    mirrors = [{
+        label: 'CentOS',
+        value: '1',
+        versions: [
+            { label: 'CentOS7.0', value: '1' }
+        ]
+    }, {
+        label: 'Windows Server2008',
+        value: '2',
+        versions: [
+            { label: '2008 标准版 SP2 32位 中文版', value: '1' },
+            { label: '2008 R2 企业版 64位 中文版', value: '2' },
+            { label: '2008 R2 企业版 64位 英文版', value: '3' },
+            { label: '2008 R2 标准版 SP1 64位 中文版', value: '4' },
+            { label: '2008 R2 标准版 64位英文版', value: '5' }
+        ]
+    }, {
+        label: 'Ubuntu',
+        value: '3',
+        versions: [
+            { label: 'Ubuntu', value: '1' }
+        ]
+    }];
 
-    versions = [
-        { label: 'CentOS5.0', value: '1' },
-        { label: 'CentOS6.0', value: '2' },
-        { label: 'CentOS7.0', value: '3' }
-    ];
+    versions = [];
 
     durations = [
         { label: '1个月', value: '1' },
@@ -90,23 +104,92 @@ export class ServerHostCreate {
     cpuTypes = [{
         label: '1核',
         value: '1',
-        selected: true
+        selected: true,
+        memTypes: [{
+            label: '1GB',
+            value: '1',
+            selected: true
+        }, {
+            label: '2GB',
+            value: '2',
+            selected: false
+        }, {
+            label: '4GB',
+            value: '4',
+            selected: false
+        }]
     }, {
         label: '2核',
         value: '2',
-        selected: false
+        selected: false,
+        memTypes: [{
+            label: '2GB',
+            value: '2',
+            selected: true
+        }, {
+            label: '4GB',
+            value: '4',
+            selected: false
+        }, {
+            label: '8GB',
+            value: '8',
+            selected: false
+        }, {
+            label: '16GB',
+            value: '16',
+            selected: false
+        }]
     }, {
         label: '4核',
         value: '4',
-        selected: false
+        selected: false,
+        memTypes: [{
+            label: '4GB',
+            value: '4',
+            selected: true
+        }, {
+            label: '8GB',
+            value: '8',
+            selected: false
+        }, {
+            label: '16GB',
+            value: '16',
+            selected: false
+        }]
     }, {
         label: '8核',
         value: '8',
-        selected: false
+        selected: false,
+        memTypes: [{
+            label: '8GB',
+            value: '8',
+            selected: true
+        }, {
+            label: '16GB',
+            value: '16',
+            selected: false
+        }, {
+            label: '32GB',
+            value: '32',
+            selected: false
+        }]
     }, {
         label: '16核',
         value: '16',
-        selected: false
+        selected: false,
+        memTypes: [{
+            label: '16GB',
+            value: '16',
+            selected: true
+        }, {
+            label: '32GB',
+            value: '32',
+            selected: false
+        }, {
+            label: '64GB',
+            value: '64',
+            selected: false
+        }]
     }];
 
     memTypes = [{
@@ -168,14 +251,17 @@ export class ServerHostCreate {
     }, {
         label: '自有镜像',
         value: '2',
+        disabled: true,
         selected: false
     }, {
         label: '共享镜像',
         value: '3',
+        disabled: true,
         selected: false
     }, {
         label: '市场镜像',
         value: '4',
+        disabled: true,
         selected: false
     }];
 
@@ -200,6 +286,15 @@ export class ServerHostCreate {
             }
         });
 
+        this.reInitMirrorVersion();
+
+        $(this.uiMirrors).dropdown({
+            onChange: () => {
+                this.getTotalConfig();
+                this.reInitMirrorVersion();
+            }
+        });
+
         $(this.uiPwd).checkbox({
             onChecked: () => {
                 this.authType = '1';
@@ -210,6 +305,18 @@ export class ServerHostCreate {
                 this.authType = '2';
             }
         });
+    }
+
+    reInitMirrorVersion() {
+        $(this.uiVersions).dropdown('clear');
+        this.versions = this.getDropDownSelectedItem(this.uiMirrors, this.mirrors).versions;
+        _.delay(() => {
+            $(this.uiVersions).dropdown({
+                onChange: () => {
+                    this.getTotalConfig();
+                }
+            }).dropdown('set selected', '1');
+        }, 100);
     }
 
     getSelectedItem(items) {
@@ -334,8 +441,21 @@ export class ServerHostCreate {
         $(this.modal).modal('hide');
     }
 
-    btnGrpSelectHandler() {
+    btnGrpSelectHandler(type) {
+        if (type == 'cpu') {
+            this.initMemTypes(this.getSelectedItem(this.cpuTypes));
+        }
+
         this.getTotalConfig();
+    }
+
+    initMemTypes(selectedCpu) {
+        let mtypes = selectedCpu.memTypes;
+        _.each(this.memTypes, (item) => {
+            let match = _.find(mtypes, {'value': item.value});
+            item.disabled = !match;
+            item.selected = match ? match.selected : false;
+        })
     }
 
 }

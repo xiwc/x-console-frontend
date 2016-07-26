@@ -8,14 +8,17 @@ from 'aurelia-framework';
 export class UiBtnGrp {
 
     @bindable selectCb = null;
+    @bindable type = null;
 
     @bindable items = [{
         label: '1核',
         value: '1',
+        disabled: false,
         selected: true
     }, {
         label: '2核',
         value: '2',
+        disabled: false,
         selected: false
     }];
 
@@ -35,7 +38,7 @@ export class UiBtnGrp {
     selectHandler(item) {
         this.clearSelected();
         item.selected = true;
-        this.selectCb && this.selectCb();
+        this.selectCb && this.selectCb(item, this.type);
     }
 
     getSelectedItem() {
