@@ -269,6 +269,7 @@ export class ServerHostCreate {
      * 当视图被附加到DOM中时被调用
      */
     attached() {
+
         this.steps = $(this.stepsContainer).find('.steps .step');
         this.tabs = $(this.stepsContainer).find('.tab');
         this.stepCnt = this.steps.size();
@@ -395,6 +396,11 @@ export class ServerHostCreate {
     }
 
     preHandler() {
+
+        this.steps = $(this.stepsContainer).find('.steps .step');
+        this.tabs = $(this.stepsContainer).find('.tab');
+        this.stepCnt = this.steps.size();
+
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
         let step = this.steps.index($step) + 1;
@@ -413,6 +419,11 @@ export class ServerHostCreate {
     }
 
     nextHandler() {
+
+        this.steps = $(this.stepsContainer).find('.steps .step');
+        this.tabs = $(this.stepsContainer).find('.tab');
+        this.stepCnt = this.steps.size();
+
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
         let step = this.steps.index($step) + 1;
