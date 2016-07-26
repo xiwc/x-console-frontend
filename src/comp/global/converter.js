@@ -1,4 +1,7 @@
 import 'jquery-format';
+import BTimeAgo from 'better-timeago';
+import locale_zh_cn from 'better-timeago-locale-zh-cn';
+BTimeAgo.locale('zh-cn', locale_zh_cn);
 
 /**
  * 该文件用于定义值的过滤转换器
@@ -66,7 +69,7 @@ export class AbbreviateexactValueConverter {
  * doc: https://www.npmjs.com/package/jquery-format
  */
 export class DateFormatValueConverter {
-    toView(value, format='yyyy/MM/dd hh:mm:ss') {
+    toView(value, format = 'yyyy/MM/dd hh:mm:ss') {
         return $.format.date(new Date(), format);
     }
 }
@@ -76,7 +79,19 @@ export class DateFormatValueConverter {
  * doc: https://www.npmjs.com/package/jquery-format
  */
 export class numberFormatValueConverter {
-    toView(value, format='#,##0.0#') {
+    toView(value, format = '#,##0.0#') {
         return $.format.number(value, format);
+    }
+}
+
+/**
+ * 日期timeago值转换器
+ * doc: 
+ * https://www.npmjs.com/package/better-timeago
+ * https://www.npmjs.com/package/better-timeago-locale-zh-cn
+ */
+export class timeagoValueConverter {
+    toView(value) {
+        return BTimeAgo(value).print();
     }
 }
