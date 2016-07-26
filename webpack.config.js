@@ -240,10 +240,10 @@ if (ENV === 'test' || ENV === 'development') {
             secure: false
         },
         '/api/*': {
-            target: env.console,
-            rewrite: function(req) {
-                req.url = req.url.replace(/^\/api/, '');
-            }
+            target: env.console
+            // rewrite: function(req) {
+            //     req.url = req.url.replace(/^\/api/, '');
+            // }
         }
     }
 }
