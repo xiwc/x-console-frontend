@@ -45,15 +45,15 @@ export class ServerHost {
 
     refreshHandler() {
 
-        this.http.fetch(nsApi['host.hosts.get']).then((json) => {
-            toastr.info(JSON.stringify(json));
+        this.http.fetch(nsApi['host.hosts.get']).then((resp) => {
+            toastr.info(JSON.stringify(resp));
         });
 
         this.http.fetch(nsApi['host.create.post'], {
             method: 'post',
             body: json({ name: 'value' })
-        }).then((json) => {
-            toastr.info(JSON.stringify(json));
+        }).then((resp) => {
+            toastr.info(JSON.stringify(resp));
         });
     }
 
