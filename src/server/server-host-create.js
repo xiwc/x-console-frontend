@@ -22,6 +22,108 @@ export class ServerHostCreate {
 
     tabs;
 
+    hostTypes = [{
+        label: '经济适用型',
+        value: '1',
+        selected: true
+    }, {
+        label: '性能型',
+        value: '2',
+        selected: false
+    }];
+
+    cpuTypes = [{
+        label: '1核',
+        value: '1',
+        selected: true
+    }, {
+        label: '2核',
+        value: '2',
+        selected: false
+    }, {
+        label: '4核',
+        value: '4',
+        selected: false
+    }, {
+        label: '8核',
+        value: '8',
+        selected: false
+    }, {
+        label: '16核',
+        value: '16',
+        selected: false
+    }];
+
+    memTypes = [{
+        label: '1GB',
+        value: '1',
+        selected: true
+    }, {
+        label: '2GB',
+        value: '2',
+        selected: false
+    }, {
+        label: '4GB',
+        value: '4',
+        selected: false
+    }, {
+        label: '8GB',
+        value: '8',
+        selected: false
+    }, {
+        label: '16GB',
+        value: '16',
+        selected: false
+    }, {
+        label: '32GB',
+        value: '32',
+        selected: false
+    }, {
+        label: '64GB',
+        value: '64',
+        selected: false
+    }];
+
+    netTypes = [{
+        label: '经典网络',
+        value: '1',
+        selected: true
+    }, {
+        label: '私有网络',
+        value: '2',
+        selected: false
+    }];
+
+    // 公网带宽
+    bwTypes = [{
+        label: '按固定带宽',
+        value: '1',
+        selected: true
+    }, {
+        label: '按使用流量',
+        value: '2',
+        selected: false
+    }];
+
+    // 镜像类型
+    mirrorTypes = [{
+        label: '系统镜像',
+        value: '1',
+        selected: true
+    }, {
+        label: '自有镜像',
+        value: '2',
+        selected: false
+    }, {
+        label: '共享镜像',
+        value: '3',
+        selected: false
+    }, {
+        label: '市场镜像',
+        value: '4',
+        selected: false
+    }];
+
     /**
      * 当视图被附加到DOM中时被调用
      */
@@ -35,10 +137,36 @@ export class ServerHostCreate {
         $('.ui.dropdown', this.stepsContainer).dropdown();
     }
 
+    getSelectedItem(items) {
+        return _.first(_.filter(items, (item) => {
+            return item.selected;
+        }));
+    }
+
+    /**
+     * 获取总体配置
+     * @return {[type]} [description]
+     */
+    getTotalConfig() {
+
+        return {
+            hostType: this.getSelectedItem(this.hostTypes).value,
+            cpuType: this.getSelectedItem(this.cpuTypes).value,
+            memType: this.getSelectedItem(this.memTypes).value,
+            netType: this.getSelectedItem(this.netTypes).value,
+            netType: this.getSelectedItem(this.netTypes).value,
+            bwType: this.getSelectedItem(this.bwTypes).value,
+            mirrorType: this.getSelectedItem(this.mirrorTypes).value
+        };
+    }
+
     show() {
         $(this.modal).modal({
             onShow: () => {
                 this.reset();
+            },
+            onApprove: () => {
+
             }
         }).modal('show');
     }
@@ -68,14 +196,11 @@ export class ServerHostCreate {
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
         let step = this.steps.index($step) + 1;
-        // let step = parseInt($step.attr('data-step'));
         if (step > 1) {
             $step.removeClass('active');
             $step.prev().removeClass('disabled').addClass('active');
-            // $(this.steps).filter(`.step[data-step="${step - 1}"]`).removeClass('disabled').addClass('active');
             $tab.removeClass('active');
             $tab.prev().addClass('active');
-            // $(this.tabs).filter(`.tab[data-step="${step - 1}"]`).addClass('active');
             $(this.btnOk).addClass('disabled');
             $(this.btnNext).removeClass('disabled');
 
@@ -89,14 +214,11 @@ export class ServerHostCreate {
         let $step = $(this.steps).filter('.active.step');
         let $tab = $(this.tabs).filter('.active.tab');
         let step = this.steps.index($step) + 1;
-        // let step = parseInt($step.attr('data-step'));
         if (step < this.stepCnt) {
             $step.removeClass('active');
             $step.next().removeClass('disabled').addClass('active');
-            // $(this.steps).filter(`.step[data-step="${step + 1}"]`).removeClass('disabled').addClass('active');
             $tab.removeClass('active');
             $tab.next().addClass('active');
-            // $(this.tabs).filter(`.tab[data-step="${step + 1}"]`).addClass('active');
             $(this.btnOk).addClass('disabled');
             $(this.btnPre).removeClass('disabled');
 
@@ -112,6 +234,8 @@ export class ServerHostCreate {
     }
 
     okHandler() {
+        console.log(this.getTotalConfig());
+        toastr.info(JSON.stringify(this.getTotalConfig()));
         $(this.modal).modal('hide');
     }
 
