@@ -40,23 +40,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr repeat.for="d of disks">
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
                         </td>
-                        <td>disk-kasjjasd</td>
-                        <td>云数据盘01</td>
-                        <td>未使用</td>
-                        <td>/dev/abc</td>
-                        <td>2000G</td>
-                        <td>容量型</td>
-                        <td>3天前</td>
-                        <td>2天前</td>
+                        <td><a href="/#/server/disk-details/${d.id}">${d.id}</a></td>
+                        <td>${d.name}</td>
+                        <td>${d.status}</td>
+                        <td>${d.volumnName}</td>
+                        <td>${d.capacity}</td>
+                        <td>${d.type}</td>
+                        <td>${d.backupPeriod}</td>
+                        <td>${d.createPeriod}</td>
                         <td>
-                            <div class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
                                 <i class="dropdown icon"></i>
                                 <div class="left menu">

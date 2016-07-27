@@ -45,6 +45,20 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '镜像详情获取'
         },
+        'disk.list.get': {
+            real: 'api/disk/list',
+            mock: 'mock/disk/list.get.json',
+            ismock: false,
+            method: 'get',
+            desc: '获取用户硬盘列表'
+        },
+        'disk.detail.get': {
+            real: '/api/disk/detail/{id}',
+            mock: 'mock/disk/detail.get.json',
+            ismock: false,
+            method: 'get',
+            desc: '获取硬盘详情'
+        },
     };
 
     // api debug配置初始化
@@ -123,6 +137,7 @@ window.nsApiFunc = (function() {
 
                 if (!params) {
                     params = {
+                        areaId: '1', // TODO replace by regionId
                         token: nsCtx.token,
                         regionId: nsCtx.regionId
                     }
@@ -138,6 +153,7 @@ window.nsApiFunc = (function() {
                         }
                     }
 
+                    params.areaId = '1'; // TODO replace by regionId
                     params.token = nsCtx.token;
                     params.regionId = nsCtx.regionId;
                 }
