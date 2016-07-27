@@ -7,20 +7,14 @@ from 'aurelia-framework';
  */
 export class UiConfirm {
 
-    @bindable title = ''; // 窗口标题
-
-    @bindable content = ''; // 窗口提示消息内容
-
-    @bindable onapprove = ''; // 确认回调函数
-
-    @bindable ondeny = ''; // 取消回调函数
+    config;
 
     constructor() { // 通过构造函数注入
     }
 
     attached() {
 
-        $(this.mdLogout).modal({
+        $(this.md).modal({
             closable: false,
             onApprove: () => {
                 this.onapprove && this.onapprove();
@@ -31,27 +25,41 @@ export class UiConfirm {
         });
     }
 
+    reset() {
+        this.config = {
+            title: '操作确认',
+            content: '确定要执行该操作吗?',
+            warning: false
+        };
+    }
+
     /**
      * 显示确认窗口
      * @param onapprove: 确认回调函数
      * @param ondeny: 取消回调函数
      */
-    show(onapprove, ondeny) {
+    show(config) {
 
-        if (onapprove) {
-            this.onapprove = onapprove;
+        this.reset();
+
+        if (config) {
+            this.config = _.extend(this.config, config);
         }
 
-        if (ondeny) {
-            this.ondeny = ondeny;
+        if (config && config.onapprove) {
+            this.onapprove = config.onapprove;
         }
 
-        $(this.mdLogout).modal('show');
+        if (config && config.ondeny) {
+            this.ondeny = config.ondeny;
+        }
+
+        $(this.md).modal('show');
     }
 
     /* 隐藏确认窗口 */
     hide() {
-        $(this.mdLogout).modal('hide');
+        $(this.md).modal('hide');
     }
 
 }

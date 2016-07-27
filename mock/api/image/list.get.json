@@ -1,0 +1,14 @@
+{
+  "pageCount": 5,
+  "total": 67,
+  "data": [
+    {
+      "id": "q9isq3ru",
+      "name": "CentOS",
+      "version": "7.0",
+      "status": "可用",
+      "capacity": 2000,
+      "platform": "linux"
+    }
+  ]
+}

@@ -41,12 +41,13 @@
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
-                                    <td>${details.createTime | dateFormat}</td>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
                                 </tr>
                                 <tr>
                                     <th>创建于</th>
                                     <td>${details.createPeriod}</td>
                                 </tr>
+                                <tr>
                             </tbody>
                         </table>
                     </div>

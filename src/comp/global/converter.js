@@ -1,4 +1,7 @@
-import dateFormat from 'date-format';
+import 'jquery-format';
+import BTimeAgo from 'better-timeago';
+import locale_zh_cn from 'better-timeago-locale-zh-cn';
+BTimeAgo.locale('zh-cn', locale_zh_cn);
 
 /**
  * 该文件用于定义值的过滤转换器
@@ -62,52 +65,33 @@ export class AbbreviateexactValueConverter {
 }
 
 /**
- * raoenhui
- * 限制字符串的最大显示长度
- * eg: <p>${attachment.fileOrgName | abbreviatefile:54:3}</p>
- * ext:后几位
- */
-export class AbbreviatefileValueConverter {
-    toView(value, maxLen, ext) {
-        if (value) {
-            let valueMain = value.substring(0, value.length - ext);
-            let valueExtension = value.substring(value.length - ext);
-            let valueMainAbbr = nsHelper.abbreviate(valueMain, maxLen);
-            return valueMainAbbr + valueExtension;
-        } else {
-            return '';
-        }
-    }
-}
-
-/**
- * raoenhui
- * 限制字符串的最大显示长度
- * eg: <p>${attachment.fileOrgName | abbreviatefileName:54}</p>
- * ext:后几位
- */
-export class AbbreviatefileNameValueConverter {
-    toView(value, maxLen) {
-        if (value) {
-            let li = value.lastIndexOf('.');
-            let subfix = value.substring(li);
-
-            let valueMain = value.substring(0, li);
-            let valueMainAbbr = nsHelper.abbreviate(valueMain, maxLen - subfix.length);
-            return valueMainAbbr + subfix;
-        } else {
-            return '';
-        }
-    }
-}
-
-/**
  * 时间格式化值转换器
- * doc: https://www.npmjs.com/package/date-format
+ * doc: https://www.npmjs.com/package/jquery-format
  */
 export class DateFormatValueConverter {
-    toView(value, format='yyyy/MM/dd hh:mm:ss') {
-        // console.log(dateFormat);
-        return dateFormat.asString(format, new Date(value));
+    toView(value, format = 'yyyy/MM/dd hh:mm:ss') {
+        return $.format.date(new Date(), format);
+    }
+}
+
+/**
+ * 数值格式化值转换器
+ * doc: https://www.npmjs.com/package/jquery-format
+ */
+export class numberFormatValueConverter {
+    toView(value, format = '#,##0.0#') {
+        return $.format.number(value, format);
+    }
+}
+
+/**
+ * 日期timeago值转换器
+ * doc: 
+ * https://www.npmjs.com/package/better-timeago
+ * https://www.npmjs.com/package/better-timeago-locale-zh-cn
+ */
+export class timeagoValueConverter {
+    toView(value) {
+        return BTimeAgo(value).print();
     }
 }

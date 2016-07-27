@@ -1,0 +1,31 @@
+<template>
+    <div ref="md" class="ui small modal nx-ui-host-select-modal">
+        <!-- <i class="close icon"></i> -->
+        <div class="header">
+            选择主机
+        </div>
+        <div class="content">
+            <div class="ui message">
+                <i class="yellow warning sign icon"></i> 注意: 如果你需要在Linux系统启动时自动挂载硬盘,请不要使用在/etc/fstab中直接指定/dev/sdc1这样的写法,因为在云中设备的顺序编码在关机,开机过程中可能发生改变,推荐使用UUID或者LABEL的方式来指定,具体步骤请参看文档.
+            </div>
+            <table class="ui selectable striped table">
+                <tbody>
+                    <tr repeat.for="h of hosts">
+                        <td>
+                            <div ref="uiSelect" class="ui fitted radio checkbox" task.call="$parent.initChkHandler(uiSelect, h, $first)">
+                                <input type="radio" name="radio">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td>${h.name}</td>
+                        <td>${h.id + ' (' + h.type + ')'}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>

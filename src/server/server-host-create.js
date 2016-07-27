@@ -539,4 +539,10 @@ export class ServerHostCreate {
         })
     }
 
+    createSshkeyHandler() {
+        this.uiSshkeyCreateModal.show((result) => {
+            console.log(result);
+        });
+    }
+
 }

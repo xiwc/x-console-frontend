@@ -35,13 +35,15 @@ window.nsApiFunc = (function() {
             real: 'api/image/list',
             mock: 'mock/image/list.get.json',
             ismock: false,
-            method: 'get'
+            method: 'get',
+            desc: '镜像列表获取'
         },
         'image.detail.get': {
             real: 'api/image/detail/{id}',
             mock: 'mock/image/detail.get.json',
             ismock: false,
-            method: 'get'
+            method: 'get',
+            desc: '镜像详情获取'
         },
     };
 
@@ -114,6 +116,7 @@ window.nsApiFunc = (function() {
 
                 return val;
             },
+            // 拼装url和查询参数, eg: aa/{id} | {id:'id01', n1:'v1', n2:'v2'} => aa/id01?n1=v1&n2=v2
             url: function(name, params) {
 
                 var _url = this[name];

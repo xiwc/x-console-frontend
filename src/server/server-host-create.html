@@ -1,4 +1,5 @@
 <template>
+    <require from="comp/ui/ui-sshkey-create-modal"></require>
     <require from="./server-host-create.css"></require>
     <require from="ion-rangeslider/css/ion.rangeSlider.css"></require>
     <require from="ion-rangeslider/css/ion.rangeSlider.skinNice.css"></require>
@@ -229,7 +230,7 @@
                                     </div>
                                 </div>
                                 <!-- TODO -->
-                                <span class="nx-gray">没有密钥?</span> <a class="nx-pointer">新建</a>
+                                <span class="nx-gray">没有密钥?</span> <a click.delegate="createSshkeyHandler()" class="nx-pointer">新建</a>
                             </div>
                             <div class="inline field">
                                 <label>主机名称</label>
@@ -326,4 +327,5 @@
             <div class="ui ok blue button">确认</div>
         </div> -->
     </div>
+    <ui-sshkey-create-modal ui-sshkey-create-modal.ref="uiSshkeyCreateModal"></ui-sshkey-create-modal>
 </template>

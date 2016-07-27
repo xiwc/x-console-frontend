@@ -1,0 +1,53 @@
+<template>
+    <div ref="md" class="ui small modal">
+        <!-- <i class="close icon"></i> -->
+        <div class="header">
+            创建SSH密钥
+        </div>
+        <div class="content">
+            <div class="ui form" ref="form">
+                <div class="inline field">
+                    <label>名称</label>
+                    <div class="ui input">
+                        <input type="text" name="name" value.bind="name" placeholder="新建随机密钥名称">
+                    </div>
+                </div>
+                <div class="inline fields">
+                    <label>方式</label>
+                    <div class="field">
+                        <div class="ui radio checkbox" ref="uiCreateSshkey">
+                            <input type="radio" name="way" checked="">
+                            <label>创建新密钥对</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox" ref="uiExistSshkey">
+                            <input type="radio" name="way">
+                            <label>使用已有公钥</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="inline field" if.bind="way == '1'">
+                    <label>加密</label>
+                    <div class="ui selection dropdown" ref="uiEncrypt">
+                        <input type="hidden" name="encrypt" value="1">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">选择加密方式</div>
+                        <div class="menu">
+                            <div class="item" data-value="1">ssh-rsa</div>
+                            <div class="item" data-value="2">ssh-dss</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inline field" if.bind="way == '2'">
+                    <label>公钥</label>
+                    <textarea rows="3" name="publicKey" value.bind="publicKey"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>

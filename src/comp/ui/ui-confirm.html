@@ -1,11 +1,15 @@
 <template>
-    <div ref="mdLogout" class="ui small modal">
+    <div ref="md" class="ui small modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
-            ${title ? title : '操作确认'}
+            ${config.title}
         </div>
-        <div class="content">
-            <p>${content ? content : '您确认要执行选定操作吗?'}</p>
+        <div class="content" style="font-size: 1.3em;">
+            <i if.bind="config.warning" class="yellow warning sign icon" style="float: left;"></i>
+            <i if.bind="!config.warning" class="blue info circle icon" style="float: left;"></i>
+            <p style="margin-left: 20px;">
+                <span innerhtml.bind="config.content"></span>
+            </p>
         </div>
         <div class="actions">
             <div class="ui cancel basic blue left floated button">取消</div>
