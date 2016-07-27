@@ -50,6 +50,7 @@ export class ServerDisk {
     }
 
     extendSizeHandler() {
-        toastr.info('扩容操作...');
+        // toastr.info('扩容操作...');
+        this.uiDiskExpansionModal.show();
     }
 }
