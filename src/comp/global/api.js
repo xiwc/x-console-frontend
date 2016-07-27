@@ -53,11 +53,18 @@ window.nsApiFunc = (function() {
             desc: '获取用户硬盘列表'
         },
         'disk.detail.get': {
-            real: '/api/disk/detail/{id}',
+            real: 'api/disk/detail/{id}',
             mock: 'mock/disk/detail.get.json',
             ismock: false,
             method: 'get',
             desc: '获取硬盘详情'
+        },
+        'disk.delete.post': {
+            real: 'api/disk/delete/{id}',
+            mock: 'mock/disk/delete.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '根据id删除硬盘'
         },
     };
 

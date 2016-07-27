@@ -6,6 +6,8 @@ export class ServerDisk {
 
     steps = ['上海一区', '云服务器', '硬盘'];
 
+    allChecked = false;
+
     /**
      * 构造函数
      */
@@ -16,7 +18,49 @@ export class ServerDisk {
     /**
      * 当视图被附加到DOM中时被调用
      */
-    attached() {}
+    attached() {
+        $(this.uiChkAll).checkbox({
+            onChecked: () => {
+                _.each(this.disks, (d) => { d.checked = true });
+                this.allChecked = true;
+            },
+            onUnchecked: () => {
+                _.each(this.disks, (d) => { d.checked = false });
+                this.allChecked = false;
+            },
+        });
+    }
+
+    selectHandler(uiChk, disk) {
+        $(uiChk).checkbox({
+            onChecked: () => {
+                disk.checked = true;
+                this.allChecked = this.isAllChecked();
+            },
+            onUnchecked: () => {
+                disk.checked = false;
+                this.allChecked = this.isAllChecked();
+            }
+        });
+    }
+
+    isAllChecked() {
+        let flg = true;
+        _.each(this.disks, (d) => {
+            if (!d.checked) {
+                flg = false;
+                return false;
+            }
+        });
+
+        return flg;
+    }
+
+    getCheckedItems() {
+        return _.filter(this.disks, (d) => {
+            return d.checked;
+        });
+    }
 
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
@@ -32,6 +76,8 @@ export class ServerDisk {
     getDisks() {
         return this.http.fetch(nsApi.url('disk.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
             this.disks = resp.data;
+        }).then(() => {
+            this.allChecked = false;
         });
     }
 
@@ -51,9 +97,39 @@ export class ServerDisk {
         this.uiDiskCreateModal.show();
     }
 
-    delHandler() {
+    delHandler(isBatch) {
+
+        if (isBatch) {
+            let items = this.getCheckedItems();
+            if (items.length == 0) {
+                toastr.error('请先选择要删除的硬盘!');
+                return;
+            }
+        }
+        
         this.confirm.show({
-            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时'
+            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
+            onapprove: () => {
+                if (isBatch) {
+                    let items = this.getCheckedItems();
+                    if (items.length == 0) {
+                        toastr.error('请先选择要删除的硬盘!');
+                        return;
+                    }
+
+                    _.each(items, (disk) => {
+                        this.http.fetch(nsApi.url('disk.delete.post', {
+                            id: disk.id
+                        }), { method: 'post' }).then((resp) => {
+                            // this. = resp.data;
+                            toastr.success('删除成功!');
+                        });
+                    });
+
+                } else {
+
+                }
+            }
         });
     }
 

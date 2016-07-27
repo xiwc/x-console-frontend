@@ -14,7 +14,7 @@
             <div class="ui primary button" click.delegate="createHandler()">
                 <i class="add icon"></i> 创建
             </div>
-            <div class="ui red button" click.delegate="delHandler()">
+            <div class="ui red button" click.delegate="delHandler(!0)">
                 删除
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <thead class="full-width">
                     <tr>
                         <th>
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
@@ -42,7 +42,7 @@
                 <tbody>
                     <tr repeat.for="d of disks">
                         <td class="collapsing">
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, d)" chk.bind="d.checked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
