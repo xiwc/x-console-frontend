@@ -1,0 +1,21 @@
+.nx-ui-host-create-modal .nx-steps-container .tab {
+    min-height: 260px;
+}
+
+.nx-ui-host-create-modal .nx-total-container .nx-price {
+	color: red;
+	font-size: 16px;
+}
+
+.nx-ui-host-create-modal .nx-range {
+	display: inline-block;
+	width: 350px;
+}
+
+.nx-ui-host-create-modal .nx-range-slider {
+	display: inline-block;
+	width: 300px;
+}
+.nx-ui-host-create-modal .nx-input input {
+	width: 50px!important;
+}

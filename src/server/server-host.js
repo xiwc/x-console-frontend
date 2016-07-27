@@ -40,7 +40,7 @@ export class ServerHost {
     }
 
     createHandler() {
-        this.serverHostCreate.show();
+        this.uiHostCreateModal.show();
     }
 
     refreshHandler() {

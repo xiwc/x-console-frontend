@@ -1,7 +1,7 @@
 <template>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-sshkey-create-modal"></require>
-    <require from="./server-host-create"></require>
+    <require from="comp/ui/ui-host-create-modal"></require>
     <div class="nx-server-mirror animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -48,5 +48,5 @@
             </table>
         </div>
     </div>
-    <server-host-create mirror.bind="selectMirror" server-host-create.ref="serverHostCreate"></server-host-create>
+    <ui-host-create-modal mirror.bind="selectMirror" ui-host-create-modal.ref="uiHostCreateModal"></ui-host-create-modal>
 </template>
