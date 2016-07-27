@@ -36,7 +36,7 @@ window.nsCtx = (function() {
 
         // TODO 设置全局访问token
         token: '1',
-        areaId: '1',
+        regionId: '1',
 
         isDebug: false, // 是否为debug
     }
