@@ -1,6 +1,7 @@
 <template>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-disk-create-modal"></require>
     <div class="nx-server-disk animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -70,4 +71,5 @@
         </div>
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-disk-create-modal ui-disk-create-modal.ref="uiDiskCreateModal"></ui-disk-create-modal>
 </template>

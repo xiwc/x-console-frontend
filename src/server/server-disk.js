@@ -16,7 +16,8 @@ export class ServerDisk {
     }
 
     createHandler() {
-        toastr.info('创建操作...');
+        // toastr.info('创建操作...');
+        this.uiDiskCreateModal.show();
     }
 
     delHandler() {

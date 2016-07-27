@@ -1,0 +1,54 @@
+<template>
+    <require from="ion-rangeslider/css/ion.rangeSlider.css"></require>
+    <require from="ion-rangeslider/css/ion.rangeSlider.skinNice.css"></require>
+    <require from="comp/ui/ui-disk-create-modal.css"></require>
+    <div ref="md" class="ui small modal nx-ui-disk-create-modal">
+        <!-- <i class="close icon"></i> -->
+        <div class="header">
+            创建硬盘
+        </div>
+        <div class="content">
+            <div class="ui form" ref="form">
+                <div class="inline field">
+                    <label>名称</label>
+                    <div class="ui input">
+                        <input type="text" name="name" value.bind="name" placeholder="新建硬盘名称">
+                    </div>
+                </div>
+                <div class="inline field">
+                    <label>数量</label>
+                    <div class="ui input">
+                        <input type="text" name="count" value.bind="count" placeholder="">
+                    </div>
+                </div>
+                <div class="inline fields">
+                    <label>类型</label>
+                    <div class="field">
+                        <div class="ui radio checkbox" ref="uiPerformance">
+                            <input type="radio" name="type" checked="">
+                            <label>性能型</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox" ref="uiCapacity">
+                            <input type="radio" name="type">
+                            <label>容量型</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="inline field">
+                    <label style="position: relative; top: 25px;">容量</label>
+                    <div class="nx-range">
+                        <div class="nx-range-slider">
+                            <input ref="rangeSize" type="text" value="10" data-min="10" data-max="1000" data-step="10" data-grid="true" data-postfix="GB">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>
