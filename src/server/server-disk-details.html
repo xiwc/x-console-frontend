@@ -1,7 +1,7 @@
 <template>
-    <require from="./server-mirror-details.css"></require>
+    <require from="./server-disk-details.css"></require>
     <require from="comp/ui/ui-nav"></require>
-    <div class="nx-server-mirror-details animated bounceInDown">
+    <div class="nx-server-disk-details animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
@@ -15,28 +15,32 @@
                                     <td>${details.id}</td>
                                 </tr>
                                 <tr>
+                                    <th>状态</th>
+                                    <td>${details.status}</td>
+                                </tr>
+                                <tr>
                                     <th>名称</th>
                                     <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>标签</th>
+                                    <td>${details.tagName}</td>
+                                </tr>
+                                <tr>
+                                    <th>资源/盘符</th>
+                                    <td>${'(' + details.resource + ')' + details.volumnName}</td>
                                 </tr>
                                 <tr>
                                     <th>描述</th>
                                     <td>${details.desc}</td>
                                 </tr>
                                 <tr>
-                                    <th>状态</th>
-                                    <td>${details.status}</td>
-                                </tr>
-                                <tr>
                                     <th>容量</th>
                                     <td>${details.capacity}</td>
                                 </tr>
                                 <tr>
-                                    <th>可见范围</th>
-                                    <td>${details.scope}</td>
-                                </tr>
-                                <tr>
-                                    <th>平台</th>
-                                    <td>${details.platform}</td>
+                                    <th>类型</th>
+                                    <td>${details.type}</td>
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>

@@ -7,33 +7,40 @@ export class Config {
         http.configure(config => {
             config
             // .withBaseUrl(nsParam.baseUrl)
-                .withInterceptor({
-                request(req) {
-                    if (req.url.indexOf('/mock/') > -1) {
-                        let url = req.url.replace(nsParam.baseUrl, '');
-                        req = new Request(url, {
-                            method: 'GET'
-                        });
+                .withDefaults({
+                    // credentials: 'same-origin',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
                     }
+                })
+                .withInterceptor({
+                    request(req) {
+                        if (req.url.indexOf('/mock/') > -1) {
+                            let url = req.url.replace(nsParam.baseUrl, '');
+                            req = new Request(url, {
+                                method: 'GET'
+                            });
+                        }
 
-                    // toastr.info(`Requesting ${req.method} ${req.url}`);
-                    NProgress && NProgress.start();
+                        // toastr.info(`Requesting ${req.method} ${req.url}`);
+                        NProgress && NProgress.start();
 
-                    return req;
-                },
-                requestError(req) {
-                    // console.log(req);
-                },
-                response(resp) {
-                    // toastr.info(`Received ${response.status} ${response.url}`);
-                    NProgress && NProgress.done();
-                    return resp.json();
-                },
-                responseError(resp) {
-                    toastr.error(resp.message, '网络请求错误!');
-                    console.log(resp);
-                }
-            });
+                        return req;
+                    },
+                    requestError(req) {
+                        // console.log(req);
+                    },
+                    response(resp) {
+                        // toastr.info(`Received ${response.status} ${response.url}`);
+                        NProgress && NProgress.done();
+                        return resp.json();
+                    },
+                    responseError(resp) {
+                        toastr.error(resp.message, '网络请求错误!');
+                        console.log(resp);
+                    }
+                });
         });
 
         return this;

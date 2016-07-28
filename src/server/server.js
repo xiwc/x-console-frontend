@@ -34,6 +34,12 @@ export class Server {
             nav: true,
             title: '硬盘'
         }, {
+            route: ['disk-details/:id'],
+            name: 'disk-details',
+            moduleId: 'server/server-disk-details',
+            nav: false,
+            title: '硬盘详情'
+        }, {
             route: ['snapshot'],
             name: 'snapshot',
             moduleId: 'server/server-snapshot',

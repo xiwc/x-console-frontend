@@ -2,7 +2,7 @@
     <require from="./server-host.css"></require>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-confirm"></require>
-    <require from="./server-host-create"></require>
+    <require from="comp/ui/ui-host-create-modal"></require>
     <div class="nx-server-host animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -183,5 +183,5 @@
         </div>
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
-    <server-host-create server-host-create.ref="serverHostCreate"></server-host-create>
+    <ui-host-create-modal ui-host-create-modal.ref="uiHostCreateModal"></ui-host-create-modal>
 </template>

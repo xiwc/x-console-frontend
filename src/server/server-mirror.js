@@ -69,7 +69,7 @@ export class ServerMirror {
             return;
         }
 
-        this.serverHostCreate.show();
+        this.uiHostCreateModal.show();
         // toastr.info('创建操作...');
     }
 

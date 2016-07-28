@@ -13,7 +13,7 @@ from 'aurelia-framework';
 import 'ion-rangeslider';
 
 @containerless
-export class ServerHostCreate {
+export class UiHostCreateModal {
 
     @bindable
     mirror;
