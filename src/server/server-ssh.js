@@ -107,7 +107,7 @@ export class ServerSSH {
 
     createHandler() {
         // toastr.info('创建操作...');
-        this.uiSshkeyCreateModal.show(() => { this.this.getSshkeys(); });
+        this.uiSshkeyCreateModal.show(() => { this.getSshkeys(); });
     }
 
     delHandler() {
@@ -118,7 +118,7 @@ export class ServerSSH {
             return;
         }
 
-        let ids = _.pluck(itmes, 'id');
+        let ids = _.map(items, 'id');
 
         this.confirm.show({
             content: '确定要删除选择的SSH密钥吗?',
