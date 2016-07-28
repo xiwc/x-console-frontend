@@ -1,11 +1,10 @@
 <template>
-	<require from="./network-private.css"></require>
+    <require from="./network-private.css"></require>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-name-create-modal"></require>
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="./network-linkrouter"></require>
-
     <div class="nx-network-private animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -18,7 +17,7 @@
             <div class="ui red button" click.delegate="delMoreHandler()">
                 删除
             </div>
-           <div class="ui search">
+            <div class="ui search">
                 <div class="ui icon input">
                     <input class="prompt" type="text" placeholder="检索...">
                     <i class="search link icon"></i>
@@ -26,7 +25,7 @@
                 <div class="results"></div>
             </div>
         </div>
-         <div class="ui basic segment" ref="container">
+        <div class="ui basic segment" ref="container">
             <table class="ui compact celled definition table">
                 <thead class="full-width">
                     <tr>
@@ -45,48 +44,23 @@
                     </tr>
                 </thead>
                 <tbody id="tbody1">
-                    <tr>
+                    <tr repeat.for='pw of privateNetworks'>
                         <td class="collapsing">
                             <div class="ui fitted checkbox">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
                         </td>
-                        <td><a href="/#/network/private-details/:1">id-kdfgdfgdfgdf</a></td>
-                        <td>私有网络01</td>
-                        <td>路由器001</td>
-                        <td>18.18.18.18</td>
-                        <td>5天前</td>
+                        <td><a href="/#/network/priva${pw.id}te-details/${pw.id}">${pw.id}</a></td>
+                        <td>${pw.name}</td>
+                        <td>${pw.routerName}</td>
+                        <td>${pw.ip}</td>
+                        <td>${pw.createPeriod}</td>
                         <td>
-                            <div class="ui top right pointing dropdown nx-dd-action-hide">
-                                <div class="ui dropdown item">更多操作 <i class="dropdown icon"></i> <div class="menu">
+                            <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
+                                <div class="menu">
                                     <div class="item" click.delegate="updateName()">修改名称</div>
-                                    <div class="divider"></div> 
-                                    <div class="item" click.delegate="linkRouter()">连接路由器</div>
-                                    <div class="item" click.delegate="delRouter()">离开路由器</div>
                                     <div class="divider"></div>
-                                    <div class="item" click.delegate="delHandler()">删除</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing">
-                            <div class="ui fitted checkbox">
-                                <input type="checkbox">
-                                <label></label>
-                            </div>
-                        </td>
-                        <td>id-sgssdfgsdfgsd</td>
-                        <td>私有网络02</td>
-                        <td>路由器002</td>
-                        <td>19.19.19.19</td>
-                        <td>10天前</td>
-                        <td>
-                            <div class="ui top right pointing dropdown nx-dd-action-hide">
-                                <div class="ui dropdown item">更多操作 <i class="dropdown icon"></i> <div class="menu">
-                                    <div class="item" click.delegate="updateName()">修改名称</div>
-                                    <div class="divider"></div> 
                                     <div class="item" click.delegate="linkRouter()">连接路由器</div>
                                     <div class="item" click.delegate="delRouter()">离开路由器</div>
                                     <div class="divider"></div>
@@ -99,7 +73,7 @@
             </table>
         </div>
     </div>
-    <ui-name-create-modal ui-name-create-modal.ref="createconfirm" title.bind="createTitle"></ui-name-create-modal>
+    <ui-name-create-modal ui-name-create-modal.ref="createconfirm"></ui-name-create-modal>
     <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
     <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" title.bind="updateNameTitle"></ui-name-update-modal>
     <network-linkrouter network-linkrouter.ref="linRouterDialog"></network-linkrouter>

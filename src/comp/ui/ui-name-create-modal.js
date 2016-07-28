@@ -1,10 +1,12 @@
 import {
-    bindable
+    bindable,
+    containerless
 }
 from 'aurelia-framework';
 /*
  * 操作确认窗口
  */
+@containerless
 export class UiNameCreateModal {
 
     @bindable title = ''; // 窗口标题
@@ -15,18 +17,41 @@ export class UiNameCreateModal {
 
     @bindable ondeny = ''; // 取消回调函数
 
+    name = "";
+
     constructor() { // 通过构造函数注入
     }
 
     attached() {
-
-        $(this.mdLogout).modal({
+        $(this.md).modal({
             closable: false,
-            onApprove: () => {
-                this.onapprove && this.onapprove();
+            allowMultiple: true,
+            onShow: () => {
+                this.name = '';
+                $(this.form).form('reset');
             },
-            onDeny: () => {
-                this.ondeny && this.ondeny();
+            onApprove: () => {
+                if (!$(this.form).form('is valid')) {
+                    toastr.error('表单验证不合法,请修改表单不合法输入!');
+                    return false;
+                }
+                console.log(this.name)
+                this.onapprove && this.onapprove({ name: this.name });
+            },
+            onDeny: () => { this.ondeny && this.ondeny(); }
+        });
+
+        $(this.form).form({
+            on: 'blur',
+            inline: true,
+            fields: {
+                name: {
+                    identifier: 'name',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '名称不能为空!'
+                    }]
+                }
             }
         });
     }
@@ -46,12 +71,12 @@ export class UiNameCreateModal {
             this.ondeny = ondeny;
         }
 
-        $(this.mdLogout).modal('show');
+        $(this.md).modal('show');
     }
 
     /* 隐藏确认窗口 */
     hide() {
-        $(this.mdLogout).modal('hide');
+        $(this.md).modal('hide');
     }
 
 }

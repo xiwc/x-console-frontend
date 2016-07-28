@@ -80,6 +80,34 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '创建云硬盘'
         },
+        'privateNetwork.list.get': {
+            real: 'api/privateNetwork/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取私有网络列表'
+        },
+        'privateNetwork.create.post': {
+            real: 'api/privateNetwork/create',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '添加私有网络'
+        },
+        'privateNetwork.delete.post': {
+            real: 'api/privateNetwork/delete',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '创建私有网络'
+        },
+        'privateNetwork.updateName.post': {
+            real: 'api/privateNetwork/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '修改私有网络名称'
+        }
     };
 
     // api debug配置初始化

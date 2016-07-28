@@ -10,60 +10,129 @@ export class NetworkPrivate {
     deleteTite = "删除提示";
     deleteRouterContent = "确定要将私用网络从路由器中离开？";
 
-    constructor() { // 通过构造函数注入
-    	 
+    allChecked = false;
+    privateNetworks = null;
+
+    constructor(getHttp) { // 通过构造函数注入
+        this.http = getHttp();
+    }
+
+    /**
+     * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
+     * @param  {[object]} params                参数
+     * @param  {[object]} routeConfig           路由配置
+     * @param  {[object]} navigationInstruction 导航指令
+     * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待执行bind和attach视图(view), 直到你完成你的处理工作.
+     */
+    activate(params, routeConfig, navigationInstruction) {
+        this.getPrivateNetwork();
+    }
+
+    /*
+
+    */
+    getPrivateNetwork() {
+        return this.http.fetch(nsApi.url('privateNetwork.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
+            this.privateNetworks = resp.data;
+        }).then(() => {
+            this.allChecked = false;
+        });
     }
 
     /**
      * 当视图被附加到DOM中时被调用
      */
     attached() {
-        $('.nx-dd-action-hide', this.container).dropdown({
+        // $('.nx-dd-action-hide', this.container).dropdown({
+        //     action: 'hide'
+        // });
+    }
+
+    initActionsHandler(uiActions) {
+        $(uiActions).dropdown({
             action: 'hide'
         });
     }
 
     //创建
     createHandler() {
-        this.createconfirm.show();
+        this.createconfirm.show((result => {
+            console.log(result.name);
+            this.http.fetch(nsApi.url('privateNetwork.create.post'), {
+                method: 'post',
+                body: json({
+                    name: result.name
+                })
+            }).then((resp) => {
+                // this. = resp.data;
+               this.getPrivateNetwork();
+            });
+        }));
     }
 
     //批量删除
-    delMoreHandler(){
-    	//获取被选中的记录
-    	let checkedIist = [];
-    	$("#tbody1").find("input[type=checkbox]").each(function () {
-    		if($(this).get(0).checked) {
-    			checkedIist.push($(this).index());
-    		}
-    	});
-    	if(checkedIist.length > 0)
-    		this.deleteconfirm.show();
+    delMoreHandler() {
+        //获取被选中的记录
+        let checkedIist = [];
+        $("#tbody1").find("input[type=checkbox]").each(function() {
+            if ($(this).get(0).checked) {
+                checkedIist.push($(this).index());
+            }
+        });
+        if (checkedIist.length > 0)
+            this.deleteconfirm.show();
     }
 
     //删除单条
-    delHandler(){
-    	this.deleteconfirm.show();
+    delHandler(pn) {
+        this.deleteconfirm.show({
+            onapprove: () => {
+                this.http.fetch(nsApi.url('privateNetwork.delete.post', {
+                    id: pn.id
+                }), { method: 'post' }).then((resp) => {
+                    // this. = resp.data;
+                    this.privateNetworks = _.filter(this.privateNetworks, (d) => {
+                        return (d.id != pn.id);
+                    });
+                    toastr.success('删除成功!');
+                });
+            }
+        });
     }
 
     //全部选中
-    selectAll(){
-    	//console.log($("#allCheckBox").get(0).checked); 
-    	$("#tbody1").find("input[type=checkbox]").prop("checked",$("#allCheckBox").get(0).checked);
+    selectAll() {
+        //console.log($("#allCheckBox").get(0).checked); 
+        $("#tbody1").find("input[type=checkbox]").prop("checked", $("#allCheckBox").get(0).checked);
     }
 
     //修改名称
-    updateName(){
-    	this.updateconfirm.show();
+    updateName(pn) {
+        this.updateconfirm.show((result => {
+            // console.log(result);
+            this.http.fetch(nsApi.url('privateNetwork.updateName.post'), {
+                method: 'post',
+                body: json({
+                    id: pn.id,
+                    name: result.name,
+                    desc: result.desc
+                })
+            }).then((resp) => {
+                // this. = resp.data;
+                pn.name = result.name;
+                pn.desc = result.desc;
+                toastr.success('修改名称操作成功!');
+            });
+        }));
     }
 
     //连接路由器
-    linkRouter(){
-    	this.linRouterDialog.show();
+    linkRouter() {
+        this.linRouterDialog.show();
     }
 
     //删除路由器
-    delRouter(){
-    	this.deleteRouterconfirm.show();
+    delRouter() {
+        this.deleteRouterconfirm.show();
     }
 }
