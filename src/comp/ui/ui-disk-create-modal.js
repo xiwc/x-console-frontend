@@ -93,6 +93,9 @@ export class UiDiskCreateModal {
                     rules: [{
                         type: 'empty',
                         prompt: '硬盘名称不能为空!'
+                    }, {
+                        type: 'regExp[/^[a-zA-Z0-9\-_]{1,16}$/]',
+                        prompt: '1-16个字符(大写字母,小写字母,数字,-,_)!'
                     }]
                 },
                 count: {
