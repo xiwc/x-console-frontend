@@ -45,17 +45,20 @@ export class ServerSSH {
     }
 
     getSshkeys() { // TODO mockserver?
-        this.sshkeys = [{
-            id: 'ssh-kajksdjns',
-            name: '密钥001',
-            method: 'ssh-rsa',
-            createDate: '2天前'
-        }, {
-            id: 'ssh-kajksdjns',
-            name: '密钥001',
-            method: 'ssh-rsa',
-            createDate: '2天前'
-        }];
+        return this.http.fetch(nsApi.url('keystore.list.get', { pageNo: 1, pageSize: 1000 })).then((resp) => {
+            this.sshkeys = resp.data;
+        });
+        // this.sshkeys = [{
+        //     id: 'ssh-kajksdjns',
+        //     name: '密钥001',
+        //     method: 'ssh-rsa',
+        //     createDate: '2天前'
+        // }, {
+        //     id: 'ssh-kajksdjns',
+        //     name: '密钥001',
+        //     method: 'ssh-rsa',
+        //     createDate: '2天前'
+        // }];
     }
 
     getCheckedItems() {
@@ -97,24 +100,61 @@ export class ServerSSH {
 
     refreshHandler() {
         // toastr.info('刷新操作...');
-        this.getSshkeys();
-        toastr.info('刷新完成!');
+        this.getSshkeys().then(() => {
+            toastr.info('刷新完成!');
+        });
     }
 
     createHandler() {
         // toastr.info('创建操作...');
-        this.uiSshkeyCreateModal.show();
+        this.uiSshkeyCreateModal.show(() => { this.getSshkeys(); });
     }
 
     delHandler() {
+
+        let items = this.getCheckedItems();
+        if (items.length == 0) {
+            toastr.error('请先选择需要删除的SSH密钥!');
+            return;
+        }
+
+        let ids = _.map(items, 'id');
+
         this.confirm.show({
             content: '确定要删除选择的SSH密钥吗?',
-            onapprove: (result) => { console.log(result) }
+            onapprove: (result) => {
+                this.http.fetch(nsApi.url('keystore.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: ids
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    _.remove(this.sshkeys, (k) => {
+                        return _.includes(ids, k.id);
+                    });
+                    toastr.success('SSH密钥删除成功!');
+                });
+            }
         });
     }
 
-    updateHandler() {
+    updateHandler(sshkey) {
         // toastr.info('修改名称操作...');
-        this.uiNameUpdateModal.show((result) => { console.log(result) });
+        this.uiNameUpdateModal.show((result) => {
+            this.http.fetch(nsApi.url('keystore.updateName.post'), {
+                method: 'post',
+                body: json({
+                    "desc": result.desc,
+                    "id": sshkey.id,
+                    "name": result.name
+                })
+            }).then((resp) => {
+                // this. = resp.data;
+                sshkey.name = result.name;
+                sshkey.desc = result.desc;
+                toastr.success('修改SSH密钥名称成功!');
+            });
+        });
     }
 }

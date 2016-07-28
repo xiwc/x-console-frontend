@@ -24,7 +24,7 @@ export class ServerSshDetails {
      */
     activate(params, routeConfig, navigationInstruction) {
         // toastr.info(params.id);
-        this.http.fetch(nsApi.url('ssh.detail.get', {
+        this.http.fetch(nsApi.url('keystore.detail.get', {
             id: params.id
         })).then((resp) => {
             this.details = resp;

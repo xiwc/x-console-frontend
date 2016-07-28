@@ -4,6 +4,10 @@ import {
 }
 from 'aurelia-framework';
 
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 @containerless
 export class UiSshkeyCreateModal {
 
@@ -16,6 +20,13 @@ export class UiSshkeyCreateModal {
     @bindable onapprove; // 确认回调函数
 
     @bindable ondeny; // 取消回调函数
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -39,10 +50,10 @@ export class UiSshkeyCreateModal {
             closable: false,
             allowMultiple: true,
             onShow: () => {
-            	this.name = '';
-            	this.publicKey = '';
-            	this.way = '1';
-            	$(this.uiCreateSshkey).checkbox('set checked');
+                this.name = '';
+                this.publicKey = '';
+                this.way = '1';
+                $(this.uiCreateSshkey).checkbox('set checked');
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
@@ -50,11 +61,18 @@ export class UiSshkeyCreateModal {
                     return false;
                 }
 
-                this.onapprove && this.onapprove({
-                    way: this.way,
-                    name: this.name,
-                    encrypt: $(this.uiEncrypt).dropdown('get value'),
-                    publicKey: this.publicKey
+                this.http.fetch(nsApi.url('keystore.create.post'), {
+                    method: 'post',
+                    body: json({
+                        "content": this.publicKey,
+                        "encryptmode": $(this.uiEncrypt).dropdown('get value'),
+                        "name": this.name,
+                        "type": this.way
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    this.onapprove && this.onapprove();
+                    toastr.success('SSH密钥创建完成!');
                 });
             },
             onDeny: () => {
@@ -71,6 +89,9 @@ export class UiSshkeyCreateModal {
                     rules: [{
                         type: 'empty',
                         prompt: '密钥名称不能为空!'
+                    }, {
+                        type: 'regExp[/^[a-zA-Z0-9\-_]{1,16}$/]',
+                        prompt: '1-16个字符(大写字母,小写字母,数字,-,_)!'
                     }]
                 }
             }
