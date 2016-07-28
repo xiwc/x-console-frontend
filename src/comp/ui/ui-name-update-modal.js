@@ -24,10 +24,12 @@ export class UiNameUpdateModal {
 
         $(this.md).modal({
             closable: false,
+            autofocus: false,
             // allowMultiple: true,
             onShow: () => {
                 this.name = '';
                 this.desc = '';
+                $(this.form).form('reset');
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
