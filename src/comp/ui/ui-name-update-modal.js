@@ -24,10 +24,12 @@ export class UiNameUpdateModal {
 
         $(this.md).modal({
             closable: false,
+            autofocus: false,
             // allowMultiple: true,
             onShow: () => {
                 this.name = '';
                 this.desc = '';
+                $(this.form).form('reset');
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
@@ -47,7 +49,7 @@ export class UiNameUpdateModal {
                     identifier: 'name',
                     rules: [{
                         type: 'empty',
-                        prompt: '硬盘名称不能为空!'
+                        prompt: '名称不能为空!'
                     }]
                 }
             }

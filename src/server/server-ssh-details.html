@@ -1,0 +1,51 @@
+<template>
+    <require from="./server-ssh-details.css"></require>
+    <require from="comp/ui/ui-nav"></require>
+    <div class="nx-server-ssh-details animated bounceInDown">
+        <ui-nav steps.bind="steps"></ui-nav>
+        <div class="ui basic segment" ref="container">
+            <div class="ui celled grid">
+                <div class="three column row">
+                    <div class="column">
+                        <h3 class="ui header">基本属性</h3>
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>${details.id}</td>
+                                </tr>
+                                <tr>
+                                    <th>名称</th>
+                                    <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>描述</th>
+                                    <td>${details.desc}</td>
+                                </tr>
+                                <tr>
+                                    <th>加密方法</th>
+                                    <td>${details.method}</td>
+                                </tr>
+                                <tr>
+                                    <th>公钥</th>
+                                    <td>${details.publicKey}</td>
+                                </tr>
+                                <tr>
+                                    <th>主机</th>
+                                    <td>${details.hosts}</td>
+                                </tr>
+                                <tr>
+                                    <th>创建时间</th>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                </tr>
+                                <tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="column"></div>
+                    <div class="column"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

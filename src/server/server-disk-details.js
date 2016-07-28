@@ -6,6 +6,8 @@ export class ServerDiskDetails {
 
     steps = ['上海一区', '云服务器', '硬盘详情'];
 
+    details;
+
     /**
      * 构造函数
      */
@@ -13,7 +15,14 @@ export class ServerDiskDetails {
         this.http = getHttp();
     }
 
-    details;
+    /**
+     * 当视图被附加到DOM中时被调用
+     */
+    attached() {
+        $(this.uiActions).dropdown({
+            action: 'hide'
+        });
+    }
 
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
@@ -28,6 +37,40 @@ export class ServerDiskDetails {
             id: params.id
         })).then((resp) => {
             this.details = resp;
+        });
+    }
+
+    updateHandler(disk) {
+        this.uiNameUpdateModal.show((result => {
+            // console.log(result);
+            this.http.fetch(nsApi.url('disk.updateName.post'), {
+                method: 'post',
+                body: json({
+                    id: disk.id,
+                    name: result.name,
+                    desc: result.desc
+                })
+            }).then((resp) => {
+                // this. = resp.data;
+                disk.name = result.name;
+                disk.desc = result.desc;
+                toastr.success('修改名称操作成功!');
+            });
+        }));
+    }
+
+    delHandler(disk) {
+        this.confirm.show({
+            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
+            onapprove: () => {
+                this.http.fetch(nsApi.url('disk.delete.post', {
+                    id: disk.id
+                }), { method: 'post' }).then((resp) => {
+                    // this. = resp.data;
+                    // TODO 跳转到?
+                    toastr.success('删除成功!');
+                });
+            }
         });
     }
 }

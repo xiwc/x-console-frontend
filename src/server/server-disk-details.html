@@ -1,12 +1,14 @@
 <template>
     <require from="./server-disk-details.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
     <div class="nx-server-disk-details animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
                 <div class="three column row">
-                    <div class="column">
+                    <div class="column nx-basic-info">
                         <h3 class="ui header">基本属性</h3>
                         <table class="ui very basic table">
                             <tbody>
@@ -53,6 +55,17 @@
                                 <tr>
                             </tbody>
                         </table>
+                        <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="text">更多操作</div>
+                            <i class="dropdown icon"></i>
+                            <div class="left menu">
+                                <div click.delegate="updateHandler(details)" class="item">修改名称</div>
+                                <div click.delegate="addToHostHandler()" class="item disabled">加载到主机</div>
+                                <div click.delegate="removeFromHostHandler()" class="item disabled">从主机卸载</div>
+                                <div click.delegate="extendSizeHandler()" class="item disabled">扩容</div>
+                                <div click.delegate="delHandler(details)" class="item">删除</div>
+                            </div>
+                        </div>
                     </div>
                     <!-- <div class="column"></div>
                     <div class="column"></div> -->
@@ -60,4 +73,6 @@
             </div>
         </div>
     </div>
+    <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-name-update-modal show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
 </template>

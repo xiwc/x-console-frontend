@@ -70,7 +70,7 @@ export class AbbreviateexactValueConverter {
  */
 export class DateFormatValueConverter {
     toView(value, format = 'yyyy/MM/dd hh:mm:ss') {
-        return $.format.date(new Date(), format);
+        return $.format.date(new Date(value), format);
     }
 }
 
@@ -78,7 +78,7 @@ export class DateFormatValueConverter {
  * 数值格式化值转换器
  * doc: https://www.npmjs.com/package/jquery-format
  */
-export class numberFormatValueConverter {
+export class NumberFormatValueConverter {
     toView(value, format = '#,##0.0#') {
         return $.format.number(value, format);
     }
@@ -90,7 +90,7 @@ export class numberFormatValueConverter {
  * https://www.npmjs.com/package/better-timeago
  * https://www.npmjs.com/package/better-timeago-locale-zh-cn
  */
-export class timeagoValueConverter {
+export class TimeagoValueConverter {
     toView(value) {
         return BTimeAgo(value).print();
     }
