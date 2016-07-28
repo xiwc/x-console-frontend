@@ -1,0 +1,11 @@
+.nx-network-private-details table tr > td {
+	height: 36px;
+}
+
+.nx-network-private-details .circle.icon.running{
+	color:green;
+}
+
+.nx-network-private-details .circle.icon.stoped{
+	color:red;
+}
