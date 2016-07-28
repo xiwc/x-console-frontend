@@ -6,15 +6,15 @@
         </div>
         <div class="content">
             <div class="ui form" ref="form">
-                <div class="field">
+                <div class="inline field">
                     <label>名称</label>
                     <div class="ui input">
                         <input type="text" name="name" value.bind="name" placeholder="">
                     </div>
                 </div>
-                <div class="field" if.bind="showDesc">
+                <div class="inline field" if.bind="showDesc">
                     <label>描述</label>
-                    <textarea name="desc" rows="5" value.bind="desc"></textarea>
+                    <textarea style="width: 300px;" name="desc" rows="5" value.bind="desc"></textarea>
                 </div>
             </div>
         </div>
