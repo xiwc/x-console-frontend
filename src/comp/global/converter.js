@@ -70,7 +70,7 @@ export class AbbreviateexactValueConverter {
  */
 export class DateFormatValueConverter {
     toView(value, format = 'yyyy/MM/dd hh:mm:ss') {
-        return $.format.date(new Date(value), format);
+        return value ? $.format.date(new Date(value), format) : '';
     }
 }
 
@@ -80,7 +80,7 @@ export class DateFormatValueConverter {
  */
 export class NumberFormatValueConverter {
     toView(value, format = '#,##0.0#') {
-        return $.format.number(value, format);
+        return value ? $.format.number(value, format) : '';
     }
 }
 
@@ -92,6 +92,6 @@ export class NumberFormatValueConverter {
  */
 export class TimeagoValueConverter {
     toView(value) {
-        return BTimeAgo(value).print();
+        return value ? BTimeAgo(value).print() : '';
     }
 }
