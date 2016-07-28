@@ -1,6 +1,8 @@
 <template>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-sshkey-create-modal"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
     <div class="nx-server-ssh animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -19,7 +21,7 @@
                 <thead class="full-width">
                     <tr>
                         <th>
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
@@ -32,40 +34,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr repeat.for="k of sshkeys">
                         <td class="collapsing">
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, k)" chk.bind="k.checked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
                         </td>
-                        <td>ssh-kajksdjns</td>
-                        <td>密钥001</td>
-                        <td>ssh-rsa</td>
-                        <td>2天前</td>
+                        <td><a href="/#/server/ssh-details/${k.id}">${k.id}</a></td>
+                        <td>${k.name}</td>
+                        <td>${k.method}</td>
+                        <td>${k.createDate}</td>
                         <td>
-                            <div class="ui top right pointing dropdown nx-dd-action-hide">
-                                <div class="text">更多操作</div>
-                                <i class="dropdown icon"></i>
-                                <div class="left menu">
-                                    <div click.delegate="updateHandler()" class="item">修改名称</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing">
-                            <div class="ui fitted checkbox">
-                                <input type="checkbox">
-                                <label></label>
-                            </div>
-                        </td>
-                        <td>ssh-kajksdjns</td>
-                        <td>密钥001</td>
-                        <td>ssh-rsa</td>
-                        <td>2天前</td>
-                        <td>
-                            <div class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="ui top right pointing dropdown nx-dd-action-hide" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
                                 <i class="dropdown icon"></i>
                                 <div class="left menu">
@@ -79,4 +60,6 @@
         </div>
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-sshkey-create-modal ui-sshkey-create-modal.ref="uiSshkeyCreateModal"></ui-sshkey-create-modal>
+    <ui-name-update-modal ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
 </template>

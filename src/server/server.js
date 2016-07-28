@@ -52,6 +52,12 @@ export class Server {
             nav: true,
             title: 'SSH秘钥'
         }, {
+            route: ['ssh-details/:id'],
+            name: 'ssh-details',
+            moduleId: 'server/server-ssh-details',
+            nav: false,
+            title: 'SSH秘钥详情'
+        }, {
             route: ['security'],
             name: 'security',
             moduleId: 'server/server-security',

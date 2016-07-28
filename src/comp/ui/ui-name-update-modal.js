@@ -47,7 +47,7 @@ export class UiNameUpdateModal {
                     identifier: 'name',
                     rules: [{
                         type: 'empty',
-                        prompt: '硬盘名称不能为空!'
+                        prompt: '名称不能为空!'
                     }]
                 }
             }
