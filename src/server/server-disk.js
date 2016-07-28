@@ -97,38 +97,52 @@ export class ServerDisk {
         this.uiDiskCreateModal.show();
     }
 
-    delHandler(isBatch) {
+    delInBatchHandler() {
 
-        if (isBatch) {
-            let items = this.getCheckedItems();
-            if (items.length == 0) {
-                toastr.error('请先选择要删除的硬盘!');
-                return;
-            }
+        let items = this.getCheckedItems();
+        if (items.length == 0) {
+            toastr.error('请先选择要删除的硬盘!');
+            return;
         }
-        
+
         this.confirm.show({
             content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
             onapprove: () => {
-                if (isBatch) {
-                    let items = this.getCheckedItems();
-                    if (items.length == 0) {
-                        toastr.error('请先选择要删除的硬盘!');
-                        return;
-                    }
-
-                    _.each(items, (disk) => {
-                        this.http.fetch(nsApi.url('disk.delete.post', {
-                            id: disk.id
-                        }), { method: 'post' }).then((resp) => {
-                            // this. = resp.data;
-                            toastr.success('删除成功!');
-                        });
-                    });
-
-                } else {
-
+                let items = this.getCheckedItems();
+                if (items.length == 0) {
+                    toastr.error('请先选择要删除的硬盘!');
+                    return;
                 }
+
+                _.each(items, (disk) => {
+                    this.http.fetch(nsApi.url('disk.delete.post', {
+                        id: disk.id
+                    }), { method: 'post' }).then((resp) => {
+                        // this. = resp.data;
+                        this.disks = _.filter(this.disks, (d) => {
+                            return (d.id != disk.id);
+                        });
+                        toastr.success('删除成功!');
+                    });
+                });
+            }
+        });
+    }
+
+    delHandler(disk) {
+
+        this.confirm.show({
+            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
+            onapprove: () => {
+                this.http.fetch(nsApi.url('disk.delete.post', {
+                    id: disk.id
+                }), { method: 'post' }).then((resp) => {
+                    // this. = resp.data;
+                    this.disks = _.filter(this.disks, (d) => {
+                        return (d.id != disk.id);
+                    });
+                    toastr.success('删除成功!');
+                });
             }
         });
     }

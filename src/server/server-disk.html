@@ -14,7 +14,7 @@
             <div class="ui primary button" click.delegate="createHandler()">
                 <i class="add icon"></i> 创建
             </div>
-            <div class="ui red button" click.delegate="delHandler(!0)">
+            <div class="ui red button" click.delegate="delInBatchHandler()">
                 删除
             </div>
         </div>
@@ -64,7 +64,7 @@
                                     <div click.delegate="addToHostHandler()" class="item">加载到主机</div>
                                     <div click.delegate="removeFromHostHandler()" class="item">从主机卸载</div>
                                     <div click.delegate="extendSizeHandler()" class="item">扩容</div>
-                                    <div click.delegate="delHandler()" class="item">删除</div>
+                                    <div click.delegate="delHandler(d)" class="item">删除</div>
                                 </div>
                             </div>
                         </td>
