@@ -66,6 +66,20 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '根据id删除硬盘'
         },
+        'disk.updateName.post': {
+            real: 'api/disk/updateName',
+            mock: 'mock/disk/updateName.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '根据id修改硬盘名称跟描述'
+        },
+        'disk.create.post': {
+            real: 'api/disk/create',
+            mock: 'mock/disk/create.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '创建云硬盘'
+        },
     };
 
     // api debug配置初始化

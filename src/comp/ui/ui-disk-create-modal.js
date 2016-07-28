@@ -6,6 +6,10 @@ from 'aurelia-framework';
 
 import 'ion-rangeslider';
 
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 @containerless
 export class UiDiskCreateModal {
 
@@ -14,6 +18,13 @@ export class UiDiskCreateModal {
     name = '';
 
     count = '1';
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -54,6 +65,21 @@ export class UiDiskCreateModal {
                     toastr.error('表单验证不合法,请修改表单不合法输入!');
                     return false;
                 }
+
+                this.http.fetch(nsApi.url('disk.create.post'), {
+                    method: 'post',
+                    body: json({
+                        "capacity": $(this.rangeSize).val(),
+                        "count": this.count,
+                        "name": this.name,
+                        "regionId": nsCtx.regionId, // TODO 是否可以转移到 url中
+                        "type": this.type // TODO 后端需要怎么mapping
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    this.onapprove && this.onapprove();
+                    toastr.success('硬盘创建成功!');
+                });
             },
             onDeny: () => {}
         });
@@ -83,7 +109,8 @@ export class UiDiskCreateModal {
         });
     }
 
-    show() {
+    show(onapprove) {
+        this.onapprove = onapprove;
         $(this.md).modal('show');
     }
 

@@ -94,7 +94,7 @@ export class ServerDisk {
 
     createHandler() {
         // toastr.info('创建操作...');
-        this.uiDiskCreateModal.show();
+        this.uiDiskCreateModal.show(() => { this.getDisks(); });
     }
 
     delInBatchHandler() {
@@ -147,11 +147,26 @@ export class ServerDisk {
         });
     }
 
-    updateHandler() {
+    updateHandler(disk) {
+        // console.log(disk);
         // toastr.info('修改名称操作...');
         this.uiNameUpdateModal.show((result => {
-            console.log(result);
+            // console.log(result);
+            this.http.fetch(nsApi.url('disk.updateName.post'), {
+                method: 'post',
+                body: json({
+                    id: disk.id,
+                    name: result.name,
+                    desc: result.desc
+                })
+            }).then((resp) => {
+                // this. = resp.data;
+                disk.name = result.name;
+                disk.desc = result.desc;
+                toastr.success('修改名称操作成功!');
+            });
         }));
+
     }
 
     addToHostHandler() {
