@@ -42,6 +42,8 @@ export class ServerSSH {
                 this.allChecked = false;
             },
         });
+
+        $('table.sortable').tablesort();
     }
 
     /**

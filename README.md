@@ -17,6 +17,7 @@
 > https://www.npmjs.com/package/date-format  
 > https://github.com/asual/jquery-format  https://www.npmjs.com/package/jquery-format  
 > https://www.npmjs.com/package/moment-format  
+> https://github.com/kylefox/jquery-tablesort https://www.npmjs.com/package/jquery-tablesort  
 
 ## 入门指南(Getting started)
 
