@@ -1,5 +1,5 @@
 <template>
-    <div class="ui basic label">
+    <div class="ui basic label" if.bind="page && page.total > 0">
         共计
         <div class="detail">${page.pageCount}页/${page.total}条</div>
     </div>
@@ -7,7 +7,7 @@
         当前:
         <div class="detail">第1页/共10条</div>
     </div> -->
-    <div class="ui right floated pagination menu">
+    <div class="ui right floated pagination menu" if.bind="page && page.total > 0">
         <a class="icon item ${page.currentPage == 1 ? 'disabled' : ''}" click.delegate="pageHandler(page.currentPage - 1)">
             <i class="left chevron icon"></i>
         </a>

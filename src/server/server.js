@@ -64,6 +64,12 @@ export class Server {
             nav: true,
             title: '安全组'
         }, {
+            route: ['security-details/:id'],
+            name: 'security-details',
+            moduleId: 'server/server-security-details',
+            nav: false,
+            title: '安全组详情'
+        }, {
             route: '',
             redirect: 'dashboard'
         }]);

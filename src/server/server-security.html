@@ -1,11 +1,74 @@
 <template>
     <require from="comp/ui/ui-nav"></require>
-    <div class="nx-server-security animated bounceInDown">
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-security-new-rule-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
+    <div class="nx-server-disk animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
-        <div class="ui basic segment">
-            <div class="ui message">
-                ${steps[2]}
+        <div class="ui basic segment nx-toolbar">
+            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新安全组列表" data-position="top left" data-inverted="">
+                <i class="refresh icon"></i>
             </div>
+            <div class="ui primary button" click.delegate="createHandler()">
+                <i class="add icon"></i> 创建
+            </div>
+            <!-- <div class="ui red button" click.delegate="delInBatchHandler()">
+                删除
+            </div> -->
+        </div>
+        <div class="ui basic segment" ref="container">
+            <table class="ui sortable compact celled table">
+                <thead class="full-width">
+                    <tr>
+                        <th class="no-sort">
+                            <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </th>
+                        <th>ID</th>
+                        <th>名称</th>
+                        <th>创建于</th>
+                        <th class="no-sort">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr repeat.for="s of securities">
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, s)" chk.bind="s.checked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td><a href="/#/server/security-details/${s.id}">${s.id}</a></td>
+                        <td>${s.name}</td>
+                        <td>${s.createPeriod}</td>
+                        <td>
+                            <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide" task.bind="initActionsHandler(uiActions)">
+                                <div class="text">更多操作</div>
+                                <i class="dropdown icon"></i>
+                                <div class="left menu">
+                                    <div click.delegate="newRuleHandler(s)" class="item">新建规则</div>
+                                    <div click.delegate="updateHandler(s)" class="item">修改名称</div>
+                                    <div click.delegate="addToHostHandler(s)" class="item disabled">关联到主机</div>
+                                    <div click.delegate="delHandler(s)" class="item">删除</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="10">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
     </div>
+    <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-name-update-modal show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+    <ui-security-new-rule-modal ui-security-new-rule-modal.ref="uiSecurityNewRuleModal"></ui-security-new-rule-modal>
 </template>
