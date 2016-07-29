@@ -15,7 +15,7 @@
         <div class="item" if.bind="page.currentPage - 3 > 1">...</div>
         <a class="item" if.bind="page.currentPage > 2" click.delegate="pageHandler(page.currentPage - 2)">${page.currentPage - 2}</a>
         <a class="item" if.bind="page.currentPage > 1" click.delegate="pageHandler(page.currentPage - 1)">${page.currentPage - 1}</a>
-        <a class="item active" click.delegate="pageHandler(page.currentPage)">${page.currentPage}</a>
+        <a class="item active">${page.currentPage}</a>
         <a class="item" if.bind="page.currentPage + 1 <= page.pageCount" click.delegate="pageHandler(page.currentPage + 1)">${page.currentPage + 1}</a>
         <a class="item" if.bind="page.currentPage + 2 <= page.pageCount" click.delegate="pageHandler(page.currentPage + 2)">${page.currentPage + 2}</a>
         <div class="item" if.bind="page.currentPage + 3 < page.pageCount">...</div>
