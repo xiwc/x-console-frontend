@@ -35,7 +35,7 @@ export class NetworkRouter {
     */
     getRouters() {
         return this.http.fetch(nsApi.url('router.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
-            this.routers = resp.data;
+            this.routers = resp.list;
         }).then(() => {
             this.allChecked = false;
         });

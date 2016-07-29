@@ -59,7 +59,7 @@ export class ServerSSH {
 
     getSshkeys() { // TODO mockserver?
         return this.http.fetch(nsApi.url('keystore.list.get', { pageNo: 1, pageSize: 1000 })).then((resp) => {
-            this.sshkeys = resp.data;
+            this.sshkeys = resp.list;
         });
         // this.sshkeys = [{
         //     id: 'ssh-kajksdjns',
