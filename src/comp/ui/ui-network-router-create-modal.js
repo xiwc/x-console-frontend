@@ -3,9 +3,13 @@ import {
     containerless
 }
 from 'aurelia-framework';
-/*
- * 操作确认窗口
- */
+
+import 'ion-rangeslider';
+
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 @containerless
 export class UiNetworkRouterCreateModal {
 
@@ -17,7 +21,8 @@ export class UiNetworkRouterCreateModal {
 
     name = "";
 
-    constructor() { // 通过构造函数注入
+    constructor(getHttp) { // 通过构造函数注入
+        this.http = getHttp();
     }
 
     attached() {
@@ -33,8 +38,18 @@ export class UiNetworkRouterCreateModal {
                     toastr.error('表单验证不合法,请修改表单不合法输入!');
                     return false;
                 }
-                console.log(this.name)
-                this.onapprove && this.onapprove({ name: this.name });
+                this.http.fetch(nsApi.url('router.create.post'), {
+                    method: 'post',
+                    body: json({
+                        "name": this.name,
+                        "securityGroupId": $(this.firewall).val(), // TODO 是否可以转移到 url中
+                        "type": $("input[name=type]").val() // TODO 后端需要怎么mapping
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    this.onapprove && this.onapprove();
+                    toastr.success('硬盘创建成功!');
+                });
             },
             onDeny: () => { this.ondeny && this.ondeny(); }
         });
@@ -69,12 +84,12 @@ export class UiNetworkRouterCreateModal {
             this.ondeny = ondeny;
         }
 
-        $(this.modal).modal('show');
+        $(this.md).modal('show');
     }
 
     /* 隐藏确认窗口 */
     hide() {
-        $(this.modal).modal('hide');
+        $(this.md).modal('hide');
     }
 
 }
