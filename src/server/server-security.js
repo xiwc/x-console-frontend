@@ -6,6 +6,16 @@ export class ServerSecurity {
 
     allChecked = false;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     /**
      * 当视图被附加到DOM中时被调用
      */
@@ -119,6 +129,19 @@ export class ServerSecurity {
         return _.filter(this.securities, (d) => {
             return d.checked;
         });
+    }
+
+    onpageHandler(selectedPage) {
+        console.log(selectedPage);
+        this.page = {
+            currentPage: selectedPage,
+            pageSize: 10,
+            size: 10,
+            total: 75,
+            pageCount: 8,
+            hasPreviousPage: false,
+            hasNextPage: true
+        };
     }
 
 }
