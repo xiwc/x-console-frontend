@@ -128,7 +128,56 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'get',
             desc: '删除路由器'
-        }
+        },
+        'keystore.list.get': {
+            real: 'api/keystore/list',
+            mock: 'mock/keystore/list.get.json',
+            ismock: false,
+            method: 'get',
+            desc: '获取密钥列表'
+        },
+        'keystore.list.get': {
+            real: 'api/keystore/list',
+            mock: 'mock/keystore/list.get.json',
+            ismock: false,
+            method: 'get',
+            desc: '获取密钥列表'
+        },
+        'keystore.detail.get': {
+            real: 'api/keystore/detail/{id}',
+            mock: 'mock/keystore/detail.get.json',
+            ismock: false,
+            method: 'get',
+            desc: '根据主键id获取密钥详情'
+        },
+        'keystore.listName.get': {
+            real: 'api/keystore/listName',
+            mock: 'mock/keystore/listName.get.json',
+            ismock: false,
+            method: 'get',
+            desc: '获取私钥下拉列表'
+        },
+        'keystore.create.post': {
+            real: 'api/keystore/create',
+            mock: 'mock/keystore/create.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '创建密钥'
+        },
+        'keystore.delete.post': {
+            real: 'api/keystore/delete',
+            mock: 'mock/keystore/delete.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '批量删除密钥'
+        },
+        'keystore.updateName.post': {
+            real: 'api/keystore/updateName',
+            mock: 'mock/keystore/updateName.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '修改密钥名称'
+        },
     };
 
     // api debug配置初始化

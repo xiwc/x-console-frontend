@@ -316,6 +316,16 @@ export class UiHostCreateModal {
 
         this.initMemTypes(this.getSelectedItem(this.cpuTypes));
 
+        $(this.modal).modal({
+            onShow: () => {
+                this.reset();
+                this.getTotalConfig();
+            },
+            onApprove: () => {
+
+            }
+        });
+
     }
 
     sshKeyValidate() {
@@ -428,15 +438,7 @@ export class UiHostCreateModal {
     }
 
     show() {
-        $(this.modal).modal({
-            onShow: () => {
-                this.reset();
-                this.getTotalConfig();
-            },
-            onApprove: () => {
-
-            }
-        }).modal('show');
+        $(this.modal).modal('show');
     }
 
     reset() {

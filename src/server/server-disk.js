@@ -8,6 +8,16 @@ export class ServerDisk {
 
     allChecked = false;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     /**
      * 构造函数
      */
@@ -29,6 +39,8 @@ export class ServerDisk {
                 this.allChecked = false;
             },
         });
+
+        $('table.sortable').tablesort();
     }
 
     selectHandler(uiChk, disk) {
@@ -189,4 +201,18 @@ export class ServerDisk {
         // toastr.info('扩容操作...');
         this.uiDiskExpansionModal.show();
     }
+
+    onpageHandler(selectedPage) {
+        console.log(selectedPage);
+        this.page = {
+            currentPage: selectedPage,
+            pageSize: 10,
+            size: 10,
+            total: 75,
+            pageCount: 8,
+            hasPreviousPage: false,
+            hasNextPage: true
+        };
+    }
+
 }

@@ -24,15 +24,17 @@
                                 </tr>
                                 <tr>
                                     <th>加密方法</th>
-                                    <td>${details.method}</td>
+                                    <td>${details.encryptmode}</td>
                                 </tr>
                                 <tr>
                                     <th>公钥</th>
-                                    <td>${details.publicKey}</td>
+                                    <td>${details.content}</td>
                                 </tr>
                                 <tr>
                                     <th>主机</th>
-                                    <td>${details.hosts}</td>
+                                    <td>
+                                        <div class="ui basic label" repeat.for="h of details.hostList">${h.name}</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>

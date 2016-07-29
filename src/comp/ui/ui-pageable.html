@@ -1,0 +1,27 @@
+<template>
+    <div class="ui basic label">
+        共计
+        <div class="detail">${page.pageCount}页/${page.total}条</div>
+    </div>
+    <!-- <div class="ui basic label">
+        当前:
+        <div class="detail">第1页/共10条</div>
+    </div> -->
+    <div class="ui right floated pagination menu">
+        <a class="icon item ${page.currentPage == 1 ? 'disabled' : ''}" click.delegate="pageHandler(page.currentPage - 1)">
+            <i class="left chevron icon"></i>
+        </a>
+        <a class="item" if.bind="page.currentPage - 2 > 1" click.delegate="pageHandler(1)">${'1'}</a>
+        <div class="item" if.bind="page.currentPage - 3 > 1">...</div>
+        <a class="item" if.bind="page.currentPage > 2" click.delegate="pageHandler(page.currentPage - 2)">${page.currentPage - 2}</a>
+        <a class="item" if.bind="page.currentPage > 1" click.delegate="pageHandler(page.currentPage - 1)">${page.currentPage - 1}</a>
+        <a class="item active">${page.currentPage}</a>
+        <a class="item" if.bind="page.currentPage + 1 <= page.pageCount" click.delegate="pageHandler(page.currentPage + 1)">${page.currentPage + 1}</a>
+        <a class="item" if.bind="page.currentPage + 2 <= page.pageCount" click.delegate="pageHandler(page.currentPage + 2)">${page.currentPage + 2}</a>
+        <div class="item" if.bind="page.currentPage + 3 < page.pageCount">...</div>
+        <a class="item" if.bind="page.currentPage + 2 < page.pageCount" click.delegate="pageHandler(page.pageCount)">${page.pageCount}</a>
+        <a class="icon item ${page.currentPage == page.pageCount ? 'disabled' : ''}" click.delegate="pageHandler(page.currentPage + 1)">
+            <i class="right chevron icon"></i>
+        </a>
+    </div>
+</template>

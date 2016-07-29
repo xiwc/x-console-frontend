@@ -1,0 +1,23 @@
+{
+  "id": "ssh-dadadad",
+  "name": "新建的随机密钥",
+  "desc": "密钥描述",
+  "type": "ssdsdsdsdsdsdsdsdsdsdaadassdsdsdsdsdsdsdsdsdsdaadassdsdsdsdsdsdsdsdsdsdaadassdsdsdsdsdsdsdsdsdsdaadassdsdsdsdsdsdsdsdsdsdaadassdsdsdsdsdsdsdsdsdsdaadassdsdsdsdsdsdsdsdsdsdaada",
+  "encryptmode": "ssh-rsa",
+  "content": null,
+  "createTime": 1469744094504,
+  "hostList": [
+    {
+      "id": "123",
+      "name": "i-sdsadsa"
+    },
+    {
+      "id": "56",
+      "name": "i-cdada"
+    },
+    {
+      "id": "678",
+      "name": "i-xaxaxd"
+    }
+  ]
+}

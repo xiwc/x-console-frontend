@@ -3,6 +3,7 @@
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-sshkey-create-modal"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
     <div class="nx-server-ssh animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -17,10 +18,11 @@
             </div>
         </div>
         <div class="ui basic segment" ref="container">
-            <table class="ui compact celled definition table">
+            <!-- <table class="ui compact celled definition table"> -->
+            <table class="ui sortable compact celled table">
                 <thead class="full-width">
                     <tr>
-                        <th>
+                        <th class="no-sort">
                             <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
@@ -30,7 +32,7 @@
                         <th>名称</th>
                         <th>加密方法</th>
                         <th>创建时间</th>
-                        <th>操作</th>
+                        <th class="no-sort">操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,19 +45,26 @@
                         </td>
                         <td><a href="/#/server/ssh-details/${k.id}">${k.id}</a></td>
                         <td>${k.name}</td>
-                        <td>${k.method}</td>
-                        <td>${k.createDate}</td>
+                        <td>${k.encryptmode}</td>
+                        <td>${k.createPeriod}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
                                 <i class="dropdown icon"></i>
                                 <div class="left menu">
-                                    <div click.delegate="updateHandler()" class="item">修改名称</div>
+                                    <div click.delegate="updateHandler(k)" class="item">修改名称</div>
                                 </div>
                             </div>
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="6">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
