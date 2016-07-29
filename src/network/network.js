@@ -4,12 +4,6 @@ export class Network {
     configureRouter(config, router) {
 
         config.map([{
-            route: ['dashboard'],
-            name: 'dashboard',
-            moduleId: 'network/network-dashboard',
-            nav: true,
-            title: '总览'
-        }, {
             route: ['private'],
             name: 'private',
             moduleId: 'network/network-private',
@@ -41,7 +35,7 @@ export class Network {
             title: '防火墙'
         }, {
             route: '',
-            redirect: 'dashboard'
+            redirect: 'private'
         }]);
 
         this.router = router;

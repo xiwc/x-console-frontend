@@ -1,0 +1,52 @@
+<template>
+    <require from="./server-security-details.css"></require>
+    <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <div class="nx-server-security-details animated bounceInDown">
+        <ui-nav steps.bind="steps"></ui-nav>
+        <div class="ui basic segment" ref="container">
+            <div class="ui celled grid">
+                <div class="three column row">
+                    <div class="column nx-basic-info">
+                        <h3 class="ui header">基本属性</h3>
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>${details.id}</td>
+                                </tr>
+                                <tr>
+                                    <th>名称</th>
+                                    <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>描述</th>
+                                    <td>${details.desc}</td>
+                                </tr>
+                                <tr>
+                                    <th>创建时间</th>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="text">更多操作</div>
+                            <i class="dropdown icon"></i>
+                            <div class="left menu">
+                                <div click.delegate="newRuleHandler(details)" class="item">新建规则</div>
+                                <div click.delegate="updateHandler(details)" class="item">修改名称</div>
+                                <div click.delegate="addToHostHandler(details)" class="item disabled">关联到主机</div>
+                                <div click.delegate="delHandler(details)" class="item">删除</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="column"></div>
+                    <div class="column"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-name-update-modal show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+</template>
