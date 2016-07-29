@@ -10,11 +10,22 @@ export class ServerSSH {
 
     allChecked = false;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     /**
      * 构造函数
      */
     constructor(getHttp) {
         this.http = getHttp();
+        // this.initPage();
     }
 
     /**
@@ -156,5 +167,18 @@ export class ServerSSH {
                 toastr.success('修改SSH密钥名称成功!');
             });
         });
+    }
+
+    onpageHandler(selectedPage) {
+        console.log(selectedPage);
+        this.page = {
+            currentPage: selectedPage,
+            pageSize: 10,
+            size: 10,
+            total: 75,
+            pageCount: 8,
+            hasPreviousPage: false,
+            hasNextPage: true
+        };
     }
 }
