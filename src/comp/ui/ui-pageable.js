@@ -4,6 +4,7 @@ import {
 }
 from 'aurelia-framework';
 
+@containerless
 export class UiPageable {
 
     @bindable page;
@@ -20,9 +21,11 @@ export class UiPageable {
     //     hasNextPage: true
     // };
 
-
-
     pageHandler(page) {
+        if (page < 1 || page > this.page.pageCount) {
+            return;
+        }
+
         this.selectedPage = page;
         this.onpage && this.onpage(page);
     }
