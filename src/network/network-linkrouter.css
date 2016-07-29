@@ -1,4 +1,4 @@
-.nx-linkrouter .ui.form .inline.fields .field:not(.wide) .ui.input, .ui.form .inline.field:not(.wide) .ui.input{
+.nx-linkrouter .ui.form .inline.fields .field:not(.wide) .ui.input,.nx-linkrouter .ui.form .inline.field:not(.wide) .ui.input{
 	width:50px;
 }
 .nx-linkrouter .ui.dropdown > .text{letter-spacing: 6px;}

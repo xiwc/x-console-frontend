@@ -43,9 +43,16 @@ export class NetworkPrivate {
      * 当视图被附加到DOM中时被调用
      */
     attached() {
-        // $('.nx-dd-action-hide', this.container).dropdown({
-        //     action: 'hide'
-        // });
+        $(this.uiChkAll).checkbox({
+            onChecked: () => {
+                _.each(this.privateNetworks, (d) => { d.checked = true });
+                this.allChecked = true;
+            },
+            onUnchecked: () => {
+                _.each(this.privateNetworks, (d) => { d.checked = false });
+                this.allChecked = false;
+            },
+        });
     }
 
     initActionsHandler(uiActions) {
@@ -65,7 +72,7 @@ export class NetworkPrivate {
                 })
             }).then((resp) => {
                 // this. = resp.data;
-               this.getPrivateNetwork();
+                this.getPrivateNetwork();
             });
         }));
     }
@@ -73,14 +80,27 @@ export class NetworkPrivate {
     //批量删除
     delMoreHandler() {
         //获取被选中的记录
-        let checkedIist = [];
-        $("#tbody1").find("input[type=checkbox]").each(function() {
-            if ($(this).get(0).checked) {
-                checkedIist.push($(this).index());
+        var items = this.getCheckedItems();
+        if (items.length == 0) {
+            toastr.error('请先选择要删除的项目!');
+            return;
+        }
+
+        this.deleteconfirm.show({
+            onapprove: () => {
+                _.each(items, (pw) => {
+                    this.http.fetch(nsApi.url('privateNetwork.delete.post', {
+                        id: pw.id
+                    }), { method: 'post' }).then((resp) => {
+                        // this. = resp.data;
+                        this.privateNetworks = _.filter(this.privateNetworks, (d) => {
+                            return (d.id != pw.id);
+                        });
+                        toastr.success('删除成功!');
+                    });
+                });
             }
         });
-        if (checkedIist.length > 0)
-            this.deleteconfirm.show();
     }
 
     //删除单条
@@ -100,10 +120,35 @@ export class NetworkPrivate {
         });
     }
 
-    //全部选中
-    selectAll() {
-        //console.log($("#allCheckBox").get(0).checked); 
-        $("#tbody1").find("input[type=checkbox]").prop("checked", $("#allCheckBox").get(0).checked);
+    selectHandler(uiChk, pn) {
+        $(uiChk).checkbox({
+            onChecked: () => {
+                pn.checked = true;
+                this.allChecked = this.isAllChecked();
+            },
+            onUnchecked: () => {
+                pn.checked = false;
+                this.allChecked = this.isAllChecked();
+            }
+        });
+    }
+
+    isAllChecked() {
+        let flg = true;
+        _.each(this.privateNetworks, (d) => {
+            if (!d.checked) {
+                flg = false;
+                return false;
+            }
+        });
+
+        return flg;
+    }
+
+    getCheckedItems() {
+        return _.filter(this.privateNetworks, (d) => {
+            return d.checked;
+        });
     }
 
     //修改名称

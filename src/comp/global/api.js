@@ -107,6 +107,27 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '修改私有网络名称'
+        },
+        'router.list.get': {
+            real: 'api/router/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取路由器列表'
+        },
+        'router.create.post': {
+            real: 'api/router/create',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '创建路由器'
+        },
+        'router.delete.post': {
+            real: 'api/router/delete',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '删除路由器'
         }
     };
 

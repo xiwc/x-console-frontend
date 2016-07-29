@@ -1,11 +1,12 @@
 <template>
-    <require from="./network-private.css"></require>
+    <require from="./network-style.css"></require>
+    <!-- <require from="./network-private.css"></require> -->
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-name-create-modal"></require>
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="./network-linkrouter"></require>
-    <div class="nx-network-private animated bounceInDown">
+    <div class="nx-network-publick-style animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
             <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新私有网络" data-position="top left" data-inverted="">
@@ -30,8 +31,8 @@
                 <thead class="full-width">
                     <tr>
                         <th>
-                            <div class="ui fitted checkbox">
-                                <input type="checkbox" change.delegate="selectAll()" id="allCheckBox">
+                            <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
+                                <input type="checkbox">
                                 <label></label>
                             </div>
                         </th>
@@ -46,7 +47,7 @@
                 <tbody id="tbody1">
                     <tr repeat.for='pw of privateNetworks'>
                         <td class="collapsing">
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, pw)" chk.bind="pw.checked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
