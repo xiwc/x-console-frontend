@@ -35,7 +35,7 @@ export class Network {
             title: '防火墙'
         }, {
             route: '',
-            redirect: 'dashboard'
+            redirect: 'private'
         }]);
 
         this.router = router;
