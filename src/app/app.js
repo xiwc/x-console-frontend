@@ -1,4 +1,5 @@
 import 'vender/semantic-ui/semantic';
+import 'jquery-tablesort';
 
 export class App {
 

@@ -6,6 +6,16 @@ export class ServerHost {
 
     steps = ['上海一区', '云服务器', '主机'];
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     /**
      * 构造函数
      */
@@ -20,6 +30,8 @@ export class ServerHost {
         $('.nx-dd-action-hide', this.container).dropdown({
             action: 'hide'
         });
+
+        $('table.sortable').tablesort();
     }
 
     /**
@@ -55,6 +67,19 @@ export class ServerHost {
         }).then((resp) => {
             toastr.info(JSON.stringify(resp));
         });
+    }
+
+    onpageHandler(selectedPage) {
+        console.log(selectedPage);
+        this.page = {
+            currentPage: selectedPage,
+            pageSize: 10,
+            size: 10,
+            total: 75,
+            pageCount: 8,
+            hasPreviousPage: false,
+            hasNextPage: true
+        };
     }
 
 }

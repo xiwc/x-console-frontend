@@ -3,6 +3,7 @@
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-host-create-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
     <div class="nx-server-host animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -36,10 +37,10 @@
             </div>
         </div>
         <div class="ui basic segment" ref="container">
-            <table class="ui compact celled definition table">
+            <table class="ui sortable compact celled table">
                 <thead class="full-width">
                     <tr>
-                        <th>
+                        <th class="no-sort">
                             <div class="ui fitted checkbox">
                                 <input type="checkbox">
                                 <label></label>
@@ -54,7 +55,7 @@
                         <th>公网IP</th>
                         <th>防火墙</th>
                         <th>创建时间</th>
-                        <th>操作</th>
+                        <th class="no-sort">操作</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -179,6 +180,13 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="11">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

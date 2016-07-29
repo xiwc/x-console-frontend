@@ -19,10 +19,10 @@
         </div>
         <div class="ui basic segment" ref="container">
             <!-- <table class="ui compact celled definition table"> -->
-            <table class="ui compact celled table">
+            <table class="ui sortable compact celled table">
                 <thead class="full-width">
                     <tr>
-                        <th>
+                        <th class="no-sort">
                             <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
@@ -32,7 +32,7 @@
                         <th>名称</th>
                         <th>加密方法</th>
                         <th>创建时间</th>
-                        <th>操作</th>
+                        <th class="no-sort">操作</th>
                     </tr>
                 </thead>
                 <tbody>

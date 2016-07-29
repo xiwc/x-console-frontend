@@ -27,6 +27,17 @@ export class ServerMirror {
     //     "version": "string2"
     // }];
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
+
     /**
      * 构造函数
      */
@@ -54,6 +65,8 @@ export class ServerMirror {
                 });
             }
         });
+
+        $('table.sortable').tablesort();
     }
 
     refreshHandler() {
@@ -102,6 +115,19 @@ export class ServerMirror {
                 // console.log(mirror);
             }
         });
+    }
+
+    onpageHandler(selectedPage) {
+        console.log(selectedPage);
+        this.page = {
+            currentPage: selectedPage,
+            pageSize: 10,
+            size: 10,
+            total: 75,
+            pageCount: 8,
+            hasPreviousPage: false,
+            hasNextPage: true
+        };
     }
 
 }
