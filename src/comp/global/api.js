@@ -80,6 +80,55 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '创建云硬盘'
         },
+        'privateNetwork.list.get': {
+            real: 'api/privateNetwork/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取私有网络列表'
+        },
+        'privateNetwork.create.post': {
+            real: 'api/privateNetwork/create',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '添加私有网络'
+        },
+        'privateNetwork.delete.post': {
+            real: 'api/privateNetwork/delete',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '创建私有网络'
+        },
+        'privateNetwork.updateName.post': {
+            real: 'api/privateNetwork/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '修改私有网络名称'
+        },
+        'router.list.get': {
+            real: 'api/router/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取路由器列表'
+        },
+        'router.create.post': {
+            real: 'api/router/create',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '创建路由器'
+        },
+        'router.delete.post': {
+            real: 'api/router/delete',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '删除路由器'
+        },
         'keystore.list.get': {
             real: 'api/keystore/list',
             mock: 'mock/keystore/list.get.json',

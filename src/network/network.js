@@ -16,6 +16,12 @@ export class Network {
             nav: true,
             title: '私有网络'
         }, {
+            route: ['private-details/:id'],
+            name: 'private-details',
+            moduleId: 'network/network-private-details',
+            nav: false,
+            title: '私有网络详情'
+        }, {
             route: ['router'],
             name: 'router',
             moduleId: 'network/network-router',

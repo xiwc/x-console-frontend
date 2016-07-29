@@ -1,11 +1,85 @@
 <template>
+    <require from="./network-style.css"></require>
     <require from="comp/ui/ui-nav"></require>
-    <div class="nx-network-router animated bounceInDown">
+    <require from="comp/ui/ui-network-router-create-modal"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="./network-linkrouter"></require>
+    <div class="nx-network-publick-style animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
-        <div class="ui basic segment">
-            <div class="ui message">
-                ${steps[2]}
+        <div class="ui basic segment nx-toolbar">
+            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新私有网络" data-position="top left" data-inverted="">
+                <i class="refresh icon"></i>
+            </div>
+            <div class="ui primary button" click.delegate="createHandler()">
+                <i class="add icon"></i> 创建
+            </div>
+            <div class="ui red button" click.delegate="delMoreHandler()">
+                删除
+            </div>
+            <div class="ui search">
+                <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="检索...">
+                    <i class="search link icon"></i>
+                </div>
+                <div class="results"></div>
             </div>
         </div>
+        <div class="ui basic segment" ref="container">
+            <table class="ui compact celled definition table">
+                <thead class="full-width">
+                    <tr>
+                        <th>
+                            <div class="ui fitted checkbox"  ref="uiChkAll" chk.bind="allChecked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </th>
+                        <th>ID</th>
+                        <th>名称</th>
+                        <th>状态</th>
+                        <th>类型</th>
+                        <th>内网IP</th>
+                        <th>外网IP</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody1">
+                    <tr repeat.for='r of routers'>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, r)" chk.bind="r.checked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td><a>${r.id}</a></td>
+                        <td>${r.name}</td>
+                        <td>${r.status}</td>
+                        <td>${r.type}</td>
+                        <td>${r.managerIp}</td>
+                        <td>${r.ip}</td>
+                        <td>${r.createPeriod}</td>
+                        <td>
+                            <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item" click.delegate="updateName()">修改名称</div>
+                                    <div class="divider"></div>
+                                    <div class="item" click.delegate="linkRouter()">连接路由器</div>
+                                    <div class="item" click.delegate="delRouter()">离开路由器</div>
+                                    <div class="divider"></div>
+                                    <div class="item" click.delegate="delHandler()">删除</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <ui-network-router-create-modal ui-network-router-create-modal.ref="createconfirm" title.bind="createTitle"></ui-network-router-create-modal>
+    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" title.bind="updateNameTitle"></ui-name-update-modal>
+    <network-linkrouter network-linkrouter.ref="linRouterDialog"></network-linkrouter>
+    <ui-confirm ui-confirm.ref="deleteRouterconfirm" title.bind="deleteTite" content.bind="deleteRouterContent"></ui-confirm>
 </template>

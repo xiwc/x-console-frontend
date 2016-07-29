@@ -1,0 +1,9 @@
+.nx-linkrouter .ui.form .inline.fields .field:not(.wide) .ui.input,.nx-linkrouter .ui.form .inline.field:not(.wide) .ui.input{
+	width:50px;
+}
+.nx-linkrouter .ui.dropdown > .text{letter-spacing: 6px;}
+.nx-linkrouter span{margin: 0 10px;}
+.nx-linkrouter .inline.field label:first-child{
+	width:50px;
+	text-align: right;
+}
