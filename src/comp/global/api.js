@@ -129,6 +129,20 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '删除路由器'
         },
+        'router.updateName.post': {
+            real: 'api/router/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '路由器修改名称'
+        },
+        'router.updatePublicIp.post': {
+            real: 'api/router/updatePublicIp',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '路由器修改公网IP'
+        },
         'keystore.list.get': {
             real: 'api/keystore/list',
             mock: 'mock/keystore/list.get.json',
