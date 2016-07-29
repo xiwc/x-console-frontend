@@ -3,6 +3,7 @@
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-sshkey-create-modal"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
     <div class="nx-server-ssh animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -17,7 +18,8 @@
             </div>
         </div>
         <div class="ui basic segment" ref="container">
-            <table class="ui compact celled definition table">
+            <!-- <table class="ui compact celled definition table"> -->
+            <table class="ui compact celled table">
                 <thead class="full-width">
                     <tr>
                         <th>
@@ -43,8 +45,8 @@
                         </td>
                         <td><a href="/#/server/ssh-details/${k.id}">${k.id}</a></td>
                         <td>${k.name}</td>
-                        <td>${k.method}</td>
-                        <td>${k.createDate}</td>
+                        <td>${k.encryptmode}</td>
+                        <td>${k.createPeriod}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
@@ -56,6 +58,13 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="6">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

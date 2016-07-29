@@ -48,6 +48,7 @@ export class UiSshkeyCreateModal {
 
         $(this.md).modal({
             closable: false,
+            autofocus: false,
             allowMultiple: true,
             onShow: () => {
                 this.name = '';
