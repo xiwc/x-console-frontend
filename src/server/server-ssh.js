@@ -153,6 +153,7 @@ export class ServerSSH {
     }
 
     updateHandler(sshkey) {
+        this.selectedSshkey = sshkey;
         // toastr.info('修改名称操作...');
         this.uiNameUpdateModal.show((result) => {
             this.http.fetch(nsApi.url('keystore.updateName.post'), {

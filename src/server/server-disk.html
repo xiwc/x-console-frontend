@@ -84,7 +84,7 @@
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
     <ui-disk-create-modal ui-disk-create-modal.ref="uiDiskCreateModal"></ui-disk-create-modal>
-    <ui-name-update-modal show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+    <ui-name-update-modal name.bind="selectedDisk.name" desc.bind="selectedDisk.desc" show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
     <ui-host-select-modal ui-host-select-modal.ref="uiHostSelectModal"></ui-host-select-modal>
     <ui-disk-expansion-modal ui-disk-expansion-modal.ref="uiDiskExpansionModal"></ui-disk-expansion-modal>
 </template>

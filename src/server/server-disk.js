@@ -160,6 +160,7 @@ export class ServerDisk {
     }
 
     updateHandler(disk) {
+        this.selectedDisk = disk;
         // console.log(disk);
         // toastr.info('修改名称操作...');
         this.uiNameUpdateModal.show((result => {
