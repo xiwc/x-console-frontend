@@ -73,7 +73,8 @@ export class ServerSecurity {
         });
     }
 
-    updateHandler() {
+    updateHandler(security) {
+        this.selectedSecurity = security;
         this.uiNameUpdateModal.show((result) => {
             toastr.info('修改名称...');
         });
