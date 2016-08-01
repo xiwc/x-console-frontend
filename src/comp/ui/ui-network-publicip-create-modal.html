@@ -1,0 +1,48 @@
+<template>
+    <div class="ui large modal nx-network-router-create" ref="md">
+        <div class="header">
+            申请公网IP
+        </div>
+        <div class="content">
+            <div class="ui bottom attached tab segment active">
+                <div class="ui form" ref="form">
+                    <div class="inline fields">
+                        <label>名称</label>
+                        <div class="ui input">
+                            <input type="text" name="name" value.bind="name" placeholder="">
+                        </div>
+                    </div>
+                    <div class="inline fields">
+                        <label>数量</label>
+                        <div class="ui input">
+                            <input type="text" name="name" value.bind="name" placeholder="">
+                        </div>
+                    </div>
+                    <div class="inline fields">
+                        <label>计费模式</label>
+                        <select class="ui dropdown">
+                            <option value="1">按带宽计费</option>
+                            <option value="1">按流量计费</option>
+                        </select>
+                    </div>
+                    <div class="inline fields">
+                        <label>带宽上限</label>
+                        <select class="ui dropdown" ref="firewall">
+                            <option value="1">缺省防火墙</option>
+                        </select>
+                    </div>
+                    <div class="inline fields">
+                        <label>IP线路</label>
+                        <select class="ui dropdown" ref="firewall">
+                            <option value="1">BGD线路</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>
