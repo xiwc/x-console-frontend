@@ -336,6 +336,15 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
 
 .nx-main-body .nx-second-view {
     padding-left: 180px;
+    position: absolute;
+    top: 47px;
+    bottom: 0;
+    width: 100%;
+    padding-right: 180px;
+}
+
+.nx-left-sidebar-menu-labeled-icon .nx-main-body .nx-second-view {
+    padding-right: 77px;
 }
 
 .nx-main-body .ui.secondary.pointing.menu a.item:hover {

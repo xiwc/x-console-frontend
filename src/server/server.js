@@ -16,6 +16,12 @@ export class Server {
             nav: true,
             title: '主机'
         }, {
+            route: ['host-details/:id'],
+            name: 'host-details',
+            moduleId: 'server/server-host-details',
+            nav: false,
+            title: '主机详情'
+        }, {
             route: ['mirror'],
             name: 'mirror',
             moduleId: 'server/server-mirror',
