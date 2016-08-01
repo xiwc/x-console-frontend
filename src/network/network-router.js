@@ -34,11 +34,14 @@ export class NetworkRouter {
         获取路由器列表
     */
     getRouters() {
-        return this.http.fetch(nsApi.url('router.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
-            this.routers = resp.list;
-        }).then(() => {
-            this.allChecked = false;
-        });
+        return this.http.fetch(nsApi.url('router.list.get', { pageNo: 1, pageSize: 1 }))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                this.routers = data.list;
+            }).then(() => {
+                this.allChecked = false;
+            });
     }
 
     /**

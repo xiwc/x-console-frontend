@@ -32,11 +32,14 @@ export class NetworkPrivate {
 
     */
     getPrivateNetwork() {
-        return this.http.fetch(nsApi.url('privateNetwork.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
-            this.privateNetworks = resp.list;
-        }).then(() => {
-            this.allChecked = false;
-        });
+        return this.http.fetch(nsApi.url('privateNetwork.list.get', { pageNo: 1, pageSize: 1 }))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                this.privateNetworks = data.list;
+            }).then(() => {
+                this.allChecked = false;
+            });
     }
 
     /**

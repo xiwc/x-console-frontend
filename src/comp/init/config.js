@@ -29,12 +29,16 @@ export class Config {
                         return req;
                     },
                     requestError(req) {
-                        // console.log(req);
+                        console.log(req);
                     },
                     response(resp) {
                         // toastr.info(`Received ${response.status} ${response.url}`);
                         NProgress && NProgress.done();
-                        return resp.json();
+                        if (!resp.ok) {
+                            toastr.error(resp.statusText, '网络请求错误!');
+                        }
+
+                        return resp;
                     },
                     responseError(resp) {
                         toastr.error(resp.message, '网络请求错误!');

@@ -79,9 +79,10 @@ export class UiDiskCreateModal {
                         "type": this.type // TODO 后端需要怎么mapping
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
-                    this.onapprove && this.onapprove();
-                    toastr.success('硬盘创建成功!');
+                    if (resp.ok) {
+                        this.onapprove && this.onapprove();
+                        toastr.success('硬盘创建成功!');
+                    }
                 });
             },
             onDeny: () => {}
