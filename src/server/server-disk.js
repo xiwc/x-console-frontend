@@ -87,7 +87,9 @@ export class ServerDisk {
 
     getDisks() {
         return this.http.fetch(nsApi.url('disk.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
-            this.disks = resp.list;
+            return resp.json();
+        }).then((data) => {
+            this.disks = data.list;
         }).then(() => {
             this.allChecked = false;
         });

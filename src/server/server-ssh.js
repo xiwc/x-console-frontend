@@ -58,20 +58,15 @@ export class ServerSSH {
     }
 
     getSshkeys() { // TODO mockserver?
-        return this.http.fetch(nsApi.url('keystore.list.get', { pageNo: 1, pageSize: 1000 })).then((resp) => {
-            this.sshkeys = resp.list;
-        });
-        // this.sshkeys = [{
-        //     id: 'ssh-kajksdjns',
-        //     name: '密钥001',
-        //     method: 'ssh-rsa',
-        //     createDate: '2天前'
-        // }, {
-        //     id: 'ssh-kajksdjns',
-        //     name: '密钥001',
-        //     method: 'ssh-rsa',
-        //     createDate: '2天前'
-        // }];
+        return this.http.fetch(nsApi.url('keystore.list.get', {
+                pageNo: 1,
+                pageSize: 1000
+            }))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                this.sshkeys = data.list;
+            });
     }
 
     getCheckedItems() {
