@@ -18,6 +18,7 @@
 > https://github.com/asual/jquery-format  https://www.npmjs.com/package/jquery-format  
 > https://www.npmjs.com/package/moment-format  
 > https://github.com/kylefox/jquery-tablesort https://www.npmjs.com/package/jquery-tablesort  
+> https://github.com/aurelia/i18n  
 
 ## 入门指南(Getting started)
 

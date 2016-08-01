@@ -64,6 +64,9 @@ export class App {
      * 当视图被附加到DOM中时被调用
      */
     attached() {
+
+        // toastr.info(_.tr('key', { someone: 'john' }));
+
         $('.ui.accordion').accordion();
         $('.ui.dropdown').dropdown();
         $('.ui.dropdown.nx-dd-action-hide').dropdown({
