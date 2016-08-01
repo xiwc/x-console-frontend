@@ -1,4 +1,5 @@
-import 'vender/semantic-ui/semantic';
+// import 'vender/semantic-ui/semantic';
+import 'wlzc-semantic-ui';
 import 'jquery-tablesort';
 
 export class App {

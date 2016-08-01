@@ -6,6 +6,7 @@
     <require from="comp/ui/ui-host-select-modal"></require>
     <require from="comp/ui/ui-disk-expansion-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
+    <require from="comp/vc/vc-common"></require>
     <div class="nx-server-disk animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -50,10 +51,10 @@
                         </td>
                         <td><a href="/#/server/disk-details/${d.id}">${d.id}</a></td>
                         <td>${d.name}</td>
-                        <td>${d.status}</td>
+                        <td>${d.status | mapping:'diskStatus'}</td>
                         <td>${d.volumnName}</td>
                         <td>${d.capacity}</td>
-                        <td>${d.type}</td>
+                        <td>${d.type | mapping:'diskType'}</td>
                         <td>${d.backupPeriod}</td>
                         <td>${d.createPeriod}</td>
                         <td>
@@ -83,7 +84,7 @@
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
     <ui-disk-create-modal ui-disk-create-modal.ref="uiDiskCreateModal"></ui-disk-create-modal>
-    <ui-name-update-modal show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+    <ui-name-update-modal name.bind="selectedDisk.name" desc.bind="selectedDisk.desc" show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
     <ui-host-select-modal ui-host-select-modal.ref="uiHostSelectModal"></ui-host-select-modal>
     <ui-disk-expansion-modal ui-disk-expansion-modal.ref="uiDiskExpansionModal"></ui-disk-expansion-modal>
 </template>

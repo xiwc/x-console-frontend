@@ -33,7 +33,7 @@ export class NetworkPrivate {
     */
     getPrivateNetwork() {
         return this.http.fetch(nsApi.url('privateNetwork.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
-            this.privateNetworks = resp.data;
+            this.privateNetworks = resp.list;
         }).then(() => {
             this.allChecked = false;
         });

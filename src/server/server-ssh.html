@@ -70,5 +70,5 @@
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
     <ui-sshkey-create-modal ui-sshkey-create-modal.ref="uiSshkeyCreateModal"></ui-sshkey-create-modal>
-    <ui-name-update-modal ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+    <ui-name-update-modal name.bind="selectedSshkey.name" desc.bind="selectedSshkey.desc" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
 </template>

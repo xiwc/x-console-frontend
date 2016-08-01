@@ -104,7 +104,7 @@ export class ServerMirror {
             type: '1',
             pageNo: '1'
         })).then((resp) => {
-            this.mirrors = resp.data;
+            this.mirrors = resp.list;
         });
     }
 
