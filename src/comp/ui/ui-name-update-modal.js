@@ -52,7 +52,7 @@ export class UiNameUpdateModal {
                         prompt: '名称不能为空!'
                     }, {
                         type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{1,16}$/]',
-                        prompt: '1-16个字符(大写字母,小写字母,数字,-,_)!'
+                        prompt: '1-16个字符(大小字母、数字、_、-、汉字)!'
                     }]
                 }
             }

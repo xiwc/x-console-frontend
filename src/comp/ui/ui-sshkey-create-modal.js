@@ -92,8 +92,8 @@ export class UiSshkeyCreateModal {
                         type: 'empty',
                         prompt: '密钥名称不能为空!'
                     }, {
-                        type: 'regExp[/^[a-zA-Z0-9\-_]{1,16}$/]',
-                        prompt: '1-16个字符(大写字母,小写字母,数字,-,_)!'
+                        type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{1,16}$/]',
+                        prompt: '1-16个字符(大小字母、数字、_、-、汉字)!'
                     }]
                 }
             }
