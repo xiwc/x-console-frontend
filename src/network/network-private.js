@@ -61,6 +61,11 @@ export class NetworkPrivate {
         });
     }
 
+    refreshHandler() {
+        this.getPrivateNetwork();
+        toastr.info('刷新成功!');
+    }
+
     //创建
     createHandler() {
         this.createconfirm.show((result => {

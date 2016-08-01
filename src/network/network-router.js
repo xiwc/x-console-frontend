@@ -143,6 +143,12 @@ export class NetworkRouter {
         });
     }
 
+    refreshHandler() {
+        this.getRouters();
+        toastr.info('刷新成功!');
+    }
+    
+
     //修改名称
     updateName(pn) {
         this.updateconfirm.show((result => {
