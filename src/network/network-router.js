@@ -15,6 +15,16 @@ export class NetworkRouter {
     routers = null;
     allChecked = false;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
     }
@@ -39,6 +49,8 @@ export class NetworkRouter {
                 return resp.json();
             }).then((data) => {
                 this.routers = data.list;
+                this.page.total = data.total;
+                this.page.pageCount = data.pageCount;
             }).then(() => {
                 this.allChecked = false;
             });

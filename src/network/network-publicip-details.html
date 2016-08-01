@@ -1,0 +1,54 @@
+<template>
+    <require from="./network-private-details.css"></require>
+    <require from="comp/ui/ui-nav"></require>
+    <div class="nx-network-private-details animated bounceInDown">
+        <ui-nav steps.bind="steps"></ui-nav>
+        <div class="ui basic segment" ref="container">
+            <div class="ui celled grid">
+                <div class="column row">
+                    <div class="five wide column">
+                        <h3 class="ui header">基本属性</h3>
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>id1111111111111</td>
+                                </tr>
+                                <tr>
+                                    <th>名称</th>
+                                    <td>私有网络01</td>
+                                </tr>
+                                <tr>
+                                    <th>标签</th>
+                                    <td><a class="ui label">标签1 <i class="delete icon"></i> </a></td>
+                                </tr>
+                                <tr>
+                                    <th>路由器</th>
+                                    <td>路由器0101010</td>
+                                </tr>
+                                <tr>
+                                    <th>描述</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>网络地址</th>
+                                    <td>192.168.100.24</td>
+                                </tr>
+                                <tr>
+                                    <th>主机</th>
+                                    <td>i-pdafsadf</td>
+                                </tr>
+                                <tr>
+                                    <th>创建时间</th>
+                                    <td title="${details.createTime | dateFormat}">2016-6-20</td>
+                                </tr>
+                                <tr>
+                            </tbody>
+                        </table> 
+                    </div>
+                    <!-- <div class="column"></div>
+                    <div class="column"></div> -->
+                </div>
+            </div>
+        </div>
+</template>

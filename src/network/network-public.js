@@ -15,11 +15,21 @@ export class NetworkPublic {
     publicIps = null;
     allChecked = false;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
     }
 
-     /**
+    /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
      * @param  {[object]} params                参数
      * @param  {[object]} routeConfig           路由配置
@@ -34,14 +44,25 @@ export class NetworkPublic {
         获取公网IP
     */
     getPublicIps() {
-        return this.http.fetch(nsApi.url('publicIp.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
-            this.publicIps = resp.list;
-        }).then(() => {
-            this.allChecked = false;
-        });
+        return this.http.fetch(nsApi.url('publicIp.list.get', { pageNo: this.page.currentPage, pageSize: this.page.pageSize }))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                this.publicIps = data.list;
+                this.page.total = data.size;
+                this.page.pageCount = data.pageCount;
+            }).then(() => {
+                this.allChecked = false;
+            });
     }
 
-   	/*
+    onpageHandler(selectedPage) {
+        console.log(selectedPage);
+        this.page.currentPage = selectedPage;
+        this.getPublicIps();
+    }
+
+    /*
 		刷新公网IP
    	*/
     refreshHandler() {
@@ -49,7 +70,7 @@ export class NetworkPublic {
         toastr.info('刷新成功!');
     }
 
-     /**
+    /**
      * 当视图被附加到DOM中时被调用
      */
     attached() {
@@ -73,8 +94,7 @@ export class NetworkPublic {
 
     //创建
     createHandler() {
-        this.createconfirm.show();
-        //}));
+        this.createconfirm.show(() => { this.getPublicIps(); });
     }
 
     //批量删除
@@ -104,17 +124,18 @@ export class NetworkPublic {
     }
 
     //删除单条
-    delHandler(pn) {
+    delHandler(o) {
         this.deleteconfirm.show({
             onapprove: () => {
-                this.http.fetch(nsApi.url('router.delete.post', {
-                    id: pn.id
+                this.http.fetch(nsApi.url('publicIp.delete.post', {
+                    id: o.id
                 }), { method: 'post' }).then((resp) => {
-                    // this. = resp.data;
-                    this.publicIps = _.filter(this.publicIps, (d) => {
-                        return (d.id != pn.id);
-                    });
-                    toastr.success('删除成功!');
+                    if (resp.ok) {
+                        this.publicIps = _.filter(this.publicIps, (d) => {
+                            return (d.id != o.id);
+                        });
+                        toastr.success('删除成功!');
+                    }
                 });
             }
         });
@@ -150,7 +171,7 @@ export class NetworkPublic {
             return d.checked;
         });
     }
-    
+
 
     //修改名称
     updateName(pn) {
@@ -173,7 +194,7 @@ export class NetworkPublic {
     }
 
     //修改公网IP.show();
-   updatePublicIp(rt){
+    updatePublicIp(rt) {
         this.updatePublicIpDialog.show((result => {
             this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
                 method: 'post',
@@ -189,6 +210,6 @@ export class NetworkPublic {
             });
             //rt.
         }));
-   }
+    }
 
 }

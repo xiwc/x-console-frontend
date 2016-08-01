@@ -28,6 +28,12 @@ export class Network {
             nav: true,
             title: '公网IP'
         }, {
+            route: ['publicip-details/:id'],
+            name: 'publicip-details',
+            moduleId: 'network/network-publicip-details',
+            nav: false,
+            title: '公网IP'
+        }, {
             route: ['firewall'],
             name: 'firewall',
             moduleId: 'network/network-firewall',

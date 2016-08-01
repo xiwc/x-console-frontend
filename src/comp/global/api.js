@@ -199,6 +199,27 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '获取公网IP'
         },
+        'publicIp.create.post': {
+            real: 'api/publicIp/create',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '申请公网IP'
+        },
+        'publicIp.delete.post': {
+            real: 'api/publicIp/delete',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '删除公网IP'
+        },
+        'publicIp.updateName.post': {
+            real: 'api/publicIp/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '修改公网IP'
+        },
     };
 
     // api debug配置初始化

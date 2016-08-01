@@ -5,6 +5,7 @@
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="comp/ui/ui-network-router-publicip-update-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
     <div class="nx-network-public-style animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -73,6 +74,13 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="10">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

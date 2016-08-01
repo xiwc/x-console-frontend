@@ -1,5 +1,8 @@
 <template>
-    <div class="ui large modal nx-network-router-create" ref="md">
+    <require from="ion-rangeslider/css/ion.rangeSlider.css"></require>
+    <require from="ion-rangeslider/css/ion.rangeSlider.skinNice.css"></require>
+    <require from="./ui-network-publicip-create-modal.css"></require>
+    <div class="ui large modal nx-network-publicip-create-modal" ref="md">
         <div class="header">
             申请公网IP
         </div>
@@ -7,35 +10,62 @@
             <div class="ui bottom attached tab segment active">
                 <div class="ui form" ref="form">
                     <div class="inline fields">
-                        <label>名称</label>
-                        <div class="ui input">
-                            <input type="text" name="name" value.bind="name" placeholder="">
+                        <div class="field">
+                            <label>名称</label>
+                        </div>
+                        <div class="field">
+                            <div class="ui input">
+                                <input type="text" name="name" value.bind="name" placeholder="">
+                            </div>
                         </div>
                     </div>
                     <div class="inline fields">
-                        <label>数量</label>
-                        <div class="ui input">
-                            <input type="text" name="name" value.bind="name" placeholder="">
+                        <div class="field">
+                            <label>数量</label>
+                        </div>
+                        <div class="field">
+                            <div class="ui input">
+                                <input type="text" name="count" value.bind="count" placeholder="">
+                            </div>
                         </div>
                     </div>
                     <div class="inline fields">
-                        <label>计费模式</label>
-                        <select class="ui dropdown">
-                            <option value="1">按带宽计费</option>
-                            <option value="1">按流量计费</option>
-                        </select>
-                    </div>
-                    <div class="inline fields">
-                        <label>带宽上限</label>
-                        <select class="ui dropdown" ref="firewall">
-                            <option value="1">缺省防火墙</option>
-                        </select>
+                        <div class="field">
+                            <label>计费模式</label>
+                        </div>
+                        <div class="field">
+                            <select class="ui dropdown" ref="chargemode">
+                                <option value="1">按带宽计费</option>
+                                <option value="2">按流量计费</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="inline fields">
                         <label>IP线路</label>
-                        <select class="ui dropdown" ref="firewall">
-                            <option value="1">BGD线路</option>
+                        <select class="ui dropdown" ref="linemode">
+                            <option value="1">联通</option>
+                            <option value="2">电信</option>
+                            <option value="3">BGP线路</option>
                         </select>
+                    </div>
+                    <div class="inline fields">
+                        <div class="field">
+                            <label style="position: relative;top: 25px;">带宽上限</label>
+                            <div class="nx-range">
+                                <div class="nx-range-slider">
+                                    <input ref="rangeSize" type="text" value="1" data-min="1" data-max="10" data-step="1" data-grid="true" data-postfix="Mbps">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui input" style="margin-left:-30px; width:50px;">
+                                <input type="text" name="bankWidth" value.bind="bankWidth" placeholder="">
+                                <label style="padding:10px;">Mbps</label>
+                            </div>
+                            <div class="nx-tip" style="margin-left:-30px">
+                                请为您的私有网络指定一个网络地址。
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -13,6 +13,16 @@ export class NetworkPrivate {
     allChecked = false;
     privateNetworks = null;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
     }
@@ -29,7 +39,7 @@ export class NetworkPrivate {
     }
 
     /*
-
+        获取私有网络列表
     */
     getPrivateNetwork() {
         return this.http.fetch(nsApi.url('privateNetwork.list.get', { pageNo: 1, pageSize: 1 }))
@@ -37,6 +47,8 @@ export class NetworkPrivate {
                 return resp.json();
             }).then((data) => {
                 this.privateNetworks = data.list;
+                this.page.total = data.total;
+                this.page.pageCount = data.pageCount;
             }).then(() => {
                 this.allChecked = false;
             });
@@ -74,7 +86,6 @@ export class NetworkPrivate {
         this.createconfirm.show((result => {
             console.log(result.name);
             this.http.fetch(nsApi.url('privateNetwork.create.post'), {
-                method: 'post',
                 body: json({
                     name: result.name
                 })
@@ -187,5 +198,19 @@ export class NetworkPrivate {
     //删除路由器
     delRouter() {
         this.deleteRouterconfirm.show();
+    }
+
+    onpageHandler(selectedPage) {
+        console.log(selectedPage);
+        this.page.currentPage = selectedPage;
+        // this.page = {
+        //     currentPage: selectedPage,
+        //     pageSize: 10,
+        //     size: 10,
+        //     total: 75,
+        //     pageCount: 8,
+        //     hasPreviousPage: false,
+        //     hasNextPage: true
+        // };
     }
 }

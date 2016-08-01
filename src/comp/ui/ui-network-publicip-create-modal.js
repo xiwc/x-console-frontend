@@ -12,23 +12,37 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 @containerless
 export class UiNetworkPublicipCreateModal {
-    
+
     @bindable onapprove = ''; // 确认回调函数
 
     @bindable ondeny = ''; // 取消回调函数
 
     name = "";
+    count = 1;
+    bankWidth = 1;
 
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
     }
 
     attached() {
+        this.bankWidth = 1;
+        $(this.rangeSize).ionRangeSlider({
+            values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            onChange: () => {
+                this.bankWidth = $(this.rangeSize).val();
+                // console.log($(this.rangeBw).val());
+            }
+        });
+
+        this.slider = $(this.rangeSize).data("ionRangeSlider");
+
         $(this.md).modal({
             closable: false,
             allowMultiple: true,
             onShow: () => {
                 this.name = '';
+                this.count = 1;
                 $(this.form).form("reset");
             },
             onApprove: () => {
@@ -36,17 +50,21 @@ export class UiNetworkPublicipCreateModal {
                     toastr.error('表单验证不合法,请修改表单不合法输入!');
                     return false;
                 }
-                this.http.fetch(nsApi.url('router.create.post'), {
+                this.http.fetch(nsApi.url('publicIp.create.post'), {
                     method: 'post',
                     body: json({
                         "name": this.name,
-                        "securityGroupId": $(this.firewall).val(), // TODO 是否可以转移到 url中
-                        "type": $("input[name=type]").val() // TODO 后端需要怎么mapping
+                        "count": this.count,
+                        "bandwidth": $(this.rangeSize).val(),
+                        "chargemode": $(this.chargemode).val(),
+                        "ipline": $(this.linemode).val()
                     })
                 }).then((resp) => {
                     // this. = resp.data;
-                    this.onapprove && this.onapprove();
-                    toastr.success('硬盘创建成功!');
+                    if (resp.ok) {
+                        this.onapprove && this.onapprove();
+                        toastr.success('申请成功!');
+                    }
                 });
             },
             onDeny: () => { this.ondeny && this.ondeny(); }
@@ -61,6 +79,19 @@ export class UiNetworkPublicipCreateModal {
                     rules: [{
                         type: 'empty',
                         prompt: '名称不能为空!'
+                    }, {
+                        type: 'regExp[/^[a-zA-Z0-9\-_]{1,16}$/]',
+                        prompt: '1-16个字符(大写字母,小写字母,数字,-,_)!'
+                    }]
+                },
+                count: {
+                    identifier: 'count',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '数量不能为空!'
+                    }, {
+                        type: 'integer[1..10]',
+                        prompt: '一次创建硬盘数量必须是介于1到5的整数!'
                     }]
                 }
             }

@@ -33,7 +33,7 @@ let envs = [
     },
     // 测试
     {
-        active: true,
+        //active: true,
         console: 'http://192.168.205.12:8081',
         yangyang: 'https://step.newtouchwork.com',
         platform: 'https://www.newtouchwork.com'
@@ -41,6 +41,20 @@ let envs = [
     // 生产
     {
         // active: true,
+        yangyang: 'https://step.newtouch.com',
+        platform: 'https://www.newtouch.com'
+    },
+    // 邓磊
+    {
+        active: true,
+        console: 'http://192.168.40.13:8080',
+        yangyang: 'https://step.newtouch.com',
+        platform: 'https://www.newtouch.com'
+    },
+    // 李康华
+    {
+        //active: true,
+        console: 'http://192.168.40.14:8080',
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
     }
