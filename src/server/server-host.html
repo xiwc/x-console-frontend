@@ -4,6 +4,8 @@
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-host-create-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-disk-select-modal"></require>
     <div class="nx-server-host animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -13,19 +15,19 @@
             <div class="ui primary button" click.delegate="createHandler()">
                 <i class="add icon"></i> 创建
             </div>
-            <div class="ui button" click.delegate="delHandler()">
+            <div class="ui button" click.delegate="startInBatchHandler()">
                 开机
             </div>
-            <div class="ui button" click.delegate="delHandler()">
+            <div class="ui button" click.delegate="softRebootInBatchHandler()">
                 软重启
             </div>
-            <div class="ui button" click.delegate="delHandler()">
+            <div class="ui button" click.delegate="hardRebootInBatchHandler()">
                 硬重启
             </div>
-            <div class="ui button" click.delegate="delHandler()">
+            <div class="ui button" click.delegate="shutdownInBatchHandler()">
                 关机
             </div>
-            <div class="ui red button" click.delegate="delHandler()">
+            <div class="ui red button" click.delegate="delInBatchHandler()">
                 删除
             </div>
             <div class="ui search">
@@ -41,7 +43,7 @@
                 <thead class="full-width">
                     <tr>
                         <th class="no-sort">
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
@@ -52,102 +54,44 @@
                         <th>镜像</th>
                         <th>配置</th>
                         <th>网络</th>
+                        <th>内网IP</th>
                         <th>公网IP</th>
-                        <th>防火墙</th>
+                        <th>安全组</th>
                         <th>创建时间</th>
                         <th class="no-sort">操作</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr repeat.for="item of hosts">
                         <td class="collapsing">
-                            <div class="ui fitted checkbox">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, item)" chk.bind="item.checked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
                         </td>
-                        <td><a href="/#/server/host-details/id-kdfgdfgdfgdf">id-kdfgdfgdfgdf</a></td>
+                        <td><a href="/#/server/host-details/${item.id}">${item.name}</a></td>
                         <td>运行中</td>
                         <td>性能型</td>
                         <td>CentOS</td>
                         <td>1核1G</td>
                         <td>经典网络</td>
                         <td>18.18.18.18</td>
+                        <td>18.18.18.18</td>
                         <td>(缺省防火墙)</td>
                         <td>15天前</td>
                         <td>
-                            <div class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
                                 <i class="dropdown icon"></i>
                                 <div class="left menu">
-                                    <div class="item">修改名称</div>
+                                    <div class="item" click.delegate="updateNameHandler(item)">修改名称</div>
                                     <div class="item">连接管理终端</div>
                                     <div class="divider"></div>
                                     <div class="item">
                                         <i class="dropdown icon"></i> 管理云硬盘
                                         <div class="left menu">
-                                            <div class="item">加载云硬盘</div>
-                                            <div class="item">卸载云硬盘</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="dropdown icon"></i> 管理安全组
-                                        <div class="left menu">
-                                            <div class="item">加载安全组</div>
-                                            <div class="item">卸载安全组</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="dropdown icon"></i> 管理公网IP
-                                        <div class="left menu">
-                                            <div class="item">绑定公网IP</div>
-                                            <div class="item">解绑公网IP</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="dropdown icon"></i> 管理私有网络
-                                        <div class="left menu">
-                                            <div class="item">加入私有网络</div>
-                                            <div class="item">离开私有网络</div>
-                                        </div>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <div class="item">创建快照</div>
-                                    <div class="item">重置系统</div>
-                                    <div class="item">删除</div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="collapsing">
-                            <div class="ui fitted checkbox">
-                                <input type="checkbox">
-                                <label></label>
-                            </div>
-                        </td>
-                        <td>id-sgssdfgsdfgsd</td>
-                        <td>运行中</td>
-                        <td>经济适用型</td>
-                        <td>Ubuntu</td>
-                        <td>2核4G</td>
-                        <td>私有网络</td>
-                        <td>18.18.18.19</td>
-                        <td>防火墙01</td>
-                        <td>3天前</td>
-                        <td>
-                            <div class="ui top right pointing dropdown nx-dd-action-hide">
-                                <div class="text">更多操作</div>
-                                <i class="dropdown icon"></i>
-                                <div class="left menu">
-                                    <div class="item">修改名称</div>
-                                    <div class="item">连接管理终端</div>
-                                    <div class="divider"></div>
-                                    <div class="item">
-                                        <i class="dropdown icon"></i> 管理云硬盘
-                                        <div class="left menu">
-                                            <div class="item">加载云硬盘</div>
-                                            <div class="item">卸载云硬盘</div>
+                                            <div click.delegate="mountDiskHandler(item)" class="item">加载云硬盘</div>
+                                            <div click.delegate="unmountDiskHandler(item)" class="item">卸载云硬盘</div>
                                         </div>
                                     </div>
                                     <div class="item">
@@ -182,7 +126,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="11">
+                        <th colspan="12">
                             <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
                         </th>
                     </tr>
@@ -192,4 +136,6 @@
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
     <ui-host-create-modal ui-host-create-modal.ref="uiHostCreateModal"></ui-host-create-modal>
+    <ui-name-update-modal show-desc.bind="!0" name.bind="selectedHost.name" desc.bind="selectedHost.desc" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+    <ui-disk-select-modal ui-disk-select-modal.ref="uiDiskSelectModal"></ui-disk-select-modal>
 </template>

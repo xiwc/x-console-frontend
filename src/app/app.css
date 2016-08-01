@@ -35,6 +35,11 @@
     z-index: 1;
 }
 
+
+.nx-left-sidebar-menu.ui.vertical.sidebar.labeled.icon.menu {
+    width: 78px;
+}
+
 .nx-left-sidebar-menu .nx-dd-region .dropdown.icon {
     content: "\f0d7"!important;
 }
