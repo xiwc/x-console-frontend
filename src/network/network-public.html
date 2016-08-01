@@ -1,7 +1,10 @@
 <template>
     <require from="./network-style.css"></require>
     <require from="comp/ui/ui-nav"></require>
-
+    <require from="comp/ui/ui-network-publicip-create-modal"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-network-router-publicip-update-modal"></require>
     <div class="nx-network-public-style animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -9,7 +12,7 @@
                 <i class="refresh icon"></i>
             </div>
             <div class="ui primary button" click.delegate="createHandler()">
-                <i class="add icon"></i> 创建
+                <i class="add icon"></i> 申请
             </div>
             <div class="ui red button" click.delegate="delMoreHandler()">
                 删除
@@ -34,37 +37,41 @@
                         </th>
                         <th>ID</th>
                         <th>名称</th>
+                        <th>地址</th>
                         <th>状态</th>
-                        <th>类型</th>
-                        <th>内网IP</th>
-                        <th>外网IP</th>
+                        <th>资源</th>
+                        <th>计费模式</th>
+                        <th>带宽</th>
+                        <th>IP组</th>
                         <th>创建时间</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody id="tbody1">
-                    <tr repeat.for='r of routers'>
+                    <tr repeat.for='p of publicIps'>
                         <td class="collapsing">
-                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, r)" chk.bind="r.checked">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, p)" chk.bind="p.checked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
                         </td>
-                        <td><a>${r.id}</a></td>
-                        <td>${r.name}</td>
-                        <td>${r.status}</td>
-                        <td>${r.type}</td>
-                        <td>${r.managerIp}</td>
-                        <td>${r.ip}</td>
-                        <td>${r.createPeriod}</td>
+                        <td><a>${p.id}</a></td>
+                        <td>${p.name}</td>
+                        <td>${p.ip}</td>
+                        <td>${p.status}</td>
+                        <td>${p.resource}</td>
+                        <td>${p.chargemode}</td>
+                        <td>${p.bankWidth}</td>
+                        <td>${p.linemode}</td>
+                        <td>${p.createPeriod}</td>
                         <td>
                             <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <div class="item" click.delegate="updateName(r)">修改名称</div>
+                                    <div class="item" click.delegate="updateName(p)">修改名称</div>
                                     <div class="divider"></div>
-                                    <div class="item" click.delegate="updatePublicIp(r)">修改公网IP</div>
+                                    <div class="item" click.delegate="updatePublicIp(p)">修改公网IP</div>
                                     <div class="divider"></div>
-                                    <div class="item" click.delegate="delHandler(r)">删除</div>
+                                    <div class="item" click.delegate="delHandler(p)">删除</div>
                                 </div>
                             </div>
                         </td>
@@ -73,4 +80,8 @@
             </table>
         </div>
     </div>
+    <ui-network-publicip-create-modal ui-network-publicip-create-modal.ref="createconfirm"></ui-network-publicip-create-modal>
+    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" title.bind="updateNameTitle"></ui-name-update-modal>
+    <ui-network-router-publicip-update-modal ui-network-router-publicip-update-modal.ref="updatePublicIpDialog"></ui-network-router-publicip-update-modal>
 </template>

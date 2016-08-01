@@ -1,16 +1,17 @@
 <template>
-    <require from="ion-rangeslider/css/ion.rangeSlider.css"></require>
-    <require from="ion-rangeslider/css/ion.rangeSlider.skinNice.css"></require>
-    <require from="./ui-name-create-modal.css"></require>
-    <div ref="md" class="ui small modal nx-name-create">
+    <!--  <require from="./ui-name-create-modal.css"></require> -->
+    <div ref="md" class="ui small modal nx-ui-name-create-modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
             ${title ? title : '创建'}
         </div>
         <div class="content">
             <div class="ui form" ref="form">
-                <div class="ui input">
-                    <input type="text" name="name" value.bind="name" placeholder="input name">
+                <div class="inline field">
+                    <label>名称</label>
+                    <div class="ui input">
+                        <input type="text" name="name" value.bind="name" placeholder="">
+                    </div>
                 </div>
             </div>
         </div>

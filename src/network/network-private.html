@@ -1,12 +1,12 @@
 <template>
     <require from="./network-style.css"></require>
-    <!-- <require from="./network-private.css"></require> -->
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-name-create-modal"></require>
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="./network-linkrouter"></require>
-    <div class="nx-networ-publick-style animated bounceInDown">
+    <require from="comp/ui/ui-pageable"></require>
+    <div class="nx-network-public-style animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
             <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新私有网络" data-position="top left" data-inverted="">
@@ -71,6 +71,13 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="10">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

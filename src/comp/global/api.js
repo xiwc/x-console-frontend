@@ -192,6 +192,13 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '修改密钥名称'
         },
+        'publicIp.list.get': {
+            real: 'api/publicIp/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取公网IP'
+        },
     };
 
     // api debug配置初始化
