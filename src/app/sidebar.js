@@ -11,6 +11,12 @@ export class Sidebar {
 
     @bindable router = null;
 
+    links = [
+        { title: 'RDS', icon: 'database', href: '' },
+        { title: 'Redis', icon: 'database', href: '' },
+        { title: 'MongoDb', icon: 'database', href: '' },
+    ];
+
     /**
      * 构造函数
      */
