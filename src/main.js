@@ -3,40 +3,46 @@ import { bootstrap } from 'aurelia-bootstrapper-webpack';
 import "comp/global/config";
 import "comp/global/helper";
 import "comp/global/api";
+import { I18N } from 'aurelia-i18n';
+import Backend from 'i18next-xhr-backend';
 
 bootstrap(async(aurelia) => {
     aurelia.use
         .standardConfiguration()
         .developmentLogging()
         .feature('comp/init')
-        // .plugin('aurelia-i18n', (i18n) => {
-        //     // 添加i18n对象为全局对象
-        //     _.i18n = i18n;
-        //     _.tr = _(i18n.tr).bind(i18n);
+        .plugin('aurelia-i18n', (i18n) => {
+            // register backend plugin
+            i18n.i18next.use(Backend);
+            // 添加i18n对象为全局对象
+            _.i18n = i18n;
+            _.tr = _.bind(i18n.tr, i18n);
 
-    //     var lng = Cookie.get(nsCons.I18N_LNG);
-    //     lng = lng ? lng.replace(/["']/g, '') : 'zh';
+            var lng = Cookie.get(nsCons.I18N_LNG);
+            lng = lng ? lng.replace(/["']/g, '') : 'zh';
 
-    //     // // 同步当前语言到数据库
-    //     // if (lng != nsCtx.user.language) {
-    //     //     nsCtx.user.language = lng; // 同步ctx
-    //     //     _.saveLng(lng); // TODO 是否要提醒用户同步失败或者成功?
-    //     // }
+            // // 同步当前语言到数据库
+            // if (lng != nsCtx.user.language) {
+            //     nsCtx.user.language = lng; // 同步ctx
+            //     _.saveLng(lng); // TODO 是否要提醒用户同步失败或者成功?
+            // }
 
-    //     // 设置cookie
-    //     Cookie.set(nsCons.I18N_LNG, lng);
+            // 设置cookie
+            Cookie.set(nsCons.I18N_LNG, lng);
 
-    //     i18n.setup({
-    //         resGetPath: '/locale/__lng__/__ns__.json',
-    //         lng: lng,
-    //         attributes: ['t', 'i18n'],
-    //         getAsync: false,
-    //         sendMissing: false,
-    //         fallbackLng: 'zh',
-    //         debug: false
-    //     });
-    // })
-    .globalResources(['comp/debug/debug', 'comp/global/converter', 'comp/dimmer', 'comp/dimmer-url', 'comp/task', 'comp/if-locale', 'comp/attr', 'comp/chk', 'comp/cls-locale']);
+            // adapt options to your needs (see http://i18next.com/docs/options/)
+            // make sure to return the promise of the setup method, in order to guarantee proper loading
+            return i18n.setup({
+                backend: {
+                    loadPath: './locale/{{lng}}/{{ns}}.json',
+                },
+                lng: lng,
+                attributes: ['t', 'i18n'],
+                fallbackLng: 'zh',
+                debug: false
+            });
+        })
+        .globalResources(['comp/debug/debug', 'comp/global/converter', 'comp/dimmer', 'comp/dimmer-url', 'comp/task', 'comp/if-locale', 'comp/attr', 'comp/chk', 'comp/cls-locale']);
 
 
     // 可以打开注释开启过渡动画

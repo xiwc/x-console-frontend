@@ -97,6 +97,7 @@ const coreBundles = {
         'aurelia-pal',
         'aurelia-pal-browser',
         'aurelia-path',
+        'aurelia-i18n',
         'aurelia-polyfills',
         'aurelia-route-recognizer',
         'aurelia-router',
