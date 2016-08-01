@@ -39,6 +39,8 @@ window.nsCtx = (function() {
         regionId: '1',
 
         isDebug: false, // 是否为debug
+
+        topMenuHeight: 47, // 顶部菜单栏高度
     }
 })();
 
