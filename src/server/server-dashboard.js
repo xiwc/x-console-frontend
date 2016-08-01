@@ -28,9 +28,9 @@ export class ServerDashboard {
 
         // console.log(json({ name: 'json...' }));
 
-        this.http.fetch(nsApi['host.hosts.get']).then((resp) => {
-            console.log(resp);
-        });
+        // this.http.fetch(nsApi['host.hosts.get']).then((resp) => {
+        //     console.log(resp);
+        // });
 
         // TODO ajax api mock demo.
         // $.get(nsApi['host.hostList.get'], function(data) {
