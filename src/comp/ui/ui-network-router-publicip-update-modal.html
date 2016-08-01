@@ -2,19 +2,15 @@
     <div ref="md" class="ui small modal nx-ui-network-public-update-modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
-            创建硬盘
+            修改公网IP
         </div>
         <div class="content">
             <div class="ui form" ref="form">
                 <div class="inline field">
-                    <label>名称</label>
-                    <div class="ui input">
-                        <input type="text" name="name" value.bind="name" placeholder="">
-                    </div>
-                </div>
-                <div class="inline field" if.bind="showDesc">
-                    <label>描述</label>
-                    <textarea name="desc" rows="5" value.bind="desc"></textarea>
+                    <label>公网IP</label>
+                    <select class="ui dropdown" ref="publicip">
+                        <option value="1">121.201.24.215</option>
+                    </select>
                 </div>
             </div>
         </div>

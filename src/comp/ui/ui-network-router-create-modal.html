@@ -1,43 +1,40 @@
 <template>
     <require from="./ui-network-router-create-modal.css"></require>
-    <div class="ui large modal nx-network-router-create" ref="modal">
+    <div class="ui large modal nx-network-router-create" ref="md">
         <div class="header">
             ${title ? title : '创建路由器'}
         </div>
         <div class="content">
             <div class="ui bottom attached tab segment active">
-                <div class="ui form">
+                <div class="ui form" ref="form">
                     <div class="inline fields">
                         <label>类型</label>
                         <div class="field">
                             <div class="ui radio checkbox">
-                                <input type="radio" name="type" checked="checked">
+                                <input value="0" type="radio" name="type" checked="checked">
                                 <label>中小型</label>
                             </div>
                         </div>
                         <div class="field">
                             <div class="ui radio checkbox">
-                                <input type="radio" name="type">
+                                <input value="2" type="radio" name="type">
                                 <label>大型</label>
                             </div>
                         </div>
                     </div>
                     <div class="inline fields">
                         <label>名称</label>
-                        <div class="ui input">
-                            <input type="text" name="name" value.bind="name" placeholder="input name">
+                        <div class="field">
+                            <div class="ui input">
+                                <input type="text" name="name" value.bind="name" placeholder="">
+                            </div>
                         </div>
                     </div>
                     <div class="inline fields">
                         <label>防火墙</label>
-                        <div class="ui selection dropdown">
-                            <input type="hidden" value="1" name="zone">
-                            <i class="dropdown icon"></i>
-                            <div class="default text"></div>
-                            <div class="menu">
-                                <div class="item" data-value="1">缺省防火墙</div>
-                            </div>
-                        </div>
+                        <select class="ui dropdown" ref="firewall">
+                            <option value="1">缺省防火墙</option>
+                        </select>
                     </div>
                 </div>
             </div>

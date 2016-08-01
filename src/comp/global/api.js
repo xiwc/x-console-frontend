@@ -129,6 +129,20 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '删除路由器'
         },
+        'router.updateName.post': {
+            real: 'api/router/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '路由器修改名称'
+        },
+        'router.updatePublicIp.post': {
+            real: 'api/router/updatePublicIp',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '路由器修改公网IP'
+        },
         'keystore.list.get': {
             real: 'api/keystore/list',
             mock: 'mock/keystore/list.get.json',
@@ -177,6 +191,34 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '修改密钥名称'
+        },
+        'publicIp.list.get': {
+            real: 'api/publicIp/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取公网IP'
+        },
+        'publicIp.create.post': {
+            real: 'api/publicIp/create',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '申请公网IP'
+        },
+        'publicIp.delete.post': {
+            real: 'api/publicIp/delete',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '删除公网IP'
+        },
+        'publicIp.updateName.post': {
+            real: 'api/publicIp/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '修改公网IP'
         },
     };
 

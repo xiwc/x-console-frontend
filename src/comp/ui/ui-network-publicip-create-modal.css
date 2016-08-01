@@ -1,0 +1,14 @@
+.nx-network-publicip-create-modal .inline.fields .field label:first-child,.nx-network-publicip-create-modal .inline.fields label:first-child{
+	width:50px;
+	text-align: right;
+}
+
+.nx-network-publicip-create-modal .nx-range {
+    display: inline-block;
+    width: 350px;
+}
+
+.nx-network-publicip-create-modal .nx-range-slider {
+    display: inline-block;
+    width: 300px;
+}

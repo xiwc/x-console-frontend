@@ -15,6 +15,16 @@ export class NetworkRouter {
     routers = null;
     allChecked = false;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 75,
+        pageCount: 8,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
     }
@@ -39,6 +49,8 @@ export class NetworkRouter {
                 return resp.json();
             }).then((data) => {
                 this.routers = data.list;
+                this.page.total = data.total;
+                this.page.pageCount = data.pageCount;
             }).then(() => {
                 this.allChecked = false;
             });
@@ -84,7 +96,7 @@ export class NetworkRouter {
         this.deleteconfirm.show({
             onapprove: () => {
                 _.each(items, (pw) => {
-                    this.http.fetch(nsApi.url('privateNetwork.delete.post', {
+                    this.http.fetch(nsApi.url('router.delete.post', {
                         id: pw.id
                     }), { method: 'post' }).then((resp) => {
                         // this. = resp.data;
@@ -102,7 +114,7 @@ export class NetworkRouter {
     delHandler(pn) {
         this.deleteconfirm.show({
             onapprove: () => {
-                this.http.fetch(nsApi.url('privateNetwork.delete.post', {
+                this.http.fetch(nsApi.url('router.delete.post', {
                     id: pn.id
                 }), { method: 'post' }).then((resp) => {
                     // this. = resp.data;
@@ -146,11 +158,17 @@ export class NetworkRouter {
         });
     }
 
+    refreshHandler() {
+        this.getRouters();
+        toastr.info('刷新成功!');
+    }
+    
+
     //修改名称
     updateName(pn) {
         this.updateconfirm.show((result => {
             // console.log(result);
-            this.http.fetch(nsApi.url('privateNetwork.updateName.post'), {
+            this.http.fetch(nsApi.url('router.updateName.post'), {
                 method: 'post',
                 body: json({
                     id: pn.id,
@@ -166,13 +184,22 @@ export class NetworkRouter {
         }));
     }
 
-    //连接路由器
-    linkRouter() {
-        this.linRouterDialog.show();
-    }
-
-    //删除路由器
-    delRouter() {
-        this.deleteRouterconfirm.show();
-    }
+    //修改公网IP.show();
+   updatePublicIp(rt){
+        this.updatePublicIpDialog.show((result => {
+            this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
+                method: 'post',
+                body: json({
+                    id: rt.id,
+                    publciipid: result.publicipid
+                })
+            }).then((resp) => {
+                // this. = resp.data;
+                // pn.name = result.name;
+                // pn.desc = result.desc;
+                toastr.success('修改公网IP操作成功!');
+            });
+            //rt.
+        }));
+   }
 }

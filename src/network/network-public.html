@@ -1,11 +1,95 @@
 <template>
+    <require from="./network-style.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-network-publicip-create-modal"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-network-router-publicip-update-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
     <div class="nx-network-public">
         <ui-nav steps.bind="steps"></ui-nav>
-        <div class="ui basic segment">
-            <div class="ui message">
-                ${steps[2]}
+        <div class="ui basic segment nx-toolbar">
+            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新" data-position="top left" data-inverted="">
+                <i class="refresh icon"></i>
+            </div>
+            <div class="ui primary button" click.delegate="createHandler()">
+                <i class="add icon"></i> 申请
+            </div>
+            <div class="ui red button" click.delegate="delMoreHandler()">
+                删除
+            </div>
+            <div class="ui search">
+                <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="检索...">
+                    <i class="search link icon"></i>
+                </div>
+                <div class="results"></div>
             </div>
         </div>
+        <div class="ui basic segment" ref="container">
+            <table class="ui compact celled definition table">
+                <thead class="full-width">
+                    <tr>
+                        <th>
+                            <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </th>
+                        <!-- <th>ID</th> -->
+                        <th>名称</th>
+                        <th>地址</th>
+                        <th>状态</th>
+                        <th>资源</th>
+                        <th>计费模式</th>
+                        <th>带宽</th>
+                        <th>IP组</th>
+                        <th>创建时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody1">
+                    <tr repeat.for='p of publicIps'>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, p)" chk.bind="p.checked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </td>
+                        <!-- <td><a>${p.id}</a></td> -->
+                        <td><a href="/#/network/publicip-details/${p.id}">${p.name}</a></td>
+                        <td>${p.ip}</td>
+                        <td>${p.status}</td>
+                        <td>${p.resource}</td>
+                        <td>${p.chargemode}</td>
+                        <td>${p.bandwidth}</td>
+                        <td>${p.linemode}</td>
+                        <td>${p.createPeriod}</td>
+                        <td>
+                            <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item" click.delegate="updateName(p)">修改名称</div>
+                                    <div class="divider"></div>
+                                    <div class="item" click.delegate="updatePublicIp(p)">修改公网IP</div>
+                                    <div class="divider"></div>
+                                    <div class="item" click.delegate="delHandler(p)">删除</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="10">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
+    <ui-network-publicip-create-modal ui-network-publicip-create-modal.ref="createconfirm"></ui-network-publicip-create-modal>
+    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" title.bind="updateNameTitle"></ui-name-update-modal>
+    <ui-network-router-publicip-update-modal ui-network-router-publicip-update-modal.ref="updatePublicIpDialog"></ui-network-router-publicip-update-modal>
 </template>
