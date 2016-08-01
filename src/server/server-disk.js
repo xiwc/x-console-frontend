@@ -206,7 +206,7 @@ export class ServerDisk {
     }
 
     onpageHandler(selectedPage) {
-        console.log(selectedPage);
+        // console.log(selectedPage);
         this.page = {
             currentPage: selectedPage,
             pageSize: 10,

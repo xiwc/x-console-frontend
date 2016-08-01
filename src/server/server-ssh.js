@@ -4,7 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class ServerSSH {
 
-    steps = ['上海一区', '云服务器', 'SSH秘钥'];
+    steps = ['上海一区', '云服务器', 'SSH密钥'];
 
     sshkeys;
 
