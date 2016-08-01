@@ -27,6 +27,10 @@
     left: 65px;
 }
 
+.nx-body {
+    overflow: hidden;
+}
+
 .nx-left-sidebar-menu .nx-dd-region {
     z-index: 1;
 }

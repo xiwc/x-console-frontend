@@ -36,13 +36,14 @@ export class ServerDiskDetails {
         this.http.fetch(nsApi.url('disk.detail.get', {
             id: params.id
         })).then((resp) => {
-            this.details = resp;
+            return resp.json();
+        }).then((data) => {
+            this.details = data;
         });
     }
 
     updateHandler(disk) {
         this.uiNameUpdateModal.show((result => {
-            // console.log(result);
             this.http.fetch(nsApi.url('disk.updateName.post'), {
                 method: 'post',
                 body: json({
@@ -51,10 +52,11 @@ export class ServerDiskDetails {
                     desc: result.desc
                 })
             }).then((resp) => {
-                // this. = resp.data;
-                disk.name = result.name;
-                disk.desc = result.desc;
-                toastr.success('修改名称操作成功!');
+                if (resp.ok) {
+                    disk.name = result.name;
+                    disk.desc = result.desc;
+                    toastr.success('修改名称操作成功!');
+                }
             });
         }));
     }
@@ -68,7 +70,9 @@ export class ServerDiskDetails {
                 }), { method: 'post' }).then((resp) => {
                     // this. = resp.data;
                     // TODO 跳转到?
-                    toastr.success('删除成功!');
+                    if (resp.ok) {
+                        toastr.success('删除成功!');
+                    }
                 });
             }
         });
