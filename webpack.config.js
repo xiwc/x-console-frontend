@@ -26,7 +26,7 @@ let envs = [
 
     // 开发
     {
-        // active: true,
+        active: true,
         console: 'http://218.245.64.3:45417',
         yangyang: 'http://192.168.7.254:8081/yangyang/',
         platform: 'http://192.168.7.254:8080/platform/'
@@ -35,7 +35,9 @@ let envs = [
     {
         // active: true,
         // console: 'http://192.168.205.12:8083',
-        console: 'http://192.168.205.12:8081',
+        // console: 'http://220.248.17.34:8063',
+        // console: 'http://192.168.205.12:8081',
+        console: 'http://220.248.17.34:8061',
         yangyang: 'https://step.newtouchwork.com',
         platform: 'https://www.newtouchwork.com'
     },
@@ -47,7 +49,7 @@ let envs = [
     },
     // 邓雷
     {
-        active: true,
+        // active: true,
         console: 'http://192.168.40.13:8080',
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
