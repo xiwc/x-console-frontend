@@ -7,7 +7,7 @@
     <require from="comp/ui/ui-disk-expansion-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
     <require from="comp/vc/vc-common"></require>
-    <div class="nx-server-disk animated bounceInDown">
+    <div class="nx-server-disk">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
             <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新硬盘列表" data-position="top left" data-inverted="">
@@ -30,13 +30,13 @@
                                 <label></label>
                             </div>
                         </th>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>名称</th>
                         <th>状态</th>
                         <th>盘符</th>
                         <th>容量G</th>
                         <th>类型</th>
-                        <th>备份于</th>
+                        <!-- <th>备份于</th> -->
                         <th>创建于</th>
                         <th class="no-sort">操作</th>
                     </tr>
@@ -49,13 +49,13 @@
                                 <label></label>
                             </div>
                         </td>
-                        <td><a href="/#/server/disk-details/${d.id}">${d.id}</a></td>
-                        <td>${d.name}</td>
+                        <td><a href="/#/server/disk-details/${d.id}">${d.name}</a></td>
+                        <!-- <td>${d.name}</td> -->
                         <td>${d.status | mapping:'diskStatus'}</td>
                         <td>${d.volumnName}</td>
                         <td>${d.capacity}</td>
                         <td>${d.type | mapping:'diskType'}</td>
-                        <td>${d.backupPeriod}</td>
+                        <!-- <td>${d.backupPeriod}</td> -->
                         <td>${d.createPeriod}</td>
                         <td>
                             <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide" task.bind="initActionsHandler(uiActions)">

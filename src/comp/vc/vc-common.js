@@ -47,10 +47,10 @@ export class MappingValueConverter {
 
     diskStatus = {
         '1': {
-            zh: '可用'
+            zh: '未使用'
         },
         '2': {
-            zh: '不可用'
+            zh: '使用中'
         }
     };
 

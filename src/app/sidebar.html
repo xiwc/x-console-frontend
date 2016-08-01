@@ -33,7 +33,7 @@
         <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item nx-no-border nx-pp" href.bind="row.href" if.bind="(row.config.type == 'common')" title="${row.title}" data-variation="inverted" data-position="right center">
             <i class="${row.config.icon} icon nx-icon"></i> <span>${row.title}</span>
         </a>
-        <div class="${router.currentInstruction.config.type == 'db' ? 'active' : ''} item nx-no-border nx-labeled-icon-item">
+        <!-- <div class="${router.currentInstruction.config.type == 'db' ? 'active' : ''} item nx-no-border nx-labeled-icon-item">
             <i class="database icon nx-icon"></i> <span>测试折叠菜单</span>
             <div class="nx-second-menu">
                 <div class="ui inverted vertical menu">
@@ -63,6 +63,6 @@
         </a>
         <a class="item nx-no-border nx-pp" title="通知列表" data-variation="inverted" data-position="right center">
             <i class="list layout icon nx-icon"></i> <span>通知列表</span>
-        </a>
+        </a> -->
     </div>
 </template>

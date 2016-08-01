@@ -4,7 +4,7 @@
     <require from="comp/ui/ui-sshkey-create-modal"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
-    <div class="nx-server-ssh animated bounceInDown">
+    <div class="nx-server-ssh">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
             <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新SSH密钥列表" data-position="top left" data-inverted="">
@@ -28,9 +28,10 @@
                                 <label></label>
                             </div>
                         </th>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>名称</th>
                         <th>加密方法</th>
+                        <th>密钥类型</th>
                         <th>创建时间</th>
                         <th class="no-sort">操作</th>
                     </tr>
@@ -43,9 +44,10 @@
                                 <label></label>
                             </div>
                         </td>
-                        <td><a href="/#/server/ssh-details/${k.id}">${k.id}</a></td>
-                        <td>${k.name}</td>
+                        <td><a href="/#/server/ssh-details/${k.id}">${k.name}</a></td>
+                        <!-- <td>${k.name}</td> -->
                         <td>${k.encryptmode}</td>
+                        <td>${k.type}</td>
                         <td>${k.createPeriod}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">

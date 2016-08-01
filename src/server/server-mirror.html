@@ -4,7 +4,7 @@
     <require from="comp/ui/ui-host-create-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
     <require from="comp/vc/vc-common"></require>
-    <div class="nx-server-mirror animated bounceInDown">
+    <div class="nx-server-mirror">
         <!-- <div class="nx-server-mirror animated slideInDown"> -->
         <!-- <div class="nx-server-mirror animated fadeInDownBig"> -->
         <!-- <div class="nx-server-mirror animated fadeInDown"> -->
@@ -28,7 +28,7 @@
                                 <label></label>
                             </div> -->
                         </th>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>名称</th>
                         <th>状态</th>
                         <th>容量(G)</th>
@@ -43,8 +43,8 @@
                                 <label></label>
                             </div>
                         </td>
-                        <td><a href="/#/server/mirror-details/${m.id}">${m.id}</a></td>
-                        <td>${m.name + ' ' + m.version}</td>
+                        <td><a href="/#/server/mirror-details/${m.id}">${m.name + ' ' + m.version}</a></td>
+                        <!-- <td>${m.name + ' ' + m.version}</td> -->
                         <td>${m.status | mapping:'mirrorStatus'}</td>
                         <!-- TODO mapping -->
                         <td>${m.capacity}</td>

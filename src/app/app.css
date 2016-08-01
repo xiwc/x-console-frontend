@@ -27,8 +27,17 @@
     left: 65px;
 }
 
+.nx-body {
+    overflow: hidden;
+}
+
 .nx-left-sidebar-menu .nx-dd-region {
     z-index: 1;
+}
+
+
+.nx-left-sidebar-menu.ui.vertical.sidebar.labeled.icon.menu {
+    width: 78px;
 }
 
 .nx-left-sidebar-menu .nx-dd-region .dropdown.icon {
