@@ -1,0 +1,137 @@
+<template>
+    <require from="./server-host-details.css"></require>
+    <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/vc/vc-common"></require>
+    <div class="nx-server-host-details animated bounceInDown">
+        <ui-nav steps.bind="steps"></ui-nav>
+        <div class="ui basic segment" ref="container">
+            <div class="ui celled grid">
+                <div class="three column row">
+                    <div class="column nx-basic-info">
+                        <h3 class="ui header">基本属性</h3>
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <th>ID</th>
+                                    <td>${details.id}</td>
+                                </tr>
+                                <tr>
+                                    <th>名称</th>
+                                    <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>状态</th>
+                                    <td>${details.status | mapping:'diskStatus'}</td>
+                                </tr>
+                                <tr>
+                                    <th>创建时间</th>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="ui divider"></div>
+                        <h3 class="ui header">规格</h3>
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <th>镜像</th>
+                                    <td>${details.id}</td>
+                                </tr>
+                                <tr>
+                                    <th>主机类型</th>
+                                    <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>CPU数量</th>
+                                    <td>${details.status | mapping:'diskStatus'}</td>
+                                </tr>
+                                <tr>
+                                    <th>内存</th>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                </tr>
+                                <tr>
+                                    <th>SSH密钥</th>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="ui divider"></div>
+                        <h3 class="ui header">绑定资源</h3>
+                        <table class="ui very basic table">
+                            <tbody>
+                                <tr>
+                                    <th>防火墙</th>
+                                    <td>${details.id}</td>
+                                </tr>
+                                <tr>
+                                    <th>硬盘</th>
+                                    <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>网络</th>
+                                    <td>${details.status | mapping:'diskStatus'}</td>
+                                </tr>
+                                <tr>
+                                    <th>公网IP</th>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                </tr>
+                                <tr>
+                                    <th>内网域名别名</th>
+                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="text">更多操作</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item">修改名称</div>
+                                <div class="item">连接管理终端</div>
+                                <div class="divider"></div>
+                                <div class="item">
+                                    <i class="dropdown icon"></i> 管理云硬盘
+                                    <div class="menu">
+                                        <div class="item">加载云硬盘</div>
+                                        <div class="item">卸载云硬盘</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="dropdown icon"></i> 管理安全组
+                                    <div class="menu">
+                                        <div class="item">加载安全组</div>
+                                        <div class="item">卸载安全组</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="dropdown icon"></i> 管理公网IP
+                                    <div class="menu">
+                                        <div class="item">绑定公网IP</div>
+                                        <div class="item">解绑公网IP</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <i class="dropdown icon"></i> 管理私有网络
+                                    <div class="menu">
+                                        <div class="item">加入私有网络</div>
+                                        <div class="item">离开私有网络</div>
+                                    </div>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="item">提升性能</div>
+                                <div class="item">创建快照</div>
+                                <div class="item">重置系统</div>
+                                <div class="item">删除</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="column"></div>
+                    <div class="column"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-name-update-modal show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+</template>

@@ -3,6 +3,7 @@
     <require from="comp/ui/ui-sshkey-create-modal"></require>
     <require from="comp/ui/ui-host-create-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
+    <require from="comp/vc/vc-common"></require>
     <div class="nx-server-mirror animated bounceInDown">
         <!-- <div class="nx-server-mirror animated slideInDown"> -->
         <!-- <div class="nx-server-mirror animated fadeInDownBig"> -->
@@ -44,10 +45,10 @@
                         </td>
                         <td><a href="/#/server/mirror-details/${m.id}">${m.id}</a></td>
                         <td>${m.name + ' ' + m.version}</td>
-                        <td>${m.status}</td>
+                        <td>${m.status | mapping:'mirrorStatus'}</td>
                         <!-- TODO mapping -->
                         <td>${m.capacity}</td>
-                        <td>${m.platform}</td>
+                        <td>${m.platform | mapping:'mirrorPlatform'}</td>
                     </tr>
                 </tbody>
                 <tfoot>

@@ -13,10 +13,13 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @containerless
 export class UiDiskCreateModal {
 
+    // http://220.248.17.34:7992/pages/viewpage.action?pageId=5538651
+    // 性能型:1 容量型:2
     type = '1';
 
     name = '';
 
+    // TODO 校验, 数量不能超过资源限额,所以需要检测当前已经创建的数量.
     count = '1';
 
     /**

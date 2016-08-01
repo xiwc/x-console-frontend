@@ -34,7 +34,7 @@ let envs = [
     // 测试
     {
         active: true,
-        console: 'http://192.168.40.14:8080',
+        console: 'http://192.168.205.12:8081',
         yangyang: 'https://step.newtouchwork.com',
         platform: 'https://www.newtouchwork.com'
     },
