@@ -2,9 +2,9 @@ import { inject, Lazy } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 
 @inject(Lazy.of(HttpClient))
-export class NetworkPrivateDetails {
+export class NetworkRouterDetails {
 
-    steps = ['上海一区', '云服务器', '私有网络详情'];
+    steps = ['上海一区', '云服务器', '路由器详情'];
 
     details = null;
     hostlist = null;

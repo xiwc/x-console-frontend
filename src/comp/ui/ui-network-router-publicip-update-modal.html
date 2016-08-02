@@ -9,7 +9,7 @@
                 <div class="inline field">
                     <label>公网IP</label>
                     <select class="ui dropdown" ref="publicip">
-                        <option value="1">121.201.24.215</option>
+                        <option repeat.for="o of publicIpList" value="${o.id}">${o.ip}</option>
                     </select>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 <template>
     <require from="./network-private-details.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/vc/vc-common"></require>
     <div class="nx-network-private-details animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
@@ -12,31 +13,35 @@
                             <tbody>
                                 <tr>
                                     <th>ID</th>
-                                    <td>id1111111111111</td>
+                                    <td>${details.id}</td>
                                 </tr>
                                 <tr>
                                     <th>名称</th>
-                                    <td>私有网络01</td>
-                                </tr>
-                                <tr>
-                                    <th>标签</th>
-                                    <td><a class="ui label">标签1 <i class="delete icon"></i> </a></td>
-                                </tr>
-                                <tr>
-                                    <th>路由器</th>
-                                    <td>路由器0101010</td>
+                                    <td>${details.name}</td>
                                 </tr>
                                 <tr>
                                     <th>描述</th>
-                                    <td></td>
+                                    <td>${details.desc}</td>
                                 </tr>
                                 <tr>
-                                    <th>网络地址</th>
-                                    <td>192.168.100.24</td>
+                                    <th>状态</th>
+                                    <td>${details.status | mapping:"publicIpStatus"}</td>
                                 </tr>
                                 <tr>
-                                    <th>主机</th>
-                                    <td>i-pdafsadf</td>
+                                    <th>地址</th>
+                                    <td>${details.ip}</td>
+                                </tr>
+                                <tr>
+                                    <th>计费模式</th>
+                                    <td>${details.chargemode | mapping:"chargeMode"}</td>
+                                </tr>
+                                <tr>
+                                    <th>带宽上限</th>
+                                    <td>${details.bandwidth}</td>
+                                </tr>
+                                <tr>
+                                    <th>IP组</th>
+                                    <td>${details.ipline | mapping:"lineMode"}</td>
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
@@ -46,8 +51,6 @@
                             </tbody>
                         </table> 
                     </div>
-                    <!-- <div class="column"></div>
-                    <div class="column"></div> -->
                 </div>
             </div>
         </div>

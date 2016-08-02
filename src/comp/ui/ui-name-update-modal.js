@@ -27,9 +27,9 @@ export class UiNameUpdateModal {
             autofocus: false,
             // allowMultiple: true,
             onShow: () => {
-                this.name = '';
-                this.desc = '';
-                $(this.form).form('reset');
+                // this.name = '';
+                // this.desc = '';
+                //$(this.form).form('reset');
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {

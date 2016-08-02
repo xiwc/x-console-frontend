@@ -19,6 +19,8 @@ export class UiNetworkRouterPublicipUpdateModal {
 
     @bindable ondeny = ''; // 取消回调函数
 
+    publicIpList = null;
+
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
     }
@@ -27,12 +29,16 @@ export class UiNetworkRouterPublicipUpdateModal {
      * 当视图被附加到DOM中时被调用
      */
     attached() {
-
         $(this.md).modal({
             closable: false,
             allowMultiple: true,
             onShow: () => {
-                this.name = '';
+                this.http.fetch(nsApi.url('publicIp.listName.post'))
+                    .then((resp) => {
+                        return resp.json();
+                    }).then((data) => {
+                        this.publicIpList = data;
+                    });
                 $(this.form).form("reset");
             },
             onApprove: () => {

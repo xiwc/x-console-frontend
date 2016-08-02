@@ -42,7 +42,7 @@ export class NetworkPrivate {
         获取私有网络列表
     */
     getPrivateNetwork() {
-        return this.http.fetch(nsApi.url('privateNetwork.list.get', { pageNo: 1, pageSize: 1 }))
+        return this.http.fetch(nsApi.url('privateNetwork.list.get', { pageNo: this.page.currentPage, pageSize: this.page.pageSize }))
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
@@ -68,6 +68,7 @@ export class NetworkPrivate {
                 this.allChecked = false;
             },
         });
+        $('table.sortable').tablesort();
     }
 
     initActionsHandler(uiActions) {
@@ -85,13 +86,18 @@ export class NetworkPrivate {
     createHandler() {
         this.createconfirm.show((result => {
             console.log(result.name);
+
             this.http.fetch(nsApi.url('privateNetwork.create.post'), {
+                method: 'post',
                 body: json({
                     name: result.name
                 })
             }).then((resp) => {
                 // this. = resp.data;
-                this.getPrivateNetwork();
+                if (resp.ok) {
+                    this.getPrivateNetwork();
+                    toastr.success('创建成功!');
+                }
             });
         }));
     }
@@ -104,19 +110,22 @@ export class NetworkPrivate {
             toastr.error('请先选择要删除的项目!');
             return;
         }
-
         this.deleteconfirm.show({
             onapprove: () => {
-                _.each(items, (pw) => {
-                    this.http.fetch(nsApi.url('privateNetwork.delete.post', {
-                        id: pw.id
-                    }), { method: 'post' }).then((resp) => {
-                        // this. = resp.data;
-                        this.privateNetworks = _.filter(this.privateNetworks, (d) => {
-                            return (d.id != pw.id);
-                        });
+                let idlist = [];
+                _.each(items, (i) => {
+                    idlist.push(i.id);
+                });
+                this.http.fetch(nsApi.url('privateNetwork.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: idlist
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        this.getPrivateNetwork();
                         toastr.success('删除成功!');
-                    });
+                    }
                 });
             }
         });
@@ -126,14 +135,19 @@ export class NetworkPrivate {
     delHandler(pn) {
         this.deleteconfirm.show({
             onapprove: () => {
-                this.http.fetch(nsApi.url('privateNetwork.delete.post', {
-                    id: pn.id
-                }), { method: 'post' }).then((resp) => {
+                this.http.fetch(nsApi.url('privateNetwork.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [pn.id]
+                    })
+                }).then((resp) => {
                     // this. = resp.data;
-                    this.privateNetworks = _.filter(this.privateNetworks, (d) => {
-                        return (d.id != pn.id);
-                    });
-                    toastr.success('删除成功!');
+                    if (resp.ok) {
+                        this.privateNetworks = _.filter(this.privateNetworks, (d) => {
+                            return (d.id != pn.id);
+                        });
+                        toastr.success('删除成功!');
+                    }
                 });
             }
         });
@@ -172,6 +186,8 @@ export class NetworkPrivate {
 
     //修改名称
     updateName(pn) {
+        this.selectedPrivateNetwork = pn;
+        console.log(pn.name);
         this.updateconfirm.show((result => {
             // console.log(result);
             this.http.fetch(nsApi.url('privateNetwork.updateName.post'), {
