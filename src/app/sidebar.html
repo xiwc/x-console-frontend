@@ -30,10 +30,10 @@
             </div>
         </div>
         <div class="header item nx-header nx-no-border">SH1</div>
-        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item nx-no-border" href.bind="row.href" if.bind="(row.config.type == 'common')" data-tooltip="${row.title}" data-position="right center" data-inverted="">
+        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item nx-no-border nx-pp" href.bind="row.href" if.bind="(row.config.type == 'common')" data-content="${row.title}" data-position="right center" data-variation="inverted">
             <i class="${row.config.icon} icon nx-icon"></i> <span>${row.title}</span>
         </a>
-        <a repeat.for="link of links" class="item nx-no-border" href.bind="link.href" data-tooltip="${link.title}" data-position="right center" data-inverted="">
+        <a repeat.for="link of links" class="item nx-no-border nx-pp" href.bind="link.href" data-content="${link.title}" data-position="right center" data-variation="inverted">
             <i class="${link.icon} icon nx-icon"></i> <span>${link.title}</span>
         </a>
         <!-- <div class="${router.currentInstruction.config.type == 'db' ? 'active' : ''} item nx-no-border nx-labeled-icon-item">

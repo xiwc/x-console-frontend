@@ -15,6 +15,8 @@ export class Sidebar {
         { title: 'RDS', icon: 'database', href: '' },
         { title: 'Redis', icon: 'database', href: '' },
         { title: 'MongoDb', icon: 'database', href: '' },
+        { title: '端口映射', icon: 'exchange', href: '' },
+        { title: 'WEB域名映射', icon: 'exchange', href: '' },
     ];
 
     /**
