@@ -5,14 +5,14 @@ import {
 from 'aurelia-framework';
 
 @containerless
-export class UiDiskSelectModal {
+export class UiPublicIpSelectModal {
 
-    @bindable type = 'mount'; // mount or unmount
+    @bindable type = 'bind'; // bind or unbind
 
-    disks = [
-        { id: 'host01', name: 'disk01', type: '性能型' },
-        { id: 'host02', name: 'disk02', type: '性能型' },
-        { id: 'host03', name: 'disk03', type: '性能型' },
+    publicIps = [
+        { id: '01', name: '公网IP01' },
+        { id: '02', name: '公网IP02' },
+        { id: '03', name: '公网IP03' },
     ];
 
     /**
@@ -32,13 +32,13 @@ export class UiDiskSelectModal {
 
     getSelected() {
 
-        return _.find(this.disks, (item) => {
+        return _.find(this.publicIps, (item) => {
             return item.selected;
         });
     }
 
     clearChecked() {
-        _.each(this.disks, (item) => {
+        _.each(this.publicIps, (item) => {
             item.selected = false;
         });
     }

@@ -19,10 +19,10 @@ export class MappingValueConverter {
     };
 
     mirrorPlatform = {
-        '1': {
+        'linux': {
             zh: 'Linux'
         },
-        '2': {
+        'windows': {
             zh: 'Windows'
         }
     };
