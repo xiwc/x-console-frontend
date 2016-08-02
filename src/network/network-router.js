@@ -196,7 +196,7 @@ export class NetworkRouter {
         }));
     }
 
-    //修改公网IP.show();
+    //修改公网IP;
     updatePublicIp(rt) {
         this.updatePublicIpDialog.show((result => {
             this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
@@ -226,7 +226,7 @@ export class NetworkRouter {
         //获取被选中的记录
         var items = this.getCheckedItems();
         if (items.length == 0) {
-            toastr.error('请先选择要删除的项目!');
+            toastr.error('请先选择要启动的项目!');
             return;
         }
 
@@ -254,7 +254,33 @@ export class NetworkRouter {
 
     //批量关闭
     stopHandler() {
+//获取被选中的记录
+        var items = this.getCheckedItems();
+        if (items.length == 0) {
+            toastr.error('请先选择要关闭的项目!');
+            return;
+        }
 
+        this.deleteconfirm.show({
+            content: "确定要关闭选中的路由器吗？",
+            onapprove: () => {
+                let idlist = [];
+                _.each(items, (i) => {
+                    idlist.push(i.id);
+                });
+                this.http.fetch(nsApi.url('router.stop.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: idlist
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        //this.getRouters();
+                        toastr.success('关闭成功!');
+                    }
+                });
+            }
+        });
     }
 
     //单个启动
