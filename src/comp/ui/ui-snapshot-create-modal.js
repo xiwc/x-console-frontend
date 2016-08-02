@@ -46,10 +46,10 @@ export class UiSnapshotCreateModal {
                     rules: [{
                         type: 'empty',
                         prompt: '名称不能为空!'
-                    }, { // TODO !^auto
-                        // type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{2,128}$/]',
-                        type: 'regExp[/^(?!auto)[\u4E00-\u9FA5a-zA-Z0-9\-_]{2,128}$/]',
-                        prompt: '2-128字符,不能以auto开头!'
+                    }, {
+                        type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{1,16}$/]',
+                        // type: 'regExp[/^(?!auto)[\u4E00-\u9FA5a-zA-Z0-9\-_]{2,128}$/]',
+                        prompt: '1-16个字符(大小字母、数字、_、-、汉字)!'
                     }]
                 }
             }
