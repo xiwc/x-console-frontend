@@ -15,19 +15,19 @@
                             <tbody>
                                 <tr>
                                     <th>ID</th>
-                                    <td>${details.id}</td>
+                                    <td>${details.properties.id}</td>
                                 </tr>
                                 <tr>
                                     <th>名称</th>
-                                    <td>${details.name}</td>
+                                    <td>${details.properties.name}</td>
                                 </tr>
                                 <tr>
                                     <th>状态</th>
-                                    <td>${details.status | mapping:'diskStatus'}</td>
+                                    <td>${details.properties.status | mapping:'hostStatus'}</td>
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td title="${details.properties.createtime | dateFormat}">${details.properties.createtime | timeago}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -37,23 +37,23 @@
                             <tbody>
                                 <tr>
                                     <th>镜像</th>
-                                    <td>${details.id}</td>
+                                    <td>${details.properties.imagename}</td>
                                 </tr>
                                 <tr>
                                     <th>主机类型</th>
-                                    <td>${details.name}</td>
+                                    <td>${details.properties.hosttypeName}</td>
                                 </tr>
                                 <tr>
                                     <th>CPU数量</th>
-                                    <td>${details.status | mapping:'diskStatus'}</td>
+                                    <td>${details.properties.cpu}</td>
                                 </tr>
                                 <tr>
                                     <th>内存</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td>${details.properties.memory}</td>
                                 </tr>
                                 <tr>
                                     <th>SSH密钥</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td>${details.properties.keystoreName}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -63,23 +63,27 @@
                             <tbody>
                                 <tr>
                                     <th>防火墙</th>
-                                    <td>${details.id}</td>
+                                    <td>${details.properties.securityGroupName}</td>
                                 </tr>
                                 <tr>
                                     <th>硬盘</th>
-                                    <td>${details.name}</td>
+                                    <td>
+                                        <div class="ui basic label" repeat.for="d of details.properties.diskList">${d.name}</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>网络</th>
-                                    <td>${details.status | mapping:'diskStatus'}</td>
+                                    <td>
+                                        <div class="ui basic label" repeat.for="i of details.privateNetworkList">${i.name}</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>公网IP</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td>${details.properties.ip}</td>
                                 </tr>
                                 <tr>
                                     <th>内网域名别名</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td>${details.properties.url}</td>
                                 </tr>
                             </tbody>
                         </table>

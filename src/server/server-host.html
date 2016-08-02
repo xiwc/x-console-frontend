@@ -10,6 +10,7 @@
     <require from="comp/ui/ui-public-ip-select-modal"></require>
     <require from="comp/ui/ui-network-private-select-modal"></require>
     <require from="comp/ui/ui-snapshot-create-modal"></require>
+    <require from="comp/vc/vc-common"></require>
     <div class="nx-server-host">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -74,15 +75,15 @@
                             </div>
                         </td>
                         <td><a href="/#/server/host-details/${item.id}">${item.name}</a></td>
-                        <td>运行中</td>
-                        <td>性能型</td>
-                        <td>CentOS</td>
-                        <td>1核1G</td>
-                        <td>经典网络</td>
-                        <td>18.18.18.18</td>
-                        <td>18.18.18.18</td>
-                        <td>(缺省防火墙)</td>
-                        <td>15天前</td>
+                        <td>${item.status | mapping:'hostStatus'}</td>
+                        <td>${item.type | mapping:'hostType'}</td>
+                        <td>${item.imagename}</td>
+                        <td>${item.config}</td>
+                        <td>${item.networkType}</td>
+                        <td></td>
+                        <td>${item.ip}</td>
+                        <td>${item.securityGroupName}</td>
+                        <td>${item.createPeriod}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>

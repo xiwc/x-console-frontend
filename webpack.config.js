@@ -30,14 +30,14 @@ let envs = [
 
     // 开发
     {
-        // active: true,
+        active: true,
         console: 'http://218.245.64.3:45417',
         yangyang: 'http://192.168.7.254:8081/yangyang/',
         platform: 'http://192.168.7.254:8080/platform/'
     },
     // 测试
     {
-        active: true,
+        // active: true,
         // console: 'http://192.168.205.12:8083',
         // console: 'http://220.248.17.34:8063',
         // console: 'http://192.168.205.12:8081',

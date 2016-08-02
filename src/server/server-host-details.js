@@ -32,11 +32,12 @@ export class ServerHostDetails {
      * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待执行bind和attach视图(view), 直到你完成你的处理工作.
      */
     activate(params, routeConfig, navigationInstruction) {
-        // toastr.info(params.id);
-        this.http.fetch(nsApi.url('disk.detail.get', {
+        this.http.fetch(nsApi.url('host.detail.get', {
             id: params.id
         })).then((resp) => {
-            this.details = resp;
+            return resp.json();
+        }).then((data) => {
+            this.details = data;
         });
     }
 
