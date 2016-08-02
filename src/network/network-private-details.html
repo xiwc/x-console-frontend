@@ -64,7 +64,7 @@
                                     <tr repeat.for="host of hostlist">
                                         <td>${host.type | mapping:"hostType"}</td>
                                         <td>${host.name}</td>
-                                        <td>${host.status | mapping:"hostStatus"}</td>
+                                        <td>${host.status | mapping:"privateHostType"}</td>
                                         <td>${host.ip}</td>
                                     </tr>
                                 </tbody>
