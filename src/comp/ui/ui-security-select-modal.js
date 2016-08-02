@@ -5,14 +5,14 @@ import {
 from 'aurelia-framework';
 
 @containerless
-export class UiDiskSelectModal {
+export class UiSecuritySelectModal {
 
     @bindable type = 'mount'; // mount or unmount
 
-    disks = [
-        { id: 'host01', name: 'disk01', type: '性能型' },
-        { id: 'host02', name: 'disk02', type: '性能型' },
-        { id: 'host03', name: 'disk03', type: '性能型' },
+    securities = [
+        { id: '01', name: '安全组01' },
+        { id: '02', name: '安全组02' },
+        { id: '03', name: '安全组03' },
     ];
 
     /**
@@ -32,13 +32,13 @@ export class UiDiskSelectModal {
 
     getSelected() {
 
-        return _.find(this.disks, (item) => {
+        return _.find(this.securities, (item) => {
             return item.selected;
         });
     }
 
     clearChecked() {
-        _.each(this.disks, (item) => {
+        _.each(this.securities, (item) => {
             item.selected = false;
         });
     }

@@ -5,14 +5,14 @@ import {
 from 'aurelia-framework';
 
 @containerless
-export class UiDiskSelectModal {
+export class UiNetworkPrivateSelectModal {
 
-    @bindable type = 'mount'; // mount or unmount
+    @bindable type = 'in'; // in or out
 
-    disks = [
-        { id: 'host01', name: 'disk01', type: '性能型' },
-        { id: 'host02', name: 'disk02', type: '性能型' },
-        { id: 'host03', name: 'disk03', type: '性能型' },
+    privateNetworks = [
+        { id: '01', name: '私有01' },
+        { id: '02', name: '私有02' },
+        { id: '03', name: '私有03' },
     ];
 
     /**
@@ -32,13 +32,13 @@ export class UiDiskSelectModal {
 
     getSelected() {
 
-        return _.find(this.disks, (item) => {
+        return _.find(this.privateNetworks, (item) => {
             return item.selected;
         });
     }
 
     clearChecked() {
-        _.each(this.disks, (item) => {
+        _.each(this.privateNetworks, (item) => {
             item.selected = false;
         });
     }

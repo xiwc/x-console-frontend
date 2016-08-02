@@ -200,8 +200,70 @@ export class ServerHost {
     }
 
     unmountDiskHandler(item) {
-        this.uiDiskSelectModal.show(() => {
+        this.uiDiskSelectModalUnmount.show(() => {
             toastr.info('TODO...');
         });
     }
+
+    mountSecurityHandler(item) {
+        this.uiSecuritySelectModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    unmountSecurityHandler(item) {
+        this.uiSecuritySelectModalUnmount.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    bindPublicIpHandler(item) {
+        this.uiPublicIpSelectModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    unbindPublicIpHandler(item) {
+        this.uiPublicIpSelectModalUnbind.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    inPrivateNetworkHandler(item) {
+        this.uiNetworkPrivateSelectModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    outPrivateNetworkHandler(item) {
+        this.uiNetworkPrivateSelectModalOut.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    createSnapshotHandler(item) {
+        this.selectedHost = item;
+        this.uiSnapshotCreateModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    resetHandler(item) {
+        this.confirm.show({
+            content: '重置主机系统会将您的操作系统盘重置为初始状态,确定要执行此操作吗?',
+            onapprove: () => {
+                toastr.success('TODO...');
+            }
+        });
+    }
+
+    delHandler(item) {
+        this.confirm.show({
+            content: '确定要删除主机[xxx]吗?',
+            onapprove: () => {
+                toastr.success('TODO...');
+            }
+        });
+    }
+
 }
