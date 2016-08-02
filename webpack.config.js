@@ -33,7 +33,7 @@ let envs = [
     },
     // 测试
     {
-        //active: true,
+        active: true,
         console: 'http://220.248.17.34:8061',
         yangyang: 'https://step.newtouchwork.com',
         platform: 'https://www.newtouchwork.com'
@@ -53,7 +53,7 @@ let envs = [
     },
     // 邓雷
     {
-         active: true,
+        //active: true,
         console: 'http://192.168.40.13:8080',
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
