@@ -92,7 +92,6 @@
     "better-timeago": "^0.4.3",
     "better-timeago-locale-zh-cn": "^1.1.1",
     "bluebird": "^3.4.1",
-    "copy-webpack-plugin": "^3.0.1",
     "i18next-xhr-backend": "^1.0.1",
     "ion-rangeslider": "^2.1.4",
     "isomorphic-fetch": "^2.2.1",
