@@ -76,6 +76,18 @@ export class Server {
             nav: false,
             title: '安全组详情'
         }, {
+            route: ['port'],
+            name: 'port',
+            moduleId: 'comp/default/default-pane',
+            nav: true,
+            title: '端口映射'
+        }, {
+            route: ['web'],
+            name: 'web',
+            moduleId: 'comp/default/default-pane',
+            nav: true,
+            title: 'WEB域名映射'
+        }, {
             route: '',
             redirect: 'dashboard'
         }]);
