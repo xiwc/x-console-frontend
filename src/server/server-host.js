@@ -8,15 +8,7 @@ export class ServerHost {
 
     allChecked = false;
 
-    page = {
-        currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
-    };
+    page;
 
     /**
      * 构造函数
@@ -54,11 +46,16 @@ export class ServerHost {
         this.getHosts();
     }
 
-    getHosts() {
-        return this.hosts = [
-            { id: '123123', name: 'sdfsdfsdf' },
-            { id: '123123', name: 'sdfsdfsdf' }
-        ];
+    getHosts(pageNo = 1) {
+        return this.http.fetch(nsApi.url('host.list.get', {
+            pageNo: pageNo,
+            pageSize: nsConfig.pageSize
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.hosts = data.list;
+            this.page = data;
+        });
     }
 
     isAllChecked() {

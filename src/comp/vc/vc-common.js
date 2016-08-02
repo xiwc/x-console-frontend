@@ -54,6 +54,33 @@ export class MappingValueConverter {
         }
     };
 
+    hostStatus = {
+        '1': {
+            zh: '运行中'
+        },
+        '2': {
+            zh: '正在启动'
+        },
+        '3': {
+            zh: '已停止'
+        },
+        '4': {
+            zh: '停止中'
+        },
+        '5': {
+            zh: '重启中'
+        }
+    };
+
+    hostType = {
+        '1': {
+            zh: '性能型'
+        },
+        '2': {
+            zh: '经济适用型'
+        }
+    };
+
     toView(value, name) {
 
         if (this.hasOwnProperty(name)) {
