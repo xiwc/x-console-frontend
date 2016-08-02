@@ -8,15 +8,7 @@ export class ServerDisk {
 
     allChecked = false;
 
-    page = {
-        currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
-    };
+    page;
 
     /**
      * 构造函数
@@ -85,11 +77,15 @@ export class ServerDisk {
         this.getDisks();
     }
 
-    getDisks() {
-        return this.http.fetch(nsApi.url('disk.list.get', { pageNo: 1, pageSize: 1 })).then((resp) => {
+    getDisks(pageNo = 1) {
+        return this.http.fetch(nsApi.url('disk.list.get', {
+            pageNo: pageNo,
+            pageSize: nsConfig.pageSize
+        })).then((resp) => {
             return resp.json();
         }).then((data) => {
             this.disks = data.list;
+            this.page = data;
         }).then(() => {
             this.allChecked = false;
         });
@@ -206,16 +202,7 @@ export class ServerDisk {
     }
 
     onpageHandler(selectedPage) {
-        // console.log(selectedPage);
-        this.page = {
-            currentPage: selectedPage,
-            pageSize: 10,
-            size: 10,
-            total: 75,
-            pageCount: 8,
-            hasPreviousPage: false,
-            hasNextPage: true
-        };
+        this.getDisks(selectedPage);
     }
 
 }

@@ -10,16 +10,7 @@ export class ServerSSH {
 
     allChecked = false;
 
-    page = {
-        currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
-    };
-
+    page;
     /**
      * 构造函数
      */
@@ -57,15 +48,16 @@ export class ServerSSH {
         this.getSshkeys();
     }
 
-    getSshkeys() { // TODO mockserver?
+    getSshkeys(pageNo = 1) { // TODO mockserver?
         return this.http.fetch(nsApi.url('keystore.list.get', {
-                pageNo: 1,
-                pageSize: 1000
+                pageNo: pageNo,
+                pageSize: nsConfig.pageSize
             }))
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
                 this.sshkeys = data.list;
+                this.page = data;
             });
     }
 
@@ -115,7 +107,10 @@ export class ServerSSH {
 
     createHandler() {
         // toastr.info('创建操作...');
-        this.uiSshkeyCreateModal.show(() => { this.getSshkeys(); });
+        this.uiSshkeyCreateModal.show(() => {
+            this.getSshkeys();
+            this.uiSshkeyDownloadModal.show();
+        });
     }
 
     delHandler() {
@@ -168,15 +163,6 @@ export class ServerSSH {
     }
 
     onpageHandler(selectedPage) {
-        console.log(selectedPage);
-        this.page = {
-            currentPage: selectedPage,
-            pageSize: 10,
-            size: 10,
-            total: 75,
-            pageCount: 8,
-            hasPreviousPage: false,
-            hasNextPage: true
-        };
+        this.getSshkeys(selectedPage);
     }
 }
