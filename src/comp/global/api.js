@@ -99,7 +99,7 @@ window.nsApiFunc = (function() {
             mock: '',
             ismock: false,
             method: 'post',
-            desc: '创建私有网络'
+            desc: '删除私有网络'
         },
         'privateNetwork.updateName.post': {
             real: 'api/privateNetwork/updateName',
@@ -107,6 +107,13 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '修改私有网络名称'
+        },
+        'privateNetwork.detail.get': {
+            real: 'api/privateNetwork/detail/{id}',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取私有网络详情'
         },
         'router.list.get': {
             real: 'api/router/list',
@@ -135,6 +142,20 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '路由器修改名称'
+        },
+        'router.start.post': {
+            real: 'api/router/start',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '启动路由器'
+        },
+        'router.stop.post': {
+            real: 'api/router/stop',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '关闭路由器'
         },
         'router.updatePublicIp.post': {
             real: 'api/router/updatePublicIp',
@@ -219,6 +240,20 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '修改公网IP'
+        },
+        'publicIp.detail.get': {
+            real: 'api/publicIp/detail/{id}',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '公网IP详情'
+        },
+        'publicIp.listName.post': {
+            real: 'api/publicIp/listName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '获取可用的公网IP'
         },
     };
 

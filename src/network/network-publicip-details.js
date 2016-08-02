@@ -4,7 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class NetworkPublicDetails {
 
-    steps = ['上海一区', '云服务器', '私有网络详情'];
+    steps = ['上海一区', '云服务器', '公网IP详情'];
 
     /**
      * 构造函数
@@ -13,7 +13,7 @@ export class NetworkPublicDetails {
         this.http = getHttp();
     }
 
-    details;
+    details = null;
 
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
@@ -23,11 +23,12 @@ export class NetworkPublicDetails {
      * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待执行bind和attach视图(view), 直到你完成你的处理工作.
      */
     activate(params, routeConfig, navigationInstruction) {
-        // toastr.info(params.id);
-        // this.http.fetch(nsApi.url('disk.detail.get', {
-        //     id: params.id
-        // })).then((resp) => {
-        //     this.details = resp;
-        // });
+        this.http.fetch(nsApi.url('publicIp.detail.get', {
+            id: params.id
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.details = data;
+        });
     }
 }

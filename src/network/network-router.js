@@ -18,9 +18,9 @@ export class NetworkRouter {
     page = {
         currentPage: 1,
         pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
+        size: 0,
+        total: 0,
+        pageCount: 0,
         hasPreviousPage: false,
         hasNextPage: true
     };
@@ -44,7 +44,7 @@ export class NetworkRouter {
         获取路由器列表
     */
     getRouters() {
-        return this.http.fetch(nsApi.url('router.list.get', { pageNo: 1, pageSize: 1 }))
+        return this.http.fetch(nsApi.url('router.list.get', { pageNo: this.page.currentPage, pageSize: this.page.pageSize }))
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
@@ -70,6 +70,7 @@ export class NetworkRouter {
                 this.allChecked = false;
             },
         });
+        $('table.sortable').tablesort();
     }
 
     initActionsHandler(uiActions) {
@@ -80,8 +81,7 @@ export class NetworkRouter {
 
     //创建
     createHandler() {
-        this.createconfirm.show();
-        //}));
+        this.createconfirm.show(() => { this.getRouters(); });
     }
 
     //批量删除
@@ -95,33 +95,42 @@ export class NetworkRouter {
 
         this.deleteconfirm.show({
             onapprove: () => {
-                _.each(items, (pw) => {
-                    this.http.fetch(nsApi.url('router.delete.post', {
-                        id: pw.id
-                    }), { method: 'post' }).then((resp) => {
-                        // this. = resp.data;
-                        this.routers = _.filter(this.routers, (d) => {
-                            return (d.id != pw.id);
-                        });
+                let idlist = [];
+                _.each(items, (i) => {
+                    idlist.push(i.id);
+                });
+                this.http.fetch(nsApi.url('router.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: idlist
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        this.getRouters();
                         toastr.success('删除成功!');
-                    });
+                    }
                 });
             }
         });
     }
 
     //删除单条
-    delHandler(pn) {
+    delHandler(o) {
         this.deleteconfirm.show({
             onapprove: () => {
-                this.http.fetch(nsApi.url('router.delete.post', {
-                    id: pn.id
-                }), { method: 'post' }).then((resp) => {
+                this.http.fetch(nsApi.url('router.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [o.id]
+                    })
+                }).then((resp) => {
                     // this. = resp.data;
-                    this.privateNetworks = _.filter(this.privateNetworks, (d) => {
-                        return (d.id != pn.id);
-                    });
-                    toastr.success('删除成功!');
+                    if (resp.ok) {
+                        this.routers = _.filter(this.routers, (d) => {
+                            return (d.id != o.id);
+                        });
+                        toastr.success('删除成功!');
+                    }
                 });
             }
         });
@@ -162,30 +171,33 @@ export class NetworkRouter {
         this.getRouters();
         toastr.info('刷新成功!');
     }
-    
+
 
     //修改名称
-    updateName(pn) {
+    updateName(o) {
+        this.selectedRouterNetwork = o;
         this.updateconfirm.show((result => {
             // console.log(result);
             this.http.fetch(nsApi.url('router.updateName.post'), {
                 method: 'post',
                 body: json({
-                    id: pn.id,
+                    id: o.id,
                     name: result.name,
                     desc: result.desc
                 })
             }).then((resp) => {
-                // this. = resp.data;
-                pn.name = result.name;
-                pn.desc = result.desc;
-                toastr.success('修改名称操作成功!');
+                if (resp.ok) {
+                    // this. = resp.data;
+                    o.name = result.name;
+                    o.desc = result.desc;
+                    toastr.success('修改名称操作成功!');
+                }
             });
         }));
     }
 
-    //修改公网IP.show();
-   updatePublicIp(rt){
+    //修改公网IP;
+    updatePublicIp(rt) {
         this.updatePublicIpDialog.show((result => {
             this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
                 method: 'post',
@@ -194,12 +206,120 @@ export class NetworkRouter {
                     publciipid: result.publicipid
                 })
             }).then((resp) => {
-                // this. = resp.data;
-                // pn.name = result.name;
-                // pn.desc = result.desc;
-                toastr.success('修改公网IP操作成功!');
+                if (resp.ok) {
+                    rt.ip = result.publicipid;
+                    toastr.success('修改公网IP操作成功!');
+                }
             });
             //rt.
         }));
-   }
+    }
+
+    onpageHandler(selectedPage) {
+        console.log(selectedPage)
+        this.page.currentPage = selectedPage;
+        this.getRouters();
+    }
+
+    //批量启动
+    startHandler() {
+        //获取被选中的记录
+        var items = this.getCheckedItems();
+        if (items.length == 0) {
+            toastr.error('请先选择要启动的项目!');
+            return;
+        }
+
+        this.deleteconfirm.show({
+            content: "确定要启动选中的路由器吗？",
+            onapprove: () => {
+                let idlist = [];
+                _.each(items, (i) => {
+                    idlist.push(i.id);
+                });
+                this.http.fetch(nsApi.url('router.start.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: idlist
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        //this.getRouters();
+                        toastr.success('启动成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    //批量关闭
+    stopHandler() {
+//获取被选中的记录
+        var items = this.getCheckedItems();
+        if (items.length == 0) {
+            toastr.error('请先选择要关闭的项目!');
+            return;
+        }
+
+        this.deleteconfirm.show({
+            content: "确定要关闭选中的路由器吗？",
+            onapprove: () => {
+                let idlist = [];
+                _.each(items, (i) => {
+                    idlist.push(i.id);
+                });
+                this.http.fetch(nsApi.url('router.stop.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: idlist
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        //this.getRouters();
+                        toastr.success('关闭成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    //单个启动
+    startRouter(o) {
+        this.deleteconfirm.show({
+            content: "确定要启动路由器<span style='color:red'>" + o.name + "</span>吗？",
+            onapprove: () => {
+                this.http.fetch(nsApi.url('router.start.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        toastr.success('启动成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    //单个启动
+    stopRouter(o) {
+        this.deleteconfirm.show({
+            content: "确定要关闭路由器<span style='color:red'>" + o.name + "</span>吗？",
+            onapprove: () => {
+                this.http.fetch(nsApi.url('router.stop.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        toastr.success('关闭成功!');
+                    }
+                });
+            }
+        });
+    }
 }

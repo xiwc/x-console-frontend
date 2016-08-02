@@ -54,6 +54,54 @@ export class MappingValueConverter {
         }
     };
 
+    routerType = {
+        "1": {
+            zh: '中小型'
+        },
+        "2": {
+            zh: '大型'
+        }
+    };
+
+    privateHostType = {
+        "1": {
+            zh: '主机'
+        },
+        "2": {
+            zh: "负载均衡"
+        }
+    };
+
+    publicIpStatus = {
+        "1": {
+            zh: "可用"
+        },
+        "2": {
+            zh: "已分配"
+        }
+    };
+
+    chargeMode = {
+        "1": {
+            zh: "按带宽计费"
+        },
+        "2": {
+            zh: "按流量计费"
+        }
+    };
+
+    lineMode = {
+        "1": {
+            zh: "联通"
+        },
+        "2": {
+            zh: "电信"
+        },
+        "3": {
+            zh: "BGP线路"
+        }
+    };
+
     hostStatus = {
         '1': {
             zh: '运行中'

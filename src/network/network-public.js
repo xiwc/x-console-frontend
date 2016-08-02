@@ -66,7 +66,7 @@ export class NetworkPublic {
 		刷新公网IP
    	*/
     refreshHandler() {
-        this.getRouters();
+        this.getPublicIps();
         toastr.info('刷新成功!');
     }
 
@@ -84,6 +84,8 @@ export class NetworkPublic {
                 this.allChecked = false;
             },
         });
+
+        $('table.sortable').tablesort();
     }
 
     initActionsHandler(uiActions) {
@@ -105,19 +107,22 @@ export class NetworkPublic {
             toastr.error('请先选择要删除的项目!');
             return;
         }
-
         this.deleteconfirm.show({
             onapprove: () => {
-                _.each(items, (pw) => {
-                    this.http.fetch(nsApi.url('router.delete.post', {
-                        id: pw.id
-                    }), { method: 'post' }).then((resp) => {
-                        // this. = resp.data;
-                        this.routers = _.filter(this.publicIps, (d) => {
-                            return (d.id != pw.id);
-                        });
+                let idlist = [];
+                _.each(items, (i) => {
+                    idlist.push(i.id);
+                });
+                this.http.fetch(nsApi.url('publicIp.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: idlist
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        this.getPublicIps();
                         toastr.success('删除成功!');
-                    });
+                    }
                 });
             }
         });
@@ -127,9 +132,13 @@ export class NetworkPublic {
     delHandler(o) {
         this.deleteconfirm.show({
             onapprove: () => {
-                this.http.fetch(nsApi.url('publicIp.delete.post', {
-                    id: o.id
-                }), { method: 'post' }).then((resp) => {
+                this.http.fetch(nsApi.url('publicIp.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [o.id]
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
                     if (resp.ok) {
                         this.publicIps = _.filter(this.publicIps, (d) => {
                             return (d.id != o.id);
@@ -175,9 +184,14 @@ export class NetworkPublic {
 
     //修改名称
     updateName(pn) {
+        this.selectedPublicNetwork = pn;
         this.updateconfirm.show((result => {
-            // console.log(result);
-            this.http.fetch(nsApi.url('router.updateName.post'), {
+            // console.log({
+            //         id: pn.id,
+            //         name: result.name,
+            //         desc: result.desc
+            //     });
+            this.http.fetch(nsApi.url('publicIp.updateName.post'), {
                 method: 'post',
                 body: json({
                     id: pn.id,
@@ -186,9 +200,11 @@ export class NetworkPublic {
                 })
             }).then((resp) => {
                 // this. = resp.data;
-                pn.name = result.name;
-                pn.desc = result.desc;
-                toastr.success('修改名称操作成功!');
+                if (resp.ok) {
+                    pn.name = result.name;
+                    pn.desc = result.desc;
+                    toastr.success('修改成功!');
+                }
             });
         }));
     }

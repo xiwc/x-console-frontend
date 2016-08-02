@@ -6,7 +6,7 @@
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="./network-linkrouter"></require>
     <require from="comp/ui/ui-pageable"></require>
-    <div class="nx-network-publick-style">
+    <div class="nx-network-public-style">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
             <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新私有网络" data-position="top left" data-inverted="">
@@ -27,10 +27,10 @@
             </div>
         </div>
         <div class="ui basic segment" ref="container">
-            <table class="ui compact celled definition table">
+            <table class="ui compact sortable celled table">
                 <thead class="full-width">
                     <tr>
-                        <th>
+                        <th class="no-sort">
                             <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
@@ -41,7 +41,7 @@
                         <th>路由器</th>
                         <th>网络地址</th>
                         <th>创建于</th>
-                        <th>操作</th>
+                        <th class="no-sort">操作</th>
                     </tr>
                 </thead>
                 <tbody id="tbody1">
@@ -60,12 +60,12 @@
                         <td>
                             <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
                                 <div class="menu">
-                                    <div class="item" click.delegate="updateName()">修改名称</div>
+                                    <div class="item" click.delegate="updateName(pw)">修改名称</div>
                                     <div class="divider"></div>
-                                    <div class="item" click.delegate="linkRouter()">连接路由器</div>
-                                    <div class="item" click.delegate="delRouter()">离开路由器</div>
+                                    <div class="item" click.delegate="linkRouter(pw)">连接路由器</div>
+                                    <div class="item" click.delegate="delRouter(pw)">离开路由器</div>
                                     <div class="divider"></div>
-                                    <div class="item" click.delegate="delHandler()">删除</div>
+                                    <div class="item" click.delegate="delHandler(pw)">删除</div>
                                 </div>
                             </div>
                         </td>
@@ -83,7 +83,7 @@
     </div>
     <ui-name-create-modal ui-name-create-modal.ref="createconfirm"></ui-name-create-modal>
     <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
-    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" title.bind="updateNameTitle"></ui-name-update-modal>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm"  name.bind="selectedPrivateNetwork.name" desc.bind="selectedPrivateNetwork.desc" show-desc.bind="!0"  title.bind="updateNameTitle"></ui-name-update-modal>
     <network-linkrouter network-linkrouter.ref="linRouterDialog"></network-linkrouter>
     <ui-confirm ui-confirm.ref="deleteRouterconfirm" title.bind="deleteTite" content.bind="deleteRouterContent"></ui-confirm>
 </template>

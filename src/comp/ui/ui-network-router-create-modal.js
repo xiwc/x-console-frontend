@@ -38,17 +38,19 @@ export class UiNetworkRouterCreateModal {
                     toastr.error('表单验证不合法,请修改表单不合法输入!');
                     return false;
                 }
+                console.log($("input[name='routertype']:checked").val());
                 this.http.fetch(nsApi.url('router.create.post'), {
                     method: 'post',
                     body: json({
                         "name": this.name,
                         "securityGroupId": $(this.firewall).val(), // TODO 是否可以转移到 url中
-                        "type": $("input[name=type]").val() // TODO 后端需要怎么mapping
+                        "type": $("input[name='routertype']:checked").val() // TODO 后端需要怎么mapping
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
-                    this.onapprove && this.onapprove();
-                    toastr.success('硬盘创建成功!');
+                    if (resp.ok) {
+                        this.onapprove && this.onapprove();
+                        toastr.success('硬盘创建成功!');
+                    }
                 });
             },
             onDeny: () => { this.ondeny && this.ondeny(); }

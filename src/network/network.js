@@ -22,6 +22,12 @@ export class Network {
             nav: true,
             title: '路由器'
         }, {
+            route: ['router-details/:id'],
+            name: 'router-details',
+            moduleId: 'network/network-route-details',
+            nav: false,
+            title: '路由器详情'
+        }, {
             route: ['public'],
             name: 'public',
             moduleId: 'network/network-public',
