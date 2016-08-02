@@ -4,6 +4,9 @@ require('regenerator-runtime/runtime');
 const webpack = require('webpack');
 const AureliaWebpackPlugin = require('aurelia-webpack-plugin')
 
+// const TransferWebpackPlugin = require('transfer-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 /**
  * 想要了解怎么使用Easy Webpack, 可以看看这里的README: https://github.com/easy-webpack/core
  **/
@@ -21,6 +24,7 @@ const baseUrl = '/';
 const rootDir = path.resolve();
 const srcDir = path.resolve('src');
 const outDir = path.resolve('dist');
+// const locale = path.resolve('locale');
 
 let envs = [
 
@@ -113,6 +117,9 @@ const baseConfig = {
         'aurelia-bootstrap': ['./index'].concat(coreBundles.bootstrap),
         'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
     },
+    // node: {
+    //     fs: "empty"
+    // },
     output: {
         path: outDir
             // publicPath: "/mock/"
@@ -263,5 +270,14 @@ if (ENV === 'test' || ENV === 'development') {
         }
     }
 }
+
+// if (ENV === 'production') {
+//     // config.plugins.push(new TransferWebpackPlugin([
+//     //     { from: 'locale', to: 'dist/locale' }
+//     // ], rootDir));
+//     config.plugins.push(new CopyWebpackPlugin([
+//         { from: locale, to: outDir + '/locale' }
+//     ]));
+// }
 
 module.exports = config;

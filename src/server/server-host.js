@@ -8,15 +8,7 @@ export class ServerHost {
 
     allChecked = false;
 
-    page = {
-        currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
-    };
+    page;
 
     /**
      * 构造函数
@@ -54,11 +46,16 @@ export class ServerHost {
         this.getHosts();
     }
 
-    getHosts() {
-        return this.hosts = [
-            { id: '123123', name: 'sdfsdfsdf' },
-            { id: '123123', name: 'sdfsdfsdf' }
-        ];
+    getHosts(pageNo = 1) {
+        return this.http.fetch(nsApi.url('host.list.get', {
+            pageNo: pageNo,
+            pageSize: nsConfig.pageSize
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.hosts = data.list;
+            this.page = data;
+        });
     }
 
     isAllChecked() {
@@ -200,8 +197,70 @@ export class ServerHost {
     }
 
     unmountDiskHandler(item) {
-        this.uiDiskSelectModal.show(() => {
+        this.uiDiskSelectModalUnmount.show(() => {
             toastr.info('TODO...');
         });
     }
+
+    mountSecurityHandler(item) {
+        this.uiSecuritySelectModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    unmountSecurityHandler(item) {
+        this.uiSecuritySelectModalUnmount.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    bindPublicIpHandler(item) {
+        this.uiPublicIpSelectModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    unbindPublicIpHandler(item) {
+        this.uiPublicIpSelectModalUnbind.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    inPrivateNetworkHandler(item) {
+        this.uiNetworkPrivateSelectModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    outPrivateNetworkHandler(item) {
+        this.uiNetworkPrivateSelectModalOut.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    createSnapshotHandler(item) {
+        this.selectedHost = item;
+        this.uiSnapshotCreateModal.show(() => {
+            toastr.info('TODO...');
+        });
+    }
+
+    resetHandler(item) {
+        this.confirm.show({
+            content: '重置主机系统会将您的操作系统盘重置为初始状态,确定要执行此操作吗?',
+            onapprove: () => {
+                toastr.success('TODO...');
+            }
+        });
+    }
+
+    delHandler(item) {
+        this.confirm.show({
+            content: '确定要删除主机[xxx]吗?',
+            onapprove: () => {
+                toastr.success('TODO...');
+            }
+        });
+    }
+
 }

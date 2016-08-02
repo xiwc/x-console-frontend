@@ -11,31 +11,7 @@ export class ServerMirror {
 
     mirrors;
 
-    // mirrors = [{
-    //     "capacity": 0,
-    //     "id": "string",
-    //     "name": "string",
-    //     "platform": "linux",
-    //     "status": "string",
-    //     "version": "string1"
-    // }, {
-    //     "capacity": 0,
-    //     "id": "string",
-    //     "name": "string",
-    //     "platform": "windows server",
-    //     "status": "string",
-    //     "version": "string2"
-    // }];
-
-    page = {
-        currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
-    };
+    page;
 
 
     /**
@@ -98,15 +74,17 @@ export class ServerMirror {
         this.getMirrors();
     }
 
-    getMirrors() {
+    getMirrors(pageNo = 1) {
 
         return this.http.fetch(nsApi.url('image.list.get', {
             type: '1',
-            pageNo: '1'
+            pageSize: nsConfig.pageSize,
+            pageNo: pageNo
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
             this.mirrors = data.list;
+            this.page = data;
         });
     }
 
@@ -114,22 +92,12 @@ export class ServerMirror {
         $(uiChk).checkbox({
             onChecked: () => {
                 this.selectMirror = mirror;
-                // console.log(mirror);
             }
         });
     }
 
     onpageHandler(selectedPage) {
-        console.log(selectedPage);
-        this.page = {
-            currentPage: selectedPage,
-            pageSize: 10,
-            size: 10,
-            total: 75,
-            pageCount: 8,
-            hasPreviousPage: false,
-            hasNextPage: true
-        };
+        this.getMirrors(selectedPage);
     }
 
 }

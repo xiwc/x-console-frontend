@@ -3,21 +3,21 @@ window.nsApiFunc = (function() {
 
     // API全局共享定义(real:真实远程调用URL, mock:自定义调试数据URL.)
     var api = {
-        'host.hosts.get': { // TODO demo ajax method config.
-            real: 'hosts.json',
-            mock: 'mock/v2/host/hosts.get.json',
-            ismock: true,
+        'host.list.get': {
+            real: 'api/host/list',
+            mock: '',
+            ismock: false,
             method: 'get',
             payload: {},
-            desc: '获取主机列表'
+            desc: '根据区域获取用户主机列表'
         },
-        'host.create.post': { // TODO demo ajax method config.
-            real: 'hostCreate.json',
-            mock: 'mock/v2/host/hostCreate.post.json',
-            ismock: true,
-            method: 'post',
+        'host.detail.get': {
+            real: 'api/host/detail/{id}',
+            mock: '',
+            ismock: false,
+            method: 'get',
             payload: {},
-            desc: '创建主机'
+            desc: '根据主键id获取主机详情'
         },
         'user.userInfo.get': { // TODO demo ajax method config.
             real: '/v2/user/userInfo',

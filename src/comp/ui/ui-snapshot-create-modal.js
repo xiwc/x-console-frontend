@@ -5,13 +5,10 @@ import {
 from 'aurelia-framework';
 
 @containerless
-export class UiNameUpdateModal {
+export class UiSnapshotCreateModal {
 
+    @bindable hostname = 'xxxxxxxxxxxxxxxxxxxxxx';
     @bindable name = '';
-
-    @bindable desc = '';
-
-    @bindable showDesc = true;
 
     @bindable onapprove = ''; // 确认回调函数
 
@@ -27,16 +24,15 @@ export class UiNameUpdateModal {
             autofocus: false,
             // allowMultiple: true,
             onShow: () => {
-                // this.name = '';
-                // this.desc = '';
-                // $(this.form).form('reset');
+                this.name = '';
+                $(this.form).form('reset');
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
                     toastr.error('表单验证不合法,请修改表单不合法输入!');
                     return false;
                 }
-                this.onapprove && this.onapprove({ name: this.name, desc: this.desc });
+                this.onapprove && this.onapprove({ name: this.name });
             },
             onDeny: () => { this.ondeny && this.ondeny(); }
         });
@@ -52,6 +48,7 @@ export class UiNameUpdateModal {
                         prompt: '名称不能为空!'
                     }, {
                         type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{1,16}$/]',
+                        // type: 'regExp[/^(?!auto)[\u4E00-\u9FA5a-zA-Z0-9\-_]{2,128}$/]',
                         prompt: '1-16个字符(大小字母、数字、_、-、汉字)!'
                     }]
                 }

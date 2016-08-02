@@ -1,8 +1,8 @@
 <template>
-    <div ref="md" class="ui small modal nx-ui-disk-select-modal">
+    <div ref="md" class="ui small modal nx-ui-security-select-modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
-            ${type == 'mount' ? '选择要加载到[xxx]的硬盘' : '选择要从[xxx]上卸载的硬盘'}
+            ${type == 'mount' ? '选择要加载到[xxx]的安全组' : '选择要从[xxx]上卸载的安全组'}
         </div>
         <div class="content">
             <div class="ui message">
@@ -13,21 +13,17 @@
                     <tr>
                         <th class="no-sort"></th>
                         <th>名称</th>
-                        <th>容量G</th>
-                        <th>类型</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr repeat.for="item of disks">
+                    <tr repeat.for="item of securities">
                         <td>
                             <div ref="uiSelect" class="ui fitted radio checkbox" task.call="initChkHandler(uiSelect, item, $first)">
-                                <input type="radio" name="${'disk-' + type}">
+                                <input type="radio" name="${'security-' + type}">
                                 <label></label>
                             </div>
                         </td>
                         <td>${item.name}</td>
-                        <td>200</td>
-                        <td>容量型</td>
                     </tr>
                 </tbody>
             </table>
