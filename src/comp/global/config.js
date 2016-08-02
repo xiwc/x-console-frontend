@@ -17,6 +17,9 @@ window.nsConfig = (function() {
         //     step: 5,
         //     weeks: false
         // }
+
+        // 默认分页大小
+        pageSize: 2
     }
 })();
 

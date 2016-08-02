@@ -39,6 +39,8 @@ export class ServerMirrorDetails {
         this.http.fetch(nsApi.url('image.detail.get', {
             id: params.id
         })).then((resp) => {
+            return resp.json();
+        }).then((resp) => {
             this.details = resp;
         });
     }
