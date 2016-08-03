@@ -40,7 +40,7 @@
                         <th>名称</th>
                         <th>路由器</th>
                         <th>网络地址</th>
-                        <th>创建于</th>
+                        <th>创建时间</th>
                         <th class="no-sort">操作</th>
                     </tr>
                 </thead>
@@ -56,7 +56,7 @@
                         <td><a href="/#/network/private-details/${pw.id}">${pw.name}</a></td>
                         <td>${pw.routerName}</td>
                         <td>${pw.ip}</td>
-                        <td>${pw.createPeriod}</td>
+                        <td>${pw.createPeriod | dateFormat}</td>
                         <td>
                             <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
                                 <div class="menu">

@@ -80,6 +80,13 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '创建云硬盘'
         },
+        'disk.expand.post': {
+            real: 'api/disk/expand',
+            mock: 'mock/disk/expand.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '扩展云硬盘'
+        },
         'privateNetwork.list.get': {
             real: 'api/privateNetwork/list',
             mock: '',
@@ -121,6 +128,13 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'get',
             desc: '获取路由器列表'
+        },
+        'router.listName.get': {
+            real: 'api/router/listName',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取未绑定的路由器列表'
         },
         'router.create.post': {
             real: 'api/router/create',
