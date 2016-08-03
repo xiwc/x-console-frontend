@@ -69,7 +69,7 @@
                         <td>${r.type | mapping:'routerType'}</td>
                         <!-- <td>${r.managerIp}</td> -->
                         <td>${r.ip}</td>
-                        <td>${r.createPeriod}</td>
+                        <td>${r.createPeriod | dateFormat}</td>
                         <td>
                             <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
                                 <div class="menu">

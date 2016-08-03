@@ -44,6 +44,7 @@ export class UiNetworkPublicipCreateModal {
                 this.name = '';
                 this.count = 1;
                 $(this.form).form("reset");
+                this.slider.reset();
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
@@ -91,7 +92,17 @@ export class UiNetworkPublicipCreateModal {
                         prompt: '数量不能为空!'
                     }, {
                         type: 'integer[1..10]',
-                        prompt: '一次创建硬盘数量必须是介于1到5的整数!'
+                        prompt: '数量必须是介于1到5的整数!'
+                    }]
+                },
+                bankWidth:{
+                    identifier: 'bankWidth',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '数量不能为空!'
+                    }, {
+                        type: 'integer[1..10]',
+                        prompt: '带宽上限必须是介于1到5的整数!'
                     }]
                 }
             }
