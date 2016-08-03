@@ -63,9 +63,9 @@
                                 <i class="dropdown icon"></i>
                                 <div class="left menu">
                                     <div click.delegate="updateHandler(d)" class="item">修改名称</div>
-                                    <div click.delegate="addToHostHandler()" class="item disabled">加载到主机</div>
+                                    <div click.delegate="addToHostHandler()" class="item">加载到主机</div>
                                     <div click.delegate="removeFromHostHandler()" class="item disabled">从主机卸载</div>
-                                    <div click.delegate="extendSizeHandler()" class="item disabled">扩容</div>
+                                    <div click.delegate="extendSizeHandler(d)" class="item">扩容</div>
                                     <div click.delegate="delHandler(d)" class="item">删除</div>
                                 </div>
                             </div>
@@ -86,5 +86,5 @@
     <ui-disk-create-modal ui-disk-create-modal.ref="uiDiskCreateModal"></ui-disk-create-modal>
     <ui-name-update-modal name.bind="selectedDisk.name" desc.bind="selectedDisk.desc" show-desc.bind="!0" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
     <ui-host-select-modal ui-host-select-modal.ref="uiHostSelectModal"></ui-host-select-modal>
-    <ui-disk-expansion-modal ui-disk-expansion-modal.ref="uiDiskExpansionModal"></ui-disk-expansion-modal>
+    <ui-disk-expansion-modal ui-disk-expansion-modal.ref="uiDiskExpansionModal" disk.bind="selectedDisk"></ui-disk-expansion-modal>
 </template>

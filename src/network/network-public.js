@@ -209,7 +209,7 @@ export class NetworkPublic {
         }));
     }
 
-    //修改公网IP.show();
+    //修改公网IP;
     updatePublicIp(rt) {
         this.updatePublicIpDialog.show((result => {
             this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
@@ -228,4 +228,20 @@ export class NetworkPublic {
         }));
     }
 
+    //绑定路由器
+    bindRouter(o) {
+        this.selectedPublicNetwork = o;
+        this.bindrouterDialog.show((result => {
+        }));
+    }
+
+    //解绑路由器
+    unBindRouter(o) {
+    	this.deleteconfirm.show({
+    		content:"确定要解除该公网IP上绑定的路由器吗？",
+    		onapprove:() =>{
+
+    		}
+    	});
+    }
 }
