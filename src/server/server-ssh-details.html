@@ -1,6 +1,7 @@
 <template>
     <require from="./server-ssh-details.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/vc/vc-common"></require>
     <div class="nx-server-ssh-details">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
@@ -24,11 +25,11 @@
                                 </tr>
                                 <tr>
                                     <th>加密方法</th>
-                                    <td>${details.encryptmode}</td>
+                                    <td>${details.encryptmode | mapping:'sshType'}</td>
                                 </tr>
                                 <tr>
                                     <th>公钥</th>
-                                    <td>${details.content}</td>
+                                    <td>${details.publickey}</td>
                                 </tr>
                                 <tr>
                                     <th>主机</th>
@@ -38,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td>${details.createTime | dateFormat}</td>
                                 </tr>
                                 <tr>
                             </tbody>

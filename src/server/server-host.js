@@ -113,9 +113,7 @@ export class ServerHost {
     }
 
     getCheckedItems() {
-        return _.filter(this.hosts, (item) => {
-            return item.checked;
-        });
+        return _.filter(this.hosts, 'checked');
     }
 
     existsChecked() {

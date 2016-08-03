@@ -25,10 +25,10 @@
                                     <th>名称</th>
                                     <td>${details.name}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>标签</th>
                                     <td>${details.tagName}</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th>资源/盘符</th>
                                     <td>${'(' + details.resource + ')' + details.volumnName}</td>
@@ -47,12 +47,12 @@
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td>${details.createTime | dateFormat}</td>
                                 </tr>
-                                <tr>
+<!--                                 <tr>
                                     <th>创建于</th>
                                     <td>${details.createPeriod}</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                             </tbody>
                         </table>

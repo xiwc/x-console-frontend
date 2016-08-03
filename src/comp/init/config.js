@@ -36,7 +36,7 @@ export class Config {
                         NProgress && NProgress.done();
                         if (!resp.ok) {
                             resp.json().then((data) => {
-                                toastr.error('PATH:<br/>' + data.path + '<br/>EXCEPTION:<br/>' + data.exception + '<br/>MESSAGE:<br/>' + data.message, data.error);
+                                toastr.error('PATH: ' + data.path + '<br/>STATUS: ' + data.status + '<br/>EXCEPTION:<br/>' + data.exception + '<br/>MESSAGE:<br/>' + data.message, data.error);
                             });
                             // toastr.error(resp.statusText, '网络请求错误!');
                         }

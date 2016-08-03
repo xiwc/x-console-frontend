@@ -16,7 +16,6 @@ export class ServerSSH {
      */
     constructor(getHttp) {
         this.http = getHttp();
-        // this.initPage();
     }
 
     /**
@@ -62,9 +61,7 @@ export class ServerSSH {
     }
 
     getCheckedItems() {
-        return _.filter(this.sshkeys, (k) => {
-            return k.checked;
-        });
+        return _.filter(this.sshkeys, 'checked');
     }
 
     isAllChecked() {
@@ -99,14 +96,13 @@ export class ServerSSH {
     }
 
     refreshHandler() {
-        // toastr.info('刷新操作...');
         this.getSshkeys().then(() => {
             toastr.info('刷新完成!');
+            this.allChecked = false;
         });
     }
 
     createHandler() {
-        // toastr.info('创建操作...');
         this.uiSshkeyCreateModal.show(() => {
             this.getSshkeys();
             this.uiSshkeyDownloadModal.show();

@@ -61,9 +61,7 @@ export class ServerDisk {
     }
 
     getCheckedItems() {
-        return _.filter(this.disks, (d) => {
-            return d.checked;
-        });
+        return _.filter(this.disks, 'checked');
     }
 
     /**
@@ -116,7 +114,7 @@ export class ServerDisk {
         }
 
         this.confirm.show({
-            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
+            content: '确定要删除选择的硬盘吗?',
             onapprove: () => {
                 let items = this.getCheckedItems();
                 if (items.length == 0) {
@@ -124,16 +122,19 @@ export class ServerDisk {
                     return;
                 }
 
-                _.each(items, (disk) => {
-                    this.http.fetch(nsApi.url('disk.delete.post', {
-                        id: disk.id
-                    }), { method: 'post' }).then((resp) => {
-                        // this. = resp.data;
+                this.http.fetch(nsApi.url('disk.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: _.map(items, "id")
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
                         this.disks = _.filter(this.disks, (d) => {
                             return (d.id != disk.id);
                         });
                         toastr.success('删除成功!');
-                    });
+                    }
+
                 });
             }
         });
@@ -142,16 +143,20 @@ export class ServerDisk {
     delHandler(disk) {
 
         this.confirm.show({
-            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
+            content: `确定要删除硬盘[${disk.name}]吗?`,
             onapprove: () => {
-                this.http.fetch(nsApi.url('disk.delete.post', {
-                    id: disk.id
-                }), { method: 'post' }).then((resp) => {
-                    // this. = resp.data;
-                    this.disks = _.filter(this.disks, (d) => {
-                        return (d.id != disk.id);
-                    });
-                    toastr.success('删除成功!');
+                this.http.fetch(nsApi.url('disk.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [disk.id]
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        this.disks = _.filter(this.disks, (d) => {
+                            return (d.id != disk.id);
+                        });
+                        toastr.success('删除成功!');
+                    }
                 });
             }
         });

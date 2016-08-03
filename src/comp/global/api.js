@@ -60,7 +60,7 @@ window.nsApiFunc = (function() {
             desc: '获取硬盘详情'
         },
         'disk.delete.post': {
-            real: 'api/disk/delete/{id}',
+            real: 'api/disk/delete',
             mock: 'mock/disk/delete.post.json',
             ismock: false,
             method: 'post',

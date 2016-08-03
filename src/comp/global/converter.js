@@ -65,22 +65,22 @@ export class AbbreviateexactValueConverter {
 }
 
 /**
- * 时间格式化值转换器
+ * 时间格式化值转换器, using as: 4234234234 | dateFormat
  * doc: https://www.npmjs.com/package/jquery-format
  */
 export class DateFormatValueConverter {
-    toView(value, format = 'yyyy/MM/dd hh:mm:ss') {
-        return value ? $.format.date(new Date(value), format) : '';
+    toView(value, format = 'yyyy-MM-dd hh:mm:ss') {
+        return _.isInteger(_.toNumber(value)) ? $.format.date(new Date(value), format) : (value ? value : '');
     }
 }
 
 /**
- * 数值格式化值转换器
+ * 数值格式化值转换器, using as: 4234234234 | numberFormat
  * doc: https://www.npmjs.com/package/jquery-format
  */
 export class NumberFormatValueConverter {
     toView(value, format = '#,##0.0#') {
-        return value ? $.format.number(value, format) : '';
+        return _.isNumber(_.toNumber(value)) ? $.format.number(value, format) : (value ? value : '');
     }
 }
 
