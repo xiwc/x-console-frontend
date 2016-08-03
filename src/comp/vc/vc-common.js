@@ -129,6 +129,18 @@ export class MappingValueConverter {
         }
     };
 
+    sshType = {
+        '1': {
+            zh: 'RSA'
+        },
+        '2': {
+            zh: 'DSA'
+        },
+        '3': {
+            zh: 'ECDSA'
+        }
+    };
+
     toView(value, name) {
 
         if (this.hasOwnProperty(name)) {

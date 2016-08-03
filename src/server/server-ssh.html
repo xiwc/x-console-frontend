@@ -5,6 +5,7 @@
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="comp/ui/ui-sshkey-download-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
+    <require from="comp/vc/vc-common"></require>
     <div class="nx-server-ssh">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -47,9 +48,9 @@
                         </td>
                         <td><a href="/#/server/ssh-details/${k.id}">${k.name}</a></td>
                         <!-- <td>${k.name}</td> -->
-                        <td>${k.encryptmode}</td>
+                        <td>${k.encryptmode | mapping:'sshType'}</td>
                         <td>${k.type}</td>
-                        <td>${k.createPeriod}</td>
+                        <td>${k.createTime | dateFormat}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>

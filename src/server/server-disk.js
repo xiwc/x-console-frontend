@@ -61,9 +61,7 @@ export class ServerDisk {
     }
 
     getCheckedItems() {
-        return _.filter(this.disks, (d) => {
-            return d.checked;
-        });
+        return _.filter(this.disks, 'checked');
     }
 
     /**

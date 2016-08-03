@@ -127,9 +127,7 @@ export class ServerSecurity {
     }
 
     getCheckedItems() {
-        return _.filter(this.securities, (d) => {
-            return d.checked;
-        });
+        return _.filter(this.securities, 'checked');
     }
 
     onpageHandler(selectedPage) {
