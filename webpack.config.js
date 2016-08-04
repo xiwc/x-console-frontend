@@ -30,14 +30,14 @@ let envs = [
 
     // 开发
     {
-        //active: true,
+        active: true,
         console: 'http://218.245.64.3:45417',
         yangyang: 'http://192.168.7.254:8081/yangyang/',
         platform: 'http://192.168.7.254:8080/platform/'
     },
     // 测试
     {
-        active: true,
+        // active: true,
         console: 'http://220.248.17.34:8061',
         yangyang: 'https://step.newtouchwork.com',
         platform: 'https://www.newtouchwork.com'
@@ -50,7 +50,7 @@ let envs = [
     },
     // 李康华
     {
-       //active: true,
+        //active: true,
         console: 'http://192.168.40.14:8080',
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
@@ -59,6 +59,13 @@ let envs = [
     {
         //active: true,
         console: 'http://192.168.40.13:8080',
+        yangyang: 'https://step.newtouch.com',
+        platform: 'https://www.newtouch.com'
+    },
+    // 席维成(自定义可切换后端代理)
+    {
+        // active: true,
+        console: 'http://x-proxy.sh1.newtouch.com',
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
     }
@@ -263,7 +270,10 @@ if (ENV === 'test' || ENV === 'development') {
             secure: false
         },
         '/api/*': {
-            target: env.console
+            target: env.console,
+            // ignorePath: true,
+            changeOrigin: true,
+            secure: false
                 // rewrite: function(req) {
                 //     req.url = req.url.replace(/^\/api/, '');
                 // }
