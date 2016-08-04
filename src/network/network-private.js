@@ -49,6 +49,8 @@ export class NetworkPrivate {
                 this.privateNetworks = data.list;
                 this.page.total = data.total;
                 this.page.pageCount = data.pageCount;
+                this.page.hasPreviousPage = data.hasPreviousPage;
+                this.page.hasNextPage = data.hasNextPage;
             }).then(() => {
                 this.allChecked = false;
             });
@@ -219,14 +221,6 @@ export class NetworkPrivate {
     onpageHandler(selectedPage) {
         console.log(selectedPage);
         this.page.currentPage = selectedPage;
-        // this.page = {
-        //     currentPage: selectedPage,
-        //     pageSize: 10,
-        //     size: 10,
-        //     total: 75,
-        //     pageCount: 8,
-        //     hasPreviousPage: false,
-        //     hasNextPage: true
-        // };
+        this.getPrivateNetwork();
     }
 }

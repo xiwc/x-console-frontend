@@ -50,7 +50,7 @@ let envs = [
     },
     // 李康华
     {
-       //active: true,
+        //active: true,
         console: 'http://192.168.40.14:8080',
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
