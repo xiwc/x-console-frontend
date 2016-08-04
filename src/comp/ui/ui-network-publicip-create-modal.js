@@ -91,7 +91,7 @@ export class UiNetworkPublicipCreateModal {
                         type: 'empty',
                         prompt: '数量不能为空!'
                     }, {
-                        type: 'integer[1..10]',
+                        type: 'integer[1..5]',
                         prompt: '数量必须是介于1到5的整数!'
                     }]
                 },
@@ -102,7 +102,7 @@ export class UiNetworkPublicipCreateModal {
                         prompt: '数量不能为空!'
                     }, {
                         type: 'integer[1..10]',
-                        prompt: '带宽上限必须是介于1到5的整数!'
+                        prompt: '带宽上限必须是介于1到10的整数!'
                     }]
                 }
             }

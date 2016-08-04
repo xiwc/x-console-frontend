@@ -27,8 +27,6 @@ export class NetworkPrivateDetails {
         this.http = getHttp();
     }
 
-
-
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
      * @param  {[object]} params                参数
@@ -60,8 +58,7 @@ export class NetworkPrivateDetails {
             return resp.json();
         }).then((data) => {
             this.hostlist = data.list;
-            this.page.total = data.total;
-            this.page.pageCount = data.pageCount;
+            this.page = data;
         });
     }
 

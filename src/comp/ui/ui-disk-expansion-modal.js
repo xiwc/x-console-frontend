@@ -21,12 +21,15 @@ export class UiDiskExpansionModal {
 
             },
             onApprove: () => {
-                console.log($(this.rangeSize).val());
+                //console.log($(this.rangeSize).val());
                 this.onapprove && this.onapprove({ capacity: $(this.rangeSize).val() });
-                this.hide();
             },
             onDeny: () => {
-                this.hide();
+                
+            },
+            onHide: () => {
+                this.slider.reset();
+                this.slider.destroy();
             }
         });
 
@@ -36,7 +39,7 @@ export class UiDiskExpansionModal {
         $(this.rangeSize).ionRangeSlider({
             max: opt.sth.maxCapacity,
             to: 10,
-            value : 10
+            value: 10
         });
 
         this.slider = $(this.rangeSize).data("ionRangeSlider");
@@ -52,8 +55,6 @@ export class UiDiskExpansionModal {
     }
 
     hide() {
-        this.slider.reset();
-        this.slider.destroy();
-        //$(this.md).modal('hide');
+        $(this.md).modal('hide');
     }
 }

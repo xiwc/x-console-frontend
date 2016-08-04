@@ -207,27 +207,26 @@ export class ServerDisk {
         // toastr.info('扩容操作...');
         this.selectedDisk = o;
         this.uiDiskExpansionModal.show({
-                sth: { maxCapacity: 1000 - o.capacity },
-                onapprove: (result) => {
-                    console.log(result);
-                    this.http.fetch(nsApi.url('disk.expand.post'), {
-                        method: 'post',
-                        body: json({
-                            id: o.id,
-                            capacity: result.capacity
-                        })
-                    }).then((resp) => {
-                        if (resp.ok) {
-                            o.capacity += Number(result.capacity);
-                            toastr.success('扩容成功!');
-                        }
-                    });
-                }
-            });
-        }
-
-        onpageHandler(selectedPage) {
-            this.getDisks(selectedPage);
-        }
-
+            sth: { maxCapacity: 1000 - o.capacity },
+            onapprove: (result) => {
+                console.log(result);
+                this.http.fetch(nsApi.url('disk.expand.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id,
+                        capacity: result.capacity
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        o.capacity += Number(result.capacity);
+                        toastr.success('扩容成功!');
+                    }
+                });
+            }
+        });
     }
+
+    onpageHandler(selectedPage) {
+        this.getDisks(selectedPage);
+    }
+}

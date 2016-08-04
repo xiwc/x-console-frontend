@@ -43,9 +43,7 @@ export class UiNetworkPublicipBindrouterModal {
     }
 
     getSelected() {
-        return _.find(this.privateNetworks, (item) => {
-            return item.selected;
-        });
+        return _.find(this.privateNetworks, 'selected');
     }
 
     clearChecked() {
