@@ -67,6 +67,14 @@ window.nsApiFunc = (function() {
             payload: {},
             desc: '根据主机id修改主机名称'
         },
+        // 'host.listName.get': {
+        //     real: 'api/host/listName',
+        //     mock: '',
+        //     ismock: false,
+        //     method: 'get',
+        //     payload: {},
+        //     desc: '获取未挂载硬盘的主机列表'
+        // },
         'user.userInfo.get': { // TODO demo ajax method config.
             real: '/v2/user/userInfo',
             mock: 'mock/v2/user/userInfo.get.json',
@@ -232,6 +240,13 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '路由器修改公网IP'
+        },
+        'router.updateType.post': {
+            real: 'api/router/updateType',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '路由器扩容'
         },
         'keystore.list.get': {
             real: 'api/keystore/list',

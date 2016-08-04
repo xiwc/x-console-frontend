@@ -185,6 +185,7 @@ export class ServerDisk {
 
     }
 
+    //加载到主机
     addToHostHandler() {
         // toastr.info('加载到主机操作...');
         this.uiHostSelectModal.show((result => {
@@ -201,6 +202,7 @@ export class ServerDisk {
         });
     }
 
+    //扩容操作
     extendSizeHandler(o) {
         // toastr.info('扩容操作...');
         this.selectedDisk = o;

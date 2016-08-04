@@ -175,7 +175,7 @@ export class NetworkRouter {
 
     //修改名称
     updateName(o) {
-        this.selectedRouterNetwork = o;
+        this.selectedRouter = o;
         this.updateconfirm.show((result => {
             // console.log(result);
             this.http.fetch(nsApi.url('router.updateName.post'), {
@@ -254,7 +254,7 @@ export class NetworkRouter {
 
     //批量关闭
     stopHandler() {
-//获取被选中的记录
+        //获取被选中的记录
         var items = this.getCheckedItems();
         if (items.length == 0) {
             toastr.error('请先选择要关闭的项目!');
@@ -316,6 +316,52 @@ export class NetworkRouter {
                 }).then((resp) => {
                     // this. = resp.data;
                     if (resp.ok) {
+                        toastr.success('关闭成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    //扩容操作
+    updateRouterType(o) {
+        this.updatetypeDialog.show({
+            sth : {routerName:o.name , type : o.type},
+            onapprove:(result) =>{
+                console.log(result);
+                this.http.fetch(nsApi.url('router.updateType.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id,
+                        type: result.type
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        o.type = result.type;
+                        toastr.success('关闭成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    //添加私有网络
+    addPrivatework(o){
+        this.addPrivateworkDialog.show({
+            sth : {name:o.name},
+            onapprove:(result) =>{
+                console.log(result);
+                this.http.fetch(nsApi.url('router.updateType.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id,
+                        type: result.type
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        o.type = result.type;
                         toastr.success('关闭成功!');
                     }
                 });
