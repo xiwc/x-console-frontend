@@ -101,6 +101,23 @@
     display: none!important;
 }
 
+.nx-top-fixed-menu .nx-menu-toggle .indent.icon {
+    display: none;
+}
+
+.nx-top-fixed-menu .nx-menu-toggle .outdent.icon {
+    display: block;
+}
+
+.nx-left-sidebar-menu-labeled-icon .nx-top-fixed-menu .nx-menu-toggle .indent.icon {
+    display: block;
+}
+
+
+.nx-left-sidebar-menu-labeled-icon .nx-top-fixed-menu .nx-menu-toggle .outdent.icon {
+    display: none;
+}
+
 .ui.vertical.menu .item.nx-labeled-icon-item {
     display: none;
 }
