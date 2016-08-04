@@ -56,8 +56,8 @@ export class UiNetworkPublicipCreateModal {
                     body: json({
                         "name": this.name,
                         "count": this.count,
-                        "bandwidth": $(this.rangeSize).val(),
-                        "chargemode": $(this.chargemode).val(),
+                        "bandWidth": $(this.rangeSize).val(),
+                        "chargeMode": $(this.chargemode).val(),
                         "ipline": $(this.linemode).val()
                     })
                 }).then((resp) => {

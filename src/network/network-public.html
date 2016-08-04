@@ -30,7 +30,7 @@
         <div class="ui basic segment" ref="container">
             <table class="ui compact sortable celled definition table">
                 <thead class="full-width">
-                    <tr>
+                    <tr class="no-sort">
                         <th>
                             <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
@@ -62,10 +62,10 @@
                         <td>${p.ip}</td>
                         <td>${p.status | mapping:"publicIpStatus"}</td>
                         <td>${p.resource}</td>
-                        <td>${p.chargemode | mapping:"chargeMode"}</td>
-                        <td>${p.bandwidth}</td>
+                        <td>${p.chargeMode | mapping:"chargeMode"}</td>
+                        <td>${p.bandWidth}Mbps</td>
                         <td>${p.ipline | mapping:"lineMode"}</td>
-                        <td>${p.createPeriod | dateFormat}</td>
+                        <td>${p.createTime | dateFormat}</td>
                         <td>
                             <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
                                 <div class="menu">

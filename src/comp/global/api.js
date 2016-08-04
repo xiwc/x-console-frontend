@@ -170,6 +170,13 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '获取私有网络详情'
         },
+        'privateNetwork.host.list.get': {
+            real: 'api/privateNetwork/host/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取私有网络详情主机列表'
+        },
         'router.list.get': {
             real: 'api/router/list',
             mock: '',
