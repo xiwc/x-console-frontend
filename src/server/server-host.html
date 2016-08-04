@@ -77,13 +77,13 @@
                         <td><a href="/#/server/host-details/${item.id}">${item.name}</a></td>
                         <td>${item.status | mapping:'hostStatus'}</td>
                         <td>${item.type | mapping:'hostType'}</td>
-                        <td>${item.imagename}</td>
+                        <td>${item.imageName}</td>
                         <td>${item.config}</td>
                         <td>${item.networkType}</td>
                         <td></td>
                         <td>${item.ip}</td>
                         <td>${item.securityGroupName}</td>
-                        <td>${item.createPeriod}</td>
+                        <td>${item.createTime | dateFormat}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
