@@ -185,6 +185,7 @@ export class ServerDisk {
 
     }
 
+    //加载到主机
     addToHostHandler() {
         // toastr.info('加载到主机操作...');
         this.uiHostSelectModal.show((result => {
@@ -201,13 +202,31 @@ export class ServerDisk {
         });
     }
 
-    extendSizeHandler() {
+    //扩容操作
+    extendSizeHandler(o) {
         // toastr.info('扩容操作...');
-        this.uiDiskExpansionModal.show();
+        this.selectedDisk = o;
+        this.uiDiskExpansionModal.show({
+            sth: { maxCapacity: 1000 - o.capacity },
+            onapprove: (result) => {
+                console.log(result);
+                this.http.fetch(nsApi.url('disk.expand.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id,
+                        capacity: result.capacity
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        o.capacity += Number(result.capacity);
+                        toastr.success('扩容成功!');
+                    }
+                });
+            }
+        });
     }
 
     onpageHandler(selectedPage) {
         this.getDisks(selectedPage);
     }
-
 }

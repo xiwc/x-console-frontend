@@ -5,6 +5,8 @@
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="comp/ui/ui-network-router-publicip-update-modal"></require>
+    <require from="comp/ui/ui-network-router-updatetype-modal"></require>
+    <require from="comp/ui/ui-network-router-addprivatenetwork-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
     <require from="comp/vc/vc-common"></require>
     <require from="./network-linkrouter"></require>
@@ -37,9 +39,9 @@
         <div class="ui basic segment" ref="container">
             <table class="ui compact sortable celled table">
                 <thead class="full-width">
-                    <tr>
+                    <tr class="no-sort">
                         <th>
-                            <div class="ui fitted checkbox" ref="uiChkAll" chk.bind="allChecked">
+                            <div class="ui checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
                             </div>
@@ -69,7 +71,7 @@
                         <td>${r.type | mapping:'routerType'}</td>
                         <!-- <td>${r.managerIp}</td> -->
                         <td>${r.ip}</td>
-                        <td>${r.createPeriod}</td>
+                        <td>${r.createPeriod | dateFormat}</td>
                         <td>
                             <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
                                 <div class="menu">
@@ -78,6 +80,9 @@
                                     <div class="item" click.delegate="startRouter(r)">启动</div>
                                     <div class="item" click.delegate="stopRouter(r)">关闭</div>
                                     <div class="item" click.delegate="updatePublicIp(r)">修改公网IP</div>
+                                    <div class="item" click.delegate="updateRouterType(r)">扩容</div>
+                                    <div class="item" click.delegate="addPrivatework(r)">添加私有网络</div>
+                                    <div class="item">移除私有网络</div>
                                     <div class="divider"></div>
                                     <div class="item" click.delegate="delHandler(r)">删除</div>
                                 </div>
@@ -97,6 +102,8 @@
     </div>
     <ui-network-router-create-modal ui-network-router-create-modal.ref="createconfirm" title.bind="createTitle"></ui-network-router-create-modal>
     <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
-    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm"" name.bind="selectedRouterNetwork.name" desc.bind="selectedRouterNetwork.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm"" name.bind="selectedRouter.name" desc.bind="selectedRouter.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
     <ui-network-router-publicip-update-modal ui-network-router-publicip-update-modal.ref="updatePublicIpDialog"></ui-network-router-publicip-update-modal>
+    <ui-network-router-updatetype-modal ui-network-router-updatetype-modal.ref="updatetypeDialog"></ui-network-router-updatetype-modal>
+    <ui-network-router-addprivatenetwork-modal ui-network-router-addprivatenetwork-modal.ref="addPrivateworkDialog"></ui-network-router-addprivatenetwork-modal>
 </template>

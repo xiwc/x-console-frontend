@@ -8,15 +8,12 @@ import { inject, Lazy } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 
 @inject(Lazy.of(HttpClient))
-
 @containerless
-export class UiHostSelectModal {
+export class UiNetworkRouterAddprivatenetworkModal {
 
-    hosts = [
-        { id: 'host01', name: 'host01', type: '性能型' },
-        { id: 'host02', name: 'host02', type: '性能型' },
-        { id: 'host03', name: 'host03', type: '性能型' },
-    ];
+    name = ''; 
+
+    routerList = null;
 
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
@@ -46,28 +43,22 @@ export class UiHostSelectModal {
     }
 
     getSelected() {
-
-        let selected = null;
-        _.each(this.hosts, (host) => {
-            if (host.selected) {
-                selected = host;
-            }
+        return _.find(this.privateNetworks, (item) => {
+            return item.selected;
         });
-
-        return selected;
     }
 
     clearChecked() {
-        _.each(this.hosts, (host) => {
-            host.selected = false;
+        _.each(this.privateNetworks, (item) => {
+            item.selected = false;
         });
     }
 
-    initChkHandler(uiSelect, host, first) {
+    initChkHandler(uiSelect, item, first) {
         $(uiSelect).checkbox({
             onChecked: () => {
                 this.clearChecked();
-                host.selected = true;
+                item.selected = true;
             }
         });
 
@@ -81,14 +72,20 @@ export class UiHostSelectModal {
      * @param onapprove: 确认回调函数
      * @param ondeny: 取消回调函数
      */
-    show(onapprove, ondeny) {
-
-        if (onapprove) {
-            this.onapprove = onapprove;
+     show(opt) {
+        if (opt.sth) {
+            for (var key in opt.sth)
+                if (this.hasOwnProperty(key))
+                    this[key] = opt.sth[key];
         }
 
-        if (ondeny) {
-            this.ondeny = ondeny;
+        if (opt.onapprove) {
+            this.onapprove = opt.onapprove;
+        }
+
+        if (opt.ondeny) {
+            this.ondeny = opt.
+            ondeny;
         }
 
         $(this.md).modal('show');

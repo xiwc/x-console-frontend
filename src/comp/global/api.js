@@ -67,6 +67,14 @@ window.nsApiFunc = (function() {
             payload: {},
             desc: '根据主机id修改主机名称'
         },
+        // 'host.listName.get': {
+        //     real: 'api/host/listName',
+        //     mock: '',
+        //     ismock: false,
+        //     method: 'get',
+        //     payload: {},
+        //     desc: '获取未挂载硬盘的主机列表'
+        // },
         'user.userInfo.get': { // TODO demo ajax method config.
             real: '/v2/user/userInfo',
             mock: 'mock/v2/user/userInfo.get.json',
@@ -128,6 +136,13 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '创建云硬盘'
         },
+        'disk.expand.post': {
+            real: 'api/disk/expand',
+            mock: 'mock/disk/expand.post.json',
+            ismock: false,
+            method: 'post',
+            desc: '扩展云硬盘'
+        },
         'privateNetwork.list.get': {
             real: 'api/privateNetwork/list',
             mock: '',
@@ -163,12 +178,26 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '获取私有网络详情'
         },
+        'privateNetwork.host.list.get': {
+            real: 'api/privateNetwork/host/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取私有网络详情主机列表'
+        },
         'router.list.get': {
             real: 'api/router/list',
             mock: '',
             ismock: false,
             method: 'get',
             desc: '获取路由器列表'
+        },
+        'router.listName.get': {
+            real: 'api/router/listName',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取未绑定的路由器列表'
         },
         'router.create.post': {
             real: 'api/router/create',
@@ -211,6 +240,13 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '路由器修改公网IP'
+        },
+        'router.updateType.post': {
+            real: 'api/router/updateType',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '路由器扩容'
         },
         'keystore.list.get': {
             real: 'api/keystore/list',

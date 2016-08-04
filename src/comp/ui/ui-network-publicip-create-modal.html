@@ -41,24 +41,28 @@
                         </div>
                     </div>
                     <div class="inline fields">
-                        <label>IP线路</label>
-                        <select class="ui dropdown" ref="linemode">
-                            <option value="1">联通</option>
-                            <option value="2">电信</option>
-                            <option value="3">BGP线路</option>
-                        </select>
+                        <div class="field">
+                            <label>IP线路</label>
+                        </div>
+                        <div class="field">
+                            <select class="ui dropdown" ref="linemode">
+                                <option value="1">联通</option>
+                                <option value="2">电信</option>
+                                <option value="3">BGP线路</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="inline fields">
                         <div class="field">
                             <label style="position: relative;top: 25px;">带宽上限</label>
                             <div class="nx-range">
                                 <div class="nx-range-slider">
-                                    <input ref="rangeSize" type="text" value="1" data-min="1" data-max="10" data-step="1" data-grid="true" data-postfix="Mbps">
+                                    <input ref="rangeSize" type="text" value.bind="bankWidth" data-min="1" data-max="10" data-step="1" data-grid="true" data-postfix="Mbps">
                                 </div>
                             </div>
                         </div>
                         <div class="field">
-                            <div class="ui input" style="margin-left:-30px; width:50px;">
+                            <div class="ui disabled input" style="margin-left:-30px; width:50px;">
                                 <input type="text" name="bankWidth" value.bind="bankWidth" placeholder="">
                                 <label style="padding:10px;">Mbps</label>
                             </div>

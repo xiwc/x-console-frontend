@@ -9,37 +9,48 @@ import 'ion-rangeslider';
 @containerless
 export class UiDiskExpansionModal {
 
-    @bindable disk = {
-        id: 'id',
-        name: 'name',
-    };
+    @bindable disk = null;
 
     /**
      * 当视图被附加到DOM中时被调用
      */
     attached() {
-
-        $(this.rangeSize).ionRangeSlider({
-            onChange: () => {
-                // console.log($(this.rangeBw).val());
-            }
-        });
-
-        this.slider = $(this.rangeSize).data("ionRangeSlider");
-
         $(this.md).modal({
             closable: false,
-            // allowMultiple: true,
             onShow: () => {
-                this.slider.reset();
+
             },
-            onApprove: () => {},
-            onDeny: () => {}
+            onApprove: () => {
+                //console.log($(this.rangeSize).val());
+                this.onapprove && this.onapprove({ capacity: $(this.rangeSize).val() });
+            },
+            onDeny: () => {
+                
+            },
+            onHide: () => {
+                this.slider.reset();
+                this.slider.destroy();
+            }
         });
 
     }
 
-    show() {
+    show(opt) {
+        $(this.rangeSize).ionRangeSlider({
+            max: opt.sth.maxCapacity,
+            to: 10,
+            value: 10
+        });
+
+        this.slider = $(this.rangeSize).data("ionRangeSlider");
+
+        if (opt.onapprove) {
+            this.onapprove = opt.onapprove;
+        }
+
+        if (opt.ondeny) {
+            this.ondeny = opt.ondeny;
+        }
         $(this.md).modal('show');
     }
 

@@ -8,15 +8,12 @@ import { inject, Lazy } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 
 @inject(Lazy.of(HttpClient))
-
 @containerless
-export class UiHostSelectModal {
+export class UiNetworkPublicipBindrouterModal {
 
-    hosts = [
-        { id: 'host01', name: 'host01', type: '性能型' },
-        { id: 'host02', name: 'host02', type: '性能型' },
-        { id: 'host03', name: 'host03', type: '性能型' },
-    ];
+    @bindable ipname = ''; 
+
+    routerList = null;
 
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
@@ -46,28 +43,20 @@ export class UiHostSelectModal {
     }
 
     getSelected() {
-
-        let selected = null;
-        _.each(this.hosts, (host) => {
-            if (host.selected) {
-                selected = host;
-            }
-        });
-
-        return selected;
+        return _.find(this.privateNetworks, 'selected');
     }
 
     clearChecked() {
-        _.each(this.hosts, (host) => {
-            host.selected = false;
+        _.each(this.privateNetworks, (item) => {
+            item.selected = false;
         });
     }
 
-    initChkHandler(uiSelect, host, first) {
+    initChkHandler(uiSelect, item, first) {
         $(uiSelect).checkbox({
             onChecked: () => {
                 this.clearChecked();
-                host.selected = true;
+                item.selected = true;
             }
         });
 
