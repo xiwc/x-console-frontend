@@ -189,7 +189,7 @@ export class ServerHost {
     }
 
     mountDiskHandler(item) {
-        this.hostName = item.name;
+        this.selectedHost = item;
         this.uiDiskSelectModal.show((list) => {
             this.http.fetch(nsApi.url('host.addDisks.post'), {
                 method: 'post',
@@ -206,7 +206,7 @@ export class ServerHost {
     }
 
     unmountDiskHandler(item) {
-        this.hostName = item.name;
+        this.selectedHost = item;
         this.uiDiskSelectModalUnmount.show((list) => {
             this.http.fetch(nsApi.url('host.deleteDisks.post'), {
                 method: 'post',

@@ -142,8 +142,8 @@
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
     <ui-host-create-modal ui-host-create-modal.ref="uiHostCreateModal"></ui-host-create-modal>
     <ui-name-update-modal show-desc.bind="!0" name.bind="selectedHost.name" desc.bind="selectedHost.desc" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
-    <ui-disk-select-modal name.bind="hostName" type.bind="'mount'" ui-disk-select-modal.ref="uiDiskSelectModal"></ui-disk-select-modal>
-    <ui-disk-select-modal name.bind="hostName" type.bind="'unmount'" ui-disk-select-modal.ref="uiDiskSelectModalUnmount"></ui-disk-select-modal>
+    <ui-disk-select-modal name.bind="selectedHost.name" type.bind="'mount'" ui-disk-select-modal.ref="uiDiskSelectModal"></ui-disk-select-modal>
+    <ui-disk-select-modal name.bind="selectedHost.name" type.bind="'unmount'" ui-disk-select-modal.ref="uiDiskSelectModalUnmount"></ui-disk-select-modal>
     <ui-security-select-modal type.bind="'mount'" ui-security-select-modal.ref="uiSecuritySelectModal"></ui-security-select-modal>
     <ui-security-select-modal type.bind="'unmount'" ui-security-select-modal.ref="uiSecuritySelectModalUnmount"></ui-security-select-modal>
     <ui-public-ip-select-modal type.bind="'bind'" ui-public-ip-select-modal.ref="uiPublicIpSelectModal"></ui-public-ip-select-modal>

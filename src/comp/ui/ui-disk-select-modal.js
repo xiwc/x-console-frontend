@@ -16,9 +16,6 @@ export class UiDiskSelectModal {
 
     disks = null;
 
-    //类型对应关系
-    typeStatus = { 1: "性能型", 2: "容量型" };
-
     /**
      * 构造函数
      */
