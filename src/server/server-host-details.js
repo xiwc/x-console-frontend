@@ -1,8 +1,11 @@
 import { inject, Lazy } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
+import { bindable } from 'aurelia-framework';
 
 @inject(Lazy.of(HttpClient))
 export class ServerHostDetails {
+
+    @bindable router;
 
     steps = ['上海一区', '云服务器', '主机详情'];
 
@@ -41,35 +44,39 @@ export class ServerHostDetails {
         });
     }
 
-    updateHandler(disk) {
+    updateHandler(item) {
         this.uiNameUpdateModal.show((result => {
-            // console.log(result);
-            this.http.fetch(nsApi.url('disk.updateName.post'), {
+            this.http.fetch(nsApi.url('host.updateName.post'), {
                 method: 'post',
                 body: json({
-                    id: disk.id,
+                    id: item.id,
                     name: result.name,
                     desc: result.desc
                 })
             }).then((resp) => {
-                // this. = resp.data;
-                disk.name = result.name;
-                disk.desc = result.desc;
-                toastr.success('修改名称操作成功!');
+                if (resp.ok) {
+                    item.name = result.name;
+                    item.desc = result.desc;
+                    toastr.success('修改名称操作成功!');
+                }
             });
         }));
     }
 
-    delHandler(disk) {
+    delHandler(item) {
         this.confirm.show({
-            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
+            content: `确定要删除主机[${item.name}]吗?`,
             onapprove: () => {
-                this.http.fetch(nsApi.url('disk.delete.post', {
-                    id: disk.id
-                }), { method: 'post' }).then((resp) => {
-                    // this. = resp.data;
+                this.http.fetch(nsApi.url('host.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [item.id]
+                    })
+                }).then((resp) => {
                     // TODO 跳转到?
-                    toastr.success('删除成功!');
+                    if (resp.ok) {
+                        toastr.success('删除成功!');
+                    }
                 });
             }
         });
