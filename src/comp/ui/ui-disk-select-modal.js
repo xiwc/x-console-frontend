@@ -3,17 +3,25 @@ import {
     containerless
 }
 from 'aurelia-framework';
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
 
+@inject(Lazy.of(HttpClient))
 @containerless
 export class UiDiskSelectModal {
 
     @bindable type = 'mount'; // mount or unmount
 
-    disks = [
-        { id: 'host01', name: 'disk01', type: '性能型' },
-        { id: 'host02', name: 'disk02', type: '性能型' },
-        { id: 'host03', name: 'disk03', type: '性能型' },
-    ];
+    @bindable name = null; // 主机名
+
+    disks = null;
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -21,6 +29,9 @@ export class UiDiskSelectModal {
     attached() {
         $(this.md).modal({
             closable: false,
+            onShow: () => {
+                this.getDiskList(this.type);
+            },
             onApprove: () => {
                 this.onapprove && this.onapprove(this.getSelected());
             },
@@ -76,5 +87,24 @@ export class UiDiskSelectModal {
 
     hide() {
         $(this.md).modal('hide');
+    }
+
+    /**
+     * 获取云硬盘数据
+     * @param   type: mount or unmount
+     */
+    getDiskList(type) {
+
+        this.http.fetch(nsApi.url('disk.list.get', {
+            "pageNo": 1,
+            "pageSize": 100
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            // if (type == 'mount') { // TODO 
+            //     // statement
+            // }
+            this.disks = data.list;
+        });
     }
 }

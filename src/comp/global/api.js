@@ -303,6 +303,20 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '获取可用的公网IP'
         },
+        'host.addDisks.post': {
+            real: 'api/host/addDisks',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '绑定云硬盘'
+        },
+        'host.deleteDisks.post': {
+            real: 'api/host/deleteDisks',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '卸载云硬盘'
+        },
     };
 
     // api debug配置初始化

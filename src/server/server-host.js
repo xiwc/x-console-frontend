@@ -240,14 +240,36 @@ export class ServerHost {
     }
 
     mountDiskHandler(item) {
-        this.uiDiskSelectModal.show(() => {
-            toastr.info('TODO...');
+        this.selectedHost = item;
+        this.uiDiskSelectModal.show((list) => {
+            this.http.fetch(nsApi.url('host.addDisks.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: [list.id],
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('绑定云磁盘成功');
+                }
+            });
         });
     }
 
     unmountDiskHandler(item) {
-        this.uiDiskSelectModalUnmount.show(() => {
-            toastr.info('TODO...');
+        this.selectedHost = item;
+        this.uiDiskSelectModalUnmount.show((list) => {
+            this.http.fetch(nsApi.url('host.deleteDisks.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: [list.id],
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('卸载云磁盘成功');
+                }
+            });
         });
     }
 

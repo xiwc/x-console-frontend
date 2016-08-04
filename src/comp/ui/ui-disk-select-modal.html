@@ -1,8 +1,9 @@
 <template>
+    <require from="comp/vc/vc-common"></require>
     <div ref="md" class="ui small modal nx-ui-disk-select-modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
-            ${type == 'mount' ? '选择要加载到[xxx]的硬盘' : '选择要从[xxx]上卸载的硬盘'}
+            ${type == 'mount' ? '选择要加载到' + name + '的硬盘' : '选择要从' + name + '上卸载的硬盘'}
         </div>
         <div class="content">
             <div class="ui message">
@@ -26,8 +27,8 @@
                             </div>
                         </td>
                         <td>${item.name}</td>
-                        <td>200</td>
-                        <td>容量型</td>
+                        <td>${item.capacity}</td>
+                        <td>${item.type | mapping:'diskType'}</td>
                     </tr>
                 </tbody>
             </table>
