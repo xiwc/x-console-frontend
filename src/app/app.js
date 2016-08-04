@@ -31,26 +31,26 @@ export class App {
             icon: 'connectdevelop',
             type: 'common'
         }, {
-            route: ['db-relational'],
-            name: 'db-relational',
-            moduleId: 'db/db-relational',
+            route: ['rds'],
+            name: 'rds',
+            moduleId: 'comp/default/default-pane',
             nav: true,
-            title: '关系型数据库',
-            type: 'db'
+            title: 'RDS',
+            type: 'common'
         }, {
-            route: ['db-mongo'],
-            name: 'db-mongo',
-            moduleId: 'db/db-mongo',
+            route: ['redis'],
+            name: 'redis',
+            moduleId: 'comp/default/default-pane',
+            nav: true,
+            title: 'Redis',
+            type: 'common'
+        }, {
+            route: ['mongodb'],
+            name: 'mongodb',
+            moduleId: 'comp/default/default-pane',
             nav: true,
             title: 'MongoDB',
-            type: 'db'
-        }, {
-            route: ['db-cache'],
-            name: 'db-cache',
-            moduleId: 'db/db-cache',
-            nav: true,
-            title: '缓存',
-            type: 'db'
+            type: 'common'
         }, {
             route: '',
             redirect: 'server'
