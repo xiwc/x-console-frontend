@@ -130,8 +130,16 @@ export class ServerHost {
         this.existsChecked() && this.confirm.show({
             content: '确定要启动选择的主机吗?',
             onapprove: () => {
-                _.each(this.getCheckedItems(), (item) => {
-                    toastr.info('TODO...');
+
+                this.http.fetch(nsApi.url('host.start.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: _.map(this.getCheckedItems(), 'id')
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('开机操作成功!');
+                    }
                 });
             }
         });
@@ -141,8 +149,16 @@ export class ServerHost {
         this.existsChecked() && this.confirm.show({
             content: '确定要软重启选择的主机吗?',
             onapprove: () => {
-                _.each(this.getCheckedItems(), (item) => {
-                    toastr.info('TODO...');
+
+                this.http.fetch(nsApi.url('host.softRestart.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: _.map(this.getCheckedItems(), 'id')
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('软重启操作成功!');
+                    }
                 });
             }
         });
@@ -152,8 +168,16 @@ export class ServerHost {
         this.existsChecked() && this.confirm.show({
             content: '确定要硬重启选择的主机吗?',
             onapprove: () => {
-                _.each(this.getCheckedItems(), (item) => {
-                    toastr.info('TODO...');
+
+                this.http.fetch(nsApi.url('host.hardRestart.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: _.map(this.getCheckedItems(), 'id')
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('硬重启操作成功!');
+                    }
                 });
             }
         });
@@ -163,8 +187,16 @@ export class ServerHost {
         this.existsChecked() && this.confirm.show({
             content: '确定要关机选择的主机吗?',
             onapprove: () => {
-                _.each(this.getCheckedItems(), (item) => {
-                    toastr.info('TODO...');
+
+                this.http.fetch(nsApi.url('host.stop.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: _.map(this.getCheckedItems(), 'id')
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('关机操作成功!');
+                    }
                 });
             }
         });
@@ -174,8 +206,16 @@ export class ServerHost {
         this.existsChecked() && this.confirm.show({
             content: '确定要删除选择的主机吗?',
             onapprove: () => {
-                _.each(this.getCheckedItems(), (item) => {
-                    toastr.info('TODO...');
+
+                this.http.fetch(nsApi.url('host.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: _.map(this.getCheckedItems(), 'id')
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('删除操作成功!');
+                    }
                 });
             }
         });
@@ -184,7 +224,18 @@ export class ServerHost {
     updateNameHandler(item) {
         this.selectedHost = item;
         this.uiNameUpdateModal.show((result) => {
-            toastr.info('TODO...');
+            this.http.fetch(nsApi.url('host.updateName.post'), {
+                method: 'post',
+                body: json({
+                    "desc": result.desc,
+                    "id": item.id,
+                    "name": result.name
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('修改名称成功!');
+                }
+            });
         });
     }
 

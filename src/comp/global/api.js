@@ -19,6 +19,54 @@ window.nsApiFunc = (function() {
             payload: {},
             desc: '根据主键id获取主机详情'
         },
+        'host.start.post': {
+            real: 'api/host/start',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            payload: {},
+            desc: '批量开机接口'
+        },
+        'host.softRestart.post': {
+            real: 'api/host/softRestart',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            payload: {},
+            desc: '批量软重启接口'
+        },
+        'host.hardRestart.post': {
+            real: 'api/host/hardRestart',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            payload: {},
+            desc: '批量硬重启接口'
+        },
+        'host.stop.post': {
+            real: 'api/host/stop',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            payload: {},
+            desc: '批量关机接口'
+        },
+        'host.delete.post': {
+            real: 'api/host/delete',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            payload: {},
+            desc: '批量删除主机'
+        },
+        'host.updateName.post': {
+            real: 'api/host/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            payload: {},
+            desc: '根据主机id修改主机名称'
+        },
         'user.userInfo.get': { // TODO demo ajax method config.
             real: '/v2/user/userInfo',
             mock: 'mock/v2/user/userInfo.get.json',
