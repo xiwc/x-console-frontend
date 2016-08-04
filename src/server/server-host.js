@@ -305,9 +305,19 @@ export class ServerHost {
 
     delHandler(item) {
         this.confirm.show({
-            content: '确定要删除主机[xxx]吗?',
+            content: '确定要删除选择的主机吗?',
             onapprove: () => {
-                toastr.success('TODO...');
+
+                this.http.fetch(nsApi.url('host.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [item.id]
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('删除操作成功!');
+                    }
+                });
             }
         });
     }

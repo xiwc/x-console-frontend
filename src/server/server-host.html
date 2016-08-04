@@ -79,8 +79,8 @@
                         <td>${item.type | mapping:'hostType'}</td>
                         <td>${item.imageName}</td>
                         <td>${item.config}</td>
-                        <td>${item.networkType}</td>
-                        <td></td>
+                        <td>${item.networkName}</td>
+                        <td>${item.privateNetworkIp}</td>
                         <td>${item.ip}</td>
                         <td>${item.securityGroupName}</td>
                         <td>${item.createTime | dateFormat}</td>
@@ -90,7 +90,7 @@
                                 <i class="dropdown icon"></i>
                                 <div class="left menu">
                                     <div class="item" click.delegate="updateNameHandler(item)">修改名称</div>
-                                    <div class="item">连接管理终端</div>
+                                    <div class="item disabled">连接管理终端</div>
                                     <div class="divider"></div>
                                     <div class="item">
                                         <i class="dropdown icon"></i> 管理云硬盘
@@ -99,14 +99,14 @@
                                             <div click.delegate="unmountDiskHandler(item)" class="item">卸载云硬盘</div>
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div class="item disabled">
                                         <i class="dropdown icon"></i> 管理安全组
                                         <div class="left menu">
                                             <div click.delegate="mountSecurityHandler(item)" class="item">加载安全组</div>
                                             <div click.delegate="unmountSecurityHandler(item)" class="item">卸载安全组</div>
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <div class="item disabled">
                                         <i class="dropdown icon"></i> 管理公网IP
                                         <div class="left menu">
                                             <div click.delegate="bindPublicIpHandler(item)" class="item">绑定公网IP</div>
@@ -121,8 +121,8 @@
                                         </div>
                                     </div>
                                     <div class="divider"></div>
-                                    <div click.delegate="createSnapshotHandler(item)" class="item">创建快照</div>
-                                    <div click.delegate="resetHandler(item)" class="item">重置系统</div>
+                                    <div click.delegate="createSnapshotHandler(item)" class="item disabled">创建快照</div>
+                                    <div click.delegate="resetHandler(item)" class="item disabled">重置系统</div>
                                     <div click.delegate="delHandler(item)" class="item">删除</div>
                                 </div>
                             </div>

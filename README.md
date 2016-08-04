@@ -9,8 +9,6 @@
 > https://www.npmjs.com/package/wurl https://github.com/websanova/js-url 
 > https://www.npmjs.com/package/toastr https://github.com/CodeSeven/toastr 
 > https://www.npmjs.com/package/js-cookie https://github.com/js-cookie/js-cookie  
-> https://www.npmjs.com/package/underscore https://github.com/jashkenas/underscore 
-> https://www.npmjs.com/package/underscore.string https://github.com/epeli/underscore.string 
 > https://www.npmjs.com/package/lodash https://github.com/lodash/lodash http://lodashjs.com/docs/  
 > https://github.com/github/fetch https://github.github.io/fetch/ http://aurelia.io/hub.html#/doc/article/aurelia/fetch-client/latest/http-services/2  
 > http://ionden.com/a/plugins/ion.rangeSlider/demo.html https://github.com/IonDen/ion.rangeSlider  
