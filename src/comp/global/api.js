@@ -353,6 +353,48 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '卸载云硬盘'
         },
+        'host.disk.listUnbind': {
+            real: 'api/host/disk/listUnbind',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域以及主机id获取用户未绑定的硬盘列表'
+        },
+        'host.disk.listBind': {
+            real: 'api/host/disk/listBind',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域以及主机id获取用户已绑定硬盘列表'
+        },
+        'host.privateNetwork.listUnbind': {
+            real: 'api/host/privateNetwork/listUnbind',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域id跟主机id获取未绑定私有网络下拉列表'
+        },
+        'host.privateNetwork.listBind': {
+            real: 'api/host/privateNetwork/listBind',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域id跟主机id获取私有网络下拉列表'
+        },
+        'host.addPrivateNetwork.post': {
+            real: 'api/host/addPrivateNetwork',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '加入私有网络'
+        },
+        'host.deletePrivateNetwork.post': {
+            real: 'api/host/deletePrivateNetwork',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '主机离开私有网络'
+        },
     };
 
     // api debug配置初始化
