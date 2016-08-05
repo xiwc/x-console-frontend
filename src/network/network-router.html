@@ -65,9 +65,8 @@
                             </div>
                         </td>
                         <!-- <td><a>${r.id}</a></td> -->
-                        <td><a>${r.name}</a></td>
-                        <!-- href="/#/network/router-details/${r.id}" -->
-                        <td>${r.status | mapping:'routerStatus'}</td>
+                        <td><a href="/#/network/router-details/${r.id}">${r.name}</a></td>
+                        <td><i class="circle icon ${r.status == 1 ? 'runing' : 'stoped'}"></i>${r.status | mapping:'routerStatus'}</td>
                         <td>${r.type | mapping:'routerType'}</td>
                         <!-- <td>${r.managerIp}</td> -->
                         <td>${r.ip}</td>

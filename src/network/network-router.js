@@ -168,8 +168,9 @@ export class NetworkRouter {
     }
 
     refreshHandler() {
-        this.getRouters();
-        toastr.info('刷新成功!');
+        this.getRouters().then(() => {
+            toastr.info('刷新成功!');
+        }); 
     }
 
 

@@ -1,8 +1,8 @@
 <template>
-    <require from="./network-private-details.css"></require>
+    <require from="./network-style.css"></require>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/vc/vc-common"></require>
-    <div class="nx-network-private-details animated bounceInDown">
+    <div class="nx-network-public-details animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
@@ -25,7 +25,7 @@
                                 </tr>
                                 <tr>
                                     <th>状态</th>
-                                    <td>${details.status | mapping:"publicIpStatus"}</td>
+                                    <td><i class="circle icon ${details.status == 1 ? 'runing' : 'stoped'}"></i>${details.status | mapping:"publicIpStatus"}</td>
                                 </tr>
                                 <tr>
                                     <th>地址</th>

@@ -184,7 +184,19 @@ export class ServerDisk {
         this.uiHostSelectModal.show({
             sth: { diskid: disk.id },
             onapprove: (result) => {
-
+                console.log(result);
+                this.http.fetch(nsApi.url('disk.bind.post'), {
+                    method: 'post',
+                    body: json({
+                        id: disk.id,
+                        hostId: result.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        disk.status = 2;
+                        toastr.success('加载成功!');
+                    }
+                });
             }
         });
     }

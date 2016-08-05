@@ -72,15 +72,15 @@ export class NetworkPrivate {
     }
 
     refreshHandler() {
-        this.getPrivateNetwork();
-        toastr.info('刷新成功!');
+        this.getPrivateNetwork().then(() => {
+            toastr.info('刷新成功!');
+        });  
     }
 
     //创建
     createHandler() {
         this.createconfirm.show((result => {
-            console.log(result.name);
-
+            //console.log(result.name);
             this.http.fetch(nsApi.url('privateNetwork.create.post'), {
                 method: 'post',
                 body: json({

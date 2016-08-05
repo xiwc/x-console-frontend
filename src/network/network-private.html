@@ -62,8 +62,8 @@
                                 <div class="menu">
                                     <div class="item" click.delegate="updateName(pw)">修改名称</div>
                                     <div class="divider"></div>
-                                    <div class="item" click.delegate="linkRouter(pw)">连接路由器</div>
-                                    <div class="item" click.delegate="delRouter(pw)">离开路由器</div>
+                                    <div class="item ${pw.routerId ? 'disabled' : ''}" click.delegate="linkRouter(pw)">连接路由器</div>
+                                    <div class="item ${pw.routerId ? '' : 'disabled'}" click.delegate="delRouter(pw)">离开路由器</div>
                                     <div class="divider"></div>
                                     <div class="item" click.delegate="delHandler(pw)">删除</div>
                                 </div>

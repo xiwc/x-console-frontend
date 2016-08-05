@@ -157,6 +157,13 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '从主机卸载云硬盘'
         },
+        'disk.bind.post': {
+            real: 'api/disk/bind',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '云硬盘加载到主机上'
+        },
 
 
         'privateNetwork.list.get': {
@@ -264,6 +271,14 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '路由器扩容'
         },
+        'router.detail.get':{
+            real: 'api/router/detail/{id}',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '路由器详情'
+        },
+
         'keystore.list.get': {
             real: 'api/keystore/list',
             mock: 'mock/keystore/list.get.json',

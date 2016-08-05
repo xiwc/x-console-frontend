@@ -8,11 +8,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @containerless
 export class UiHostSelectModal {
 
-    hosts = [
-        { id: 'host01', name: 'host01', type: '性能型' },
-        { id: 'host02', name: 'host02', type: '性能型' },
-        { id: 'host03', name: 'host03', type: '性能型' },
-    ];
+    hosts = null;
 
     page = {
         currentPage: 1,
@@ -34,7 +30,7 @@ export class UiHostSelectModal {
                 this.getHostList();
             },
             onApprove: () => {
-                this.onapprove && this.onapprove(this.getSelected());
+                this.onapprove && this.onapprove({id:this.getSelected().id});
             },
             onDeny: () => {
                 this.ondeny && this.ondeny();
@@ -47,8 +43,8 @@ export class UiHostSelectModal {
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
-                this.hosts = data.list;
-                this.page = data;
+                this.hosts = data;
+                //this.page = data;
             });
     }
 

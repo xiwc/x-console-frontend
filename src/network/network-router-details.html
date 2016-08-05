@@ -1,8 +1,9 @@
 <template>
-    <require from="./network-private-details.css"></require>
+    <require from="./network-style.css"></require>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/vc/vc-common"></require>
-    <div class="nx-network-private-details">
+    <require from="comp/ui/ui-pageable"></require>
+    <div class="nx-network-router-details">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
@@ -19,25 +20,29 @@
                                     <th>名称</th>
                                     <td>${details.name}</td>
                                 </tr>
-                                <!-- <tr>
-                                    <th>标签</th>
-                                    <td><a class="ui label">标签1 <i class="delete icon"></i> </a></td>
-                                </tr> -->
-                                <tr>
-                                    <th>路由器</th>
-                                    <td>${details.routerName}</td>
-                                </tr>
                                 <tr>
                                     <th>描述</th>
                                     <td>${details.desc}</td>
                                 </tr>
                                 <tr>
-                                    <th>网络地址</th>
+                                    <th>状态</th>
+                                    <td><i class="circle icon ${details.status == 1 ? 'runing' : 'stoped'}"></i>${details.status | mapping:'routerStatus'}</td>
+                                </tr>
+                                <tr>
+                                    <th>类型</th>
+                                    <td>${details.routerType | mapping:'routerType'}</td>
+                                </tr>
+                                <tr>
+                                    <th>公网IP</th>
                                     <td>${details.ip}</td>
                                 </tr>
                                 <tr>
-                                    <th>主机</th>
-                                    <td>${details.hostName}</td>
+                                    <th>防火墙</th>
+                                    <td><a>${details.securityGroupName}</a></td>
+                                </tr>
+                                <tr>
+                                    <th>私有网络</th>
+                                    <td></td>
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
@@ -53,21 +58,28 @@
                             <table class="ui celled striped table">
                                 <thead>
                                     <tr>
+                                        <th>名称</th>
                                         <th>类型</th>
                                         <!-- <th>ID</th> -->
-                                        <th>名称</th>
                                         <th>状态</th>
                                         <th>IP地址</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr repeat.for="host of hostlist">
-                                        <td>${host.type | mapping:"hostType"}</td>
                                         <td>${host.name}</td>
-                                        <td>${host.status | mapping:"hostStatus"}</td>
+                                        <td>${host.type | mapping:"hostType"}</td>
+                                        <td>${host.status | mapping:"privateHostType"}</td>
                                         <td>${host.ip}</td>
                                     </tr>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="10">
+                                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                                        </th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

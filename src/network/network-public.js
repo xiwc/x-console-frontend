@@ -66,8 +66,9 @@ export class NetworkPublic {
 		刷新公网IP
    	*/
     refreshHandler() {
-        this.getPublicIps();
-        toastr.info('刷新成功!');
+        this.getPublicIps().then(() => {
+            toastr.info('刷新成功!');
+        })  
     }
 
     /**

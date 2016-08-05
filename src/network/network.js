@@ -24,7 +24,7 @@ export class Network {
         }, {
             route: ['router-details/:id'],
             name: 'router-details',
-            moduleId: 'network/network-route-details',
+            moduleId: 'network/network-router-details',
             nav: false,
             title: '路由器详情'
         }, {
