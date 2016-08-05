@@ -21,6 +21,13 @@
                         <td>${h.id + ' (' + h.type + ')'}</td>
                     </tr>
                 </tbody>
+                 <tfoot>
+                    <tr>
+                        <th colspan="10">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <div class="actions">

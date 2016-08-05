@@ -71,20 +71,10 @@
                                 <div class="menu">
                                     <div class="item" click.delegate="updateName(p)">修改名称</div>
                                     <div class="divider"></div>
-                                    <div class="item">
-                                    	<i class="dropdown icon"></i> 主机
-                                        <div class="left menu">
-                                            <div click.delegate="bindRouter(p)" class="item">添加</div>
-                                            <div click.delegate="unBindRouter(p)" class="item">移除</div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <i class="dropdown icon"></i> 路由器
-                                        <div class="left menu">
-                                            <div click.delegate="bindRouter(p)" class="item">绑定</div>
-                                            <div click.delegate="unBindRouter(p)" class="item">解绑</div>
-                                        </div>
-                                    </div>
+                                    <div click.delegate="bindHost(p)" class="item ${p.status == 1 ? '' : 'disabled'}">添加主机</div>
+                                    <div click.delegate="unBindHost(p)" class="item ${p.status == 1 ? 'disabled' : ''}">移除主机</div>
+                                    <div click.delegate="bindRouter(p)" class="item ${p.status == 1 ? '' : 'disabled'}">绑定路由器</div>
+                                    <div click.delegate="unBindRouter(p)" class="item ${p.status == 1 ? 'disabled' : ''}">解绑路由器</div>
                                     <div class="divider"></div>
                                     <div class="item" click.delegate="delHandler(p)">删除</div>
                                 </div>

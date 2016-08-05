@@ -63,9 +63,9 @@
                                 <i class="dropdown icon"></i>
                                 <div class="left menu">
                                     <div click.delegate="updateHandler(d)" class="item">修改名称</div>
-                                    <div click.delegate="addToHostHandler()" class="item">加载到主机</div>
-                                    <div click.delegate="removeFromHostHandler()" class="item disabled">从主机卸载</div>
-                                    <div click.delegate="extendSizeHandler(d)" class="item">扩容</div>
+                                    <div click.delegate="addToHostHandler(d)" class="item ${d.status == 2 ? 'disabled' : ''}">加载到主机</div>
+                                    <div click.delegate="removeFromHostHandler(d)" class="item ${d.status == 1 ? 'disabled' : ''}">从主机卸载</div>
+                                    <div click.delegate="extendSizeHandler(d)" class="item ${d.capacity < 5000 ? '' : 'disabled'}">扩容</div>
                                     <div click.delegate="delHandler(d)" class="item">删除</div>
                                 </div>
                             </div>

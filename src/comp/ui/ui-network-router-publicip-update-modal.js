@@ -33,19 +33,28 @@ export class UiNetworkRouterPublicipUpdateModal {
             closable: false,
             allowMultiple: true,
             onShow: () => {
-                this.http.fetch(nsApi.url('publicIp.listName.post'))
+                $(this.form).form("reset");
+                this.http.fetch(nsApi.url('publicIp.listName.post'), { method: 'post' })
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {
-                        this.publicIpList = data;
+                        this.publicIpList = data.list;
                     });
-                $(this.form).form("reset");
             },
             onApprove: () => {
-                this.onapprove && this.onapprove({ publicipid: $(this.publicip).val() });
+                this.onapprove && this.onapprove({
+                    publicipid: $(this.publicip).dropdown("get value"),
+                    ipname: $(this.publicip).dropdown("get text")
+                });
             },
             onDeny: () => { this.ondeny && this.ondeny(); }
         });
+    }
+
+    initPublicIpHandler(last) {
+        if (last) {
+            $(this.publicip).dropdown().dropdown("set selected", this.publicIpList[0].id);
+        }
     }
 
     /**

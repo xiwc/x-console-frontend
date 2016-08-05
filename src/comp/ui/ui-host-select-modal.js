@@ -1,8 +1,4 @@
-import {
-    bindable,
-    containerless
-}
-from 'aurelia-framework';
+import { bindable, containerless } from 'aurelia-framework';
 
 import { inject, Lazy } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
@@ -18,6 +14,11 @@ export class UiHostSelectModal {
         { id: 'host03', name: 'host03', type: '性能型' },
     ];
 
+    page = {
+        currentPage: 1,
+        pageSize: 10
+    };
+
     constructor(getHttp) { // 通过构造函数注入
         this.http = getHttp();
     }
@@ -29,12 +30,8 @@ export class UiHostSelectModal {
         $(this.md).modal({
             closable: false,
             onShow: () => {
-                this.http.fetch(nsApi.url('router.listName.get'))
-                    .then((resp) => {
-                        return resp.json();
-                    }).then((data) => {
-                        this.routerList = data;
-                    });
+                this.page.currentPage = 1;
+                this.getHostList();
             },
             onApprove: () => {
                 this.onapprove && this.onapprove(this.getSelected());
@@ -43,6 +40,16 @@ export class UiHostSelectModal {
                 this.ondeny && this.ondeny();
             }
         });
+    }
+
+    getHostList() {
+        return this.http.fetch(nsApi.url('disk.host.listUnbind.get', { pageNo: this.page.currentPage, pageSize: this.page.pageSize, id: this.diskid }))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                this.hosts = data.list;
+                this.page = data;
+            });
     }
 
     getSelected() {
@@ -81,14 +88,18 @@ export class UiHostSelectModal {
      * @param onapprove: 确认回调函数
      * @param ondeny: 取消回调函数
      */
-    show(onapprove, ondeny) {
-
-        if (onapprove) {
-            this.onapprove = onapprove;
+    show(opt) {
+        if (opt.sth) {
+            for (let key in opt.sth)
+                this[key] = opt.sth[key];
         }
 
-        if (ondeny) {
-            this.ondeny = ondeny;
+        if (opt.onapprove) {
+            this.onapprove = opt.onapprove;
+        }
+
+        if (opt.ondeny) {
+            this.ondeny = opt.ondeny;
         }
 
         $(this.md).modal('show');
@@ -96,5 +107,11 @@ export class UiHostSelectModal {
 
     hide() {
         $(this.md).modal('hide');
+    }
+
+    //切换了分页
+    onpageHandler(selectedPage) {
+        this.page.currentPage = selectedPage;
+        this.getHostList();
     }
 }

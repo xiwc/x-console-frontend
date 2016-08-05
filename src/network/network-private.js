@@ -15,12 +15,7 @@ export class NetworkPrivate {
 
     page = {
         currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
+        pageSize: 10
     };
 
     constructor(getHttp) { // 通过构造函数注入
@@ -47,10 +42,7 @@ export class NetworkPrivate {
                 return resp.json();
             }).then((data) => {
                 this.privateNetworks = data.list;
-                this.page.total = data.total;
-                this.page.pageCount = data.pageCount;
-                this.page.hasPreviousPage = data.hasPreviousPage;
-                this.page.hasNextPage = data.hasNextPage;
+                this.page = data;
             }).then(() => {
                 this.allChecked = false;
             });
@@ -145,9 +137,7 @@ export class NetworkPrivate {
                 }).then((resp) => {
                     // this. = resp.data;
                     if (resp.ok) {
-                        this.privateNetworks = _.filter(this.privateNetworks, (d) => {
-                            return (d.id != pn.id);
-                        });
+                        this.getPrivateNetwork();
                         toastr.success('删除成功!');
                     }
                 });

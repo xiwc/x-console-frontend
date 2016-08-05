@@ -63,6 +63,16 @@ export class MappingValueConverter {
         }
     };
 
+    //路由器状态
+    routerStatus = {
+        "1": {
+            zh: "活跃"
+        },
+        "2": {
+            zh: "关闭"
+        }
+    };
+
     privateHostType = {
         "1": {
             zh: '主机'

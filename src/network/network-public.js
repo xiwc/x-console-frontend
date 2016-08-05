@@ -209,29 +209,11 @@ export class NetworkPublic {
         }));
     }
 
-    //修改公网IP;
-    updatePublicIp(rt) {
-        this.updatePublicIpDialog.show((result => {
-            this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
-                method: 'post',
-                body: json({
-                    id: rt.id,
-                    publciipid: result.publicipid
-                })
-            }).then((resp) => {
-                // this. = resp.data;
-                // pn.name = result.name;
-                // pn.desc = result.desc;
-                toastr.success('修改公网IP操作成功!');
-            });
-            //rt.
-        }));
-    }
-
     //绑定路由器
     bindRouter(o) {
         this.selectedPublicNetwork = o;
         this.bindrouterDialog.show((result => {
+            console.log(result);
         }));
     }
 

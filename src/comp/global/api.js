@@ -143,6 +143,22 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '扩展云硬盘'
         },
+        'disk.host.listUnbind.get': {
+            real: 'api/disk/host/listUnbind',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取可以加载云硬盘的主机列表'
+        },
+        'disk.unbind.post': {
+            real: 'api/disk/unbind',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '从主机卸载云硬盘'
+        },
+
+
         'privateNetwork.list.get': {
             real: 'api/privateNetwork/list',
             mock: '',

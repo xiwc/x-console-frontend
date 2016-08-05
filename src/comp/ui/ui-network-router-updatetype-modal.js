@@ -19,8 +19,8 @@ export class UiNetworkRouterUpdatetypeModal {
             closable: false,
             allowMultiple: true,
             onShow: () => {
-                console.log(this.type);
-                $(".nx-ui-network-router-updatetype-modal").find('input[name=routerType]').each((index,item) =>{
+                //console.log(this.type);
+                $(this.md).find('input[name=routerType]').each((index,item) =>{
                     $(item).prop("checked", $(item).val() == this.type);
                 });
                 

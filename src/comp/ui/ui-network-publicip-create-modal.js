@@ -37,6 +37,10 @@ export class UiNetworkPublicipCreateModal {
 
         this.slider = $(this.rangeSize).data("ionRangeSlider");
 
+        $('.ui.dropdown').dropdown({
+            allowAdditions: true
+        });
+
         $(this.md).modal({
             closable: false,
             allowMultiple: true,

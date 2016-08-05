@@ -1,3 +1,4 @@
 .nx-network-public-style .nx-toolbar .ui.search {
 	float: right;
+	display: none;
 }

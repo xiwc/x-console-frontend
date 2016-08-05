@@ -207,11 +207,10 @@ export class NetworkRouter {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    rt.ip = result.publicipid;
+                    rt.ip = result.ipname;
                     toastr.success('修改公网IP操作成功!');
                 }
             });
-            //rt.
         }));
     }
 
@@ -303,7 +302,7 @@ export class NetworkRouter {
         });
     }
 
-    //单个启动
+    //单个关闭
     stopRouter(o) {
         this.deleteconfirm.show({
             content: "确定要关闭路由器<span style='color:red'>" + o.name + "</span>吗？",
@@ -326,8 +325,8 @@ export class NetworkRouter {
     //扩容操作
     updateRouterType(o) {
         this.updatetypeDialog.show({
-            sth : {routerName:o.name , type : o.type},
-            onapprove:(result) =>{
+            sth: { routerName: o.name, type: o.type },
+            onapprove: (result) => {
                 console.log(result);
                 this.http.fetch(nsApi.url('router.updateType.post'), {
                     method: 'post',
@@ -347,10 +346,10 @@ export class NetworkRouter {
     }
 
     //添加私有网络
-    addPrivatework(o){
+    addPrivatework(o) {
         this.addPrivateworkDialog.show({
-            sth : {name:o.name},
-            onapprove:(result) =>{
+            sth: { name: o.name },
+            onapprove: (result) => {
                 console.log(result);
                 this.http.fetch(nsApi.url('router.updateType.post'), {
                     method: 'post',
