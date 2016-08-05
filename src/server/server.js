@@ -58,7 +58,7 @@ export class Server {
             name: 'ssh',
             moduleId: 'server/server-ssh',
             nav: true,
-            title: 'SSH秘钥'
+            title: 'SSH密钥'
         }, {
             route: ['ssh-details/:id'],
             name: 'ssh-details',
