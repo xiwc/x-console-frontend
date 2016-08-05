@@ -141,6 +141,15 @@ export class MappingValueConverter {
         }
     };
 
+    sshKeyType = {
+        '1': {
+            zh: '新密钥对'
+        },
+        '2': {
+            zh: '已有公钥'
+        }
+    };
+
     toView(value, name) {
 
         if (this.hasOwnProperty(name)) {

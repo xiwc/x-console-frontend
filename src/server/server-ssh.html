@@ -48,8 +48,8 @@
                         </td>
                         <td><a href="/#/server/ssh-details/${k.id}">${k.name}</a></td>
                         <!-- <td>${k.name}</td> -->
-                        <td>${k.encryptmode | mapping:'sshType'}</td>
-                        <td>${k.type}</td>
+                        <td>${k.encryptMode | mapping:'sshType'}</td>
+                        <td>${k.type | mapping:'sshKeyType'}</td>
                         <td>${k.createTime | dateFormat}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">

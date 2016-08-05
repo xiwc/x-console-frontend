@@ -19,7 +19,7 @@ window.nsConfig = (function() {
         // }
 
         // 默认分页大小
-        pageSize: 2
+        pageSize: 10
     }
 })();
 

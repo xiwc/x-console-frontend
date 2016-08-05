@@ -97,12 +97,12 @@ export class ServerDisk {
     }
 
     refreshHandler() {
-        this.getDisks(this.pageNo);
-        toastr.info('刷新成功!');
+        this.getDisks(this.pageNo).then(() => {
+            toastr.info('刷新成功!');
+        });
     }
 
     createHandler() {
-        // toastr.info('创建操作...');
         this.uiDiskCreateModal.show(() => { this.getDisks(); });
     }
 
@@ -130,12 +130,9 @@ export class ServerDisk {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
-                        this.disks = _.filter(this.disks, (d) => {
-                            return (d.id != disk.id);
-                        });
+                        this.refreshHandler();
                         toastr.success('删除成功!');
                     }
-
                 });
             }
         });
@@ -153,9 +150,7 @@ export class ServerDisk {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
-                        this.disks = _.filter(this.disks, (d) => {
-                            return (d.id != disk.id);
-                        });
+                        this.refreshHandler();
                         toastr.success('删除成功!');
                     }
                 });
@@ -165,10 +160,7 @@ export class ServerDisk {
 
     updateHandler(disk) {
         this.selectedDisk = disk;
-        // console.log(disk);
-        // toastr.info('修改名称操作...');
         this.uiNameUpdateModal.show((result => {
-            // console.log(result);
             this.http.fetch(nsApi.url('disk.updateName.post'), {
                 method: 'post',
                 body: json({
@@ -177,10 +169,11 @@ export class ServerDisk {
                     desc: result.desc
                 })
             }).then((resp) => {
-                // this. = resp.data;
-                disk.name = result.name;
-                disk.desc = result.desc;
-                toastr.success('修改名称操作成功!');
+                if (resp.ok) {
+                    disk.name = result.name;
+                    disk.desc = result.desc;
+                    toastr.success('修改名称操作成功!');
+                }
             });
         }));
 
