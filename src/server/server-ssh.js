@@ -57,7 +57,6 @@ export class ServerSSH {
             }).then((data) => {
                 this.sshkeys = data.list;
                 this.page = data;
-                this.pageNo = pageNo;
             });
     }
 
@@ -97,7 +96,7 @@ export class ServerSSH {
     }
 
     refreshHandler() {
-        this.getSshkeys(this.pageNo).then(() => {
+        this.getSshkeys(this.page.currentPage).then(() => {
             toastr.info('刷新完成!');
             this.allChecked = false;
         });
