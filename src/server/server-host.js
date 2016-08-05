@@ -55,7 +55,6 @@ export class ServerHost {
         }).then((data) => {
             this.hosts = data.list;
             this.page = data;
-            this.pageNo = pageNo;
         });
     }
 
@@ -89,7 +88,7 @@ export class ServerHost {
 
     refreshHandler() {
 
-        this.getHosts(this.pageNo).then(() => {
+        this.getHosts(this.page.currentPage).then(() => {
             this.allChecked = false;
             toastr.success('刷新成功!');
         });

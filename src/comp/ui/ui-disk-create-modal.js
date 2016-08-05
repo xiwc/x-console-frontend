@@ -108,8 +108,8 @@ export class UiDiskCreateModal {
                         type: 'empty',
                         prompt: '数量不能为空!'
                     }, {
-                        type: 'integer[1..10]',
-                        prompt: '一次创建硬盘数量必须是介于1到5的整数!'
+                        type: 'integer[1..50]',
+                        prompt: '一次创建硬盘数量必须是介于1到50的整数!'
                     }]
                 }
             }

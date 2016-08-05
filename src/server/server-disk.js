@@ -84,7 +84,6 @@ export class ServerDisk {
         }).then((data) => {
             this.disks = data.list;
             this.page = data;
-            this.pageNo = pageNo;
         }).then(() => {
             this.allChecked = false;
         });
@@ -97,7 +96,7 @@ export class ServerDisk {
     }
 
     refreshHandler() {
-        this.getDisks(this.pageNo).then(() => {
+        this.getDisks(this.page.currentPage).then(() => {
             toastr.info('刷新成功!');
         });
     }
