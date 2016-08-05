@@ -1,5 +1,5 @@
 <template>
-    <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu">
+    <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu" ref="uiSidebar">
         <!-- <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu labeled icon"> -->
         <a class="nx-logo" href="/#/">
             <img src="https://x.newtouchwork.com/images/logo16px.png">
@@ -46,7 +46,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui inverted accordion nx-ad-menu">
+        <div class="ui inverted accordion nx-ad-menu" ref="uiAccordion">
             <div class="${router.currentInstruction.config.type == 'common' ? 'active' : ''} title">
                 <i class="sitemap icon nx-icon"></i>
                 <i class="dropdown icon"></i> 产品服务

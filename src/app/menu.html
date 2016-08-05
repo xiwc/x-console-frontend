@@ -1,6 +1,6 @@
 <template>
     <div class="ui top fixed menu nx-top-fixed-menu" ref="uiMenu">
-        <a class="item nx-menu-toggle">
+        <a class="item nx-menu-toggle" click.delegate="sidebarToggleHandler()">
             <!-- <i class="sidebar icon"></i> -->
             <i class="indent icon"></i>
             <i class="outdent icon"></i>
@@ -99,7 +99,7 @@
             <a class="item" title="消费">
                 <i class="yen icon"></i> 47.00
             </a>
-            <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover">
+            <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover" ref="uiAccount">
                 <img src="https://x.newtouchwork.com/images/head.png" class="ui avatar image" />
                 <span style="position: relative;">jack2chen<a class="floating ui yellow empty circular label nx-floating-lbl"></a></span>
                 <div class="menu">

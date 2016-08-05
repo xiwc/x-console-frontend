@@ -67,50 +67,31 @@ export class App {
 
         // toastr.info(_.tr('key', { someone: 'john' }));
 
-        $('.ui.accordion').accordion();
-        $('.ui.dropdown').dropdown();
-        $('.ui.dropdown.nx-dd-action-hide').dropdown({
-            action: 'hide'
-        });
-        $('.ui.dropdown.nx-dd-action-hide-on-hover').dropdown({
-            action: 'hide',
-            on: 'hover'
-        });
-        $('.ui.modal').modal();
+        // $('.ui.accordion').accordion();
+        // $('.ui.dropdown').dropdown();
+        // $('.ui.dropdown.nx-dd-action-hide').dropdown({
+        //     action: 'hide'
+        // });
+        // $('.ui.dropdown.nx-dd-action-hide-on-hover').dropdown({
+        //     action: 'hide',
+        //     on: 'hover'
+        // });
+        // $('.ui.modal').modal();
 
-        $('.nx-menu-toggle').click(function(event) {
-            var $lsm = $('.nx-body .nx-left-sidebar-menu');
-            $lsm.toggleClass('labeled icon');
-            $('.nx-body').toggleClass('nx-left-sidebar-menu-labeled-icon');
-        });
+        // var historyTimer = null;
+        // $('.nx-menu-item-history').hover(function() {
+        //     $('.nx-history').show();
+        // }, function(evt) {
+        //     historyTimer = setTimeout(function() {
+        //         $('.nx-history').hide();
+        //     }, 200);
+        // });
 
-        $('.nx-top-fixed-menu .nx-menu-item-pp')
-            .popup({
-                inline: true,
-                offset: 1,
-                distanceAway: -9,
-                hoverable: true,
-                position: 'bottom right',
-                delay: {
-                    show: 300,
-                    hide: 300
-                }
-            });
-
-        var historyTimer = null;
-        $('.nx-menu-item-history').hover(function() {
-            $('.nx-history').show();
-        }, function(evt) {
-            historyTimer = setTimeout(function() {
-                $('.nx-history').hide();
-            }, 200);
-        });
-
-        $('.nx-history').hover(function() {
-            historyTimer && clearTimeout(historyTimer);
-        }, function(evt) {
-            $('.nx-history').hide();
-        });
+        // $('.nx-history').hover(function() {
+        //     historyTimer && clearTimeout(historyTimer);
+        // }, function(evt) {
+        //     $('.nx-history').hide();
+        // });
 
         $('body').on('click', '.nx-left-sidebar-menu .nx-labeled-icon-item .nx-second-menu .menu .item', function(event) {
             $(this).closest('.nx-second-menu').addClass('hidden');
