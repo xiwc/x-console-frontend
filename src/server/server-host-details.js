@@ -73,12 +73,75 @@ export class ServerHostDetails {
                         ids: [item.id]
                     })
                 }).then((resp) => {
-                    // TODO 跳转到?
                     if (resp.ok) {
                         toastr.success('删除成功!');
                     }
                 });
             }
+        });
+    }
+
+    mountDiskHandler(item) {
+        this.uiDiskSelectModal.show((list) => {
+            this.http.fetch(nsApi.url('host.addDisks.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: [list.id],
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('绑定云磁盘成功');
+                }
+            });
+        });
+    }
+
+    unmountDiskHandler(item) {
+        this.uiDiskSelectModalUnmount.show((list) => {
+            this.http.fetch(nsApi.url('host.deleteDisks.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: [list.id],
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('卸载云磁盘成功');
+                }
+            });
+        });
+    }
+
+    inPrivateNetworkHandler(item) {
+        this.uiNetworkPrivateSelectModal.show((list) => {
+            this.http.fetch(nsApi.url('host.addPrivateNetwork.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: list.id,
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('加入私有网络成功');
+                }
+            });
+        });
+    }
+
+    outPrivateNetworkHandler(item) {
+        this.uiNetworkPrivateSelectModalOut.show((list) => {
+            this.http.fetch(nsApi.url('host.deletePrivateNetwork.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: list.id,
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('离开私有网络成功');
+                }
+            });
         });
     }
 }

@@ -12,7 +12,7 @@ export class UiDiskSelectModal {
 
     @bindable type = 'mount'; // mount or unmount
 
-    @bindable name = null; // 主机名
+    @bindable hostdetail = null; // 主机信息
 
     disks = null;
 
@@ -30,7 +30,11 @@ export class UiDiskSelectModal {
         $(this.md).modal({
             closable: false,
             onShow: () => {
-                this.getDiskList(this.type);
+                if (this.type == 'mount') {
+                    this.getUnBindDiskList();
+                } else {
+                    this.getBindDiskList();
+                }
             },
             onApprove: () => {
                 this.onapprove && this.onapprove(this.getSelected());
@@ -90,21 +94,30 @@ export class UiDiskSelectModal {
     }
 
     /**
-     * 获取云硬盘数据
-     * @param   type: mount or unmount
+     * 获取未绑定云硬盘数据
      */
-    getDiskList(type) {
+    getUnBindDiskList() {
 
-        this.http.fetch(nsApi.url('disk.list.get', {
-            "pageNo": 1,
-            "pageSize": 100
+        this.http.fetch(nsApi.url('host.disk.listUnbind', {
+            "id": this.hostdetail && this.hostdetail.id
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
-            // if (type == 'mount') { // TODO 
-            //     // statement
-            // }
-            this.disks = data.list;
+            this.disks = data;
+        });
+    }
+
+    /**
+     * 获取已绑定云硬盘数据
+     */
+    getBindDiskList() {
+
+        this.http.fetch(nsApi.url('host.disk.listBind', {
+            "id": this.hostdetail.id
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.disks = data;
         });
     }
 }

@@ -290,14 +290,36 @@ export class ServerHost {
     }
 
     inPrivateNetworkHandler(item) {
-        this.uiNetworkPrivateSelectModal.show(() => {
-            toastr.info('TODO...');
+        this.selectedHost = item;
+        this.uiNetworkPrivateSelectModal.show((list) => {
+            this.http.fetch(nsApi.url('host.addPrivateNetwork.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: list.id,
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('加入私有网络成功');
+                }
+            });
         });
     }
 
     outPrivateNetworkHandler(item) {
-        this.uiNetworkPrivateSelectModalOut.show(() => {
-            toastr.info('TODO...');
+        this.selectedHost = item;
+        this.uiNetworkPrivateSelectModalOut.show((list) => {
+            this.http.fetch(nsApi.url('host.deletePrivateNetwork.post'), {
+                method: 'post',
+                body: json({
+                    diskIds: list.id,
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('离开私有网络成功');
+                }
+            });
         });
     }
 

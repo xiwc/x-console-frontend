@@ -3,17 +3,31 @@ import {
     containerless
 }
 from 'aurelia-framework';
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
 
+@inject(Lazy.of(HttpClient))
 @containerless
 export class UiNetworkPrivateSelectModal {
 
     @bindable type = 'in'; // in or out
 
-    privateNetworks = [
-        { id: '01', name: '私有01' },
-        { id: '02', name: '私有02' },
-        { id: '03', name: '私有03' },
-    ];
+    @bindable hostdetail = null; // 主机信息
+
+    // privateNetworks = [
+    //     { id: '01', name: '私有01' },
+    //     { id: '02', name: '私有02' },
+    //     { id: '03', name: '私有03' },
+    // ];
+
+    privateNetworks = null;
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -21,6 +35,13 @@ export class UiNetworkPrivateSelectModal {
     attached() {
         $(this.md).modal({
             closable: false,
+            onShow: () => {
+                if (this.type == 'in') {
+                    this.getUnBindNetworkList();
+                } else {
+                    this.getBindNetworkList();
+                }
+            },
             onApprove: () => {
                 this.onapprove && this.onapprove(this.getSelected());
             },
@@ -76,5 +97,31 @@ export class UiNetworkPrivateSelectModal {
 
     hide() {
         $(this.md).modal('hide');
+    }
+
+    /**
+     * 获取未绑定私有网络列表
+     */
+    getUnBindNetworkList() {
+        this.http.fetch(nsApi.url('host.privateNetwork.listUnbind', {
+            "id": this.hostdetail && this.hostdetail.id
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.privateNetworks = data;
+        });
+    }
+
+    /**
+     * 获取已绑定私有网络列表
+     */
+    getBindNetworkList() {
+        this.http.fetch(nsApi.url('host.privateNetwork.listBind', {
+            "id": this.hostdetail && this.hostdetail.id
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.privateNetworks = data;
+        });
     }
 }

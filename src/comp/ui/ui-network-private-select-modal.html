@@ -2,7 +2,7 @@
     <div ref="md" class="ui small modal nx-ui-network-private-select-modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
-            ${type == 'in' ? '选择[xxx]要加入的私有网络' : '选择[xxx]要离开的私有网络'}
+            ${type == 'in' ? '选择' + hostdetail.name + '要加入的私有网络' : '选择 + hostdetail.name + 要离开的私有网络'}
         </div>
         <div class="content">
             <div class="ui message">
