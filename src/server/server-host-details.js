@@ -73,6 +73,7 @@ export class ServerHostDetails {
                         ids: [item.id]
                     })
                 }).then((resp) => {
+                    // TODO 跳转到?
                     if (resp.ok) {
                         toastr.success('删除成功!');
                     }
