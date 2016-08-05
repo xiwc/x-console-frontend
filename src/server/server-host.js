@@ -55,14 +55,13 @@ export class ServerHost {
         }).then((data) => {
             this.hosts = data.list;
             this.page = data;
+            this.pageNo = pageNo;
         });
     }
 
     isAllChecked() {
 
-        return _.every(this.hosts, (item) => {
-            return item.checked;
-        });
+        return _.every(this.hosts, 'checked');
     }
 
     selectHandler(uiChk, item) {
@@ -94,22 +93,15 @@ export class ServerHost {
 
     refreshHandler() {
 
-        this.getHosts();
-        this.allChecked = false;
-        toastr.success('刷新成功!');
+        this.getHosts(this.pageNo).then(() => {
+            this.allChecked = false;
+            toastr.success('刷新成功!');
+        });
+
     }
 
     onpageHandler(selectedPage) {
-        // console.log(selectedPage);
-        this.page = {
-            currentPage: selectedPage,
-            pageSize: 10,
-            size: 10,
-            total: 75,
-            pageCount: 8,
-            hasPreviousPage: false,
-            hasNextPage: true
-        };
+        this.getHosts(selectedPage);
     }
 
     getCheckedItems() {

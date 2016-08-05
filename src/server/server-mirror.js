@@ -46,7 +46,7 @@ export class ServerMirror {
     }
 
     refreshHandler() {
-        this.getMirrors().then(() => {
+        this.getMirrors(this.pageNo).then(() => {
             toastr.info('刷新成功!');
         });
     }
@@ -85,6 +85,7 @@ export class ServerMirror {
         }).then((data) => {
             this.mirrors = data.list;
             this.page = data;
+            this.pageNo = pageNo;
         });
     }
 
