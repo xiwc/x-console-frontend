@@ -6,6 +6,8 @@ export class ServerSecurity {
 
     allChecked = false;
 
+    titleName = "创建安全组";
+
     page = {
         currentPage: 1,
         pageSize: 10,
@@ -64,7 +66,9 @@ export class ServerSecurity {
     }
 
     createHandler() {
-
+        this.createconfirm.show((result) => {
+            toastr.info('TODO...' + result.name);
+        });
     }
 
     newRuleHandler() {
