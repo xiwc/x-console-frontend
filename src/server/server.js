@@ -8,7 +8,8 @@ export class Server {
             name: 'dashboard',
             moduleId: 'server/server-dashboard',
             nav: true,
-            title: '总览'
+            title: '总览',
+            disabled: true
         }, {
             route: ['host'],
             name: 'host',
@@ -50,7 +51,8 @@ export class Server {
             name: 'snapshot',
             moduleId: 'server/server-snapshot',
             nav: true,
-            title: '快照'
+            title: '快照',
+            disabled: true
         }, {
             route: ['ssh'],
             name: 'ssh',
@@ -68,7 +70,8 @@ export class Server {
             name: 'security',
             moduleId: 'server/server-security',
             nav: true,
-            title: '安全组'
+            title: '安全组',
+            disabled: true
         }, {
             route: ['security-details/:id'],
             name: 'security-details',
@@ -80,13 +83,15 @@ export class Server {
             name: 'port',
             moduleId: 'comp/default/default-pane',
             nav: true,
-            title: '端口映射'
+            title: '端口映射',
+            disabled: true
         }, {
             route: ['web'],
             name: 'web',
             moduleId: 'comp/default/default-pane',
             nav: true,
-            title: 'WEB域名映射'
+            title: 'WEB域名映射',
+            disabled: true
         }, {
             route: '',
             redirect: 'dashboard'
