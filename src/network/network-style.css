@@ -12,12 +12,12 @@
 .nx-network-public-details .circle.icon.runing,
 .nx-network-router-details .circle.icon.runing,
 .nx-network-public-style .circle.icon.runing{
-	color:green;
+	color:#3adc16;
 }
 
 .nx-network-public-details .circle.icon.stoped,
 .nx-network-router-details .circle.icon.stoped,
 .nx-network-public-style .circle.icon.stoped
 {
-	color:red;
+	color:#f33a3a;
 }
