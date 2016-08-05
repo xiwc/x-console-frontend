@@ -83,10 +83,6 @@ export class ServerHost {
         });
     }
 
-    delHandler() {
-        this.confirm.show();
-    }
-
     createHandler() {
         this.uiHostCreateModal.show();
     }
@@ -206,6 +202,7 @@ export class ServerHost {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
+                        this.refreshHandler();
                         toastr.success('删除操作成功!');
                     }
                 });
@@ -329,6 +326,7 @@ export class ServerHost {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
+                        this.refreshHandler();
                         toastr.success('删除操作成功!');
                     }
                 });
