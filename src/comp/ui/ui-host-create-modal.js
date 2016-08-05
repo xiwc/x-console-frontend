@@ -317,6 +317,9 @@ export class UiHostCreateModal {
         this.initMemTypes(this.getSelectedItem(this.cpuTypes));
 
         $(this.modal).modal({
+            closable: false,
+            detachable: false,
+            context: '.nx-body',
             onShow: () => {
                 this.reset();
                 this.getTotalConfig();
