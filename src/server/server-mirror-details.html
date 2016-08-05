@@ -31,22 +31,22 @@
                                     <th>容量</th>
                                     <td>${details.capacity}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>可见范围</th>
                                     <td>${details.scope | mapping:'mirrorScope'}</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                                     <th>平台</th>
                                     <td>${details.platform | mapping:'mirrorPlatform'}</td>
                                 </tr>
                                 <tr>
                                     <th>创建时间</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    <td>${details.createTime | dateFormat}</td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <th>创建于</th>
                                     <td>${details.createPeriod}</td>
-                                </tr>
+                                </tr> -->
                                 <tr>
                             </tbody>
                         </table>
