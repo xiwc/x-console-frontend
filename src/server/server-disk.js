@@ -179,19 +179,46 @@ export class ServerDisk {
     }
 
     //加载到主机
-    addToHostHandler() {
+    addToHostHandler(disk) {
         // toastr.info('加载到主机操作...');
-        this.uiHostSelectModal.show((result => {
-            console.log(result);
-        }));
+        this.uiHostSelectModal.show({
+            sth: { diskid: disk.id },
+            onapprove: (result) => {
+                console.log(result);
+                this.http.fetch(nsApi.url('disk.bind.post'), {
+                    method: 'post',
+                    body: json({
+                        id: disk.id,
+                        hostId: result.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        disk.status = 2;
+                        toastr.success('加载成功!');
+                    }
+                });
+            }
+        });
     }
 
-    removeFromHostHandler() {
-        // toastr.info('从主机卸载操作...');
+    // 主机卸载操作
+    removeFromHostHandler(o) {
         this.confirm.show({
-            onapprove: () => {},
+            onapprove: () => {
+                this.http.fetch(nsApi.url('disk.unbind.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        o.status = 1;
+                        toastr.success('卸载成功!');
+                    }
+                });
+            },
             warning: true,
-            content: '物理卸载硬盘之前,请确保该硬盘在主机的操作系统中处于非加载状态(unmounted). 确定要卸载硬盘xxxxx?'
+            content: '物理卸载硬盘之前,请确保该硬盘在主机的操作系统中处于非加载状态(unmounted). 确定要卸载硬盘' + o.name + '?'
         });
     }
 
@@ -200,7 +227,7 @@ export class ServerDisk {
         // toastr.info('扩容操作...');
         this.selectedDisk = o;
         this.uiDiskExpansionModal.show({
-            sth: { maxCapacity: 1000 - o.capacity },
+            sth: { maxCapacity: 5000 - o.capacity },
             onapprove: (result) => {
                 console.log(result);
                 this.http.fetch(nsApi.url('disk.expand.post'), {

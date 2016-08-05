@@ -13,7 +13,7 @@
     <div class="nx-network-public-style">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
-            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新私有网络" data-position="top left" data-inverted="">
+            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新路由器" data-position="top left" data-inverted="">
                 <i class="refresh icon"></i>
             </div>
             <div class="ui primary button" click.delegate="createHandler()">
@@ -65,9 +65,8 @@
                             </div>
                         </td>
                         <!-- <td><a>${r.id}</a></td> -->
-                        <td><a>${r.name}</a></td>
-                        <!-- href="/#/network/router-details/${r.id}" -->
-                        <td>${r.status}</td>
+                        <td><a href="/#/network/router-details/${r.id}">${r.name}</a></td>
+                        <td><i class="circle icon ${r.status == 1 ? 'runing' : 'stoped'}"></i>${r.status | mapping:'routerStatus'}</td>
                         <td>${r.type | mapping:'routerType'}</td>
                         <!-- <td>${r.managerIp}</td> -->
                         <td>${r.ip}</td>
@@ -77,10 +76,10 @@
                                 <div class="menu">
                                     <div class="item" click.delegate="updateName(r)">修改名称</div>
                                     <div class="divider"></div>
-                                    <div class="item" click.delegate="startRouter(r)">启动</div>
-                                    <div class="item" click.delegate="stopRouter(r)">关闭</div>
-                                    <div class="item" click.delegate="updatePublicIp(r)">修改公网IP</div>
+                                    <div class="item ${r.status == 1 ? 'disabled' : ''}" click.delegate="startRouter(r)">启动</div>
+                                    <div class="item ${r.status == 1 ? '' : 'disabled'}" click.delegate="stopRouter(r)">关闭</div>
                                     <div class="item" click.delegate="updateRouterType(r)">扩容</div>
+                                    <div class="item" click.delegate="updatePublicIp(r)">修改公网IP</div>
                                     <div class="item" click.delegate="addPrivatework(r)">添加私有网络</div>
                                     <div class="item">移除私有网络</div>
                                     <div class="divider"></div>
@@ -102,8 +101,8 @@
     </div>
     <ui-network-router-create-modal ui-network-router-create-modal.ref="createconfirm" title.bind="createTitle"></ui-network-router-create-modal>
     <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
-    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm"" name.bind="selectedRouter.name" desc.bind="selectedRouter.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
-    <ui-network-router-publicip-update-modal ui-network-router-publicip-update-modal.ref="updatePublicIpDialog"></ui-network-router-publicip-update-modal>
-    <ui-network-router-updatetype-modal ui-network-router-updatetype-modal.ref="updatetypeDialog"></ui-network-router-updatetype-modal>
-    <ui-network-router-addprivatenetwork-modal ui-network-router-addprivatenetwork-modal.ref="addPrivateworkDialog"></ui-network-router-addprivatenetwork-modal>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" " name.bind="selectedRouter.name " desc.bind="selectedRouter.desc " show-desc.bind="!0 " title.bind="updateNameTitle "></ui-name-update-modal>
+    <ui-network-router-publicip-update-modal ui-network-router-publicip-update-modal.ref="updatePublicIpDialog "></ui-network-router-publicip-update-modal>
+    <ui-network-router-updatetype-modal ui-network-router-updatetype-modal.ref="updatetypeDialog "></ui-network-router-updatetype-modal>
+    <ui-network-router-addprivatenetwork-modal ui-network-router-addprivatenetwork-modal.ref="addPrivateworkDialog "></ui-network-router-addprivatenetwork-modal>
 </template>

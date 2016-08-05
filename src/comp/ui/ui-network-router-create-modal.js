@@ -2,12 +2,12 @@ import {
     bindable,
     containerless
 }
-from 'aurelia-framework';
+    from 'aurelia-framework';
 
 import 'ion-rangeslider';
 
-import { inject, Lazy } from 'aurelia-framework';
-import { HttpClient, json } from 'aurelia-fetch-client';
+import {inject, Lazy} from 'aurelia-framework';
+import {HttpClient, json} from 'aurelia-fetch-client';
 
 @inject(Lazy.of(HttpClient))
 @containerless
@@ -26,12 +26,15 @@ export class UiNetworkRouterCreateModal {
     }
 
     attached() {
-        $(this.md).modal({
+        $('.ui.dropdown').dropdown();
+        $(this.routermd).modal({
             closable: false,
             allowMultiple: true,
             onShow: () => {
                 this.name = '';
                 $(this.form).form("reset");
+                //alert($(this.routermd).find("input[name='routertype']").length);
+                $(this.routermd).find("input[name='routertype']").eq(0).prop("checked", true);
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
@@ -49,11 +52,13 @@ export class UiNetworkRouterCreateModal {
                 }).then((resp) => {
                     if (resp.ok) {
                         this.onapprove && this.onapprove();
-                        toastr.success('硬盘创建成功!');
+                        toastr.success('创建成功!');
                     }
                 });
             },
-            onDeny: () => { this.ondeny && this.ondeny(); }
+            onDeny: () => {
+                this.ondeny && this.ondeny();
+            }
         });
 
         $(this.form).form({
@@ -77,7 +82,6 @@ export class UiNetworkRouterCreateModal {
      * @param ondeny: 取消回调函数
      */
     show(onapprove, ondeny) {
-
         if (onapprove) {
             this.onapprove = onapprove;
         }
@@ -86,12 +90,12 @@ export class UiNetworkRouterCreateModal {
             this.ondeny = ondeny;
         }
 
-        $(this.md).modal('show');
+        $(this.routermd).modal('show');
     }
 
     /* 隐藏确认窗口 */
     hide() {
-        $(this.md).modal('hide');
+        $(this.routermd).modal('hide');
     }
 
 }
