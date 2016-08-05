@@ -14,12 +14,6 @@ export class UiNetworkPrivateSelectModal {
 
     @bindable hostdetail = null; // 主机信息
 
-    // privateNetworks = [
-    //     { id: '01', name: '私有01' },
-    //     { id: '02', name: '私有02' },
-    //     { id: '03', name: '私有03' },
-    // ];
-
     privateNetworks = null;
 
     /**
