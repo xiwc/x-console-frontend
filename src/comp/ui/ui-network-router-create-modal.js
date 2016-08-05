@@ -26,9 +26,7 @@ export class UiNetworkRouterCreateModal {
     }
 
     attached() {
-        $('.ui.dropdown').dropdown({
-            allowAdditions: true
-        });
+        $('.ui.dropdown').dropdown();
         $(this.routermd).modal({
             closable: false,
             allowMultiple: true,
