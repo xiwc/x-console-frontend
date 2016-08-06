@@ -38,5 +38,6 @@ export class Sidebar {
         });
 
         $(this.uiAccordion).accordion();
+        $(this.uiRegion).dropdown();
     }
 }

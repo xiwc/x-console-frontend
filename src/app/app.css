@@ -1,5 +1,9 @@
 /* TODO 有些不再使用的样式(左侧菜单栏布局)需要删除 */
 
+.nx-left-sidebar-menu.ui.sidebar {
+    top: 47px;
+}
+
 .ui.top.fixed.menu {
     padding-left: 180px;
 }
@@ -11,10 +15,22 @@
 }
 
 .nx-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    z-index: 101;
+    font-size: 1.2em;
     display: block;
     height: 47px;
     color: white;
-    background-color: rgba(76, 57, 57, 0.66);
+    background-color: #383534;
+    /* background-color: rgba(76, 57, 57, 0.66); */
+}
+
+.nx-left-sidebar-menu-labeled-icon .nx-logo {
+    width: 78px;
+    text-align: center;
 }
 
 .nx-logo img {
@@ -34,7 +50,6 @@
 .nx-left-sidebar-menu .nx-dd-region {
     z-index: 1;
 }
-
 
 .nx-left-sidebar-menu.ui.vertical.sidebar.labeled.icon.menu {
     width: 78px;
@@ -112,7 +127,6 @@
 .nx-left-sidebar-menu-labeled-icon .nx-top-fixed-menu .nx-menu-toggle .indent.icon {
     display: block;
 }
-
 
 .nx-left-sidebar-menu-labeled-icon .nx-top-fixed-menu .nx-menu-toggle .outdent.icon {
     display: none;

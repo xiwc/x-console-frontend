@@ -1,10 +1,14 @@
 <template>
+    <a class="nx-logo" href="/#/">
+        <img src="https://x.newtouchwork.com/images/logo16px.png">
+        <span>新致云</span>
+    </a>
     <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu" ref="uiSidebar">
         <!-- <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu labeled icon"> -->
-        <a class="nx-logo" href="/#/">
+        <!-- <a class="nx-logo" href="/#/">
             <img src="https://x.newtouchwork.com/images/logo16px.png">
             <span>新致云</span>
-        </a>
+        </a> -->
         <a class="item nx-labeled-icon-item">
             <i class="marker icon"></i> <span>上海1区 (SH1)</span>
             <div class="nx-second-menu">
@@ -17,7 +21,7 @@
                 </div>
             </div>
         </a>
-        <div class="ui inverted dropdown item nx-dd-region nx-dd-action-hide">
+        <div class="ui inverted dropdown item nx-dd-region nx-dd-action-hide" ref="uiRegion">
             <i class="marker icon"></i>
             <div class="text" style="font-size: .9em;">上海1区 (SH1)</div>
             <i class="dropdown icon" style="margin-left: 0;"></i>
