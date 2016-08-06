@@ -149,3 +149,8 @@ body {
   -webkit-animation-name: fadeInDownBig;
   animation-name: fadeInDownBig;
 }
+
+.nx-md450.ui.modal {
+    width: 450px!important;
+    margin-left: -225px!important;
+}
