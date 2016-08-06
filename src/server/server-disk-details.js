@@ -63,7 +63,7 @@ export class ServerDiskDetails {
 
     delHandler(disk) {
         this.confirm.show({
-            content: '确定要删除硬盘<code>${disk.name}</code>吗?',
+            content: `确定要删除硬盘<code>${disk.name}</code>吗?`,
             onapprove: () => {
                 this.http.fetch(nsApi.url('disk.delete.post', {
                     id: disk.id
