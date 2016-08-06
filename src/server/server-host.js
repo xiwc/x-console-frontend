@@ -337,7 +337,7 @@ export class ServerHost {
 
     delHandler(item) {
         this.confirm.show({
-            content: '确定要删除选择的主机吗?',
+            content: `确定要删除主机<code>${item.name}</code>吗?`,
             onapprove: () => {
 
                 this.http.fetch(nsApi.url('host.delete.post'), {
