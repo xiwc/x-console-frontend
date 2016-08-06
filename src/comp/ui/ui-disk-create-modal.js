@@ -22,6 +22,8 @@ export class UiDiskCreateModal {
     // TODO 校验, 数量不能超过资源限额,所以需要检测当前已经创建的数量.
     count = '1';
 
+    capacity = 10;
+
     /**
      * 构造函数
      */
@@ -47,7 +49,7 @@ export class UiDiskCreateModal {
 
         $(this.rangeSize).ionRangeSlider({
             onChange: () => {
-                // console.log($(this.rangeBw).val());
+                this.capacity = $(this.rangeSize).val();
             }
         });
 
@@ -60,8 +62,11 @@ export class UiDiskCreateModal {
                 this.name = '';
                 this.count = '1';
                 this.type = '1';
+                this.capacity = 10;
                 $(this.uiPerformance).checkbox('set checked');
-                this.slider.reset();
+                this.slider.update({
+                    from: 10
+                });
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
@@ -114,6 +119,46 @@ export class UiDiskCreateModal {
                 }
             }
         });
+    }
+
+    checkCapacity(uiCapacity) {
+        let val = $(uiCapacity).val();
+        if (isNaN(val)) {
+            val = val.replace(/[^0-9]/g, '');
+            val = (!val || val == 0) ? 10 : val;
+            $(uiCapacity).val(val);
+        } else {
+            val = parseInt(val);
+            if (val > 5000) {
+                val = 5000;
+                $(uiCapacity).val(val);
+            } else if (val < 10) {
+                val = 10;
+                $(uiCapacity).val(val);
+            } else {
+                let v = val / 10;
+                let v2 = parseInt(v);
+                if (v != v2) {
+                    val = v2 * 10;
+                    $(uiCapacity).val(val);
+                }
+            }
+        }
+
+        this.slider.update({
+            from: val
+        });
+    }
+
+    keyupHandler(evt, uiCapacity) {
+
+        if (evt.keyCode == 13) {
+            this.checkCapacity(uiCapacity);
+        }
+    }
+
+    focusoutHandler(evt, uiCapacity) {
+        this.checkCapacity(uiCapacity);
     }
 
     show(onapprove) {

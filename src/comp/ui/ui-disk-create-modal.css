@@ -1,6 +1,18 @@
+.nx-ui-disk-create-modal.ui.modal {
+    width: 510px;
+    margin-left: -255px;
+}
+
 .nx-ui-disk-create-modal .nx-range {
     display: inline-block;
-    width: 350px;
+    width: 318px;
+}
+
+
+.nx-ui-disk-create-modal .nx-capacity .ui.input {
+    width: 60px!important;
+    position: relative;
+    top: 25px;
 }
 
 .nx-ui-disk-create-modal .nx-range-slider {

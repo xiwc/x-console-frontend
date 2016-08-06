@@ -36,11 +36,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="inline field">
+                <div class="inline field nx-capacity">
                     <label style="position: relative; top: 25px;">容量</label>
                     <div class="nx-range">
                         <div class="nx-range-slider">
-                            <input ref="rangeSize" type="text" value="10" data-min="10" data-max="5000" data-step="10" data-grid="true" data-postfix="GB">
+                            <input ref="rangeSize" type="text" value.bind="capacity" data-min="10" data-max="5000" data-step="10" data-grid="true" data-postfix="GB">
+                        </div>
+                    </div>
+                    <div class="ui right labeled input">
+                        <input type="text" ref="uiCapacity" focusout.trigger="focusoutHandler($event, uiCapacity)" keyup.trigger="keyupHandler($event, uiCapacity)" value.bind="capacity" placeholder="">
+                        <div class="ui basic label">
+                            GB
                         </div>
                     </div>
                 </div>
