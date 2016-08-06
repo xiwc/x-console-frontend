@@ -120,13 +120,7 @@ export class MappingValueConverter {
             zh: '正在启动'
         },
         '3': {
-            zh: '已停止'
-        },
-        '4': {
-            zh: '停止中'
-        },
-        '5': {
-            zh: '重启中'
+            zh: '操作中'
         }
     };
 

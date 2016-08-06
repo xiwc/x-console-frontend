@@ -7,16 +7,16 @@
         <div class="nx-sidebar-wrapper">
             <div class="ui inverted vertical menu nx-left-sidebar-menu" ref="uiSidebar">
                 <!-- <div class="ui visible inverted vertical sidebar menu nx-left-sidebar-menu labeled icon"> -->
-                <a class="item nx-labeled-icon-item">
+                <div class="item nx-labeled-icon-item">
                     <i class="marker icon"></i> <span>上海1区 (SH1)</span>
                     <div class="nx-second-menu">
                         <div class="ui inverted vertical menu">
-                            <div class="item link"><i class="circle icon"></i>上海1区 (SH1)</div>
-                            <div class="item link">上海2区 (SH2)</div>
-                            <div class="item link">大连1区 (DL1)</div>
+                            <a class="item active link"><i class="circle icon"></i>上海1区 (SH1)</a>
+                            <a class="item link">上海2区 (SH2)</a>
+                            <a class="item link">大连1区 (DL1)</a>
                         </div>
                     </div>
-                </a>
+                </div>
                 <div class="ui inverted dropdown item nx-dd-region nx-dd-action-hide" ref="uiRegion">
                     <i class="marker icon"></i>
                     <div class="text" style="font-size: .9em;">上海1区 (SH1)</div>
@@ -39,7 +39,7 @@
                     <div class="nx-second-menu">
                         <div class="ui inverted vertical menu">
                             <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" show.bind="(row.config.type == 'common')" title="${row.title}">
-                                <i class="circle icon"></i> ${row.title}
+                                <i if.bind="row.isActive" class="circle icon"></i> ${row.title}
                             </a>
                         </div>
                     </div>
