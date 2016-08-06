@@ -467,5 +467,9 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
     border-radius: 0;
 }
 
+.nx-popup-menu-container .ui.vertical.menu > .active.item:first-child {
+    border-radius: 0;
+}
+
 
 /* 隐藏垂直滚动条 end */

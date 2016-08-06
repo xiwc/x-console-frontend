@@ -38,7 +38,7 @@
                     <i class="sitemap icon nx-icon"></i> <span>产品服务</span>
                     <div class="nx-second-menu">
                         <div class="ui inverted vertical menu">
-                            <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" if.bind="(row.config.type == 'common')" title="${row.title}">
+                            <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" show.bind="(row.config.type == 'common')" title="${row.title}">
                                 <i class="circle icon"></i> ${row.title}
                             </a>
                         </div>
@@ -50,7 +50,7 @@
                         <i class="dropdown icon"></i> 产品服务
                     </div>
                     <div class="${router.currentInstruction.config.type == 'common' ? 'active' : ''} content">
-                        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" if.bind="(row.config.type == 'common')" title="${row.title}">
+                        <a repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''} item link" href.bind="row.href" show.bind="(row.config.type == 'common')" title="${row.title}">
                             <i class="circle icon"></i> ${row.title}
                         </a>
                     </div>
