@@ -412,3 +412,23 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
 
 
 /* 二级左侧菜单 end */
+
+.nx-sidebar-container {
+    position: absolute;
+    top: 47px;
+    bottom: 0;
+    width: 78px;
+    background-color: black;
+    z-index: 3;
+    overflow-x: hidden;
+}
+
+.nx-sidebar-container .nx-sidebar-wrapper {
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    width: 95px;
+    background-color: blue;
+    overflow-y: scroll;
+    -webkit-appearance: none;
+}
