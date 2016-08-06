@@ -153,44 +153,50 @@
     padding-left: 77px;
 }
 
-.nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu {
+
+/* .nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu {
     // display: block!important;
     display: block;
-}
+} */
 
-.nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu.hidden {
+
+/* .nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu .item:hover .nx-second-menu.hidden {
     display: none!important;
-}
+} */
 
-.nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu.ui.sidebar {
+
+/* .nx-left-sidebar-menu-labeled-icon .nx-left-sidebar-menu.ui.sidebar {
     overflow-y: visible!important;
-}
+} */
 
 .nx-left-sidebar-menu .nx-second-menu {
     display: none;
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 77px;
+    left: 77px; */
 }
 
-.nx-second-menu .ui.menu {
+
+/* .nx-second-menu .ui.menu {
     border-radius: 0;
-}
+} */
 
-.nx-second-menu .ui.menu .item .circle.icon {
+
+/* .nx-second-menu .ui.menu .item .circle.icon {
     position: absolute;
     left: 25px;
 }
 
 .ui.labeled.icon.menu .nx-second-menu .item>.icon:not(.dropdown) {
     font-size: .75rem!important;
-}
+} */
 
-.ui.icon.menu .nx-second-menu .item {
+
+/* .ui.icon.menu .nx-second-menu .item {
     text-align: left;
     padding-left: 45px;
     font-size: 1.2em;
-}
+} */
 
 .ui.visible.inverted.vertical.sidebar.menu.nx-left-sidebar-menu {
     font-size: 1.2em;
@@ -228,6 +234,8 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
     left: auto;
 }
 
+
+/* 
 .nx-history {
     position: fixed;
     top: 47px;
@@ -294,7 +302,7 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
 
 .nx-history .nx-content .item .right .content .desc {
     margin-top: 10px;
-}
+} */
 
 
 /* top fixed menu start */
@@ -412,3 +420,56 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
 
 
 /* 二级左侧菜单 end */
+
+
+/* 隐藏垂直滚动条 start */
+
+.nx-sidebar-container {
+    position: absolute;
+    top: 47px;
+    bottom: 0;
+    width: 180px;
+    background-color: black;
+    z-index: 3;
+    overflow-x: hidden;
+}
+
+.nx-sidebar-container .nx-sidebar-wrapper {
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    width: 197px;
+    background-color: #1b1c1d;
+    overflow-y: scroll;
+    -webkit-appearance: none;
+}
+
+.nx-left-sidebar-menu-labeled-icon .nx-sidebar-container {
+    width: 78px;
+}
+
+.nx-left-sidebar-menu-labeled-icon .nx-sidebar-container .nx-sidebar-wrapper {
+    width: 95px;
+}
+
+.nx-popup-menu-container {
+    position: fixed;
+    left: 78px;
+    width: 180px;
+    height: auto;
+    top: 47px;
+    background-color: black;
+    z-index: 3;
+    display: none;
+}
+
+.nx-popup-menu-container .ui.menu {
+    border-radius: 0;
+}
+
+.nx-popup-menu-container .ui.vertical.menu > .active.item:first-child {
+    border-radius: 0;
+}
+
+
+/* 隐藏垂直滚动条 end */
