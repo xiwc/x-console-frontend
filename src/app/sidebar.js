@@ -11,14 +11,6 @@ export class Sidebar {
 
     @bindable router = null;
 
-    links = [
-        { title: 'RDS', icon: 'calendar', href: '' },
-        { title: 'Redis', icon: 'bar chart', href: '' },
-        { title: 'MongoDb', icon: 'travel', href: '' },
-        // { title: '端口映射', icon: 'exchange', href: '' },
-        // { title: 'WEB域名映射', icon: 'exchange', href: '' },
-    ];
-
     /**
      * 构造函数
      */
@@ -39,5 +31,28 @@ export class Sidebar {
 
         $(this.uiAccordion).accordion();
         $(this.uiRegion).dropdown();
+
+        var historyTimer = null;
+        $('.nx-labeled-icon-item', this.uiSidebar).hover((evt) => {
+            $(this.uiPpMenuContainer).empty().append($(evt.target).find('.nx-second-menu .ui.menu').clone());
+            historyTimer && clearTimeout(historyTimer);
+            $(this.uiPpMenuContainer).css({
+                top: $(evt.target).offset().top
+            }).show();
+        }, () => {
+            historyTimer = setTimeout(() => {
+                $(this.uiPpMenuContainer).hide();
+            }, 200);
+        });
+
+        $(this.uiPpMenuContainer).hover(() => {
+            historyTimer && clearTimeout(historyTimer);
+        }, () => {
+            $(this.uiPpMenuContainer).hide();
+        });
+
+        $('body').on('click', '.nx-popup-menu-container .ui.menu .item', (event) => {
+            $(this.uiPpMenuContainer).hide();
+        });
     }
 }
