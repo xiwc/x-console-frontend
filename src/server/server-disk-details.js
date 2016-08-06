@@ -63,12 +63,11 @@ export class ServerDiskDetails {
 
     delHandler(disk) {
         this.confirm.show({
-            content: '确定要删除硬盘xxxxx吗?<br/>资源删除后会在回收站中保留2小时',
+            content: '确定要删除硬盘<code>${disk.name}</code>吗?',
             onapprove: () => {
                 this.http.fetch(nsApi.url('disk.delete.post', {
                     id: disk.id
                 }), { method: 'post' }).then((resp) => {
-                    // this. = resp.data;
                     // TODO 跳转到?
                     if (resp.ok) {
                         toastr.success('删除成功!');
