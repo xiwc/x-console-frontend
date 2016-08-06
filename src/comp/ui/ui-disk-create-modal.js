@@ -62,8 +62,11 @@ export class UiDiskCreateModal {
                 this.name = '';
                 this.count = '1';
                 this.type = '1';
+                this.capacity = 10;
                 $(this.uiPerformance).checkbox('set checked');
-                this.slider.reset();
+                this.slider.update({
+                    from: 10
+                });
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
