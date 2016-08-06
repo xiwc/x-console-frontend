@@ -471,5 +471,8 @@ a.floating.ui.yellow.empty.circular.label.nx-floating-lbl {
     border-radius: 0;
 }
 
-
+.nx-left-sidebar-menu.ui.inverted.menu .item.nx-labeled-icon-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
 /* 隐藏垂直滚动条 end */
