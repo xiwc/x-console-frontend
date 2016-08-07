@@ -2,17 +2,17 @@
     <require from="ion-rangeslider/css/ion.rangeSlider.css"></require>
     <require from="ion-rangeslider/css/ion.rangeSlider.skinNice.css"></require>
     <require from="comp/ui/ui-disk-expansion-modal.css"></require>
-    <div ref="md" class="ui small modal nx-ui-disk-expansion-modal">
+    <div ref="md" class="ui small modal nx-ui-disk-expansion-modal nx-md510">
         <!-- <i class="close icon"></i> -->
         <div class="header">
             硬盘扩容
         </div>
         <div class="content">
             <div class="ui form" ref="form">
-                <div class="inline field">
+                <!-- <div class="inline field">
                     <label style="margin-right: 22px;">硬盘ID</label>
                     <div class="ui basic label">${disk.id}</div>
-                </div>
+                </div> -->
                 <div class="inline field">
                     <label>硬盘名称</label>
                     <div class="ui basic label">${disk.name}</div>
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="nx-tip">
-                    备注:单块硬盘总容量不超过1000GB
+                    备注:单块硬盘总容量不超过5000GB
                 </div>
             </div>
         </div>
