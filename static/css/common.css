@@ -154,3 +154,8 @@ body {
     width: 450px!important;
     margin-left: -225px!important;
 }
+
+.nx-md510.ui.modal {
+    width: 510px!important;
+    margin-left: -255px!important;
+}
