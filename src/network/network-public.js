@@ -63,12 +63,12 @@ export class NetworkPublic {
     }
 
     /*
-		刷新公网IP
-   	*/
+        刷新公网IP
+    */
     refreshHandler() {
         this.getPublicIps().then(() => {
             toastr.info('刷新成功!');
-        })  
+        })
     }
 
     /**
@@ -132,6 +132,7 @@ export class NetworkPublic {
     //删除单条
     delHandler(o) {
         this.deleteconfirm.show({
+            content: "确定要删除<code>" + o.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('publicIp.delete.post'), {
                     method: 'post',
@@ -141,9 +142,7 @@ export class NetworkPublic {
                 }).then((resp) => {
                     // this. = resp.data;
                     if (resp.ok) {
-                        this.publicIps = _.filter(this.publicIps, (d) => {
-                            return (d.id != o.id);
-                        });
+                        this.getPublicIps();
                         toastr.success('删除成功!');
                     }
                 });
@@ -220,11 +219,33 @@ export class NetworkPublic {
 
     //解绑路由器
     unBindRouter(o) {
-    	this.deleteconfirm.show({
-    		content:"确定要解除该公网IP上绑定的路由器吗？",
-    		onapprove:() =>{
+        this.deleteconfirm.show({
+            content: "确定要解除该公网IP上绑定的路由器吗？",
+            onapprove: () => {
 
-    		}
-    	});
+            }
+        });
+    }
+
+    //移除主机
+    unBindHost(o) {
+        this.deleteconfirm.show({
+            content: "确定要移除<code>" + o.name + "</code>绑定的主机吗？",
+            onapprove: () => {
+                this.http.fetch(nsApi.url('publicIp.unbindHost.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        // pn.name = result.name;
+                        // pn.desc = result.desc;
+                        toastr.success('移除主机成功!');
+                    }
+                });
+            }
+        });
     }
 }

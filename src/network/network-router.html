@@ -1,5 +1,5 @@
 <template>
-    <require from="./network-style.css"></require>
+    <require from="./network.css"></require>
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-network-router-create-modal"></require>
     <require from="comp/ui/ui-confirm"></require>
@@ -40,7 +40,7 @@
             <table class="ui compact sortable celled table">
                 <thead class="full-width">
                     <tr class="no-sort">
-                        <th>
+                        <th class="no-sort">
                             <div class="ui checkbox" ref="uiChkAll" chk.bind="allChecked">
                                 <input type="checkbox">
                                 <label></label>
@@ -53,7 +53,7 @@
                         <!-- <th>内网IP</th> -->
                         <th>外网IP</th>
                         <th>创建时间</th>
-                        <th>操作</th>
+                        <th class="no-sort">操作</th>
                     </tr>
                 </thead>
                 <tbody id="tbody1">

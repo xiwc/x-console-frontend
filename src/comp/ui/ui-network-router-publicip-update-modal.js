@@ -43,8 +43,8 @@ export class UiNetworkRouterPublicipUpdateModal {
             },
             onApprove: () => {
                 this.onapprove && this.onapprove({
-                    publicipid: $(this.publicip).dropdown("get value"),
-                    ipname: $(this.publicip).dropdown("get text")
+                    publicipid: $(this.selectPublicIp).dropdown("get value"),
+                    ipname: $(this.selectPublicIp).dropdown("get text")
                 });
             },
             onDeny: () => { this.ondeny && this.ondeny(); }
@@ -53,7 +53,7 @@ export class UiNetworkRouterPublicipUpdateModal {
 
     initPublicIpHandler(last) {
         if (last) {
-            $(this.publicip).dropdown().dropdown("set selected", this.publicIpList[0].id);
+            $(this.selectPublicIp).dropdown().dropdown("set selected", this.publicIpList[0].id);
         }
     }
 

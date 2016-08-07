@@ -150,15 +150,15 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '获取可以加载云硬盘的主机列表'
         },
-        'disk.unbind.post': {
-            real: 'api/disk/unbind',
+        'disk.host.delete.post': {
+            real: 'api/disk/host/delete',
             mock: '',
             ismock: false,
             method: 'post',
             desc: '从主机卸载云硬盘'
         },
-        'disk.bind.post': {
-            real: 'api/disk/bind',
+        'disk.host.add.post': {
+            real: 'api/disk/host/add',
             mock: '',
             ismock: false,
             method: 'post',
@@ -370,6 +370,23 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '获取可用的公网IP'
         },
+        'publicIp.unbindHost.post': {
+            real: 'api/publicIp/unbindHost',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '移除主机'
+        },
+        'publicIp.bindHost.post': {
+            real: 'api/publicIp/unbindHost',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '绑定主机'
+        },
+
+
+
         'host.addDisks.post': {
             real: 'api/host/addDisks',
             mock: '',

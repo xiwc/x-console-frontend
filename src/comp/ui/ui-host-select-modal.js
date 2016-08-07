@@ -43,8 +43,8 @@ export class UiHostSelectModal {
             .then((resp) => {
                 return resp.json();
             }).then((data) => {
-                this.hosts = data;
-                //this.page = data;
+                this.hosts = data.list;
+                this.page = data;
             });
     }
 
