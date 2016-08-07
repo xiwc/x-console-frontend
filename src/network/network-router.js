@@ -126,9 +126,7 @@ export class NetworkRouter {
                 }).then((resp) => {
                     // this. = resp.data;
                     if (resp.ok) {
-                        this.routers = _.filter(this.routers, (d) => {
-                            return (d.id != o.id);
-                        });
+                        this.getRouters();
                         toastr.success('删除成功!');
                     }
                 });
@@ -244,7 +242,7 @@ export class NetworkRouter {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
-                        //this.getRouters();
+                        this.getRouters();
                         toastr.success('启动成功!');
                     }
                 });
@@ -275,7 +273,7 @@ export class NetworkRouter {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
-                        //this.getRouters();
+                        this.getRouters();
                         toastr.success('关闭成功!');
                     }
                 });
@@ -296,6 +294,7 @@ export class NetworkRouter {
                 }).then((resp) => {
                     // this. = resp.data;
                     if (resp.ok) {
+                        o.status = 1;
                         toastr.success('启动成功!');
                     }
                 });
@@ -316,6 +315,7 @@ export class NetworkRouter {
                 }).then((resp) => {
                     // this. = resp.data;
                     if (resp.ok) {
+                        o.status = 2;
                         toastr.success('关闭成功!');
                     }
                 });
@@ -362,7 +362,7 @@ export class NetworkRouter {
                     // this. = resp.data;
                     if (resp.ok) {
                         o.type = result.type;
-                        toastr.success('关闭成功!');
+                        toastr.success('添加成功!');
                     }
                 });
             }

@@ -185,7 +185,7 @@ export class ServerDisk {
             sth: { diskid: disk.id },
             onapprove: (result) => {
                 console.log(result);
-                this.http.fetch(nsApi.url('disk.bind.post'), {
+                this.http.fetch(nsApi.url('disk.host.add.post'), {
                     method: 'post',
                     body: json({
                         id: disk.id,
@@ -205,7 +205,7 @@ export class ServerDisk {
     removeFromHostHandler(o) {
         this.confirm.show({
             onapprove: () => {
-                this.http.fetch(nsApi.url('disk.unbind.post'), {
+                this.http.fetch(nsApi.url('disk.host.delete.post'), {
                     method: 'post',
                     body: json({
                         id: o.id
@@ -218,7 +218,7 @@ export class ServerDisk {
                 });
             },
             warning: true,
-            content: '物理卸载硬盘之前,请确保该硬盘在主机的操作系统中处于非加载状态(unmounted). 确定要卸载硬盘' + o.name + '?'
+            content: '物理卸载硬盘之前,请确保该硬盘在主机的操作系统中处于非加载状态(unmounted). 确定要卸载硬盘<code>' + o.name + '</code>?'
         });
     }
 
