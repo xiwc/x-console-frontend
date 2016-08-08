@@ -78,8 +78,8 @@
                         <td>${item.status | mapping:'hostStatus'}</td>
                         <td>${item.type | mapping:'hostType'}</td>
                         <td>${item.imageName}</td>
-                        <td>${item.config}</td>
-                        <td>${item.networkName}</td>
+                        <td>${item.cpu + '核' + item.memory + 'G'}</td>
+                        <td>${item.networkType == 1 ? '经典网络' : item.networkName}</td>
                         <td>${item.privateNetworkIp}</td>
                         <td>${item.ip}</td>
                         <td>${item.securityGroupName}</td>
