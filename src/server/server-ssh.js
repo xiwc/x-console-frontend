@@ -96,9 +96,9 @@ export class ServerSSH {
     }
 
     createHandler() {
-        this.uiSshkeyCreateModal.show(() => {
+        this.uiSshkeyCreateModal.show((result) => {
             this.getSshkeys();
-            this.uiSshkeyDownloadModal.show();
+            this.uiSshkeyDownloadModal.show(result);
         });
     }
 

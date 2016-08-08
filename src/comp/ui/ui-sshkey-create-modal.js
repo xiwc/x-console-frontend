@@ -72,8 +72,10 @@ export class UiSshkeyCreateModal {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
-                        this.onapprove && this.onapprove();
-                        toastr.success('SSH密钥创建完成!');
+                        resp.json().then((data) => {
+                            this.onapprove && this.onapprove(data);
+                            toastr.success('SSH密钥创建完成!');
+                        });
                     }
                 });
             },
