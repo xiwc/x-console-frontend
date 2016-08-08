@@ -11,7 +11,10 @@ from 'aurelia-framework';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinNice.css';
 // import 'ion-rangeslider/css/ion.rangeSlider.skinSimple.css';
 import 'ion-rangeslider';
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
 
+@inject(Lazy.of(HttpClient))
 @containerless
 export class UiHostCreateModal {
 
@@ -45,35 +48,9 @@ export class UiHostCreateModal {
         { label: 'ssh-key03', value: '3' }
     ];
 
-    zones = [
-        { label: '上海1区', value: '1' },
-        { label: '上海2区', value: '2' },
-        { label: '上海3区', value: '3' }
-    ];
+    zones;
 
-    mirrors = [{
-        label: 'CentOS',
-        value: '1',
-        versions: [
-            { label: 'CentOS7.0', value: '1' }
-        ]
-    }, {
-        label: 'Windows Server2008',
-        value: '2',
-        versions: [
-            { label: '2008 标准版 SP2 32位 中文版', value: '1' },
-            { label: '2008 R2 企业版 64位 中文版', value: '2' },
-            { label: '2008 R2 企业版 64位 英文版', value: '3' },
-            { label: '2008 R2 标准版 SP1 64位 中文版', value: '4' },
-            { label: '2008 R2 标准版 64位英文版', value: '5' }
-        ]
-    }, {
-        label: 'Ubuntu',
-        value: '3',
-        versions: [
-            { label: 'Ubuntu', value: '1' }
-        ]
-    }];
+    mirrors = [];
 
     versions = [];
 
@@ -102,126 +79,9 @@ export class UiHostCreateModal {
         selected: false
     }];
 
-    cpuTypes = [{
-        label: '1核',
-        value: '1',
-        selected: true,
-        memTypes: [{
-            label: '1GB',
-            value: '1',
-            selected: true
-        }, {
-            label: '2GB',
-            value: '2',
-            selected: false
-        }, {
-            label: '4GB',
-            value: '4',
-            selected: false
-        }]
-    }, {
-        label: '2核',
-        value: '2',
-        selected: false,
-        memTypes: [{
-            label: '2GB',
-            value: '2',
-            selected: true
-        }, {
-            label: '4GB',
-            value: '4',
-            selected: false
-        }, {
-            label: '8GB',
-            value: '8',
-            selected: false
-        }, {
-            label: '16GB',
-            value: '16',
-            selected: false
-        }]
-    }, {
-        label: '4核',
-        value: '4',
-        selected: false,
-        memTypes: [{
-            label: '4GB',
-            value: '4',
-            selected: true
-        }, {
-            label: '8GB',
-            value: '8',
-            selected: false
-        }, {
-            label: '16GB',
-            value: '16',
-            selected: false
-        }]
-    }, {
-        label: '8核',
-        value: '8',
-        selected: false,
-        memTypes: [{
-            label: '8GB',
-            value: '8',
-            selected: true
-        }, {
-            label: '16GB',
-            value: '16',
-            selected: false
-        }, {
-            label: '32GB',
-            value: '32',
-            selected: false
-        }]
-    }, {
-        label: '16核',
-        value: '16',
-        selected: false,
-        memTypes: [{
-            label: '16GB',
-            value: '16',
-            selected: true
-        }, {
-            label: '32GB',
-            value: '32',
-            selected: false
-        }, {
-            label: '64GB',
-            value: '64',
-            selected: false
-        }]
-    }];
+    cpuTypes = [];
 
-    memTypes = [{
-        label: '1GB',
-        value: '1',
-        selected: true
-    }, {
-        label: '2GB',
-        value: '2',
-        selected: false
-    }, {
-        label: '4GB',
-        value: '4',
-        selected: false
-    }, {
-        label: '8GB',
-        value: '8',
-        selected: false
-    }, {
-        label: '16GB',
-        value: '16',
-        selected: false
-    }, {
-        label: '32GB',
-        value: '32',
-        selected: false
-    }, {
-        label: '64GB',
-        value: '64',
-        selected: false
-    }];
+    memTypes = [];
 
     netTypes = [{
         label: '经典网络',
@@ -267,6 +127,13 @@ export class UiHostCreateModal {
         disabled: true,
         selected: false
     }];
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -322,6 +189,7 @@ export class UiHostCreateModal {
             context: '.nx-body',
             onShow: () => {
                 this.reset();
+                this.init();
                 this.getTotalConfig();
             },
             onApprove: () => {
@@ -329,6 +197,120 @@ export class UiHostCreateModal {
             }
         });
 
+    }
+
+    init() {
+
+        this.http.fetch(nsApi.url('region.listName.get', {
+                level: 1 // TODO...
+            }))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                this.zones = data;
+            });
+
+        this.http.fetch(nsApi.url('flavor.listMemory.get'))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+                let mems = [];
+                _.each(data, (item) => {
+                    mems.push({
+                        label: `${item}GB`,
+                        value: item,
+                        disabled: true,
+                        selected: _.head(data) == item
+                    });
+                });
+                this.memTypes = mems;
+
+                this.http.fetch(nsApi.url('flavor.listCpu.get'))
+                    .then((resp) => {
+                        return resp.json();
+                    }).then((data) => {
+
+                        let cpus = [];
+                        _.each(data, (item) => {
+
+                            let isFirst = _.head(data) == item;
+
+                            let mems = [];
+                            cpus.push({
+                                label: `${item}核`,
+                                value: item,
+                                selected: isFirst,
+                                memTypes: mems
+                            });
+
+                            this.http.fetch(nsApi.url('flavor.listMemoryByCpu.get', {
+                                    cpu: item
+                                }))
+                                .then((resp) => {
+                                    return resp.json();
+                                }).then((data) => {
+
+                                    if (isFirst) {
+                                        _.each(this.memTypes, (item) => {
+                                            item.disabled = !_.find(data, { value: item.value });
+                                        });
+                                    }
+
+                                    _.each(data, (item) => {
+                                        mems.push({
+                                            label: `${item.value}GB`,
+                                            value: item.value,
+                                            selected: _.head(data) == item
+                                        });
+                                    });
+                                });
+
+                        });
+
+                        this.cpuTypes = cpus;
+                    });
+            });
+
+        this.http.fetch(nsApi.url('image.listName.get', {
+                type: 1 // TODO...
+            }))
+            .then((resp) => {
+                return resp.json();
+            }).then((data) => {
+
+                let mirrs = [];
+                _.each(data, (item) => {
+
+                    let vers = [];
+                    mirrs.push({
+                        label: item,
+                        value: item,
+                        versions: vers
+                    });
+
+                    this.http.fetch(nsApi.url('image.listVersion.get', {
+                            name: item
+                        }))
+                        .then((resp) => {
+                            return resp.json();
+                        }).then((data) => {
+                            _.each(data, (item) => {
+                                vers.push({
+                                    label: item.name,
+                                    value: item.id
+                                });
+                            });
+                        });
+                })
+
+                this.mirrors = mirrs;
+            });
+    }
+
+    initZonesHandler(last) {
+        if (last) {
+            $(this.uiZones).dropdown().dropdown('set selected', this.zones[0].id);
+        }
     }
 
     sshKeyValidate() {
@@ -388,7 +370,11 @@ export class UiHostCreateModal {
 
     reInitMirrorVersion() {
         $(this.uiVersions).dropdown('clear');
-        this.versions = this.getDropDownSelectedItem(this.uiMirrors, this.mirrors).versions;
+        let selected = this.getDropDownSelectedItem(this.uiMirrors, this.mirrors);
+        if (!selected) {
+            return;
+        }
+        this.versions = selected.versions;
         _.delay(() => {
             $(this.uiVersions).dropdown({
                 onChange: () => {
@@ -536,6 +522,11 @@ export class UiHostCreateModal {
     }
 
     initMemTypes(selectedCpu) {
+
+        if (!selectedCpu) {
+            return;
+        }
+
         let mtypes = selectedCpu.memTypes;
         _.each(this.memTypes, (item) => {
             let match = _.find(mtypes, { 'value': item.value });

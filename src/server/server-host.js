@@ -221,6 +221,8 @@ export class ServerHost {
                 })
             }).then((resp) => {
                 if (resp.ok) {
+                    item.name = result.name;
+                    item.desc = result.desc;
                     toastr.success('修改名称成功!');
                 }
             });
