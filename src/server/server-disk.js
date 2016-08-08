@@ -217,12 +217,11 @@ export class ServerDisk {
 
     //扩容操作
     extendSizeHandler(o) {
-        // toastr.info('扩容操作...');
         this.selectedDisk = o;
         this.uiDiskExpansionModal.show({
-            sth: { maxCapacity: 5000 - o.capacity },
+            // sth: { maxCapacity: 5000 - o.capacity },
+            capacity: o.capacity,
             onapprove: (result) => {
-                console.log(result);
                 this.http.fetch(nsApi.url('disk.expand.post'), {
                     method: 'post',
                     body: json({
@@ -232,7 +231,7 @@ export class ServerDisk {
                 }).then((resp) => {
                     if (resp.ok) {
                         o.capacity += Number(result.capacity);
-                        toastr.success('扩容成功!');
+                        toastr.success('硬盘扩容成功!');
                     }
                 });
             }

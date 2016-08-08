@@ -1,9 +1,15 @@
 .nx-ui-disk-expansion-modal .nx-range {
     display: inline-block;
-    width: 350px;
+    width: 315px;
 }
 
 .nx-ui-disk-expansion-modal .nx-range-slider {
     display: inline-block;
     width: 300px;
+}
+
+.nx-ui-disk-expansion-modal .nx-capacity .ui.input {
+    width: 80px!important;
+    position: relative;
+    top: 25px;
 }
