@@ -230,7 +230,7 @@ export class ServerHost {
     mountDiskHandler(item) {
         this.selectedHost = item;
         this.uiDiskSelectModal.show((list) => {
-            this.http.fetch(nsApi.url('host.addDisks.post'), {
+            this.http.fetch(nsApi.url('host.disk.add.post'), {
                 method: 'post',
                 body: json({
                     diskIds: [list.id],
@@ -247,7 +247,7 @@ export class ServerHost {
     unmountDiskHandler(item) {
         this.selectedHost = item;
         this.uiDiskSelectModalUnmount.show((list) => {
-            this.http.fetch(nsApi.url('host.deleteDisks.post'), {
+            this.http.fetch(nsApi.url('host.disk.delete.post'), {
                 method: 'post',
                 body: json({
                     diskIds: [list.id],
@@ -288,10 +288,10 @@ export class ServerHost {
     inPrivateNetworkHandler(item) {
         this.selectedHost = item;
         this.uiNetworkPrivateSelectModal.show((list) => {
-            this.http.fetch(nsApi.url('host.addPrivateNetwork.post'), {
+            this.http.fetch(nsApi.url('host.privateNetwork.add.post'), {
                 method: 'post',
                 body: json({
-                    diskIds: list.id,
+                    privateNetworkId: list.id,
                     id: item.id
                 })
             }).then((resp) => {
@@ -303,19 +303,21 @@ export class ServerHost {
     }
 
     outPrivateNetworkHandler(item) {
-        this.selectedHost = item;
-        this.uiNetworkPrivateSelectModalOut.show((list) => {
-            this.http.fetch(nsApi.url('host.deletePrivateNetwork.post'), {
-                method: 'post',
-                body: json({
-                    diskIds: list.id,
-                    id: item.id
-                })
-            }).then((resp) => {
-                if (resp.ok) {
-                    toastr.success('离开私有网络成功');
-                }
-            });
+        // this.selectedHost = item;
+        this.confirm.show({
+            content: `确定要离开<code>${item.networkName}</code>吗?`,
+            onapprove: () => {
+                this.http.fetch(nsApi.url('host.privateNetwork.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        id: item.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('离开私有网络成功');
+                    }
+                });
+            }
         });
     }
 
