@@ -144,7 +144,7 @@ export class ServerHostDetails {
 
     outPrivateNetworkHandler(item) {
         this.confirm.show({
-            content: `确定要离开<code>${item.networkType=='1'?'经典网络':item.networkName}</code>吗?`,
+            content: `确定要离开<code>${item.networkType == '1' ? '经典网络' : item.networkName}</code>吗?`,
             onapprove: () => {
                 this.http.fetch(nsApi.url('host.privateNetwork.delete.post'), {
                     method: 'post',
