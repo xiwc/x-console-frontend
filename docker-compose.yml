@@ -1,0 +1,7 @@
+version: "2"
+services:
+  nginx:
+    image: 192.168.205.11:5000/x-console-frontend:test
+    container_name: x_console_frontend
+    ports:
+     - "8083:80"
