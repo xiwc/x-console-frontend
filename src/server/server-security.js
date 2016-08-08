@@ -119,15 +119,8 @@ export class ServerSecurity {
     }
 
     isAllChecked() {
-        let flg = true;
-        _.each(this.securities, (d) => {
-            if (!d.checked) {
-                flg = false;
-                return false;
-            }
-        });
 
-        return flg;
+        return _.every(this.securities, 'checked');
     }
 
     getCheckedItems() {
