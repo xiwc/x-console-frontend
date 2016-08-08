@@ -94,7 +94,9 @@ export class UiNetworkPrivateSelectModal {
      */
     getUnBindNetworkList() {
         this.http.fetch(nsApi.url('host.privateNetwork.listUnbind', {
-            "id": this.hostdetail && this.hostdetail.id
+            "id": this.hostdetail && this.hostdetail.id,
+            "pageNo": 1,
+            "pageSize": 100
         })).then((resp) => {
             return resp.json();
         }).then((data) => {

@@ -84,7 +84,11 @@ export class ServerHostDetails {
 
     mountDiskHandler(item) {
         this.uiDiskSelectModal.show((list) => {
-            this.http.fetch(nsApi.url('host.addDisks.post'), {
+            if (!list) {
+                toastr.error('没有云硬盘要绑定');
+                return false;
+            }
+            this.http.fetch(nsApi.url('host.disk.add.post'), {
                 method: 'post',
                 body: json({
                     diskIds: [list.id],
@@ -92,7 +96,7 @@ export class ServerHostDetails {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    toastr.success('绑定云磁盘成功');
+                    toastr.success('绑定云硬盘成功');
                 }
             });
         });
@@ -100,7 +104,11 @@ export class ServerHostDetails {
 
     unmountDiskHandler(item) {
         this.uiDiskSelectModalUnmount.show((list) => {
-            this.http.fetch(nsApi.url('host.deleteDisks.post'), {
+            if (!list) {
+                toastr.error('没有云硬盘要解绑');
+                return false;
+            }
+            this.http.fetch(nsApi.url('host.disk.delete.post'), {
                 method: 'post',
                 body: json({
                     diskIds: [list.id],
@@ -108,7 +116,7 @@ export class ServerHostDetails {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    toastr.success('卸载云磁盘成功');
+                    toastr.success('卸载云硬盘成功');
                 }
             });
         });
@@ -116,10 +124,14 @@ export class ServerHostDetails {
 
     inPrivateNetworkHandler(item) {
         this.uiNetworkPrivateSelectModal.show((list) => {
-            this.http.fetch(nsApi.url('host.addPrivateNetwork.post'), {
+            if (!list) {
+                toastr.error('没有网络可选择');
+                return false;
+            }
+            this.http.fetch(nsApi.url('host.privateNetwork.add.post'), {
                 method: 'post',
                 body: json({
-                    diskIds: list.id,
+                    privateNetworkId: list.id,
                     id: item.id
                 })
             }).then((resp) => {
@@ -131,18 +143,20 @@ export class ServerHostDetails {
     }
 
     outPrivateNetworkHandler(item) {
-        this.uiNetworkPrivateSelectModalOut.show((list) => {
-            this.http.fetch(nsApi.url('host.deletePrivateNetwork.post'), {
-                method: 'post',
-                body: json({
-                    diskIds: list.id,
-                    id: item.id
-                })
-            }).then((resp) => {
-                if (resp.ok) {
-                    toastr.success('离开私有网络成功');
-                }
-            });
+        this.confirm.show({
+            content: `确定要离开<code>${item.networkType == '1' ? '经典网络' : item.networkName}</code>吗?`,
+            onapprove: () => {
+                this.http.fetch(nsApi.url('host.privateNetwork.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        id: item.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('离开私有网络成功');
+                    }
+                });
+            }
         });
     }
 }
