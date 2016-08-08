@@ -75,6 +75,34 @@ window.nsApiFunc = (function() {
         //     payload: {},
         //     desc: '获取未挂载硬盘的主机列表'
         // },
+        'region.listName.get': {
+            real: 'api/region/listName',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取区域'
+        },
+        'flavor.listCpu.get': {
+            real: 'api/flavor/listCpu',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域id获取cpu列表数据'
+        },
+        'flavor.listMemory.get': {
+            real: 'api/flavor/listMemory',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域id获取内存列表数据'
+        },
+        'flavor.listMemoryByCpu.get': {
+            real: 'api/flavor/listMemoryByCpu',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域id跟cpu获取内存'
+        },
         'user.userInfo.get': { // TODO demo ajax method config.
             real: '/v2/user/userInfo',
             mock: 'mock/v2/user/userInfo.get.json',
@@ -100,6 +128,20 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'get',
             desc: '镜像详情获取'
+        },
+        'image.listName.get': {
+            real: 'api/image/listName',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据镜像类型获取镜像名称下拉列表(创建主机时需要)'
+        },
+        'image.listVersion.get': {
+            real: 'api/image/listVersion',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取镜像的所有版本(创建主机时需要)(创建主机时需要)'
         },
         'disk.list.get': {
             real: 'api/disk/list',

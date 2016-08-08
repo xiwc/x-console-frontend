@@ -56,7 +56,7 @@
                                     <i class="dropdown icon"></i>
                                     <div class="default text"></div>
                                     <div class="menu">
-                                        <div repeat.for="z of zones" class="item" data-value="${z.value}">${z.label}</div>
+                                        <div repeat.for="z of zones" task.bind="initZonesHandler($last)" class="item" data-value="${z.id}">${z.name}</div>
                                         <!-- <div class="item" data-value="2">上海2区</div>
                                         <div class="item" data-value="3">上海3区</div> -->
                                     </div>
@@ -124,7 +124,7 @@
                                 <label style="position: relative; top: 25px;">带宽大小</label>
                                 <div class="nx-range">
                                     <div class="nx-range-slider">
-                                        <input ref="rangeBw" type="text" value="0" data-min="0" data-max="20" data-step="1" data-grid="true" data-postfix="Mbps">
+                                        <input ref="rangeBw" type="text" value="0" data-min="0" data-max="200" data-step="1" data-grid="true" data-postfix="Mbps">
                                     </div>
                                     <!-- <div class="ui right labeled input nx-input">
                                         <input type="text" value="0">
