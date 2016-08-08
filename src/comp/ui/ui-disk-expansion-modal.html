@@ -2,7 +2,7 @@
     <require from="ion-rangeslider/css/ion.rangeSlider.css"></require>
     <require from="ion-rangeslider/css/ion.rangeSlider.skinNice.css"></require>
     <require from="comp/ui/ui-disk-expansion-modal.css"></require>
-    <div ref="md" class="ui small modal nx-ui-disk-expansion-modal nx-md510">
+    <div ref="md" class="ui small modal nx-ui-disk-expansion-modal nx-md540">
         <!-- <i class="close icon"></i> -->
         <div class="header">
             硬盘扩容
@@ -17,11 +17,19 @@
                     <label>硬盘名称</label>
                     <div class="ui basic label">${disk.name}</div>
                 </div>
-                <div class="inline field">
+                <div class="inline field nx-capacity">
                     <label style="position: relative; top: 25px;">扩容大小</label>
                     <div class="nx-range">
                         <div class="nx-range-slider">
-                            <input ref="rangeSize" type="text" value="10" data-step="10" data-grid="true" data-postfix="GB" data-min="10">
+                            <input ref="rangeSize" type="text" data-step="10" data-grid="true" data-postfix="GB" data-min="10" , data-max="5000">
+                        </div>
+                    </div>
+                    <div class="ui right labeled left icon input">
+                        <!-- <div class="ui label">+</div> -->
+                        <i class="plus icon"></i>
+                        <input type="text" ref="uiCapacity" focusout.trigger="focusoutHandler($event, uiCapacity)" keyup.trigger="keyupHandler($event, uiCapacity)" value.bind="addCapacity" placeholder="">
+                        <div class="ui basic label">
+                            GB
                         </div>
                     </div>
                 </div>
