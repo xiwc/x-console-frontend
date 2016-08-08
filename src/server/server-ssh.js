@@ -65,15 +65,8 @@ export class ServerSSH {
     }
 
     isAllChecked() {
-        let flg = true;
-        _.each(this.sshkeys, (k) => {
-            if (!k.checked) {
-                flg = false;
-                return false;
-            }
-        });
 
-        return flg;
+        return _.every(this.sshkeys, 'checked');
     }
 
     selectHandler(uiChk, sshkey) {
@@ -128,11 +121,10 @@ export class ServerSSH {
                         ids: ids
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
-                    _.remove(this.sshkeys, (k) => {
-                        return _.includes(ids, k.id);
-                    });
-                    toastr.success('SSH密钥删除成功!');
+                    if (resp.ok) {
+                        this.refreshHandler();
+                        toastr.success('SSH密钥删除成功!');
+                    }
                 });
             }
         });
@@ -140,7 +132,6 @@ export class ServerSSH {
 
     updateHandler(sshkey) {
         this.selectedSshkey = sshkey;
-        // toastr.info('修改名称操作...');
         this.uiNameUpdateModal.show((result) => {
             this.http.fetch(nsApi.url('keystore.updateName.post'), {
                 method: 'post',
@@ -150,10 +141,11 @@ export class ServerSSH {
                     "name": result.name
                 })
             }).then((resp) => {
-                // this. = resp.data;
-                sshkey.name = result.name;
-                sshkey.desc = result.desc;
-                toastr.success('修改SSH密钥名称成功!');
+                if (resp.ok) {
+                    sshkey.name = result.name;
+                    sshkey.desc = result.desc;
+                    toastr.success('修改SSH密钥名称成功!');
+                }
             });
         });
     }

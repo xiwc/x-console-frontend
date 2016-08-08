@@ -49,15 +49,8 @@ export class ServerDisk {
     }
 
     isAllChecked() {
-        let flg = true;
-        _.each(this.disks, (d) => {
-            if (!d.checked) {
-                flg = false;
-                return false;
-            }
-        });
 
-        return flg;
+        return _.every(this.disks, 'checked');
     }
 
     getCheckedItems() {
