@@ -2,14 +2,17 @@ import {
     bindable
 }
 from 'aurelia-framework';
-/*
- * 操作确认窗口
- */
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 export class UiSshkeyDownloadModal {
 
-    config;
-
-    constructor() { // 通过构造函数注入
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
     }
 
     attached() {
@@ -17,20 +20,16 @@ export class UiSshkeyDownloadModal {
         $(this.md).modal({
             closable: false,
             onApprove: () => {
-                this.onapprove && this.onapprove();
+                this.http.fetch(nsApi.url('keystore.download.get', {
+                    id: this.id
+                })).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('下载完成!');
+                    }
+                });
             },
-            onDeny: () => {
-                this.ondeny && this.ondeny();
-            }
+            onDeny: () => {}
         });
-    }
-
-    reset() {
-        this.config = {
-            title: '操作确认',
-            content: '确定要执行该操作吗?',
-            warning: false
-        };
     }
 
     /**
@@ -40,19 +39,7 @@ export class UiSshkeyDownloadModal {
      */
     show(config) {
 
-        this.reset();
-
-        if (config) {
-            this.config = _.extend(this.config, config);
-        }
-
-        if (config && config.onapprove) {
-            this.onapprove = config.onapprove;
-        }
-
-        if (config && config.ondeny) {
-            this.ondeny = config.ondeny;
-        }
+        this.id = config.id;
 
         $(this.md).modal('show');
     }

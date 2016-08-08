@@ -320,7 +320,6 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '路由器详情'
         },
-
         'keystore.list.get': {
             real: 'api/keystore/list',
             mock: 'mock/keystore/list.get.json',
@@ -328,12 +327,12 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '获取密钥列表'
         },
-        'keystore.list.get': {
-            real: 'api/keystore/list',
-            mock: 'mock/keystore/list.get.json',
+        'keystore.download.get': {
+            real: 'api/keystore/download/{id}',
+            mock: '',
             ismock: false,
             method: 'get',
-            desc: '获取密钥列表'
+            desc: '秘钥下载链接'
         },
         'keystore.detail.get': {
             real: 'api/keystore/detail/{id}',
