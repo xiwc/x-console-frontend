@@ -31,7 +31,7 @@
                                 </tr> -->
                                 <tr>
                                     <th>资源/盘符</th>
-                                    <td>${'(' + details.resource + ')' + details.volumnName}</td>
+                                    <td>${(details.resource ? '(' + details.resource + ') ' : '') + details.volumnName}</td>
                                 </tr>
                                 <tr>
                                     <th>描述</th>
@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <th>容量</th>
-                                    <td>${details.capacity}</td>
+                                    <td>${details.capacity}G</td>
                                 </tr>
                                 <tr>
                                     <th>类型</th>
