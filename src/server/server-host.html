@@ -106,7 +106,7 @@
                                             <div click.delegate="unmountSecurityHandler(item)" class="item">卸载安全组</div>
                                         </div>
                                     </div>
-                                    <div class="item disabled">
+                                    <div class="item">
                                         <i class="dropdown icon"></i> 管理公网IP
                                         <div class="left menu">
                                             <div click.delegate="bindPublicIpHandler(item)" class="item">绑定公网IP</div>
@@ -148,7 +148,6 @@
     <ui-security-select-modal type.bind="'unmount'" ui-security-select-modal.ref="uiSecuritySelectModalUnmount"></ui-security-select-modal>
     <ui-public-ip-select-modal type.bind="'bind'" ui-public-ip-select-modal.ref="uiPublicIpSelectModal"></ui-public-ip-select-modal>
     <ui-public-ip-select-modal type.bind="'unbind'" ui-public-ip-select-modal.ref="uiPublicIpSelectModalUnbind"></ui-public-ip-select-modal>
-    <ui-network-private-select-modal hostdetail.bind="selectedHost" type.bind="'in'" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModal"></ui-network-private-select-modal>
-    <ui-network-private-select-modal hostdetail.bind="selectedHost" type.bind="'out'" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModalOut"></ui-network-private-select-modal>
+    <ui-network-private-select-modal hostdetail.bind="selectedHost" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModal"></ui-network-private-select-modal>
     <ui-snapshot-create-modal hostname.bind="selectedHost.name" ui-snapshot-create-modal.ref="uiSnapshotCreateModal"></ui-snapshot-create-modal>
 </template>

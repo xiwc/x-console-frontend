@@ -99,11 +99,13 @@ export class UiDiskSelectModal {
     getUnBindDiskList() {
 
         this.http.fetch(nsApi.url('host.disk.listUnbind', {
-            "id": this.hostdetail && this.hostdetail.id
+            "id": this.hostdetail && this.hostdetail.id,
+            "pageNo": 1,
+            "pageSize": 100
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
-            this.disks = data;
+            this.disks = data.list;
         });
     }
 
@@ -113,11 +115,13 @@ export class UiDiskSelectModal {
     getBindDiskList() {
 
         this.http.fetch(nsApi.url('host.disk.listBind', {
-            "id": this.hostdetail.id
+            "id": this.hostdetail && this.hostdetail.id,
+            "pageNo": 1,
+            "pageSize": 100
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
-            this.disks = data;
+            this.disks = data.list;
         });
     }
 }

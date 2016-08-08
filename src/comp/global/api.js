@@ -271,7 +271,7 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '路由器扩容'
         },
-        'router.detail.get':{
+        'router.detail.get': {
             real: 'api/router/detail/{id}',
             mock: '',
             ismock: false,
@@ -387,15 +387,15 @@ window.nsApiFunc = (function() {
 
 
 
-        'host.addDisks.post': {
-            real: 'api/host/addDisks',
+        'host.disk.add.post': {
+            real: 'api/host/disk/add',
             mock: '',
             ismock: false,
             method: 'post',
             desc: '绑定云硬盘'
         },
-        'host.deleteDisks.post': {
-            real: 'api/host/deleteDisks',
+        'host.disk.delete.post': {
+            real: 'api/host/disk/delete',
             mock: '',
             ismock: false,
             method: 'post',
@@ -429,15 +429,15 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '根据区域id跟主机id获取私有网络下拉列表'
         },
-        'host.addPrivateNetwork.post': {
-            real: 'api/host/addPrivateNetwork',
+        'host.privateNetwork.add.post': {
+            real: 'api/host/privateNetwork/add',
             mock: '',
             ismock: false,
             method: 'post',
             desc: '加入私有网络'
         },
-        'host.deletePrivateNetwork.post': {
-            real: 'api/host/deletePrivateNetwork',
+        'host.privateNetwork.delete.post': {
+            real: 'api/host/privateNetwork/delete',
             mock: '',
             ismock: false,
             method: 'post',

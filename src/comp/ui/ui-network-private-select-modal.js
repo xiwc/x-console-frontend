@@ -10,7 +10,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @containerless
 export class UiNetworkPrivateSelectModal {
 
-    @bindable type = 'in'; // in or out
+    // @bindable type = 'in'; // in or out
 
     @bindable hostdetail = null; // 主机信息
 
@@ -30,11 +30,7 @@ export class UiNetworkPrivateSelectModal {
         $(this.md).modal({
             closable: false,
             onShow: () => {
-                if (this.type == 'in') {
-                    this.getUnBindNetworkList();
-                } else {
-                    this.getBindNetworkList();
-                }
+                this.getUnBindNetworkList();
             },
             onApprove: () => {
                 this.onapprove && this.onapprove(this.getSelected());
@@ -102,20 +98,7 @@ export class UiNetworkPrivateSelectModal {
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
-            this.privateNetworks = data;
-        });
-    }
-
-    /**
-     * 获取已绑定私有网络列表
-     */
-    getBindNetworkList() {
-        this.http.fetch(nsApi.url('host.privateNetwork.listBind', {
-            "id": this.hostdetail && this.hostdetail.id
-        })).then((resp) => {
-            return resp.json();
-        }).then((data) => {
-            this.privateNetworks = data;
+            this.privateNetworks = data.list;
         });
     }
 }
