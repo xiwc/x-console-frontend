@@ -363,8 +363,8 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '公网IP详情'
         },
-        'publicIp.listName.post': {
-            real: 'api/publicIp/listName',
+        'router.publicIp.listName.post': {
+            real: 'api/router/publicIp/listName',
             mock: '',
             ismock: false,
             method: 'post',

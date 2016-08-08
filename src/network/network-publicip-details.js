@@ -31,4 +31,96 @@ export class NetworkPublicDetails {
             this.details = data;
         });
     }
+
+    /**
+     * 当视图被附加到DOM中时被调用
+     */
+    attached() {
+        $(this.uiActions).dropdown({
+            action: 'hide'
+        });
+    }
+
+    //删除单条
+    delHandler() {
+        this.deleteconfirm.show({
+            content: "确定要删除<code>" + this.details.name + "</code>吗？",
+            onapprove: () => {
+                this.http.fetch(nsApi.url('publicIp.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [this.details.id]
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        this.getPublicIps();
+                        toastr.success('删除成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    //修改名称
+    updateName() {
+        this.selectedPublicNetwork = this.details;
+        this.updateconfirm.show((result => {
+            this.http.fetch(nsApi.url('publicIp.updateName.post'), {
+                method: 'post',
+                body: json({
+                    id: this.details.id,
+                    name: result.name,
+                    desc: result.desc
+                })
+            }).then((resp) => {
+                // this. = resp.data;
+                if (resp.ok) {
+                    this.details.name = result.name;
+                    this.details.desc = result.desc;
+                    toastr.success('修改成功!');
+                }
+            });
+        }));
+    }
+
+    //绑定路由器
+    bindRouter() {
+        this.selectedPublicNetwork = this.details;
+        this.bindrouterDialog.show((result => {
+            console.log(result);
+        }));
+    }
+
+    //解绑路由器
+    unBindRouter() {
+        this.deleteconfirm.show({
+            content: "确定要解除该公网IP上绑定的路由器吗？",
+            onapprove: () => {
+
+            }
+        });
+    }
+
+    //移除主机
+    unBindHost() {
+        this.deleteconfirm.show({
+            content: "确定要移除<code>" + this.details.name + "</code>绑定的主机吗？",
+            onapprove: () => {
+                this.http.fetch(nsApi.url('publicIp.unbindHost.post'), {
+                    method: 'post',
+                    body: json({
+                        id: this.details.id
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        // pn.name = result.name;
+                        // pn.desc = result.desc;
+                        toastr.success('移除主机成功!');
+                    }
+                });
+            }
+        });
+    }
 }

@@ -60,7 +60,7 @@
                         <!-- <td><a>${p.id}</a></td> -->
                         <td><a href="/#/network/publicip-details/${p.id}">${p.name}</a></td>
                         <td>${p.ip}</td>
-                        <td>${p.status | mapping:"publicIpStatus"}</td>
+                        <td><i class="circle icon ${p.status == 1 ? 'runing' : 'stoped'}"></i>${p.status | mapping:"publicIpStatus"}</td>
                         <td>${p.resource}</td>
                         <td>${p.chargeMode | mapping:"chargeMode"}</td>
                         <td>${p.bandWidth}Mbps</td>

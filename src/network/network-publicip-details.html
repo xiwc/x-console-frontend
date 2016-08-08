@@ -1,13 +1,16 @@
 <template>
     <require from="./network.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-network-publicip-bindrouter-modal"></require>
     <require from="comp/vc/vc-common"></require>
     <div class="nx-network-public-details animated bounceInDown">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
                 <div class="column row">
-                    <div class="ten wide column">
+                    <div class="five wide column">
                         <h3 class="ui header">基本属性</h3>
                         <table class="ui very basic table">
                             <tbody>
@@ -33,7 +36,7 @@
                                 </tr>
                                 <tr>
                                     <th>计费模式</th>
-                                    <td>${details.chargemode | mapping:"chargeMode"}</td>
+                                    <td>${details.chargeMode | mapping:"chargeMode"}</td>
                                 </tr>
                                 <tr>
                                     <th>带宽上限</th>
@@ -49,9 +52,26 @@
                                 </tr>
                                 <tr>
                             </tbody>
-                        </table> 
+                        </table>
+                        <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="text">更多操作</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                    <div class="item" click.delegate="updateName()">修改名称</div>
+                                    <div class="divider"></div>
+                                    <div click.delegate="bindHost()" class="item ${p.status == 1 ? '' : 'disabled'}">添加主机</div>
+                                    <div click.delegate="unBindHost()" class="item ${p.status == 1 ? 'disabled' : ''}">移除主机</div>
+                                    <div click.delegate="bindRouter()" class="item ${p.status == 1 ? '' : 'disabled'}">绑定路由器</div>
+                                    <div click.delegate="unBindRouter()" class="item ${p.status == 1 ? 'disabled' : ''}">解绑路由器</div>
+                                    <div class="divider"></div>
+                                    <div class="item" click.delegate="delHandler()">删除</div>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+        <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" name.bind="selectedPublicNetwork.name" desc.bind="selectedPublicNetwork.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
+        <ui-network-publicip-bindrouter-modal ui-network-publicip-bindrouter-modal.ref='bindrouterDialog' ipname.bind="selectedPublicNetwork.name"></ui-network-publicip-bindrouter-modal>
 </template>

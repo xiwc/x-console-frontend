@@ -28,6 +28,15 @@ export class NetworkPrivateDetails {
     }
 
     /**
+     * 当视图被附加到DOM中时被调用
+     */
+    attached() {
+        $(this.uiActions).dropdown({
+            action: 'hide'
+        });
+    }
+
+    /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
      * @param  {[object]} params                参数
      * @param  {[object]} routeConfig           路由配置
@@ -66,5 +75,54 @@ export class NetworkPrivateDetails {
         console.log(selectedPage);
         this.page.currentPage = selectedPage;
         this.getHostList();
+    }
+
+    //删除单条
+    delHandler() {
+        this.deleteconfirm.show({
+            content: '确定要删除路由器<code>' + this.details.name + '</code>吗?',
+            onapprove: () => {
+                this.http.fetch(nsApi.url('privateNetwork.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        ids: [this.details.id]
+                    })
+                }).then((resp) => {
+                    // this. = resp.data;
+                    if (resp.ok) {
+                        toastr.success('删除成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    //修改名称
+    updateName() {
+        this.selectedPrivateNetwork = this.details;
+        this.updateconfirm.show((result => {
+            this.http.fetch(nsApi.url('privateNetwork.updateName.post'), {
+                method: 'post',
+                body: json({
+                    id: this.details.id,
+                    name: result.name,
+                    desc: result.desc
+                })
+            }).then((resp) => {
+                this.details.name = result.name;
+                this.details.desc = result.desc;
+                toastr.success('修改名称操作成功!');
+            });
+        }));
+    }
+
+    //连接路由器
+    linkRouter() {
+        this.linRouterDialog.show();
+    }
+
+    //删除路由器
+    delRouter() {
+        this.deleteRouterconfirm.show();
     }
 }

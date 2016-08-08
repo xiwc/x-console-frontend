@@ -34,11 +34,13 @@ export class UiNetworkRouterPublicipUpdateModal {
             allowMultiple: true,
             onShow: () => {
                 $(this.form).form("reset");
-                this.http.fetch(nsApi.url('publicIp.listName.post'), { method: 'post' })
+                $(this.selectPublicIp).dropdown("clear");
+                this.publicIpList = null;
+                this.http.fetch(nsApi.url('router.publicIp.listName.post'), { method: 'post' })
                     .then((resp) => {
                         return resp.json();
                     }).then((data) => {
-                        this.publicIpList = data.list;
+                        this.publicIpList = data;
                     });
             },
             onApprove: () => {
@@ -53,7 +55,9 @@ export class UiNetworkRouterPublicipUpdateModal {
 
     initPublicIpHandler(last) {
         if (last) {
-            $(this.selectPublicIp).dropdown().dropdown("set selected", this.publicIpList[0].id);
+            //console.log(JSON.stringify(this.publicIpList));
+            $(this.selectPublicIp).dropdown("set value", this.publicIpList[0].id);
+            $(this.selectPublicIp).dropdown("set text", this.publicIpList[0].ip);
         }
     }
 

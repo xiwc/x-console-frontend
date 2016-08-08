@@ -129,6 +129,7 @@ export class NetworkPrivate {
     delHandler(pn) {
         this.deleteconfirm.show({
             onapprove: () => {
+                content: '确定要删除<code>' + pn.name + '</code>吗?',
                 this.http.fetch(nsApi.url('privateNetwork.delete.post'), {
                     method: 'post',
                     body: json({
@@ -179,9 +180,7 @@ export class NetworkPrivate {
     //修改名称
     updateName(pn) {
         this.selectedPrivateNetwork = pn;
-        console.log(pn.name);
         this.updateconfirm.show((result => {
-            // console.log(result);
             this.http.fetch(nsApi.url('privateNetwork.updateName.post'), {
                 method: 'post',
                 body: json({
@@ -190,7 +189,6 @@ export class NetworkPrivate {
                     desc: result.desc
                 })
             }).then((resp) => {
-                // this. = resp.data;
                 pn.name = result.name;
                 pn.desc = result.desc;
                 toastr.success('修改名称操作成功!');

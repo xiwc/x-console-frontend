@@ -1,6 +1,11 @@
 <template>
     <require from="./network.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-network-router-publicip-update-modal"></require>
+    <require from="comp/ui/ui-network-router-updatetype-modal"></require>
+    <require from="comp/ui/ui-network-router-addprivatenetwork-modal"></require>
     <require from="comp/vc/vc-common"></require>
     <require from="comp/ui/ui-pageable"></require>
     <div class="nx-network-router-details">
@@ -30,7 +35,7 @@
                                 </tr>
                                 <tr>
                                     <th>类型</th>
-                                    <td>${details.routerType | mapping:'routerType'}</td>
+                                    <td>${details.type | mapping:'routerType'}</td>
                                 </tr>
                                 <tr>
                                     <th>公网IP</th>
@@ -38,7 +43,9 @@
                                 </tr>
                                 <tr>
                                     <th>防火墙</th>
-                                    <td><a>${details.securityGroupName}</a></td>
+                                    <td>
+                                        <div class="ui label">${details.securityGroupName}</div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>私有网络</th>
@@ -51,41 +58,99 @@
                                 <tr>
                             </tbody>
                         </table>
-                    </div>
-                    <div class="eleven wide column row">
-                        <div class="column">
-                            <h3 class="ui header">主机</h3>
-                            <table class="ui celled striped table">
-                                <thead>
-                                    <tr>
-                                        <th>名称</th>
-                                        <th>类型</th>
-                                        <!-- <th>ID</th> -->
-                                        <th>状态</th>
-                                        <th>IP地址</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr repeat.for="host of hostlist">
-                                        <td>${host.name}</td>
-                                        <td>${host.type | mapping:"hostType"}</td>
-                                        <td>${host.status | mapping:"privateHostType"}</td>
-                                        <td>${host.ip}</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="10">
-                                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
-                                        </th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                        <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="text">更多操作</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item" click.delegate="updateName()">修改名称</div>
+                                <div class="divider"></div>
+                                <div class="item ${details.status == 1 ? 'disabled' : ''}" click.delegate="startRouter()">启动</div>
+                                <div class="item ${details.status == 1 ? '' : 'disabled'}" click.delegate="stopRouter()">关闭</div>
+                                <div class="item" click.delegate="updateRouterType()">扩容</div>
+                                <div class="item" click.delegate="updatePublicIp()">修改公网IP</div>
+                                <div class="item" click.delegate="addPrivatework()">添加私有网络</div>
+                                <div class="item" click.delegate="removePrivatework()">移除私有网络</div>
+                                <div class="divider"></div>
+                                <div class="item" click.delegate="delHandler()">删除</div>
+                            </div>
                         </div>
                     </div>
-                    <!-- <div class="column"></div>
-                    <div class="column"></div> -->
+                    <div class="eleven wide column row">
+                        <div class="column" ref="menuItem">
+                            <div class="ui top attached tabular menu">
+                                <a class="active item" data-tab="first">DHCP服务</a>
+                                <a class="item" data-tab="second">端口转发</a>
+                            </div>
+                            <div class="ui bottom attached active tab segment" data-tab="first">
+                                <div class="ui info message">
+                                    <p>DHC服务为您的私有网络提供IP地址分配。分配的地址都是固定地址，即一个主机在其生命周期内获得的地址是保持不变的。</p>
+                                </div>
+                                <div class="ui warning  message">
+                                    <p>当前没有私有网络连接至此路由器，点击<a>这里</a>创建、绑定。</p>
+                                </div>
+                                <div class="nx-router-detail-private">
+                                    <p>
+                                        <h3>私有网络1  <a>关闭DHCP</a></h3></p>
+                                    <div class="ui message">
+                                        <p>网络地址：192.168.100.0/24 管理地址：192.168.100.1 范围:102.168.100.2-192.168.100.254</p>
+                                    </div>
+                                    <div class="ui basic segment nx-toolbar">
+                                        <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新" data-position="top left" data-inverted="">
+                                            <i class="refresh icon"></i>
+                                        </div>
+                                    </div>
+                                    <table class="ui celled striped table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>类型</th>
+                                                <th>名称</th>
+                                                <th>状态</th>
+                                                <th>IP地址</th>
+                                                <th>DHCP选项</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>i-acorr5wy</td>
+                                                <td>主机</td>
+                                                <td>test001</td>
+                                                <td>运行中</td>
+                                                <td>192.168.100.2</td>
+                                                <td></td>
+                                                <td><a>[修改]</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>i-acorr5wy</td>
+                                                <td>主机</td>
+                                                <td>test001</td>
+                                                <td>运行中</td>
+                                                <td>192.168.100.2</td>
+                                                <td></td>
+                                                <td><a>[修改]</a></td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="10">
+                                                    <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="ui bottom attached tab segment" data-tab="second">Second </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" name.bind="selectedRouter.name" desc.bind="selectedRouter.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
+    <ui-network-router-publicip-update-modal ui-network-router-publicip-update-modal.ref="updatePublicIpDialog"></ui-network-router-publicip-update-modal>
+    <ui-network-router-updatetype-modal ui-network-router-updatetype-modal.ref="updatetypeDialog"></ui-network-router-updatetype-modal>
+    <ui-network-router-addprivatenetwork-modal ui-network-router-addprivatenetwork-modal.ref="addPrivateworkDialog"></ui-network-router-addprivatenetwork-modal>
 </template>
