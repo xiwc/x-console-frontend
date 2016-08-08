@@ -117,6 +117,7 @@ export class NetworkRouter {
     //删除单条
     delHandler(o) {
         this.deleteconfirm.show({
+            content: `确定要删除路由器<code>${o.name}</code>吗?`,
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.delete.post'), {
                     method: 'post',

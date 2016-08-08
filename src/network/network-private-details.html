@@ -1,6 +1,9 @@
 <template>
     <require from="./network.css"></require>
     <require from="comp/ui/ui-nav"></require>
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="./network-linkrouter"></require>
     <require from="comp/vc/vc-common"></require>
     <require from="comp/ui/ui-pageable"></require>
     <div class="nx-network-private-details">
@@ -47,6 +50,18 @@
                                 <tr>
                             </tbody>
                         </table>
+                        <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
+                            <div class="text">更多操作</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="item" click.delegate="updateName()">修改名称</div>
+                                <div class="divider"></div>
+                                <div class="item ${details.routerId ? 'disabled' : ''}" click.delegate="linkRouter()">连接路由器</div>
+                                <div class="item ${details.routerId ? '' : 'disabled'}" click.delegate="delRouter()">离开路由器</div>
+                                <div class="divider"></div>
+                                <div class="item" click.delegate="delHandler()">删除</div>
+                            </div>
+                        </div>
                     </div>
                     <div class="eleven wide column row">
                         <div class="column">
@@ -84,4 +99,8 @@
                 </div>
             </div>
         </div>
+        <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+        <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" name.bind="selectedPrivateNetwork.name" desc.bind="selectedPrivateNetwork.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
+        <network-linkrouter network-linkrouter.ref="linRouterDialog"></network-linkrouter>
+        <ui-confirm ui-confirm.ref="deleteRouterconfirm" title.bind="deleteTite" content.bind="deleteRouterContent"></ui-confirm>
 </template>

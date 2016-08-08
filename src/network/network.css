@@ -1,23 +1,45 @@
 .nx-network-public-style .nx-toolbar .ui.search {
-	float: right;
-	display: none;
+    float: right;
+    display: none;
 }
 
 .nx-network-private-details table tr > td,
 .nx-network-router-details table tr > td,
-.nx-network-public-details table tr > td{
-	height: 36px;
+.nx-network-public-details table tr > td {
+    height: 36px;
 }
 
 .nx-network-public-details .circle.icon.runing,
 .nx-network-router-details .circle.icon.runing,
-.nx-network-public-style .circle.icon.runing{
-	color:#3adc16;
+.nx-network-public-style .circle.icon.runing {
+    color: #3adc16;
 }
 
 .nx-network-public-details .circle.icon.stoped,
 .nx-network-router-details .circle.icon.stoped,
-.nx-network-public-style .circle.icon.stoped
+.nx-network-public-style .circle.icon.stoped {
+    color: #f33a3a;
+}
+
+.nx-network-router-details .nx-dd-action-hide,
+.nx-network-public-details .nx-dd-action-hide,
+.nx-network-private-details .nx-dd-action-hide {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+}
+
+.nx-network-router-details .ui.tab.active,
+.nx-network-router-details .ui.tab.open,
 {
-	color:#f33a3a;
+    border-top: solid 0;
+    margin-left: -0.5px;
+}
+
+.nx-network-router-details .nx-router-detail-private .ui.basic.segment.nx-toolbar {
+    padding: 5px;
+    margin-bottom: -10px;
+    background: #F9FAFB;
+    border: solid 1px #ddd;
+    border-radius: 2px;
 }
