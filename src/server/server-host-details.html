@@ -120,8 +120,8 @@
                                 <div class="item">
                                     <i class="dropdown icon"></i> 管理私有网络
                                     <div class="menu">
-                                        <div click.delegate="inPrivateNetworkHandler(details)" class="item">加入私有网络</div>
-                                        <div click.delegate="outPrivateNetworkHandler(details)" class="item">离开私有网络</div>
+                                        <div click.delegate="inPrivateNetworkHandler(details)" class="item ${details.networkName || details.networkType=='1'?'disabled':''}">加入私有网络</div>
+                                        <div click.delegate="outPrivateNetworkHandler(details)" class="item ${!details.networkName&&details.networkType=='2'?'disabled':''}">离开私有网络</div>
                                     </div>
                                 </div>
                                 <div class="divider"></div>
@@ -142,6 +142,5 @@
     <ui-name-update-modal show-desc.bind="!0" name.bind="details.name" desc.bind="details.desc" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
     <ui-disk-select-modal hostdetail.bind="details" type.bind="'mount'" ui-disk-select-modal.ref="uiDiskSelectModal"></ui-disk-select-modal>
     <ui-disk-select-modal hostdetail.bind="details" type.bind="'unmount'" ui-disk-select-modal.ref="uiDiskSelectModalUnmount"></ui-disk-select-modal>
-    <ui-network-private-select-modal hostdetail.bind="details" type.bind="'in'" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModal"></ui-network-private-select-modal>
-    <ui-network-private-select-modal hostdetail.bind="details" type.bind="'out'" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModalOut"></ui-network-private-select-modal>
+    <ui-network-private-select-modal hostdetail.bind="details" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModal"></ui-network-private-select-modal>
 </template>

@@ -230,6 +230,10 @@ export class ServerHost {
     mountDiskHandler(item) {
         this.selectedHost = item;
         this.uiDiskSelectModal.show((list) => {
+            if (!list) {
+                toastr.error('没有云硬盘要绑定');
+                return false;
+            }
             this.http.fetch(nsApi.url('host.disk.add.post'), {
                 method: 'post',
                 body: json({
@@ -238,7 +242,7 @@ export class ServerHost {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    toastr.success('绑定云磁盘成功');
+                    toastr.success('绑定云硬盘成功');
                 }
             });
         });
@@ -247,6 +251,10 @@ export class ServerHost {
     unmountDiskHandler(item) {
         this.selectedHost = item;
         this.uiDiskSelectModalUnmount.show((list) => {
+            if (!list) {
+                toastr.error('没有云硬盘要解绑');
+                return false;
+            }
             this.http.fetch(nsApi.url('host.disk.delete.post'), {
                 method: 'post',
                 body: json({
@@ -255,7 +263,7 @@ export class ServerHost {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    toastr.success('卸载云磁盘成功');
+                    toastr.success('卸载云硬盘成功');
                 }
             });
         });
@@ -288,6 +296,10 @@ export class ServerHost {
     inPrivateNetworkHandler(item) {
         this.selectedHost = item;
         this.uiNetworkPrivateSelectModal.show((list) => {
+            if (!list) {
+                toastr.error('没有网络可选择');
+                return false;
+            }
             this.http.fetch(nsApi.url('host.privateNetwork.add.post'), {
                 method: 'post',
                 body: json({
