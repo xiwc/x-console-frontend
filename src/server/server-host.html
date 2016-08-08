@@ -116,8 +116,8 @@
                                     <div class="item">
                                         <i class="dropdown icon"></i> 管理私有网络
                                         <div class="left menu">
-                                            <div click.delegate="inPrivateNetworkHandler(item)" class="item">加入私有网络</div>
-                                            <div click.delegate="outPrivateNetworkHandler(item)" class="item">离开私有网络</div>
+                                            <div click.delegate="inPrivateNetworkHandler(item)" class="item ${item.networkName || item.networkType=='1'?'disabled':''}">加入私有网络</div>
+                                            <div click.delegate="outPrivateNetworkHandler(item)" class="item ${!item.networkName&&item.networkType=='2'?'disabled':''}">离开私有网络</div>
                                         </div>
                                     </div>
                                     <div class="divider"></div>
