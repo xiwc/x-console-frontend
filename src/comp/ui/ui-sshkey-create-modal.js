@@ -65,8 +65,8 @@ export class UiSshkeyCreateModal {
                 this.http.fetch(nsApi.url('keystore.create.post'), {
                     method: 'post',
                     body: json({
-                        "content": this.publicKey,
-                        "encryptmode": $(this.uiEncrypt).dropdown('get value'),
+                        "publicKey": this.publicKey,
+                        "encryptMode": $(this.uiEncrypt).dropdown('get value'),
                         "name": this.name,
                         "type": this.way
                     })
