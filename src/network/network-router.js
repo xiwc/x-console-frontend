@@ -198,11 +198,12 @@ export class NetworkRouter {
     //修改公网IP;
     updatePublicIp(rt) {
         this.updatePublicIpDialog.show((result => {
+            console.log(result);
             this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
                 method: 'post',
                 body: json({
                     id: rt.id,
-                    publciipid: result.publicipid
+                    publicIpId: result.publicipid
                 })
             }).then((resp) => {
                 if (resp.ok) {
@@ -289,7 +290,7 @@ export class NetworkRouter {
                 this.http.fetch(nsApi.url('router.start.post'), {
                     method: 'post',
                     body: json({
-                        id: o.id
+                        ids: [o.id]
                     })
                 }).then((resp) => {
                     // this. = resp.data;
@@ -310,7 +311,7 @@ export class NetworkRouter {
                 this.http.fetch(nsApi.url('router.stop.post'), {
                     method: 'post',
                     body: json({
-                        id: o.id
+                        ids: [o.id]
                     })
                 }).then((resp) => {
                     // this. = resp.data;
