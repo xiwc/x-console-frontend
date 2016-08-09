@@ -3,6 +3,7 @@
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-disk-expansion-modal"></require>
     <require from="comp/vc/vc-common"></require>
     <div class="nx-server-disk-details">
         <ui-nav steps.bind="steps"></ui-nav>
@@ -18,12 +19,12 @@
                                     <td>${details.id}</td>
                                 </tr>
                                 <tr>
-                                    <th>状态</th>
-                                    <td>${details.status | mapping:'diskStatus'}</td>
-                                </tr>
-                                <tr>
                                     <th>名称</th>
                                     <td>${details.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>状态</th>
+                                    <td>${details.status | mapping:'diskStatus'}</td>
                                 </tr>
                                 <!-- <tr>
                                     <th>标签</th>
@@ -49,11 +50,6 @@
                                     <th>创建时间</th>
                                     <td>${details.createTime | dateFormat}</td>
                                 </tr>
-<!--                                 <tr>
-                                    <th>创建于</th>
-                                    <td>${details.createPeriod}</td>
-                                </tr> -->
-                                <tr>
                             </tbody>
                         </table>
                         <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
@@ -63,8 +59,8 @@
                                 <div click.delegate="updateHandler(details)" class="item">修改名称</div>
                                 <div click.delegate="addToHostHandler()" class="item disabled">加载到主机</div>
                                 <div click.delegate="removeFromHostHandler()" class="item disabled">从主机卸载</div>
-                                <div click.delegate="extendSizeHandler()" class="item disabled">扩容</div>
-                                <div click.delegate="delHandler(details)" class="item">删除</div>
+                                <div click.delegate="extendSizeHandler(details)" class="item">扩容</div>
+                                <!-- <div click.delegate="delHandler(details)" class="item">删除</div> -->
                             </div>
                         </div>
                     </div>
@@ -75,5 +71,6 @@
         </div>
     </div>
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
+    <ui-disk-expansion-modal ui-disk-expansion-modal.ref="uiDiskExpansionModal" disk.bind="details"></ui-disk-expansion-modal>
     <ui-name-update-modal name.bind="details.name" desc.bind="details.desc" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
 </template>

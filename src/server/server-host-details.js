@@ -63,24 +63,24 @@ export class ServerHostDetails {
         }));
     }
 
-    delHandler(item) {
-        this.confirm.show({
-            content: `确定要删除主机<code>${item.name}</code>吗?`,
-            onapprove: () => {
-                this.http.fetch(nsApi.url('host.delete.post'), {
-                    method: 'post',
-                    body: json({
-                        ids: [item.id]
-                    })
-                }).then((resp) => {
-                    // TODO 跳转到?
-                    if (resp.ok) {
-                        toastr.success('删除成功!');
-                    }
-                });
-            }
-        });
-    }
+    // delHandler(item) {
+    //     this.confirm.show({
+    //         content: `确定要删除主机<code>${item.name}</code>吗?`,
+    //         onapprove: () => {
+    //             this.http.fetch(nsApi.url('host.delete.post'), {
+    //                 method: 'post',
+    //                 body: json({
+    //                     ids: [item.id]
+    //                 })
+    //             }).then((resp) => {
+    //                 // TODO 跳转到?
+    //                 if (resp.ok) {
+    //                     toastr.success('删除成功!');
+    //                 }
+    //             });
+    //         }
+    //     });
+    // }
 
     mountDiskHandler(item) {
         this.uiDiskSelectModal.show((list) => {
