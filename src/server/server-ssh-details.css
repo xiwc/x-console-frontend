@@ -1,3 +1,13 @@
+.nx-server-ssh-details {
+    height: 100%;
+    overflow: auto;
+}
+
 .nx-server-ssh-details table tr > td {
-	height: 36px;
+    height: 36px;
+}
+
+.nx-server-ssh-details table tr > td .nx-content {
+    max-width: 240px;
+    word-break: break-word;
 }
