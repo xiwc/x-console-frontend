@@ -20,12 +20,8 @@ export class UiSshkeyDownloadModal {
         $(this.md).modal({
             closable: false,
             onApprove: () => {
-                this.http.fetch(nsApi.url('keystore.download.get', {
+                window.location = nsApi.url('keystore.download.get', {
                     id: this.id
-                })).then((resp) => {
-                    if (resp.ok) {
-                        toastr.success('下载完成!');
-                    }
                 });
             },
             onDeny: () => {}
