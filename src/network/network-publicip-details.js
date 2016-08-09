@@ -44,7 +44,7 @@ export class NetworkPublicDetails {
     //删除单条
     delHandler() {
         this.deleteconfirm.show({
-            content: "确定要删除<code>" + this.details.name + "</code>吗？",
+            content: "确定要删除公网IP<code>" + this.details.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('publicIp.delete.post'), {
                     method: 'post',

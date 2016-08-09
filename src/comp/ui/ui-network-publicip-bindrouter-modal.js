@@ -26,6 +26,7 @@ export class UiNetworkPublicipBindrouterModal {
         $(this.md).modal({
             closable: false,
             onShow: () => {
+                $(this.form).form("reset");
                 this.http.fetch(nsApi.url('router.listName.get'))
                     .then((resp) => {
                         return resp.json();
@@ -34,7 +35,12 @@ export class UiNetworkPublicipBindrouterModal {
                     });
             },
             onApprove: () => {
-                this.onapprove && this.onapprove(this.getSelected());
+                let val = $(this.md).find("input[name=routerChecked]").val();
+                if(!val){
+                    toastr.error("请选择要绑定的路由器");
+                    return false;
+                }
+                this.onapprove && this.onapprove({id:val});
             },
             onDeny: () => {
                 this.ondeny && this.ondeny();
@@ -44,25 +50,6 @@ export class UiNetworkPublicipBindrouterModal {
 
     getSelected() {
         return _.find(this.privateNetworks, 'selected');
-    }
-
-    clearChecked() {
-        _.each(this.privateNetworks, (item) => {
-            item.selected = false;
-        });
-    }
-
-    initChkHandler(uiSelect, item, first) {
-        $(uiSelect).checkbox({
-            onChecked: () => {
-                this.clearChecked();
-                item.selected = true;
-            }
-        });
-
-        if (first) {
-            $(uiSelect).checkbox('check');
-        }
     }
 
     /**

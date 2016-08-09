@@ -6,12 +6,6 @@
         </div>
         <div class="content">
             <table class="ui selectable striped table">
-                <!-- <thead class="full-width">
-                    <tr>
-                        <th class="no-sort"></th>
-                        <th>名称</th>
-                    </tr>
-                </thead> -->
                 <tbody>
                     <tr repeat.for="item of routerList">
                         <td>
@@ -19,8 +13,8 @@
                                 <input type="checkbox">
                                 <label></label>
                             </div>
-                            ${item.name}
                         </td>
+                        <td>${item.name}</td>
                         <td>${item.id}</td>
                     </tr>
                 </tbody>

@@ -5,6 +5,7 @@
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="comp/ui/ui-disk-expansion-modal"></require>
     <require from="comp/vc/vc-common"></require>
+    <require from="comp/ui/ui-host-select-modal"></require>
     <div class="nx-server-disk-details">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
@@ -57,8 +58,8 @@
                             <i class="dropdown icon"></i>
                             <div class="left menu">
                                 <div click.delegate="updateHandler(details)" class="item">修改名称</div>
-                                <div click.delegate="addToHostHandler()" class="item disabled">加载到主机</div>
-                                <div click.delegate="removeFromHostHandler()" class="item disabled">从主机卸载</div>
+                                <div click.delegate="addToHostHandler()" class="item  ${details.status == 2 ? 'disabled' : ''}">加载到主机</div>
+                                <div click.delegate="removeFromHostHandler()" class="item  ${details.status == 1 ? 'disabled' : ''}">从主机卸载</div>
                                 <div click.delegate="extendSizeHandler(details)" class="item">扩容</div>
                                 <!-- <div click.delegate="delHandler(details)" class="item">删除</div> -->
                             </div>
@@ -73,4 +74,5 @@
     <ui-confirm ui-confirm.ref="confirm"></ui-confirm>
     <ui-disk-expansion-modal ui-disk-expansion-modal.ref="uiDiskExpansionModal" disk.bind="details"></ui-disk-expansion-modal>
     <ui-name-update-modal name.bind="details.name" desc.bind="details.desc" ui-name-update-modal.ref="uiNameUpdateModal"></ui-name-update-modal>
+    <ui-host-select-modal ui-host-select-modal.ref="uiHostSelectModal"></ui-host-select-modal>
 </template>

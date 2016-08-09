@@ -10,7 +10,7 @@
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
                 <div class="column row">
-                    <div class="five wide column">
+                    <div class="six wide column">
                         <h3 class="ui header">基本属性</h3>
                         <table class="ui very basic table">
                             <tbody>
@@ -63,8 +63,8 @@
                                     <div click.delegate="unBindHost()" class="item ${p.status == 1 ? 'disabled' : ''}">移除主机</div>
                                     <div click.delegate="bindRouter()" class="item ${p.status == 1 ? '' : 'disabled'}">绑定路由器</div>
                                     <div click.delegate="unBindRouter()" class="item ${p.status == 1 ? 'disabled' : ''}">解绑路由器</div>
-                                    <div class="divider"></div>
-                                    <div class="item" click.delegate="delHandler()">删除</div>
+                                    <!-- <div class="divider"></div>
+                                    <div class="item" click.delegate="delHandler()">删除</div> -->
                                 </div>
                         </div>
                     </div>

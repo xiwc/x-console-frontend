@@ -79,4 +79,47 @@ export class ServerDiskDetails {
             }
         });
     }
+
+    //加载到主机
+    addToHostHandler() {
+        this.uiHostSelectModal.show({
+            sth: { diskid: this.details.id },
+            onapprove: (result) => {
+                //console.log(result);
+                this.http.fetch(nsApi.url('disk.host.add.post'), {
+                    method: 'post',
+                    body: json({
+                        id: this.details.id,
+                        hostId: result.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        this.details.status = 2;
+                        toastr.success('加载成功!');
+                    }
+                });
+            }
+        });
+    }
+
+    // 主机卸载操作
+    removeFromHostHandler() {
+        this.confirm.show({
+            onapprove: () => {
+                this.http.fetch(nsApi.url('disk.host.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        id: this.details.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        this.details.status = 1;
+                        toastr.success('卸载成功!');
+                    }
+                });
+            },
+            warning: true,
+            content: '物理卸载硬盘之前,请确保该硬盘在主机的操作系统中处于非加载状态(unmounted). 确定要卸载硬盘<code>' + this.details.name + '</code>?'
+        });
+    }
 }

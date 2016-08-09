@@ -23,6 +23,7 @@ export class UiNetworkRouterAddprivatenetworkModal {
      * 当视图被附加到DOM中时被调用
      */
     attached() {
+        $(this.md).find('.checkbox').checkbox();
         $(this.md).modal({
             closable: false,
             onShow: () => {

@@ -2,7 +2,7 @@
     <require from="ion-rangeslider/css/ion.rangeSlider.css"></require>
     <require from="ion-rangeslider/css/ion.rangeSlider.skinNice.css"></require>
     <require from="./ui-network-publicip-create-modal.css"></require>
-    <div class="ui large modal nx-network-publicip-create-modal" ref="md">
+    <div class="ui modal nx-network-publicip-create-modal" ref="md">
         <div class="header">
             申请公网IP
         </div>
@@ -53,23 +53,27 @@
                         </div>
                     </div>
                     <div class="inline fields">
-                        <div class="field">
+                        <div class="field nx-right-labeled-input">
                             <label style="position: relative;top: 25px;">带宽上限</label>
                             <div class="nx-range">
                                 <div class="nx-range-slider">
-                                    <input ref="rangeSize" type="text" value.bind="bankWidth" data-min="1" data-max="10" data-step="1" data-grid="true" data-postfix="Mbps">
+                                    <input ref="rangeSize" type="text" value.bind="bankWidth" data-min="1" data-max="50" data-step="1" data-grid="true" data-postfix="Mbps">
                                 </div>
                             </div>
-                        </div>
-                        <div class="field">
-                            <div class="ui disabled input" style="margin-left:-30px; width:50px;">
+                            <div class="ui right labeled input">
+                                <input type="text" ref="uiBankWidth" focusout.trigger="focusoutHandler($event, uiBankWidth)" keyup.trigger="keyupHandler($event, uiBankWidth)" value.bind="bankWidth" placeholder="">
+                                <div class="ui basic label">
+                                    MB
+                                </div>
+                            </div>
+                            <!-- <div class="ui disabled input" style="margin-left:-30px; width:50px;">
                                 <input type="text" name="bankWidth" value.bind="bankWidth" placeholder="">
                                 <label style="padding:10px;">Mbps</label>
-                            </div>
-                            <div class="nx-tip" style="margin-left:-30px">
-                                请为您的私有网络指定一个网络地址。
-                            </div>
+                            </div> -->
                         </div>
+                    </div>
+                    <div class="nx-tip">
+                        请为您的私有网络指定一个网络地址。
                     </div>
                 </div>
             </div>

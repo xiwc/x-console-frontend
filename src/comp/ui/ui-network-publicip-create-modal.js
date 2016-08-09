@@ -28,10 +28,8 @@ export class UiNetworkPublicipCreateModal {
     attached() {
         this.bankWidth = 1;
         $(this.rangeSize).ionRangeSlider({
-            values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             onChange: () => {
                 this.bankWidth = $(this.rangeSize).val();
-                // console.log($(this.rangeBw).val());
             }
         });
 
@@ -83,8 +81,8 @@ export class UiNetworkPublicipCreateModal {
                         type: 'empty',
                         prompt: '名称不能为空!'
                     }, {
-                        type: 'regExp[/^[a-zA-Z0-9\-_]{1,16}$/]',
-                        prompt: '1-16个字符(大写字母,小写字母,数字,-,_)!'
+                        type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{1,16}$/]',
+                        prompt: '1-16个字符(大写字母,小写字母,数字,-,_,汉字)!'
                     }]
                 },
                 count: {
@@ -93,11 +91,11 @@ export class UiNetworkPublicipCreateModal {
                         type: 'empty',
                         prompt: '数量不能为空!'
                     }, {
-                        type: 'integer[1..5]',
-                        prompt: '数量必须是介于1到5的整数!'
+                        type: 'integer[1..20]',
+                        prompt: '数量必须是介于1到20的整数!'
                     }]
                 },
-                bankWidth:{
+                bankWidth: {
                     identifier: 'bankWidth',
                     rules: [{
                         type: 'empty',
@@ -132,6 +130,39 @@ export class UiNetworkPublicipCreateModal {
     /* 隐藏确认窗口 */
     hide() {
         $(this.md).modal('hide');
+    }
+
+    checkBandWidth(uiBandWidth) {
+        let val = $(uiBandWidth).val();
+        if (isNaN(val)) {
+            val = val.replace(/[^0-9]/g, '');
+            val = (!val || val == 0) ? 1 : val;
+            $(uiBandWidth).val(val);
+        } else {
+            val = parseInt(val);
+            if (val > 50) {
+                val = 50;
+                $(uiBandWidth).val(val);
+            } else if (val < 1) {
+                val = 1;
+                $(uiBandWidth).val(val);
+            } 
+        }
+        console.log(val);
+        this.slider.update({
+            from: val
+        });
+    }
+
+    keyupHandler(evt, uiBandWidth) {
+
+        if (evt.keyCode == 13) {
+            this.checkBandWidth(uiBandWidth);
+        }
+    }
+
+    focusoutHandler(evt, uiBandWidth) {
+        this.checkBandWidth(uiBandWidth);
     }
 
 }
