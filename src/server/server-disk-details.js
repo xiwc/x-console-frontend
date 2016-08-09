@@ -32,7 +32,6 @@ export class ServerDiskDetails {
      * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待执行bind和attach视图(view), 直到你完成你的处理工作.
      */
     activate(params, routeConfig, navigationInstruction) {
-        // toastr.info(params.id);
         this.http.fetch(nsApi.url('disk.detail.get', {
             id: params.id
         })).then((resp) => {
@@ -61,16 +60,20 @@ export class ServerDiskDetails {
         }));
     }
 
-    delHandler(disk) {
-        this.confirm.show({
-            content: `确定要删除硬盘<code>${disk.name}</code>吗?`,
-            onapprove: () => {
-                this.http.fetch(nsApi.url('disk.delete.post', {
-                    id: disk.id
-                }), { method: 'post' }).then((resp) => {
-                    // TODO 跳转到?
+    extendSizeHandler(disk) {
+        this.uiDiskExpansionModal.show({
+            capacity: disk.capacity,
+            onapprove: (result) => {
+                this.http.fetch(nsApi.url('disk.expand.post'), {
+                    method: 'post',
+                    body: json({
+                        id: disk.id,
+                        capacity: result.capacity
+                    })
+                }).then((resp) => {
                     if (resp.ok) {
-                        toastr.success('删除成功!');
+                        disk.capacity += Number(result.capacity);
+                        toastr.success('硬盘扩容成功!');
                     }
                 });
             }

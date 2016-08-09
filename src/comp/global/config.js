@@ -54,7 +54,9 @@ window.nsCons = (function() {
         // access token 常量key
         ACCESS_TOKEN: "ACCESSTOKEN",
         ACCESS_TOKEN_NAME: "accessToken",
-        I18N_LNG: 'language'
+        I18N_LNG: 'language',
+
+        EVENT_APP_ROUTER_NAVIGATE_TO: 'event_app_router_navigate_to',
 
         // EVENT_MY_TASK_CREATE_MAIN_TASK_MODAL_ON_SHOW: 'event_my_task_create_main_task_modal_on_show',
         // EVENT_MY_TASK_CREATE_SUB_TASK_MODAL_ON_SHOW: 'event_my_task_create_sub_task_modal_on_show',

@@ -1,13 +1,28 @@
 // import 'vender/semantic-ui/semantic';
 import 'wlzc-semantic-ui';
 import 'jquery-tablesort';
+import { inject, Lazy } from 'aurelia-framework';
+import { EventAggregator } from 'aurelia-event-aggregator';
 
+@inject(EventAggregator)
 export class App {
 
     /**
      * 构造函数
      */
-    constructor() {}
+    constructor(eventAggregator) {
+        this.eventAggregator = eventAggregator;
+        this.subscribe = this.eventAggregator.subscribe(nsCons.EVENT_APP_ROUTER_NAVIGATE_TO, (payload) => {
+            this.router.navigate(payload.to);
+        });
+    }
+
+    /**
+     * 当数据绑定引擎从视图解除绑定时被调用
+     */
+    unbind() {
+        this.subscribe.dispose();
+    }
 
     // 配置路由
     configureRouter(config, router) {
