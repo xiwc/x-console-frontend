@@ -43,3 +43,12 @@
     border: solid 1px #ddd;
     border-radius: 2px;
 }
+
+.nx-network-router-details .nx-right-dropdown {
+    float: right;
+}
+
+.nx-network-router-details .nx-right-dropdown .ui.dropdown {
+    min-width: 60px;
+    width: 60px!important;
+}

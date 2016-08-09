@@ -177,7 +177,7 @@ export class ServerDisk {
         this.uiHostSelectModal.show({
             sth: { diskid: disk.id },
             onapprove: (result) => {
-                console.log(result);
+                //console.log(result);
                 this.http.fetch(nsApi.url('disk.host.add.post'), {
                     method: 'post',
                     body: json({

@@ -370,4 +370,8 @@ export class NetworkRouter {
             }
         });
     }
+
+    //断开私有网络
+    removePrivatework(o){
+    }
 }

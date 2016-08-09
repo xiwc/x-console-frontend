@@ -8,7 +8,7 @@
     <require from="comp/ui/ui-network-router-addprivatenetwork-modal"></require>
     <require from="comp/vc/vc-common"></require>
     <require from="comp/ui/ui-pageable"></require>
-    <div class="nx-network-router-details">
+    <div class="nx-network-router-details" ref="routerDetailsRef">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
@@ -70,8 +70,8 @@
                                 <div class="item" click.delegate="updatePublicIp()">修改公网IP</div>
                                 <div class="item" click.delegate="addPrivatework()">添加私有网络</div>
                                 <div class="item" click.delegate="removePrivatework()">移除私有网络</div>
-                                <div class="divider"></div>
-                                <div class="item" click.delegate="delHandler()">删除</div>
+                                <!-- <div class="divider"></div>
+                                <div class="item" click.delegate="delHandler()">删除</div> -->
                             </div>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                                     <p>DHC服务为您的私有网络提供IP地址分配。分配的地址都是固定地址，即一个主机在其生命周期内获得的地址是保持不变的。</p>
                                 </div>
                                 <div class="ui warning  message">
-                                    <p>当前没有私有网络连接至此路由器，点击<a>这里</a>创建、绑定。</p>
+                                    <p>当前没有私有网络连接至此路由器，点击<a href='/#/network/private'>这里</a>创建、绑定。</p>
                                 </div>
                                 <div class="nx-router-detail-private">
                                     <p>
@@ -97,6 +97,15 @@
                                     <div class="ui basic segment nx-toolbar">
                                         <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新" data-position="top left" data-inverted="">
                                             <i class="refresh icon"></i>
+                                        </div>
+                                        <div class="nx-right-dropdown">
+                                            <label>每页</label>
+                                            <select class="ui dropdown">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                            <label>条</label>
                                         </div>
                                     </div>
                                     <table class="ui celled striped table">
@@ -116,7 +125,7 @@
                                                 <td>i-acorr5wy</td>
                                                 <td>主机</td>
                                                 <td>test001</td>
-                                                <td>运行中</td>
+                                                <td><i class="circle icon runing"></i>运行中</td>
                                                 <td>192.168.100.2</td>
                                                 <td></td>
                                                 <td><a>[修改]</a></td>
@@ -125,7 +134,7 @@
                                                 <td>i-acorr5wy</td>
                                                 <td>主机</td>
                                                 <td>test001</td>
-                                                <td>运行中</td>
+                                                <td><i class="circle icon stoped"></i>停止</td>
                                                 <td>192.168.100.2</td>
                                                 <td></td>
                                                 <td><a>[修改]</a></td>

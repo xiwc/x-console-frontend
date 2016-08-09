@@ -12,10 +12,10 @@ export class NetworkRouterDetails {
 
     page = {
         currentPage: 1,
-        pageSize: 5,
-        size: 0,
-        total: 0,
-        pageCount: 0,
+        pageSize: 10,
+        size: 10,
+        total: 10,
+        pageCount: 10,
         hasPreviousPage: false,
         hasNextPage: true
     };
@@ -35,8 +35,16 @@ export class NetworkRouterDetails {
             action: 'hide'
         });
 
+        let _this = this;
         $(this.menuItem).find('.menu .item').tab();
+        $(this.routerDetailsRef).find('.ui.dropdown').dropdown({
+            onChange: function () {
+                //console.log($(this).index());
+                _this.page.pageSize = $(this).val();
+            }
+        });
     }
+   
 
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
@@ -207,22 +215,24 @@ export class NetworkRouterDetails {
             sth: { name: this.details.name },
             onapprove: (result) => {
                 console.log(result);
-                this.http.fetch(nsApi.url('router.updateType.post'), {
-                    method: 'post',
-                    body: json({
-                        id: this.details.id,
-                        type: result.type
-                    })
-                }).then((resp) => {
-                    if (resp.ok) {
-                        this.details.type = result.type;
-                        toastr.success('添加成功!');
-                    }
-                });
+                // this.http.fetch(nsApi.url('router.updateType.post'), {
+                //     method: 'post',
+                //     body: json({
+                //         id: this.details.id,
+                //         type: result.type
+                //     })
+                // }).then((resp) => {
+                //     if (resp.ok) {
+                //         this.details.type = result.type;
+                //         toastr.success('添加成功!');
+                //     }
+                // });
             }
         });
     }
 
     //删除私有网络
-    removePrivatework() {}
+    removePrivatework() {
+
+    }
 }
