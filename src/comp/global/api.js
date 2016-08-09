@@ -562,8 +562,7 @@ window.nsApiFunc = (function() {
 
                 if (!params) {
                     params = {
-                        // areaId: '1', // TODO replace by regionId
-                        token: nsCtx.token,
+                        token: nsCtx.accessToken,
                         regionId: nsCtx.regionId
                     }
                 } else {
@@ -578,8 +577,7 @@ window.nsApiFunc = (function() {
                         }
                     }
 
-                    // params.areaId = '1'; // TODO replace by regionId
-                    params.token = nsCtx.token;
+                    params.token = nsCtx.accessToken;
                     params.regionId = nsCtx.regionId;
                 }
 
