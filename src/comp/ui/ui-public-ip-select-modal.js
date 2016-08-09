@@ -3,17 +3,26 @@ import {
     containerless
 }
 from 'aurelia-framework';
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 
 @containerless
 export class UiPublicIpSelectModal {
 
     @bindable type = 'bind'; // bind or unbind
 
-    publicIps = [
-        { id: '01', name: '公网IP01' },
-        { id: '02', name: '公网IP02' },
-        { id: '03', name: '公网IP03' },
-    ];
+    @bindable hostdetail = null; //主机信息
+
+    publicIps = null;
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -21,6 +30,9 @@ export class UiPublicIpSelectModal {
     attached() {
         $(this.md).modal({
             closable: false,
+            onShow: () => {
+                this.getPubilcIpList();
+            },
             onApprove: () => {
                 this.onapprove && this.onapprove(this.getSelected());
             },
@@ -76,5 +88,19 @@ export class UiPublicIpSelectModal {
 
     hide() {
         $(this.md).modal('hide');
+    }
+
+    /**
+     * 获取公网ip下拉列表
+     */
+    getPubilcIpList() {
+        this.http.fetch(nsApi.url('host.publicIp.listName.get', {
+            "pageNo": 1,
+            "pageSize": 100
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.publicIps = data.list;
+        });
     }
 }
