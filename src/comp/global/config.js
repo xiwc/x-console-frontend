@@ -38,7 +38,7 @@ window.nsCtx = (function() {
         },
 
         // TODO 设置全局访问token
-        token: '1',
+        accessToken: '1',
         regionId: '1',
 
         isDebug: false, // 是否为debug

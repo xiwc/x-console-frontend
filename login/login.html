@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>登录页面</title>
     <link rel="shortcut icon" href="/static/img/logo16px.png">
-    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- <script src="js/jquery.min.js"></script> -->
+    <script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
     <style type="text/css">
     html,
     body {
@@ -54,14 +55,14 @@
 <body>
     <div class="container">
         <fieldset>
-            <legend>STEP开发登录页面</legend>
+            <legend>开发登录页面</legend>
             <div class="space"><a href="/?debug=all">/?debug=all</a></div>
             <div class="space"><a href="/?debug">/?debug</a></div>
             <hr>
             <form>
                 <div>
                     <label>用户名:</label>
-                    <input name="loginName" type="text">
+                    <input name="username" type="text">
                 </div>
                 <div class="space">
                     <label>密&nbsp;码:</label>
@@ -90,16 +91,20 @@
 
             $('button', 'fieldset').text('提交中...');
 
-            $.post('/v2/authentication/login/token', {
-                loginName: $('input[name="loginName"]', 'form').val(),
-                password: $('input[name="password"]', 'form').val()
+            $.post('/api/oauth/token', {
+                "grant_type": "password",
+                "client_id": "481c89100ea34c22ba1701fed70dd204",
+                "client_secret": "step.newtouch.com",
+                "username": $('input[name="username"]', 'form').val(),
+                "password": $('input[name="password"]', 'form').val()
             }, function(data, textStatus, xhr) {
-                if (data.code == "SUCCESS") {
-                    window.location.href = '/?accessToken=' + data.entity.accessToken;
-                } else {
-                    alert(data.message);
-                    $('.error', 'fieldset').text(data.message).show();
-                }
+                window.location.href = '/?accessToken=' + data.access_token;
+                // if (data.code == "SUCCESS") {
+                //     window.location.href = '/?accessToken=' + data.entity.accessToken;
+                // } else {
+                //     alert(data.message);
+                //     $('.error', 'fieldset').text(data.message).show();
+                // }
             }).error(function() {
                 $('.error', 'fieldset').text('网络链接错误！').show();
             }).complete(function() {
