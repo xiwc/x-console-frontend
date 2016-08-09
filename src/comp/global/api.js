@@ -491,6 +491,34 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '主机离开私有网络'
         },
+        'host.publicIp.listName.get': {
+            real: 'api/host/publicIp/listName',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取公网ip下拉列表'
+        },
+        'host.publicIp.add.post': {
+            real: 'api/host/publicIp/add',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '绑定公网ip'
+        },
+        'host.publicIp.delete.post': {
+            real: 'api/host/publicIp/delete',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '解绑公网ip'
+        },
+        'host.resetSystem.post': {
+            real: 'api/host/resetSystem',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '重置系统'
+        },
     };
 
     // api debug配置初始化

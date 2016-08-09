@@ -244,7 +244,7 @@ export class ServerHost {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    toastr.success('绑定云硬盘成功');
+                    toastr.success('加载云硬盘成功');
                 }
             });
         });
@@ -284,14 +284,41 @@ export class ServerHost {
     }
 
     bindPublicIpHandler(item) {
-        this.uiPublicIpSelectModal.show(() => {
-            toastr.info('TODO...');
+        this.selectedHost = item;
+        this.uiPublicIpSelectModal.show((list) => {
+            if (!list) {
+                toastr.error('没有ip可选择');
+                return false;
+            }
+            this.http.fetch(nsApi.url('host.publicIp.add.post'), {
+                method: 'post',
+                body: json({
+                    publicIpId: list.id,
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('加载公网ip成功');
+                }
+            });
         });
     }
 
     unbindPublicIpHandler(item) {
-        this.uiPublicIpSelectModalUnbind.show(() => {
-            toastr.info('TODO...');
+        this.confirm.show({
+            content: `确定要删除公网ip<code>${item.ip}</code>吗?`,
+            onapprove: () => {
+                this.http.fetch(nsApi.url('host.publicIp.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        id: item.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('卸载公网ip成功');
+                    }
+                });
+            }
         });
     }
 
@@ -310,7 +337,7 @@ export class ServerHost {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    toastr.success('加入私有网络成功');
+                    toastr.success('加载私有网络成功');
                 }
             });
         });
@@ -319,7 +346,7 @@ export class ServerHost {
     outPrivateNetworkHandler(item) {
         // this.selectedHost = item;
         this.confirm.show({
-            content: `确定要离开<code>${item.networkType == '1' ? '经典网络' : item.networkName}</code>吗?`,
+            content: `确定要删除网络<code>${item.networkType == '1' ? '经典网络' : item.networkName}</code>吗?`,
             onapprove: () => {
                 this.http.fetch(nsApi.url('host.privateNetwork.delete.post'), {
                     method: 'post',
@@ -328,7 +355,7 @@ export class ServerHost {
                     })
                 }).then((resp) => {
                     if (resp.ok) {
-                        toastr.success('离开私有网络成功');
+                        toastr.success('卸载私有网络成功');
                     }
                 });
             }
@@ -343,11 +370,24 @@ export class ServerHost {
     }
 
     resetHandler(item) {
-        this.confirm.show({
-            content: '重置主机系统会将您的操作系统盘重置为初始状态,确定要执行此操作吗?',
-            onapprove: () => {
-                toastr.success('TODO...');
-            }
+        // this.confirm.show({
+        //     content: '重置主机系统会将您的操作系统盘重置为初始状态,确定要执行此操作吗?',
+        //     onapprove: () => {
+        //         toastr.success('TODO...');
+        //     }
+        // });
+        this.resetSystem.show((list) => {
+            this.http.fetch(nsApi.url('host.resetSystem.post'), {
+                method: 'post',
+                body: json({
+                    password: list.name,
+                    id: item.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('重置系统成功');
+                }
+            });
         });
     }
 

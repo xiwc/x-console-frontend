@@ -1,0 +1,24 @@
+<template>
+    <div ref="md" class="ui small modal nx-md450">
+        <div class="header">
+            操作确认
+        </div>
+        <div class="content">
+            <div class="ui message">
+                <span>重置主机系统会将您的操作系统盘重置为初始状态,确定要执行此操作吗?</span>
+            </div>
+            <div class="ui form" ref="form">
+                <div class="inline field">
+                    <label>密码</label>
+                    <div class="ui input">
+                        <input type="password" name="name" value.bind="name" placeholder="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>
