@@ -62,17 +62,23 @@ export class UiSshkeyCreateModal {
                     return false;
                 }
 
+                let body = {
+                    "publicKey": this.publicKey,
+                    "name": this.name,
+                    "type": this.way
+                };
+
+                if(this.way == 1) {
+                    body.encryptMode = $(this.uiEncrypt).dropdown('get value');
+                }
+
                 this.http.fetch(nsApi.url('keystore.create.post'), {
                     method: 'post',
-                    body: json({
-                        "publicKey": this.publicKey,
-                        "encryptMode": $(this.uiEncrypt).dropdown('get value'),
-                        "name": this.name,
-                        "type": this.way
-                    })
+                    body: json(body)
                 }).then((resp) => {
                     if (resp.ok) {
                         resp.json().then((data) => {
+                            data.way = this.way;
                             this.onapprove && this.onapprove(data);
                             toastr.success('SSH密钥创建完成!');
                         });
