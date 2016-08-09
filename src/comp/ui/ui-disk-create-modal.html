@@ -40,7 +40,7 @@
                     <label style="position: relative; top: 25px;">容量</label>
                     <div class="nx-range">
                         <div class="nx-range-slider">
-                            <input ref="rangeSize" type="text" value.bind="capacity" data-min="10" data-max="5000" data-step="10" data-grid="true" data-postfix="GB">
+                            <input ref="rangeSize" type="text" value.bind="capacity" data-min="10" data-max="${max}" data-step="10" data-grid="true" data-postfix="GB">
                         </div>
                     </div>
                     <div class="ui right labeled input">
@@ -49,6 +49,9 @@
                             GB
                         </div>
                     </div>
+                </div>
+                <div class="nx-tip">
+                    备注:单块硬盘总容量不超过${max}GB, 全部硬盘总容量不超过5000GB.
                 </div>
             </div>
         </div>

@@ -24,6 +24,8 @@ export class UiDiskCreateModal {
 
     capacity = 10;
 
+    max = 1000; // 单块硬盘创建最大容量.
+
     /**
      * 构造函数
      */
@@ -129,8 +131,8 @@ export class UiDiskCreateModal {
             $(uiCapacity).val(val);
         } else {
             val = parseInt(val);
-            if (val > 5000) {
-                val = 5000;
+            if (val > this.max) {
+                val = this.max;
                 $(uiCapacity).val(val);
             } else if (val < 10) {
                 val = 10;

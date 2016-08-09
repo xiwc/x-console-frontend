@@ -21,7 +21,7 @@
                     <label style="position: relative; top: 25px;">扩容大小</label>
                     <div class="nx-range">
                         <div class="nx-range-slider">
-                            <input ref="rangeSize" type="text" data-step="10" data-grid="true" data-postfix="GB" data-min="10" , data-max="5000">
+                            <input ref="rangeSize" type="text" data-step="10" data-grid="true" data-postfix="GB" data-min="10" , data-max="${max}">
                         </div>
                     </div>
                     <div class="ui right labeled left icon input">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="nx-tip">
-                    备注:单块硬盘总容量不超过5000GB
+                    备注:单块硬盘总容量不超过${max}GB, 全部硬盘总容量不超过5000GB.
                 </div>
             </div>
         </div>

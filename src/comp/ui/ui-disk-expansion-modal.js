@@ -13,6 +13,8 @@ export class UiDiskExpansionModal {
 
     addCapacity = 0;
 
+    max = 1000; // 单块硬盘创建最大容量.
+
     /**
      * 当视图被附加到DOM中时被调用
      */
@@ -20,7 +22,7 @@ export class UiDiskExpansionModal {
 
         $(this.rangeSize).ionRangeSlider({
             from: 10,
-            from_max: 5000,
+            from_max: this.max,
             from_shadow: true,
             keyboard: true,
             keyboard_step: 10,
@@ -55,7 +57,7 @@ export class UiDiskExpansionModal {
     }
 
     checkCapacity(uiCapacity) {
-        let max = 5000 - this.capacity;
+        let max = this.max - this.capacity;
         let val = $(uiCapacity).val();
         if (isNaN(val)) {
             val = val.replace(/[^0-9]/g, '');
