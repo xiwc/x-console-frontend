@@ -103,7 +103,7 @@
     "nprogress": "^0.2.0",
     "toastr": "^2.1.2",
     "wlzc-animate.css": "^1.0.0",
-    "wlzc-semantic-ui": "^2.2.2",
+    "wlzc-semantic-ui": "^3.2.2",
     "wurl": "^2.1.0"
   },
   "devDependencies": {
