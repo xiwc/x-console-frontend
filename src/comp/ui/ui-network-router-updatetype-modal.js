@@ -15,6 +15,7 @@ export class UiNetworkRouterUpdatetypeModal {
     type = 1;
 
     attached() {
+        $(this.md).find('.checkbox').checkbox();
         $(this.md).modal({
             closable: false,
             allowMultiple: true,

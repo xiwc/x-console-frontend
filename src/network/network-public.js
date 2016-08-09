@@ -132,7 +132,7 @@ export class NetworkPublic {
     //删除单条
     delHandler(o) {
         this.deleteconfirm.show({
-            content: "确定要删除<code>" + o.name + "</code>吗？",
+            content: "确定要删除公网IP<code>" + o.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('publicIp.delete.post'), {
                     method: 'post',
@@ -186,11 +186,6 @@ export class NetworkPublic {
     updateName(pn) {
         this.selectedPublicNetwork = pn;
         this.updateconfirm.show((result => {
-            // console.log({
-            //         id: pn.id,
-            //         name: result.name,
-            //         desc: result.desc
-            //     });
             this.http.fetch(nsApi.url('publicIp.updateName.post'), {
                 method: 'post',
                 body: json({
@@ -213,7 +208,18 @@ export class NetworkPublic {
     bindRouter(o) {
         this.selectedPublicNetwork = o;
         this.bindrouterDialog.show((result => {
-            console.log(result);
+            this.http.fetch(nsApi.url('publicIp.router.add.post'), {
+                method: 'post',
+                body: json({
+                    id: o.id,
+                    routerId: result.id
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    o.status = 2;
+                    toastr.success('绑定成功!');
+                }
+            });
         }));
     }
 

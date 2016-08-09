@@ -2,12 +2,12 @@ import {
     bindable,
     containerless
 }
-    from 'aurelia-framework';
+from 'aurelia-framework';
 
 import 'ion-rangeslider';
 
-import {inject, Lazy} from 'aurelia-framework';
-import {HttpClient, json} from 'aurelia-fetch-client';
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
 
 @inject(Lazy.of(HttpClient))
 @containerless
@@ -27,6 +27,7 @@ export class UiNetworkRouterCreateModal {
 
     attached() {
         $(this.routermd).find('.ui.dropdown').dropdown();
+        $(this.routermd).find('.checkbox').checkbox();
         $(this.routermd).modal({
             closable: false,
             allowMultiple: true,

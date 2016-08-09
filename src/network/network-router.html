@@ -19,10 +19,10 @@
             <div class="ui primary button" click.delegate="createHandler()">
                 <i class="add icon"></i> 创建
             </div>
-            <div class="ui basic button" click.delegate="startHandler()">
+            <div class="ui button" click.delegate="startHandler()">
                 启动
             </div>
-            <div class="ui basic button" click.delegate="stopHandler()">
+            <div class="ui button" click.delegate="stopHandler()">
                 关闭
             </div>
             <div class="ui red button" click.delegate="delMoreHandler()">
@@ -78,10 +78,11 @@
                                     <div class="divider"></div>
                                     <div class="item ${r.status == 1 ? 'disabled' : ''}" click.delegate="startRouter(r)">启动</div>
                                     <div class="item ${r.status == 1 ? '' : 'disabled'}" click.delegate="stopRouter(r)">关闭</div>
-                                    <div class="item" click.delegate="updateRouterType(r)">扩容</div>
-                                    <div class="item" click.delegate="updatePublicIp(r)">修改公网IP</div>
-                                    <div class="item" click.delegate="addPrivatework(r)">添加私有网络</div>
-                                    <div class="item" click.delegate="removePrivatework(r)">移除私有网络</div>
+                                    <div class="item" click.delegate="updateRouterType(r)">调整类型</div>
+                                    <div class="item" click.delegate="updatePublicIp(r)">加载公网IP</div>
+                                    <div class="item" click.delegate="">卸载公网IP</div>
+                                    <div class="item" click.delegate="addPrivatework(r)">加载私有网络</div>
+                                    <div class="item" click.delegate="removePrivatework(r)">卸载私有网络</div>
                                     <div class="divider"></div>
                                     <div class="item" click.delegate="delHandler(r)">删除</div>
                                 </div>

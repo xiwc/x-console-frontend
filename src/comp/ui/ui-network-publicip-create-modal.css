@@ -1,6 +1,12 @@
-.nx-network-publicip-create-modal .inline.fields .field label:first-child,.nx-network-publicip-create-modal .inline.fields label:first-child{
-	width:50px;
-	text-align: right;
+.nx-network-publicip-create-modal.ui.modal {
+    width: 600px!important;
+    margin-left: -300px;
+}
+
+.nx-network-publicip-create-modal .inline.fields .field label:first-child,
+.nx-network-publicip-create-modal .inline.fields label:first-child {
+    width: 50px;
+    text-align: right;
 }
 
 .nx-network-publicip-create-modal .nx-range {
@@ -11,4 +17,11 @@
 .nx-network-publicip-create-modal .nx-range-slider {
     display: inline-block;
     width: 300px;
+}
+
+.nx-network-publicip-create-modal .nx-right-labeled-input .ui.right.labeled.input {
+    width: 50px!important;
+    position: relative;
+    left:-20px;
+    top:20px;
 }

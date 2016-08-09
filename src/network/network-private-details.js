@@ -80,7 +80,7 @@ export class NetworkPrivateDetails {
     //删除单条
     delHandler() {
         this.deleteconfirm.show({
-            content: '确定要删除路由器<code>' + this.details.name + '</code>吗?',
+            content: '确定要删除私有网络<code>' + this.details.name + '</code>吗?',
             onapprove: () => {
                 this.http.fetch(nsApi.url('privateNetwork.delete.post'), {
                     method: 'post',

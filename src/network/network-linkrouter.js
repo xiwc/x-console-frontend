@@ -4,14 +4,6 @@ import {
 }
 from 'aurelia-framework';
 
-// import 'ion-rangeslider/css/ion.rangeSlider.css';
-// import 'ion-rangeslider/css/ion.rangeSlider.skinModern.css';
-// import 'ion-rangeslider/css/ion.rangeSlider.skinFlat.css';
-// import 'ion-rangeslider/css/ion.rangeSlider.skinHTML5.css';
-// import 'ion-rangeslider/css/ion.rangeSlider.skinNice.css';
-// import 'ion-rangeslider/css/ion.rangeSlider.skinSimple.css';
-import 'ion-rangeslider';
-
 @containerless
 export class NetworkLinkrouter {
 
@@ -26,13 +18,8 @@ export class NetworkLinkrouter {
      * 当视图被附加到DOM中时被调用
      */
     attached() {
-        this.steps = $(this.stepsContainer).find('.steps .step');
-        this.tabs = $(this.stepsContainer).find('.tab');
-        this.stepCnt = this.steps.size();
-
-        $(this.rangeBw).ionRangeSlider();
-
-        $('.ui.dropdown', this.stepsContainer).dropdown();
+        $(this.modal).find('.ui.dropdown').dropdown();
+        $(this.modal).find('.checkbox').checkbox();
     }
 
     show() {

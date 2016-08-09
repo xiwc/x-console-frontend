@@ -425,6 +425,13 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '绑定主机'
         },
+        'publicIp.router.add.post': {
+            real: 'api/publicIp/router/add',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '绑定路由器'
+        },
 
 
 

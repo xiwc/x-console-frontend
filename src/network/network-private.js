@@ -129,7 +129,7 @@ export class NetworkPrivate {
     delHandler(pn) {
         this.deleteconfirm.show({
             onapprove: () => {
-                content: '确定要删除<code>' + pn.name + '</code>吗?',
+                content: '确定要删除私有网络<code>' + pn.name + '</code>吗?',
                 this.http.fetch(nsApi.url('privateNetwork.delete.post'), {
                     method: 'post',
                     body: json({
@@ -202,8 +202,11 @@ export class NetworkPrivate {
     }
 
     //删除路由器
-    delRouter() {
-        this.deleteRouterconfirm.show();
+    delRouter(pn) {
+        this.deleteRouterconfirm.show({
+            title:'离开路由器',
+            content: '确定要离开路由器<code>' + pn.name + '</code>吗?',
+        });
     }
 
     onpageHandler(selectedPage) {
