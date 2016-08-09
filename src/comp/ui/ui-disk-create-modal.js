@@ -123,26 +123,26 @@ export class UiDiskCreateModal {
         });
     }
 
-    checkCapacity(uiCapacity) {
-        let val = $(uiCapacity).val();
+    checkCapacity(uiCapacityInput) {
+        let val = $(uiCapacityInput).val();
         if (isNaN(val)) {
             val = val.replace(/[^0-9]/g, '');
             val = (!val || val == 0) ? 10 : val;
-            $(uiCapacity).val(val);
+            $(uiCapacityInput).val(val);
         } else {
             val = parseInt(val);
             if (val > this.max) {
                 val = this.max;
-                $(uiCapacity).val(val);
+                $(uiCapacityInput).val(val);
             } else if (val < 10) {
                 val = 10;
-                $(uiCapacity).val(val);
+                $(uiCapacityInput).val(val);
             } else {
                 let v = val / 10;
                 let v2 = parseInt(v);
                 if (v != v2) {
                     val = v2 * 10;
-                    $(uiCapacity).val(val);
+                    $(uiCapacityInput).val(val);
                 }
             }
         }
@@ -152,15 +152,15 @@ export class UiDiskCreateModal {
         });
     }
 
-    keyupHandler(evt, uiCapacity) {
+    keyupHandler(evt, uiCapacityInput) {
 
         if (evt.keyCode == 13) {
-            this.checkCapacity(uiCapacity);
+            this.checkCapacity(uiCapacityInput);
         }
     }
 
-    focusoutHandler(evt, uiCapacity) {
-        this.checkCapacity(uiCapacity);
+    focusoutHandler(evt, uiCapacityInput) {
+        this.checkCapacity(uiCapacityInput);
     }
 
     show(onapprove) {
