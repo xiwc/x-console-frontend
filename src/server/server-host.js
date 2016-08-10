@@ -333,7 +333,7 @@ export class ServerHost {
 
     unbindPublicIpHandler(item) {
         this.confirm.show({
-            content: `确定要删除公网ip<code>${item.ip}</code>吗?`,
+            content: `确定要卸载公网ip<code>${item.ip}</code>吗?`,
             onapprove: () => {
                 this.http.fetch(nsApi.url('host.publicIp.delete.post'), {
                     method: 'post',
@@ -373,7 +373,7 @@ export class ServerHost {
     outPrivateNetworkHandler(item) {
         // this.selectedHost = item;
         this.confirm.show({
-            content: `确定要删除网络<code>${item.networkType == '1' ? '经典网络' : item.networkName}</code>吗?`,
+            content: `确定要卸载网络<code>${item.networkType == '1' ? '经典网络' : item.networkName}</code>吗?`,
             onapprove: () => {
                 this.http.fetch(nsApi.url('host.privateNetwork.delete.post'), {
                     method: 'post',

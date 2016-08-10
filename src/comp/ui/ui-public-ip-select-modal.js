@@ -17,6 +17,8 @@ export class UiPublicIpSelectModal {
 
     publicIps = null;
 
+    page = { currentPage: 1 };
+
     /**
      * 构造函数
      */
@@ -95,12 +97,19 @@ export class UiPublicIpSelectModal {
      */
     getPubilcIpList() {
         this.http.fetch(nsApi.url('host.publicIp.listName.get', {
-            "pageNo": 1,
-            "pageSize": 100
+            "pageNo": this.page.currentPage,
+            "pageSize": nsConfig.modalPageSize
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
             this.publicIps = data.list;
+            this.page = data;
         });
+    }
+
+    //切换了分页
+    onpageHandler(selectedPage) {
+        this.page.currentPage = selectedPage;
+        this.getUnBindNetworkList();
     }
 }
