@@ -1,5 +1,6 @@
 import { inject, Lazy } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
+import poll from "comp/poll";
 
 @inject(Lazy.of(HttpClient))
 export class ServerHost {
@@ -43,7 +44,33 @@ export class ServerHost {
      * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待执行bind和attach视图(view), 直到你完成你的处理工作.
      */
     activate(params, routeConfig, navigationInstruction) {
-        this.getHosts();
+        this.getHosts().then(() => {
+            poll.start(() => {
+                this.pollHost();
+            });
+        });
+    }
+
+    pollHost() {
+        return this.http.fetch(nsApi.url('host.list.get', {
+            pageNo: this.page.currentPage,
+            pageSize: nsConfig.pageSize
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            _.each(data.list, (item) => {
+                let dest = _.find(this.hosts, { id: item.id });
+                dest && _.extend(dest, item);
+            });
+        });
+    }
+
+    /**
+     * 在当前视图模型(ViewModel)切换离开后执行一些自定义代码逻辑
+     * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待, 直到你完成你的处理工作.
+     */
+    deactivate() {
+        poll.stop();
     }
 
     getHosts(pageNo = 1) {
