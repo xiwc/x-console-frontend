@@ -148,7 +148,7 @@ export class UiNetworkPublicipCreateModal {
                 $(uiBandWidth).val(val);
             } 
         }
-        console.log(val);
+        //console.log(val);
         this.slider.update({
             from: val
         });

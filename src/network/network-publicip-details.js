@@ -44,6 +44,7 @@ export class NetworkPublicDetails {
     //删除单条
     delHandler() {
         this.deleteconfirm.show({
+            title: "删除提示",
             content: "确定要删除公网IP<code>" + this.details.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('publicIp.delete.post'), {
@@ -52,7 +53,6 @@ export class NetworkPublicDetails {
                         ids: [this.details.id]
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         this.getPublicIps();
                         toastr.success('删除成功!');
@@ -74,7 +74,6 @@ export class NetworkPublicDetails {
                     desc: result.desc
                 })
             }).then((resp) => {
-                // this. = resp.data;
                 if (resp.ok) {
                     this.details.name = result.name;
                     this.details.desc = result.desc;
@@ -88,16 +87,17 @@ export class NetworkPublicDetails {
     bindRouter() {
         this.selectedPublicNetwork = this.details;
         this.bindrouterDialog.show((result => {
-            console.log(result);
+            toastr.warning("开发中...");
         }));
     }
 
     //解绑路由器
     unBindRouter() {
         this.deleteconfirm.show({
-            content: "确定要解除该公网IP上绑定的路由器吗？",
+            title: "卸载路由器",
+            content: "确定要制裁公网IP" + this.details.name + "上绑定的路由器吗？",
             onapprove: () => {
-
+                toastr.warning("开发中...");
             }
         });
     }
@@ -105,7 +105,8 @@ export class NetworkPublicDetails {
     //移除主机
     unBindHost() {
         this.deleteconfirm.show({
-            content: "确定要移除<code>" + this.details.name + "</code>绑定的主机吗？",
+            title: "卸载主机",
+            content: "确定要卸载<code>" + this.details.name + "</code>绑定的主机吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('publicIp.unbindHost.post'), {
                     method: 'post',
@@ -113,11 +114,10 @@ export class NetworkPublicDetails {
                         id: this.details.id
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         // pn.name = result.name;
                         // pn.desc = result.desc;
-                        toastr.success('移除主机成功!');
+                        toastr.success('卸载主机成功!');
                     }
                 });
             }

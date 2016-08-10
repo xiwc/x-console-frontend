@@ -35,16 +35,20 @@ export class NetworkRouterDetails {
             action: 'hide'
         });
 
+        $('table.sortable').tablesort();
+
         let _this = this;
         $(this.menuItem).find('.menu .item').tab();
         $(this.routerDetailsRef).find('.ui.dropdown').dropdown({
-            onChange: function () {
+            onChange: function() {
                 //console.log($(this).index());
                 _this.page.pageSize = $(this).val();
             }
         });
+
+        toastr.warning("页面尚在完善中......");
     }
-   
+
 
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
@@ -90,6 +94,7 @@ export class NetworkRouterDetails {
     //删除单条
     delHandler() {
         this.deleteconfirm.show({
+            title: "删除提示",
             content: '确定要删除路由器<code>' + this.details.name + '</code>吗?',
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.delete.post'), {
@@ -98,7 +103,6 @@ export class NetworkRouterDetails {
                         ids: [this.details.id]
                     })
                 }).then((resp) => {
-                    s
                     if (resp.ok) {
                         toastr.success('删除成功!');
                     }
@@ -131,7 +135,7 @@ export class NetworkRouterDetails {
     //修改公网IP;
     updatePublicIp() {
         this.updatePublicIpDialog.show((result => {
-            console.log(result);
+            //console.log(result);
             this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
                 method: 'post',
                 body: json({
@@ -150,6 +154,7 @@ export class NetworkRouterDetails {
     //单个启动
     startRouter() {
         this.deleteconfirm.show({
+            title: "启动路由器",
             content: "确定要启动路由器<code>" + this.details.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.start.post'), {
@@ -170,6 +175,7 @@ export class NetworkRouterDetails {
     //单个关闭
     stopRouter() {
         this.deleteconfirm.show({
+            title: "关闭路由器",
             content: "确定要关闭路由器<code>" + this.details.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.stop.post'), {
@@ -202,7 +208,7 @@ export class NetworkRouterDetails {
                 }).then((resp) => {
                     if (resp.ok) {
                         this.details.type = result.type;
-                        toastr.success('关闭成功!');
+                        toastr.success('修改成功!');
                     }
                 });
             }
@@ -215,6 +221,7 @@ export class NetworkRouterDetails {
             sth: { name: this.details.name },
             onapprove: (result) => {
                 console.log(result);
+                toastr.warning("开发中......");
                 // this.http.fetch(nsApi.url('router.updateType.post'), {
                 //     method: 'post',
                 //     body: json({
@@ -233,6 +240,25 @@ export class NetworkRouterDetails {
 
     //删除私有网络
     removePrivatework() {
+        toastr.warning("开发中......");
+    }
 
+    //配置DHCP
+    updateDhcp() {
+        this.dhcpDialog.show({
+            onapprove: (result) => {
+
+            }
+        });
+    }
+
+    stopPortRulur() {
+        this.deleteconfirm.show({
+            title: "禁用规则",
+            content: "确定要禁用此转发规则吗？",
+            onapprove: () => {
+
+            }
+        });
     }
 }

@@ -56,8 +56,10 @@
                             <div class="menu">
                                 <div class="item" click.delegate="updateName()">修改名称</div>
                                 <div class="divider"></div>
-                                <div class="item ${details.routerId ? 'disabled' : ''}" click.delegate="linkRouter()">连接路由器</div>
-                                <div class="item ${details.routerId ? '' : 'disabled'}" click.delegate="delRouter()">离开路由器</div>
+                                <div class="item">加载主机</div>
+                                <div class="item">卸载主机</div>
+                                <div class="item ${details.routerId ? 'disabled' : ''}" click.delegate="linkRouter()">加载路由器</div>
+                                <div class="item ${details.routerId ? '' : 'disabled'}" click.delegate="delRouter()">卸载路由器</div>
                                 <!-- <div class="divider"></div>
                                 <div class="item" click.delegate="delHandler()">删除</div> -->
                             </div>

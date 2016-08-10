@@ -6,12 +6,6 @@ export class NetworkRouter {
 
     steps = ['上海一区', '专用VPC网络', '路由器'];
 
-    createTitle = "创建路由器";
-    updateNameTitle = "修改名称";
-    deleteContent = "确定要删除这条记录吗？";
-    deleteTite = "删除提示";
-    deleteRouterContent = "确定要删除路由器吗？";
-
     routers = null;
     allChecked = false;
 
@@ -94,6 +88,7 @@ export class NetworkRouter {
         }
 
         this.deleteconfirm.show({
+            title: "删除提示",
             onapprove: () => {
                 let idlist = [];
                 _.each(items, (i) => {
@@ -117,6 +112,7 @@ export class NetworkRouter {
     //删除单条
     delHandler(o) {
         this.deleteconfirm.show({
+            title: "删除提示",
             content: `确定要删除路由器<code>${o.name}</code>吗?`,
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.delete.post'), {
@@ -125,7 +121,6 @@ export class NetworkRouter {
                         ids: [o.id]
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         this.getRouters();
                         toastr.success('删除成功!');
@@ -169,7 +164,7 @@ export class NetworkRouter {
     refreshHandler() {
         this.getRouters().then(() => {
             toastr.info('刷新成功!');
-        }); 
+        });
     }
 
 
@@ -187,7 +182,6 @@ export class NetworkRouter {
                 })
             }).then((resp) => {
                 if (resp.ok) {
-                    // this. = resp.data;
                     o.name = result.name;
                     o.desc = result.desc;
                     toastr.success('修改名称操作成功!');
@@ -231,6 +225,7 @@ export class NetworkRouter {
         }
 
         this.deleteconfirm.show({
+            title: "启动路由器",
             content: "确定要启动选中的路由器吗？",
             onapprove: () => {
                 let idlist = [];
@@ -262,6 +257,7 @@ export class NetworkRouter {
         }
 
         this.deleteconfirm.show({
+            title: "关闭路由器",
             content: "确定要关闭选中的路由器吗？",
             onapprove: () => {
                 let idlist = [];
@@ -286,7 +282,8 @@ export class NetworkRouter {
     //单个启动
     startRouter(o) {
         this.deleteconfirm.show({
-            content: "确定要启动路由器<span style='color:red'>" + o.name + "</span>吗？",
+            title: "启动路由器",
+            content: "确定要启动路由器<code>" + o.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.start.post'), {
                     method: 'post',
@@ -294,7 +291,6 @@ export class NetworkRouter {
                         ids: [o.id]
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         o.status = 1;
                         toastr.success('启动成功!');
@@ -307,7 +303,7 @@ export class NetworkRouter {
     //单个关闭
     stopRouter(o) {
         this.deleteconfirm.show({
-            content: "确定要关闭路由器<span style='color:red'>" + o.name + "</span>吗？",
+            content: "确定要关闭路由器<code>" + o.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.stop.post'), {
                     method: 'post',
@@ -315,7 +311,6 @@ export class NetworkRouter {
                         ids: [o.id]
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         o.status = 2;
                         toastr.success('关闭成功!');
@@ -338,10 +333,9 @@ export class NetworkRouter {
                         type: result.type
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         o.type = result.type;
-                        toastr.success('关闭成功!');
+                        toastr.success('修改成功!');
                     }
                 });
             }
@@ -361,10 +355,9 @@ export class NetworkRouter {
                         type: result.type
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         o.type = result.type;
-                        toastr.success('添加成功!');
+                        toastr.success('加载成功!');
                     }
                 });
             }
@@ -372,6 +365,7 @@ export class NetworkRouter {
     }
 
     //断开私有网络
-    removePrivatework(o){
+    removePrivatework(o) {
+        toastr.warning("开发中......");
     }
 }
