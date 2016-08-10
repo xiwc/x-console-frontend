@@ -1,0 +1,60 @@
+<template>
+    <require from="./ui-network-router-dhcp-modal.css"></require>
+    <div class="ui nx-md510 modal nx-ui-network-router-dhcp" ref="modal">
+        <div class="header">
+            配置主机${name}的DHCP服务
+        </div>
+        <div class="content">
+            <div class="ui message">
+                <i class="yellow warning sign icon"></i> 注意: 在提交修改后，你必须登录主机重启网络或者直接重启主机以使配置生效.
+            </div>
+            <div class="ui bottom attached tab segment active">
+                <div class="ui form">
+                    <div class="inline field">
+                        <label>管理地址</label>
+                        <div class="ui disabled input smallinput">
+                            <input type="text" maxlength="3" value="192">
+                        </div>
+                        <span>●</span>
+                        <div class="ui disabled input smallinput">
+                            <input type="text" maxlength="3" value="168">
+                        </div>
+                        <span>●</span>
+                        <div class="ui input smallinput">
+                            <input type="text" maxlength="3" value="100">
+                        </div>
+                        <span>●</span>
+                        <div class="ui input smallinput">
+                            <input type="text" maxlength="3" value="2">
+                        </div>
+                        <div class="nx-tip">
+                            可以通过配置新的IP地址来更新主机当前的IP地址。
+                        </div>
+                    </div>
+                    <div class="inline field">
+                        <label>DNS服务器</label>
+                        <div class="ui input">
+                            <input type="text">
+                        </div>
+                        <div class="nx-tip">
+                            多个服务器地址之间用逗号分隔，如8.8.8.8,8.8.4.4。
+                        </div>
+                    </div>
+                    <div class="inline field">
+                        <label>域名搜索</label>
+                        <div class="ui input">
+                            <input type="text">
+                        </div>
+                        <div class="nx-tip">
+                            指定域名搜索的顺序，多个域名地址之间用逗号分隔，如mydomain1.com,mydomain2.com。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>

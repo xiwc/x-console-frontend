@@ -1,0 +1,26 @@
+.nx-ui-network-router-dhcp .ui.form .inline.fields .field:not(.wide) .ui.input.smallinput,
+.nx-ui-network-router-dhcp .ui.form .inline.field:not(.wide) .ui.input.smallinput {
+    width: 55px;
+}
+
+.nx-ui-network-router-dhcp .ui.form .inline.fields .field:not(.wide) .ui.input,
+.nx-ui-network-router-dhcp .ui.form .inline.field:not(.wide) .ui.input {
+    width: 300px;
+}
+
+.nx-ui-network-router-dhcp .ui.dropdown > .text {
+    letter-spacing: 6px;
+}
+
+.nx-ui-network-router-dhcp span {
+    margin: 0 10px;
+}
+
+.nx-ui-network-router-dhcp .inline.field label:first-child {
+    width: 80px;
+    text-align: right;
+}
+
+.nx-ui-network-router-dhcp .nx-tip {
+    margin-left: 95px;
+}
