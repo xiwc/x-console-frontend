@@ -42,7 +42,7 @@ export class UiNetworkRouterCreateModal {
                     toastr.error('表单验证不合法,请修改表单不合法输入!');
                     return false;
                 }
-                console.log($("input[name='routertype']:checked").val());
+                //console.log($("input[name='routertype']:checked").val());
                 this.http.fetch(nsApi.url('router.create.post'), {
                     method: 'post',
                     body: json({

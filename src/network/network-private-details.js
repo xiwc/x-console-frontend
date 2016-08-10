@@ -54,15 +54,15 @@ export class NetworkPrivateDetails {
             this.details = data;
         });
 
-        this.getHostList();   
+        this.getHostList();
     }
 
     //获取主机列表
-    getHostList(){
+    getHostList() {
         this.http.fetch(nsApi.url('privateNetwork.host.list.get', {
             id: this.id,
             pageNo: this.page.currentPage,
-            pageSize:this.page.pageSize
+            pageSize: this.page.pageSize
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
@@ -80,6 +80,7 @@ export class NetworkPrivateDetails {
     //删除单条
     delHandler() {
         this.deleteconfirm.show({
+            title: "删除提示",
             content: '确定要删除私有网络<code>' + this.details.name + '</code>吗?',
             onapprove: () => {
                 this.http.fetch(nsApi.url('privateNetwork.delete.post'), {

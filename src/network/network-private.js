@@ -74,7 +74,7 @@ export class NetworkPrivate {
     refreshHandler() {
         this.getPrivateNetwork().then(() => {
             toastr.info('刷新成功!');
-        });  
+        });
     }
 
     //创建
@@ -105,6 +105,7 @@ export class NetworkPrivate {
             return;
         }
         this.deleteconfirm.show({
+            title: "删除提示",
             onapprove: () => {
                 let idlist = [];
                 _.each(items, (i) => {
@@ -128,8 +129,9 @@ export class NetworkPrivate {
     //删除单条
     delHandler(pn) {
         this.deleteconfirm.show({
+            title: "删除提示",
+            content: '确定要删除私有网络<code>' + pn.name + '</code>吗?',
             onapprove: () => {
-                content: '确定要删除私有网络<code>' + pn.name + '</code>吗?',
                 this.http.fetch(nsApi.url('privateNetwork.delete.post'), {
                     method: 'post',
                     body: json({
@@ -204,8 +206,11 @@ export class NetworkPrivate {
     //删除路由器
     delRouter(pn) {
         this.deleteRouterconfirm.show({
-            title:'离开路由器',
+            title: '离开路由器',
             content: '确定要离开路由器<code>' + pn.name + '</code>吗?',
+            onapprove: () => {
+                toastr.warning("开发中。。。");
+            }
         });
     }
 

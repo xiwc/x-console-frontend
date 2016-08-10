@@ -6,6 +6,7 @@
     <require from="comp/ui/ui-network-router-publicip-update-modal"></require>
     <require from="comp/ui/ui-network-router-updatetype-modal"></require>
     <require from="comp/ui/ui-network-router-addprivatenetwork-modal"></require>
+    <require from="comp/ui/ui-network-router-dhcp-modal"></require>
     <require from="comp/vc/vc-common"></require>
     <require from="comp/ui/ui-pageable"></require>
     <div class="nx-network-router-details" ref="routerDetailsRef">
@@ -66,10 +67,11 @@
                                 <div class="divider"></div>
                                 <div class="item ${details.status == 1 ? 'disabled' : ''}" click.delegate="startRouter()">启动</div>
                                 <div class="item ${details.status == 1 ? '' : 'disabled'}" click.delegate="stopRouter()">关闭</div>
-                                <div class="item" click.delegate="updateRouterType()">扩容</div>
-                                <div class="item" click.delegate="updatePublicIp()">修改公网IP</div>
-                                <div class="item" click.delegate="addPrivatework()">添加私有网络</div>
-                                <div class="item" click.delegate="removePrivatework()">移除私有网络</div>
+                                <div class="item" click.delegate="updateRouterType()">更改类型</div>
+                                <div class="item" click.delegate="updatePublicIp()">加载公网IP</div>
+                                <div class="item" click.delegate="updatePublicIp()">卸载公网IP</div>
+                                <div class="item" click.delegate="addPrivatework()">加载私有网络</div>
+                                <div class="item" click.delegate="removePrivatework()">卸载私有网络</div>
                                 <!-- <div class="divider"></div>
                                 <div class="item" click.delegate="delHandler()">删除</div> -->
                             </div>
@@ -95,7 +97,7 @@
                                         <p>网络地址：192.168.100.0/24 管理地址：192.168.100.1 范围:102.168.100.2-192.168.100.254</p>
                                     </div>
                                     <div class="ui basic segment nx-toolbar">
-                                        <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新" data-position="top left" data-inverted="">
+                                        <div class="ui black icon button" data-tooltip="刷新" data-position="top left" data-inverted="">
                                             <i class="refresh icon"></i>
                                         </div>
                                         <div class="nx-right-dropdown">
@@ -108,7 +110,7 @@
                                             <label>条</label>
                                         </div>
                                     </div>
-                                    <table class="ui celled striped table">
+                                    <table class="ui celled table">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
@@ -128,7 +130,7 @@
                                                 <td><i class="circle icon runing"></i>运行中</td>
                                                 <td>192.168.100.2</td>
                                                 <td></td>
-                                                <td><a>[修改]</a></td>
+                                                <td><a click.delegate="updateDhcp()" href="javascript:void(0)">[修改]</a></td>
                                             </tr>
                                             <tr>
                                                 <td>i-acorr5wy</td>
@@ -137,7 +139,7 @@
                                                 <td><i class="circle icon stoped"></i>停止</td>
                                                 <td>192.168.100.2</td>
                                                 <td></td>
-                                                <td><a>[修改]</a></td>
+                                                <td><a click.delegate="updateDhcp()" href="javascript:void(0)">[修改]</a></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -150,16 +152,96 @@
                                     </table>
                                 </div>
                             </div>
-                            <div class="ui bottom attached tab segment" data-tab="second">Second </div>
+                            <div class="ui bottom attached tab segment" data-tab="second">
+                                <div class="ui info message">
+                                    <p>添加端口转发规则，允许来自Internet或者基础网络(vxnet-0)对您的私有网络内部服务的访问。</p>
+                                </div>
+                                <div class="ui basic segment nx-toolbar">
+                                    <div class="ui black icon button" data-tooltip="刷新" data-position="top left" data-inverted="">
+                                        <i class="refresh icon"></i>
+                                    </div>
+                                    <div class="ui black icon button" data-tooltip="添加规则" data-position="top left" data-inverted="">
+                                        <i class="add icon"></i>添加规则
+                                    </div>
+                                    <div class="ui red button">
+                                        删除
+                                    </div>
+                                    <div class="nx-right-dropdown">
+                                        <label>每页</label>
+                                        <select class="ui dropdown">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                        <label>条</label>
+                                    </div>
+                                </div>
+                                <table class="ui celled table sortable">
+                                    <thead>
+                                        <tr>
+                                            <th class="no-sort">
+                                                <div class="ui checkbox" ref="uiChkAll">
+                                                    <input type="checkbox">
+                                                    <label></label>
+                                                </div>
+                                            </th>
+                                            <th>名称</th>
+                                            <th>协议</th>
+                                            <th>源端口</th>
+                                            <th>内网IP</th>
+                                            <th>内网端口</th>
+                                            <th class="no-sort">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="collapsing">
+                                                <div class="ui fitted checkbox" ref="uiChk">
+                                                    <input type="checkbox">
+                                                    <label></label>
+                                                </div>
+                                            </td>
+                                            <td>22</td>
+                                            <td>tcp</td>
+                                            <td>22</td>
+                                            <td>192.168.100.3</td>
+                                            <td>22</td>
+                                            <td><a click.delegate="stopPortRulur()" href="javascript:void(0)">禁用</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="collapsing">
+                                                <div class="ui fitted checkbox" ref="uiChk">
+                                                    <input type="checkbox">
+                                                    <label></label>
+                                                </div>
+                                            </td>
+                                            <td>80</td>
+                                            <td>tcp</td>
+                                            <td>30</td>
+                                            <td>192.168.100.2</td>
+                                            <td>80</td>
+                                            <td><a click.delegate="stopPortRulur()" href="javascript:void(0)">禁用</a></td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="10">
+                                                <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-confirm ui-confirm.ref="deleteconfirm"></ui-confirm>
     <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" name.bind="selectedRouter.name" desc.bind="selectedRouter.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
     <ui-network-router-publicip-update-modal ui-network-router-publicip-update-modal.ref="updatePublicIpDialog"></ui-network-router-publicip-update-modal>
     <ui-network-router-updatetype-modal ui-network-router-updatetype-modal.ref="updatetypeDialog"></ui-network-router-updatetype-modal>
     <ui-network-router-addprivatenetwork-modal ui-network-router-addprivatenetwork-modal.ref="addPrivateworkDialog"></ui-network-router-addprivatenetwork-modal>
+    <ui-network-router-dhcp-modal ui-network-router-dhcp-modal.ref="dhcpDialog"></ui-network-router-dhcp-modal>
 </template>

@@ -109,6 +109,7 @@ export class NetworkPublic {
             return;
         }
         this.deleteconfirm.show({
+            title: "删除提示",
             onapprove: () => {
                 let idlist = [];
                 _.each(items, (i) => {
@@ -132,6 +133,7 @@ export class NetworkPublic {
     //删除单条
     delHandler(o) {
         this.deleteconfirm.show({
+            title: "删除提示",
             content: "确定要删除公网IP<code>" + o.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('publicIp.delete.post'), {
@@ -140,7 +142,6 @@ export class NetworkPublic {
                         ids: [o.id]
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
                         this.getPublicIps();
                         toastr.success('删除成功!');
@@ -194,7 +195,6 @@ export class NetworkPublic {
                     desc: result.desc
                 })
             }).then((resp) => {
-                // this. = resp.data;
                 if (resp.ok) {
                     pn.name = result.name;
                     pn.desc = result.desc;
@@ -217,7 +217,7 @@ export class NetworkPublic {
             }).then((resp) => {
                 if (resp.ok) {
                     o.status = 2;
-                    toastr.success('绑定成功!');
+                    toastr.success('加载成功!');
                 }
             });
         }));
@@ -226,17 +226,24 @@ export class NetworkPublic {
     //解绑路由器
     unBindRouter(o) {
         this.deleteconfirm.show({
-            content: "确定要解除该公网IP上绑定的路由器吗？",
+            title: "卸载路由器",
+            content: "确定要卸载公网IP<code>" + o.name + "</code>上绑定的路由器吗？",
             onapprove: () => {
-
+                toastr.warning("开发中...");
             }
         });
+    }
+
+    //绑定主机
+    bindHost(o) {
+        toastr.warning("开发中...");
     }
 
     //移除主机
     unBindHost(o) {
         this.deleteconfirm.show({
-            content: "确定要移除<code>" + o.name + "</code>绑定的主机吗？",
+            title: "卸载主机",
+            content: "确定要卸载<code>" + o.name + "</code>绑定的主机吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('publicIp.unbindHost.post'), {
                     method: 'post',
@@ -244,11 +251,9 @@ export class NetworkPublic {
                         id: o.id
                     })
                 }).then((resp) => {
-                    // this. = resp.data;
                     if (resp.ok) {
-                        // pn.name = result.name;
-                        // pn.desc = result.desc;
-                        toastr.success('移除主机成功!');
+                        o.status = 1;
+                        toastr.success('卸载主机成功!');
                     }
                 });
             }
