@@ -16,6 +16,8 @@ export class UiNetworkPrivateSelectModal {
 
     privateNetworks = null;
 
+    page = { currentPage: 1 };
+
     /**
      * 构造函数
      */
@@ -95,12 +97,19 @@ export class UiNetworkPrivateSelectModal {
     getUnBindNetworkList() {
         this.http.fetch(nsApi.url('host.privateNetwork.listUnbind', {
             "id": this.hostdetail && this.hostdetail.id,
-            "pageNo": 1,
-            "pageSize": 100
+            "pageNo": this.page.currentPage,
+            "pageSize": nsConfig.modalPageSize
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
             this.privateNetworks = data.list;
+            this.page = data;
         });
+    }
+
+    //切换了分页
+    onpageHandler(selectedPage) {
+        this.page.currentPage = selectedPage;
+        this.getUnBindNetworkList();
     }
 }
