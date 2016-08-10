@@ -283,7 +283,7 @@ export class NetworkRouter {
     startRouter(o) {
         this.deleteconfirm.show({
             title: "启动路由器",
-            content: "确定要启动路由器<span style='color:red'>" + o.name + "</span>吗？",
+            content: "确定要启动路由器<code>" + o.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.start.post'), {
                     method: 'post',
@@ -303,7 +303,7 @@ export class NetworkRouter {
     //单个关闭
     stopRouter(o) {
         this.deleteconfirm.show({
-            content: "确定要关闭路由器<span style='color:red'>" + o.name + "</span>吗？",
+            content: "确定要关闭路由器<code>" + o.name + "</code>吗？",
             onapprove: () => {
                 this.http.fetch(nsApi.url('router.stop.post'), {
                     method: 'post',
