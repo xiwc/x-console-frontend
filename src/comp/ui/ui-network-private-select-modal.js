@@ -98,7 +98,7 @@ export class UiNetworkPrivateSelectModal {
         this.http.fetch(nsApi.url('host.privateNetwork.listUnbind', {
             "id": this.hostdetail && this.hostdetail.id,
             "pageNo": this.page.currentPage,
-            "pageSize": 6
+            "pageSize": nsConfig.modalPageSize
         })).then((resp) => {
             return resp.json();
         }).then((data) => {

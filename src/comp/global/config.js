@@ -19,7 +19,9 @@ window.nsConfig = (function() {
         // }
 
         // 默认分页大小
-        pageSize: 10
+        pageSize: 10,
+        //modal默认分页大小
+        modalPageSize: 6
     }
 })();
 
