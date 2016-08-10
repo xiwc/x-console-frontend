@@ -16,6 +16,8 @@ export class UiDiskSelectModal {
 
     disks = null;
 
+    page = { currentPage: 1 };
+
     /**
      * 构造函数
      */
@@ -100,12 +102,13 @@ export class UiDiskSelectModal {
 
         this.http.fetch(nsApi.url('host.disk.listUnbind', {
             "id": this.hostdetail && this.hostdetail.id,
-            "pageNo": 1,
-            "pageSize": 100
+            "pageNo": this.page.currentPage,
+            "pageSize": 6
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
             this.disks = data.list;
+            this.page = data;
         });
     }
 
@@ -116,12 +119,23 @@ export class UiDiskSelectModal {
 
         this.http.fetch(nsApi.url('host.disk.listBind', {
             "id": this.hostdetail && this.hostdetail.id,
-            "pageNo": 1,
-            "pageSize": 100
+            "pageNo": this.page.currentPage,
+            "pageSize": 6
         })).then((resp) => {
             return resp.json();
         }).then((data) => {
             this.disks = data.list;
+            this.page = data;
         });
+    }
+
+    //切换了分页
+    onpageHandler(selectedPage) {
+        this.page.currentPage = selectedPage;
+        if (this.type == 'mount') {
+            this.getUnBindDiskList();
+        } else {
+            this.getBindDiskList();
+        }
     }
 }

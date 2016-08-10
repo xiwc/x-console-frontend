@@ -1,10 +1,11 @@
 <template>
+    <require from="comp/ui/ui-pageable"></require>
     <div ref="md" class="ui small modal nx-ui-network-private-select-modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
             选择${hostdetail.name}要加入的私有网络
         </div>
-        <div class="content">
+        <div class="content" style="height: 412px;overflow:auto">
             <div class="ui message">
                 <i class="yellow warning sign icon"></i> 注意: xxxxxxxxxxxxxxxxxxxxxxxxx.
             </div>
@@ -26,6 +27,13 @@
                         <td>${item.name}</td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="12">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <div class="actions">
