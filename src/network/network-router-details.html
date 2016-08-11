@@ -32,7 +32,7 @@
                                 </tr>
                                 <tr>
                                     <th>状态</th>
-                                    <td><i class="circle icon ${details.status == 1 ? 'runing' : 'stoped'}"></i>${details.status | mapping:'routerStatus'}</td>
+                                    <td><a class="ui ${details.status == 1 ? 'green' : 'red'} empty circular label nx-status-label"></a>${details.status | mapping:'routerStatus'}</td>
                                 </tr>
                                 <tr>
                                     <th>类型</th>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="ui bottom attached active tab segment" data-tab="first">
                                 <div class="ui info message">
-                                    <p>DHC服务为您的私有网络提供IP地址分配。分配的地址都是固定地址，即一个主机在其生命周期内获得的地址是保持不变的。</p>
+                                    <p>DHCP服务为您的私有网络提供IP地址分配。分配的地址都是固定地址，即一个主机在其生命周期内获得的地址是保持不变的。</p>
                                 </div>
                                 <div class="ui warning  message">
                                     <p>当前没有私有网络连接至此路由器，点击<a href='/#/network/private'>这里</a>创建、绑定。</p>

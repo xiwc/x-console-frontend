@@ -28,7 +28,7 @@
                                 </tr>
                                 <tr>
                                     <th>状态</th>
-                                    <td><i class="circle icon ${details.status == 1 ? 'runing' : 'stoped'}"></i>${details.status | mapping:"publicIpStatus"}</td>
+                                    <td><a class="ui ${details.status == 1 ? 'green' : 'red'} empty circular label nx-status-label"></a>${details.status | mapping:"publicIpStatus"}</td>
                                 </tr>
                                 <tr>
                                     <th>地址</th>
@@ -40,7 +40,7 @@
                                 </tr>
                                 <tr>
                                     <th>带宽上限</th>
-                                    <td>${details.bandwidth}Mbps</td>
+                                    <td>${details.bandWidth}Mbps</td>
                                 </tr>
                                 <tr>
                                     <th>IP组</th>

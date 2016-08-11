@@ -1,9 +1,23 @@
-.nx-linkrouter .ui.form .inline.fields .field:not(.wide) .ui.input,.nx-linkrouter .ui.form .inline.field:not(.wide) .ui.input{
-	width:50px;
+.nx-linkrouter .ui.form .inline.fields .field:not(.wide) .ui.input,
+.nx-linkrouter .ui.form .inline.field:not(.wide) .ui.input {
+    width: 55px;
 }
-.nx-linkrouter .ui.dropdown > .text{letter-spacing: 6px;}
-.nx-linkrouter span{margin: 0 10px;}
-.nx-linkrouter .inline.field label:first-child{
-	width:50px;
-	text-align: right;
+
+.nx-linkrouter .ui.dropdown > .text {
+    letter-spacing: 6px;
+}
+
+.nx-linkrouter span {
+    margin: 0 10px;
+}
+
+.nx-linkrouter .inline.field label:first-child,
+.nx-linkrouter .inline.fields label:first-child {
+    width: 50px;
+    text-align: right;
+}
+
+.ui.modal.nx-linkrouter {
+    width: 550px;
+    margin-left: -225px;
 }

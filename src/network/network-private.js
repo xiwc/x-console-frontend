@@ -15,7 +15,7 @@ export class NetworkPrivate {
 
     page = {
         currentPage: 1,
-        pageSize: 10
+        pageSize: nsConfig.pageSize
     };
 
     constructor(getHttp) { // 通过构造函数注入

@@ -12,7 +12,7 @@ export class UiHostSelectModal {
 
     page = {
         currentPage: 1,
-        pageSize: 5
+        pageSize: nsConfig.modalPageSize
     };
 
     constructor(getHttp) { // 通过构造函数注入

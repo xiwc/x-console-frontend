@@ -60,7 +60,7 @@
                         <!-- <td><a>${p.id}</a></td> -->
                         <td><a href="/#/network/publicip-details/${p.id}">${p.name}</a></td>
                         <td>${p.ip}</td>
-                        <td><i class="circle icon ${p.status == 1 ? 'runing' : 'stoped'}"></i>${p.status | mapping:"publicIpStatus"}</td>
+                        <td><a class="ui ${p.status == 1 ? 'green' : 'red'} empty circular label nx-status-label"></a>${p.status | mapping:"publicIpStatus"}</td>
                         <td>${p.resource}</td>
                         <td>${p.chargeMode | mapping:"chargeMode"}</td>
                         <td>${p.bandWidth}Mbps</td>
@@ -93,7 +93,7 @@
         </div>
     </div>
     <ui-network-publicip-create-modal ui-network-publicip-create-modal.ref="createconfirm"></ui-network-publicip-create-modal>
-    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-confirm ui-confirm.ref="deleteconfirm"></ui-confirm>
     <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" name.bind="selectedPublicNetwork.name" desc.bind="selectedPublicNetwork.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
     <ui-network-publicip-bindrouter-modal ui-network-publicip-bindrouter-modal.ref='bindrouterDialog' ipname.bind="selectedPublicNetwork.name"></ui-network-publicip-bindrouter-modal>
 </template>

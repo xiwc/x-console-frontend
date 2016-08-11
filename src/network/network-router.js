@@ -11,12 +11,7 @@ export class NetworkRouter {
 
     page = {
         currentPage: 1,
-        pageSize: 10,
-        size: 0,
-        total: 0,
-        pageCount: 0,
-        hasPreviousPage: false,
-        hasNextPage: true
+        pageSize: nsConfig.pageSize
     };
 
     constructor(getHttp) { // 通过构造函数注入
@@ -290,7 +285,7 @@ export class NetworkRouter {
                     body: json({
                         ids: [o.id]
                     })
-                }).then((resp) => {
+                }).then((resp) => { 
                     if (resp.ok) {
                         o.status = 1;
                         toastr.success('启动成功!');
