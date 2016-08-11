@@ -55,7 +55,7 @@
 <body>
     <div class="container">
         <fieldset>
-            <legend>开发登录页面</legend>
+            <legend>登录页面</legend>
             <div class="space"><a href="/?debug=all">/?debug=all</a></div>
             <div class="space"><a href="/?debug">/?debug</a></div>
             <hr>
@@ -70,7 +70,7 @@
                 </div>
             </form>
             <button id="submit" type="button">提交</button>
-            <span class="error">网络链接错误！</span>
+            <span class="error">网络连接错误！</span>
         </fieldset>
     </div>
     <script>
@@ -106,7 +106,7 @@
                 //     $('.error', 'fieldset').text(data.message).show();
                 // }
             }).error(function() {
-                $('.error', 'fieldset').text('网络链接错误！').show();
+                $('.error', 'fieldset').text('网络连接错误！').show();
             }).complete(function() {
                 $('button,input', 'fieldset').removeAttr('disabled');
                 $('button', 'fieldset').text('提交');

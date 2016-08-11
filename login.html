@@ -143,7 +143,7 @@
 
 <body>
     <div class="page-container">
-        <h1>开发登录页面</h1>
+        <h1>登录页面</h1>
         <form action="" method="post" style="z-index: 9999;">
             <div>
                 <div class="space"><a href="/?debug=all">/?debug=all</a></div>
@@ -206,7 +206,7 @@
                 //     is_show();
                 // }
             }).fail(function(xhr, sts, error) {
-                var msg = xhr.responseJSON ? xhr.responseJSON.message : '网络链接错误！';
+                var msg = xhr.responseJSON ? xhr.responseJSON.message : '网络连接错误！';
                 $("#ts").html(msg);
                 is_show();
             }).always(function() {

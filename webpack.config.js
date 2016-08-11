@@ -52,7 +52,7 @@ let envs = [
     },
     // 李康华
     {
-        //active: true,
+        active: true,
         console: 'http://192.168.40.14:8080',
         sso: 'http://192.168.205.12:8084',
         yangyang: 'https://step.newtouch.com',
@@ -68,7 +68,7 @@ let envs = [
     },
     // 席维成(自定义可切换后端代理)
     {
-        active: true,
+        // active: true,
         console: 'http://x-proxy.sh1.newtouch.com',
         sso: 'http://192.168.205.12:8084',
         yangyang: 'https://step.newtouch.com',
