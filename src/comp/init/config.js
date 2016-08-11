@@ -65,9 +65,9 @@ export class Config {
 
         if (token) {
 
-            if (!_(['prod', 'test']).includes(nsParam.env)) {
-                Cookie.set(nsCons.ACCESS_TOKEN, token);
-            }
+            // if (!_(['prod', 'test']).includes(nsParam.env)) {
+            Cookie.set(nsCons.ACCESS_TOKEN, token);
+            // }
 
             if ('pushState' in history) {
                 history.replaceState(null, '', _.removeUrlQuery(nsCons.ACCESS_TOKEN_NAME));
