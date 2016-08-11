@@ -32,13 +32,18 @@ export class Config {
                         console.log(req);
                     },
                     response(resp) {
-                        // toastr.info(`Received ${response.status} ${response.url}`);
                         NProgress && NProgress.done();
                         if (!resp.ok) {
                             resp.json().then((data) => {
                                 toastr.error('PATH: ' + data.path + '<br/>STATUS: ' + data.status + '<br/>EXCEPTION:<br/>' + data.exception + '<br/>MESSAGE:<br/>' + data.message, data.error);
                             });
-                            // toastr.error(resp.statusText, '网络请求错误!');
+
+                            if (resp.status == 401) {
+                                window.location.href = "/login/login.html"; // TODO 临时跳转路径
+                                return;
+                            }
+
+                            throw new Error('调用异常!');
                         }
 
                         return resp;

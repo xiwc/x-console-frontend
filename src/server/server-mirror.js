@@ -11,8 +11,9 @@ export class ServerMirror {
 
     mirrors;
 
-    page;
-
+    page = {
+        currentPage: 1
+    };
 
     /**
      * 构造函数
