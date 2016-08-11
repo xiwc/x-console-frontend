@@ -1,6 +1,6 @@
 <template>
     <require from="./network-linkrouter.css"></require>
-    <div class="ui small modal nx-server-host-create  nx-linkrouter" ref="modal">
+    <div class="ui modal nx-linkrouter" ref="modal">
         <div class="header">
             ${title ? title : '连接路由器'}
         </div>
@@ -66,15 +66,19 @@
                             这个地址可以被用作该私有网络内其他主机的缺省网关。
                         </div>
                     </div>
-                    <div class="inline field">
+                    <div class="inline fields">
                         <label>DHCP</label>
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="frequency" checked="checked">
-                            <label>启用</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="frequency" checked="checked">
+                                <label>启用</label>
+                            </div>
                         </div>
-                        <div class="ui radio checkbox">
-                            <input type="radio" name="frequency">
-                            <label>禁用</label>
+                        <div class="field">
+                            <div class="ui radio checkbox">
+                                <input type="radio" name="frequency">
+                                <label>禁用</label>
+                            </div>
                         </div>
                     </div>
                     <div class="inline field">

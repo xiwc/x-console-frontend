@@ -17,12 +17,7 @@ export class NetworkPublic {
 
     page = {
         currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
+        pageSize: nsConfig.pageSize
     };
 
     constructor(getHttp) { // 通过构造函数注入
