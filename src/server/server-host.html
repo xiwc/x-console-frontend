@@ -149,6 +149,6 @@
     <ui-security-select-modal type.bind="'unmount'" ui-security-select-modal.ref="uiSecuritySelectModalUnmount"></ui-security-select-modal>
     <ui-public-ip-select-modal hostdetail.bind="selectedHost" ui-public-ip-select-modal.ref="uiPublicIpSelectModal"></ui-public-ip-select-modal>
     <ui-network-private-select-modal hostdetail.bind="selectedHost" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModal"></ui-network-private-select-modal>
-    <ui-reset-system-modal ui-reset-system-modal.ref="resetSystem"></ui-reset-system-modal>
+    <ui-reset-system-modal hostdetail.bind="selectedHost" ui-reset-system-modal.ref="resetSystem"></ui-reset-system-modal>
     <ui-snapshot-create-modal hostname.bind="selectedHost.name" ui-snapshot-create-modal.ref="uiSnapshotCreateModal"></ui-snapshot-create-modal>
 </template>

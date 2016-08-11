@@ -399,6 +399,7 @@ export class ServerHost {
     }
 
     resetHandler(item) {
+        this.selectedHost = item;
         // this.confirm.show({
         //     content: '重置主机系统会将您的操作系统盘重置为初始状态,确定要执行此操作吗?',
         //     onapprove: () => {
