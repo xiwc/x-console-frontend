@@ -1,0 +1,65 @@
+<template>
+    <require from="./ui-network-router-port-modal.css"></require>
+    <div class="ui modal nx-ui-network-router-port" ref="modal">
+        <div class="header">
+            修改路由器${name}的规则
+        </div>
+        <div class="content">
+            <div class="ui message warning">
+                <i class="yellow warning sign icon"></i> 注意: 添加规则后请检查防火墙规则，确保源端口（范围）流量可以通过，否则从外网无法访问您的服务。
+            </div>
+            <div class="ui bottom attached tab segment active">
+                <div class="ui form">
+                    <table class="nx-router-port-talbe">
+                        <tr>
+                            <th>名称</th>
+                            <th>协议</th>
+                            <th>源端口</th>
+                            <th>内网IP</th>
+                            <th>内网端口</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="ui input">
+                                    <input type="text" name="name" value.bind="name" placeholder="">
+                                </div>
+                            </td>
+                            <td>
+                                <select class="ui dropdown">
+                                    <option value="1">TCP</option>
+                                    <option value="2">UDP</option>
+                                    <option value="3">ICMP</option>
+                                    <option value="4">ICMP</option>
+                                    <option value="5">ESP</option>
+                                    <option value="6">AH</option>
+                                    <option value="7">IPIP</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="ui input">
+                                    <input type="text" name="name" value.bind="name" placeholder="">
+                                </div>
+                                >
+                            </td>
+                            <td>
+                                <div class="ui input nx-biginput">
+                                    <input type="text" name="name" value.bind="name" placeholder="">
+                                </div>
+                                ：
+                            </td>
+                            <td>
+                                <div class="ui input">
+                                    <input type="text" name="name" value.bind="name" placeholder="">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>

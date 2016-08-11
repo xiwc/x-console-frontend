@@ -1,0 +1,33 @@
+.ui.modal.nx-ui-network-router-port {
+    width: 600px;
+    margin-left: -300px;
+}
+
+.nx-ui-network-router-port .ui.form .ui.input {
+    width: 70px
+}
+
+.nx-ui-network-router-port .ui.form .ui.input.nx-biginput {
+    width: 150px;
+}
+
+.nx-ui-network-router-port .ui.form .nx-router-port-talbe {
+    width: 100%;
+}
+
+.nx-router-port-talbe th {
+    padding: 0 0 10px 5px;
+}
+
+.nx-router-port-talbe td {
+    line-height: 32px;
+}
+
+.nx-router-port-talbe td span {
+    margin: 0 10px;
+}
+
+.nx-router-port-talbe td .ui.dropdown {
+    width: 100px;
+    min-width: 100px;
+}

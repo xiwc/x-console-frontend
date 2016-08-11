@@ -261,4 +261,13 @@ export class NetworkRouterDetails {
             }
         });
     }
+
+    //添加端口转发规则
+    addPortRuler(){
+        this.portDialog.show({
+            onapprove: (result) => {
+
+            }
+        });
+    }
 }

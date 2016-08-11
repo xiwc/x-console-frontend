@@ -7,6 +7,7 @@
     <require from="comp/ui/ui-network-router-updatetype-modal"></require>
     <require from="comp/ui/ui-network-router-addprivatenetwork-modal"></require>
     <require from="comp/ui/ui-network-router-dhcp-modal"></require>
+    <require from="comp/ui/ui-network-router-port-modal"></require>
     <require from="comp/vc/vc-common"></require>
     <require from="comp/ui/ui-pageable"></require>
     <div class="nx-network-router-details" ref="routerDetailsRef">
@@ -160,7 +161,7 @@
                                     <div class="ui black icon button" data-tooltip="刷新" data-position="top left" data-inverted="">
                                         <i class="refresh icon"></i>
                                     </div>
-                                    <div class="ui black icon button" data-tooltip="添加规则" data-position="top left" data-inverted="">
+                                    <div class="ui black icon button" data-tooltip="添加规则" data-position="top left" data-inverted="" click.delegate="addPortRuler()">
                                         <i class="add icon"></i>添加规则
                                     </div>
                                     <div class="ui red button">
@@ -244,4 +245,5 @@
     <ui-network-router-updatetype-modal ui-network-router-updatetype-modal.ref="updatetypeDialog"></ui-network-router-updatetype-modal>
     <ui-network-router-addprivatenetwork-modal ui-network-router-addprivatenetwork-modal.ref="addPrivateworkDialog"></ui-network-router-addprivatenetwork-modal>
     <ui-network-router-dhcp-modal ui-network-router-dhcp-modal.ref="dhcpDialog"></ui-network-router-dhcp-modal>
+    <ui-network-router-port-modal ui-network-router-port-modal.ref="portDialog"></ui-network-router-port-modal>
 </template>
