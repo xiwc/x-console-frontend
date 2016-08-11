@@ -36,4 +36,10 @@ export class Menu {
         $lsm.toggleClass('labeled icon');
         $('.nx-body').toggleClass('nx-left-sidebar-menu-labeled-icon');
     }
+
+    logoutHandler() {
+        Cookie.remove(nsCons.ACCESS_TOKEN);
+        nsCtx.accessToken = null;
+        window.location.href = "/login/login.html"; // TODO 临时跳转路径
+    }
 }

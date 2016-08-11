@@ -9,7 +9,9 @@ export class ServerHost {
 
     allChecked = false;
 
-    page;
+    page = {
+        currentPage: 1
+    };
 
     /**
      * 构造函数
