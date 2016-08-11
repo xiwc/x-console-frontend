@@ -122,8 +122,8 @@
                                         </div>
                                     </div>
                                     <div class="divider"></div>
-                                    <div click.delegate="createSnapshotHandler(item)" class="item disabled">创建快照</div>
-                                    <div click.delegate="resetHandler(item)" class="item disabled">重置系统</div>
+                                    <div click.delegate="createSnapshotHandler(item)" class="item">创建快照</div>
+                                    <div click.delegate="resetHandler(item)" class="item">重置系统</div>
                                     <div click.delegate="delHandler(item)" class="item">删除</div>
                                 </div>
                             </div>
@@ -149,6 +149,6 @@
     <ui-security-select-modal type.bind="'unmount'" ui-security-select-modal.ref="uiSecuritySelectModalUnmount"></ui-security-select-modal>
     <ui-public-ip-select-modal hostdetail.bind="selectedHost" ui-public-ip-select-modal.ref="uiPublicIpSelectModal"></ui-public-ip-select-modal>
     <ui-network-private-select-modal hostdetail.bind="selectedHost" ui-network-private-select-modal.ref="uiNetworkPrivateSelectModal"></ui-network-private-select-modal>
-    <ui-reset-system-modal ui-reset-system-modal.ref="resetSystem"></ui-reset-system-modal>
+    <ui-reset-system-modal hostdetail.bind="selectedHost" ui-reset-system-modal.ref="resetSystem"></ui-reset-system-modal>
     <ui-snapshot-create-modal hostname.bind="selectedHost.name" ui-snapshot-create-modal.ref="uiSnapshotCreateModal"></ui-snapshot-create-modal>
 </template>

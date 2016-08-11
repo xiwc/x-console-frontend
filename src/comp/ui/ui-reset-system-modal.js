@@ -5,19 +5,45 @@ from 'aurelia-framework';
 
 export class UiResetSystemModal {
 
+    @bindable hostdetail = null; // 主机信息
+
+    way = '1';
+
     name = "";
+
+    system = "liunx";
+
+    userName = "root";
 
     constructor() { // 通过构造函数注入
     }
 
     attached() {
 
+        $(this.uiResetSshkey).checkbox({
+            onChecked: () => {
+                this.way = '1';
+            }
+        });
+        $(this.uiResetPassword).checkbox({
+            onChecked: () => {
+                this.way = '2';
+            }
+        });
+
         $(this.md).modal({
             closable: false,
             allowMultiple: true,
             onShow: () => {
                 this.name = '';
-                $(this.form).form('reset');
+                if (this.system == 'window') {
+                    $(this.uiResetPassword).checkbox('set checked');
+                    this.way = '2';
+                } else {
+                    this.way = '1';
+                    $(this.form).form('reset');
+                }
+
             },
             onApprove: () => {
                 if (!$(this.form).form('is valid')) {
@@ -34,8 +60,8 @@ export class UiResetSystemModal {
             on: 'blur',
             inline: true,
             fields: {
-                name: {
-                    identifier: 'name',
+                password: {
+                    identifier: 'password',
                     rules: [{
                         type: 'empty',
                         prompt: '密码不能为空!'
@@ -43,6 +69,9 @@ export class UiResetSystemModal {
                 }
             }
         });
+
+        $(this.uiEncrypt).dropdown();
+
     }
 
     /**
