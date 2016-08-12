@@ -1,11 +1,49 @@
 <template>
-    <div ref="md" class="ui small modal">
+    <require from="./ui-snapshot-recover-modal.css"></require>
+    <div ref="md" class="ui small modal nx-ui-snapshot-recover-modal">
         <!-- <i class="close icon"></i> -->
         <div class="header">
             快照恢复
         </div>
         <div class="content">
-            <div class="ui message">TODO...</div>
+            <!-- <div class="ui message">TODO...</div> -->
+            <div class="tree">
+                <ul>
+                    <li>
+                        <a>主机01</a>
+                        <ul>
+                            <li>
+                                <a>快照01</a>
+                                <ul>
+                                    <li>
+                                        <a>快照0101</a>
+                                        <ul class="vertical">
+                                            <li><a>快照010101</a></li>
+                                            <li><a>快照010102</a></li>
+                                            <li><a>快照010103</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a>快照0102</a></li>
+                                    <li>
+                                        <a>快照0103</a>
+                                        <ul>
+                                            <li>
+                                                <a>快照010301</a>
+                                                <ul class="vertical">
+                                                    <li><a>快照01030101</a></li>
+                                                    <li><a>快照01030102</a></li>
+                                                    <li><a>快照01030103</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a>快照010302</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="actions">
             <div class="ui cancel basic blue left floated button">取消</div>
