@@ -4,7 +4,11 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class NetworkPrivateDetails {
 
-    steps = ['上海一区', '云服务器', '私有网络详情'];
+    steps = [
+        { name: '上海一区', href: '#' },
+        { name: '专用VPC网络', href: '/#/network/private' },
+        { name: '私有网络', href: '/#/network/private' }
+    ];
 
     details = null;
     hostlist = null;
@@ -52,6 +56,7 @@ export class NetworkPrivateDetails {
             return resp.json();
         }).then((data) => {
             this.details = data;
+            this.steps.push({ name: this.details.name });
         });
 
         this.getHostList();

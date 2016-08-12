@@ -45,7 +45,7 @@ export class Network {
             moduleId: 'network/network-firewall',
             nav: true,
             title: '防火墙',
-            disabled: true
+            disabled: false
         }, {
             route: '',
             redirect: 'private'

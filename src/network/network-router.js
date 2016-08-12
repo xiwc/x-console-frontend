@@ -4,7 +4,11 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class NetworkRouter {
 
-    steps = ['上海一区', '专用VPC网络', '路由器'];
+    steps = [
+        { name: '上海一区', href: '#' },
+        { name: '专用VPC网络', href: '/#/network/private' },
+        { name: '路由器' }
+    ];
 
     routers = null;
     allChecked = false;
