@@ -75,6 +75,20 @@ window.nsApiFunc = (function() {
         //     payload: {},
         //     desc: '获取未挂载硬盘的主机列表'
         // },
+        'resource.config.get': {
+            real: 'api/resource/config',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取当前资源做大额度'
+        },
+        'resource.detail.get': {
+            real: 'api/resource/detail',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据当前用户获取资源详情'
+        },
         'region.listName.get': {
             real: 'api/region/listName',
             mock: '',

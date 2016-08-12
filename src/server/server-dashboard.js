@@ -15,6 +15,9 @@ export class ServerDashboard {
      */
     attached() {
         $('.nx-pp', this.container).popup();
+        $('.ui.progress', this.container).progress({
+            showActivity: false
+        });
     }
 
     /**
@@ -26,20 +29,56 @@ export class ServerDashboard {
      */
     activate(params, routeConfig, navigationInstruction) {
 
-        // console.log(json({ name: 'json...' }));
+        let p1 = this.http.fetch(nsApi.url('resource.config.get', {}))
+            .then((resp) => {
+                if (resp.ok) {
+                    return resp.json().then((data) => {
+                        this.config = data;
+                    });
+                }
 
-        // this.http.fetch(nsApi['host.hosts.get']).then((resp) => {
-        //     console.log(resp);
-        // });
+                return resp;
+            });
 
-        // TODO ajax api mock demo.
-        // $.get(nsApi['host.hostList.get'], function(data) {
-        //     if (data.success) {
-        //         console.log(data.data);
-        //     } else {
-        //         console.log(data);
-        //     }
-        // });
+        let p2 = this.http.fetch(nsApi.url('resource.detail.get', {}))
+            .then((resp) => {
+                if (resp.ok) {
+                    return resp.json().then((data) => {
+                        this.detail = data;
+                    });
+                }
+
+                return resp;
+            });
+
+        return Promise.all([p1, p2]).then(() => {
+            this.percent = {
+                "host": this.calcPercent('host'),
+                "privateNetwork": this.calcPercent('privateNetwork'),
+                "cpu": this.calcPercent('cpu'),
+                "router": this.calcPercent('router'),
+                "memory": this.calcPercent('memory'),
+                "performanceDisk": this.calcPercent('performanceDisk'),
+                "performanceDiskCapacity": this.calcPercent('performanceDiskCapacity'),
+                "capacityDisk": this.calcPercent('capacityDisk'),
+                "capacityDiskCapacity": this.calcPercent('capacityDiskCapacity'),
+                "securityGroup": this.calcPercent('securityGroup'),
+                "snapshot": this.calcPercent('snapshot'),
+                "publicIp": this.calcPercent('publicIp'),
+                "bandwidth": this.calcPercent('bandwidth'),
+                "firewall": this.calcPercent('firewall'),
+                "sshKeyStore": this.calcPercent('sshKeyStore')
+            };
+        });
+    }
+
+    calcPercent(prop) {
+        if (_.has(this.detail, prop) && _.has(this.config, prop)) {
+            let res = parseInt(this.detail[prop] * 100 / this.config[prop]);
+            return _.isNaN(res) ? 0 : res;
+        }
+
+        return 0;
     }
 
 }

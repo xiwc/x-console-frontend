@@ -43,7 +43,7 @@ export class Config {
                                 return;
                             }
 
-                            throw new Error('调用异常!');
+                            // throw new Error('调用异常!');
                         }
 
                         return resp;
