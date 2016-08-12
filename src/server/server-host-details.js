@@ -7,7 +7,7 @@ export class ServerHostDetails {
 
     @bindable router;
 
-    steps = ['上海一区', '云服务器', '主机详情'];
+    steps = ['上海一区', nsCtx.serverInfo, '主机详情'];
 
     details;
 
@@ -41,6 +41,7 @@ export class ServerHostDetails {
             return resp.json();
         }).then((data) => {
             this.details = data;
+            this.steps.push(this.details.name);
         });
     }
 

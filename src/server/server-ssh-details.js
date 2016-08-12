@@ -4,7 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class ServerSshDetails {
 
-    steps = ['上海一区', '云服务器', 'SSH密钥详情'];
+    steps = ['上海一区', nsCtx.serverInfo, 'SSH密钥详情'];
 
     /**
      * 构造函数
@@ -29,6 +29,7 @@ export class ServerSshDetails {
             return resp.json();
         }).then((data) => {
             this.details = data;
+            this.steps.push(this.details.name);
         });
     }
 }

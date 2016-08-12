@@ -4,7 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class ServerDiskDetails {
 
-    steps = ['上海一区', '云服务器', '硬盘详情'];
+    steps = ['上海一区', nsCtx.serverInfo, '硬盘详情'];
 
     details;
 
@@ -38,6 +38,7 @@ export class ServerDiskDetails {
             return resp.json();
         }).then((data) => {
             this.details = data;
+            this.steps.push(this.details.name);
         });
     }
 

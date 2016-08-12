@@ -1,5 +1,17 @@
 export class Server {
 
+    info = {
+        name: '云服务器',
+        href: '/#/server/dashboard'
+    };
+
+    /**
+     * 构造函数
+     */
+    constructor() {
+        nsCtx.serverInfo = this.info;
+    }
+
     // 配置路由
     configureRouter(config, router) {
 
