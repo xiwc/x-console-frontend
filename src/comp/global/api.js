@@ -533,6 +533,20 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '重置系统'
         },
+        'securityGroup.list.get': {
+            real: 'api/securityGroup/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '获取安全组列表数据'
+        },
+        'securityGroup.create.post': {
+            real: 'api/securityGroup/create',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '创建安全组'
+        },
     };
 
     // api debug配置初始化

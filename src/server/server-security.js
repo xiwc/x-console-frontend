@@ -1,3 +1,13 @@
+import {
+    bindable,
+    containerless
+}
+from 'aurelia-framework';
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
+@containerless
 export class ServerSecurity {
 
     steps = ['上海一区', nsCtx.serverInfo, '安全组'];
@@ -17,6 +27,13 @@ export class ServerSecurity {
         hasPreviousPage: false,
         hasNextPage: true
     };
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -44,7 +61,7 @@ export class ServerSecurity {
      * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待执行bind和attach视图(view), 直到你完成你的处理工作.
      */
     activate(params, routeConfig, navigationInstruction) {
-        this.getSecurities();
+        this.getSoftGroupList();
     }
 
 
@@ -62,12 +79,21 @@ export class ServerSecurity {
     }
 
     refreshHandler() {
-        this.getSecurities();
+        this.getSoftGroupList();
     }
 
     createHandler() {
         this.createconfirm.show((result) => {
-            toastr.info('TODO...' + result.name);
+            this.http.fetch(nsApi.url('securityGroup.create.post'), {
+                method: 'post',
+                body: json({
+                    "name": result.name
+                })
+            }).then((resp) => {
+                if (resp.ok) {
+                    toastr.success('创建安全组成功!');
+                }
+            });
         });
     }
 
@@ -140,4 +166,15 @@ export class ServerSecurity {
         };
     }
 
+    getSoftGroupList() {
+        this.http.fetch(nsApi.url('securityGroup.list.get', {
+            "pageNo": this.page.currentPage,
+            "pageSize": nsConfig.pageSize
+        })).then((resp) => {
+            return resp.json();
+        }).then((data) => {
+            this.securities = data.list;
+            this.page = data;
+        });
+    }
 }
