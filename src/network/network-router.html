@@ -9,7 +9,6 @@
     <require from="comp/ui/ui-network-router-addprivatenetwork-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
     <require from="comp/vc/vc-common"></require>
-    <require from="./network-linkrouter"></require>
     <div class="nx-network-public-style">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment nx-toolbar">
@@ -66,7 +65,7 @@
                         </td>
                         <!-- <td><a>${r.id}</a></td> -->
                         <td><a href="/#/network/router-details/${r.id}">${r.name}</a></td>
-                        <td><a class="ui ${p.status == 1 ? 'green' : 'red'} empty circular label nx-status-label"></a>${r.status | mapping:'routerStatus'}</td>
+                        <td><a class="ui ${r.status == 1 ? 'green' : 'red'} empty circular label nx-status-label"></a>${r.status | mapping:'routerStatus'}</td>
                         <td>${r.type | mapping:'routerType'}</td>
                         <!-- <td>${r.managerIp}</td> -->
                         <td>${r.ip}</td>

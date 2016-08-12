@@ -68,6 +68,11 @@
                         $('.nx-body .nx-left-sidebar-menu').addClass('labeled icon');
                     }
                 }
+            },
+            log: (txt) => {
+                if(!_.isUndefined(wurl('?log'))){
+                    console.log(txt);
+                }
             }
         };
     })();

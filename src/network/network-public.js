@@ -6,7 +6,7 @@ export class NetworkPublic {
 
     steps = [
         { name: '上海一区', href: '#' },
-        { name: '专用VPC网络', href: '/#/network/private' },
+        nsCtx.networkInfo,
         { name: '公网IP' }
     ];
 

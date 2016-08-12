@@ -5,7 +5,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 export class NetworkPrivate {
     steps = [
         { name: '上海一区', href: '#' },
-        { name: '专用VPC网络' },
+        nsCtx.networkInfo,
         { name: '私有网络' }
     ];
     allChecked = false;
