@@ -28,7 +28,7 @@
                                 <label></label>
                             </div>
                         </th>
-                        <th>ID</th>
+                        <!-- <th>ID</th> -->
                         <th>名称</th>
                         <th>创建时间</th>
                         <th class="no-sort">操作</th>
@@ -42,9 +42,9 @@
                                 <label></label>
                             </div>
                         </td>
-                        <td><a href="/#/server/security-details/${s.id}">${s.id}</a></td>
-                        <td>${s.name}</td>
-                        <td>${s.createPeriod}</td>
+                        <!-- <td><a href="/#/server/security-details/${s.id}">${s.id}</a></td> -->
+                        <td><a href="/#/server/security-details/${s.id}">${s.name}</a></td>
+                        <td>${s.createTime | dateFormat}</td>
                         <td>
                             <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
