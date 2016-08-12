@@ -35,7 +35,7 @@ export class UiNameCreateModal {
                     toastr.error('表单验证不合法,请修改表单不合法输入!');
                     return false;
                 }
-                console.log(this.name)
+                _.log(this.name)
                 this.onapprove && this.onapprove({ name: this.name });
             },
             onDeny: () => { this.ondeny && this.ondeny(); }

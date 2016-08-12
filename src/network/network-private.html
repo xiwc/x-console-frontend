@@ -4,7 +4,7 @@
     <require from="comp/ui/ui-name-create-modal"></require>
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
-    <require from="./network-linkrouter"></require>
+    <require from="comp/ui/ui-network-private-linkrouter-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
     <div class="nx-network-public-style">
         <ui-nav steps.bind="steps"></ui-nav>
@@ -86,6 +86,6 @@
     <ui-name-create-modal ui-name-create-modal.ref="createconfirm"></ui-name-create-modal>
     <ui-confirm ui-confirm.ref="deleteconfirm"></ui-confirm>
     <ui-name-update-modal ui-name-update-modal.ref="updateconfirm"  name.bind="selectedPrivateNetwork.name" desc.bind="selectedPrivateNetwork.desc" show-desc.bind="!0"  title.bind="updateNameTitle"></ui-name-update-modal>
-    <network-linkrouter network-linkrouter.ref="linRouterDialog"></network-linkrouter>
+    <ui-network-private-linkrouter-modal ui-network-private-linkrouter-modal.ref="linRouterDialog"></ui-network-private-linkrouter-modal>
     <ui-confirm ui-confirm.ref="deleteRouterconfirm" ></ui-confirm>
 </template>

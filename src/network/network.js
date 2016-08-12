@@ -1,4 +1,12 @@
 export class Network {
+    info = {
+        name : "专用VPC网络",
+        href : "/#/network/private"
+    }
+
+    constructor(){
+        nsCtx.networkInfo = this.info;
+    }
 
     // 配置路由
     configureRouter(config, router) {

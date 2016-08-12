@@ -5,7 +5,7 @@ import {
 from 'aurelia-framework';
 
 @containerless
-export class NetworkLinkrouter {
+export class UiNetworkPrivateLinkrouterModal {
 
     @bindable
     mirror;
