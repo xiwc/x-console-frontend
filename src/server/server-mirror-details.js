@@ -4,7 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class ServerMirrorDetails {
 
-    steps = ['上海一区', '云服务器', '镜像详情'];
+    steps = ['上海一区', nsCtx.serverInfo, '镜像详情'];
 
     /**
      * 构造函数
@@ -14,18 +14,6 @@ export class ServerMirrorDetails {
     }
 
     details;
-
-    // details = {
-    //     "capacity": "string",
-    //     "createPeriod": "string",
-    //     "createTime": "2016-07-26T06:33:29.991Z",
-    //     "desc": "string",
-    //     "id": "string",
-    //     "name": "string",
-    //     "platform": "string",
-    //     "scope": "string",
-    //     "status": "string"
-    // };
 
     /**
      * 在视图模型(ViewModel)展示前执行一些自定义代码逻辑
@@ -42,6 +30,7 @@ export class ServerMirrorDetails {
             return resp.json();
         }).then((resp) => {
             this.details = resp;
+            this.steps.push(this.details.name);
         });
     }
 }

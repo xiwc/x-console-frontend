@@ -4,7 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class ServerSecurityDetails {
 
-    steps = ['上海一区', '云服务器', '安全组详情'];
+    steps = ['上海一区', nsCtx.serverInfo, '安全组详情'];
 
     details;
 

@@ -5,7 +5,7 @@ import poll from "comp/poll";
 @inject(Lazy.of(HttpClient))
 export class ServerHost {
 
-    steps = ['上海一区', '云服务器', '主机'];
+    steps = ['上海一区', nsCtx.serverInfo, '主机'];
 
     allChecked = false;
 

@@ -1,6 +1,6 @@
 export class ServerSnapshot {
 
-    steps = ['上海一区', '云服务器', '快照'];
+    steps = ['上海一区', nsCtx.serverInfo, '快照'];
 
     page = {
         currentPage: 1,

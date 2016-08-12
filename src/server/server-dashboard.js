@@ -4,7 +4,7 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class ServerDashboard {
 
-    steps = ['上海一区', '云服务器', '总览'];
+    steps = ['上海一区', nsCtx.serverInfo, '总览'];
 
     constructor(getHttp) {
         this.http = getHttp();
