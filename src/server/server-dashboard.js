@@ -31,16 +31,24 @@ export class ServerDashboard {
 
         let p1 = this.http.fetch(nsApi.url('resource.config.get', {}))
             .then((resp) => {
-                return resp.json();
-            }).then((data) => {
-                this.config = data;
+                if (resp.ok) {
+                    return resp.json().then((data) => {
+                        this.config = data;
+                    });
+                }
+
+                return resp;
             });
 
         let p2 = this.http.fetch(nsApi.url('resource.detail.get', {}))
             .then((resp) => {
-                return resp.json();
-            }).then((data) => {
-                this.detail = data;
+                if (resp.ok) {
+                    return resp.json().then((data) => {
+                        this.detail = data;
+                    });
+                }
+
+                return resp;
             });
 
         return Promise.all([p1, p2]).then(() => {
@@ -65,8 +73,12 @@ export class ServerDashboard {
     }
 
     calcPercent(prop) {
-        let res = parseInt(this.detail[prop] * 100 / this.config[prop]);
-        return _.isNaN(res) ? 0 : res;
+        if (_.has(this.detail, prop) && _.has(this.config, prop)) {
+            let res = parseInt(this.detail[prop] * 100 / this.config[prop]);
+            return _.isNaN(res) ? 0 : res;
+        }
+
+        return 0;
     }
 
 }
