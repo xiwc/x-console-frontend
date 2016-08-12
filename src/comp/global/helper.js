@@ -70,7 +70,7 @@
                 }
             },
             log: (txt) => {
-                if(typeof wurl('?log') != "undefined"){
+                if(!_.isUndefined(wurl('?log'))){
                     console.log(txt);
                 }
             }
