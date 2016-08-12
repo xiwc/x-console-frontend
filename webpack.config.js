@@ -33,6 +33,7 @@ let envs = [
         // active: true,
         console: 'http://218.245.64.3:45417',
         sso: 'http://220.248.17.34:8074',
+        // sso: 'http://218.245.64.3:45434', // 压测环境SSO
         yangyang: 'http://192.168.7.254:8081/yangyang/',
         platform: 'http://192.168.7.254:8080/platform/'
     },
@@ -41,6 +42,7 @@ let envs = [
         // active: true,
         console: 'http://220.248.17.34:8061',
         sso: 'http://220.248.17.34:8074',
+        // sso: 'http://218.245.64.3:45434', // 压测环境SSO
         yangyang: 'https://step.newtouchwork.com',
         platform: 'https://www.newtouchwork.com'
     },
@@ -55,6 +57,7 @@ let envs = [
         // active: true,
         console: 'http://192.168.40.14:8080',
         sso: 'http://220.248.17.34:8074',
+        // sso: 'http://218.245.64.3:45434', // 压测环境SSO
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
     },
@@ -63,6 +66,7 @@ let envs = [
         //active: true,
         console: 'http://192.168.40.13:8080',
         sso: 'http://220.248.17.34:8074',
+        // sso: 'http://218.245.64.3:45434', // 压测环境SSO
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
     },
@@ -71,6 +75,7 @@ let envs = [
         active: true,
         console: 'http://x-proxy.sh1.newtouch.com',
         sso: 'http://220.248.17.34:8074',
+        // sso: 'http://218.245.64.3:45434', // 压测环境SSO
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
     }
