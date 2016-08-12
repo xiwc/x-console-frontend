@@ -3,13 +3,11 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 
 @inject(Lazy.of(HttpClient))
 export class NetworkPrivate {
-    steps = ['上海一区', '专用VPC网络', '私有网络'];
-    createTitle = "创建私有网络";
-    updateNameTitle = "修改名称";
-    deleteContent = "确定要删除这条记录吗？";
-    deleteTite = "删除提示";
-    deleteRouterContent = "确定要将私用网络从路由器中离开？";
-
+    steps = [
+        { name: '上海一区', href: '#' },
+        { name: '专用VPC网络' },
+        { name: '私有网络' }
+    ];
     allChecked = false;
     privateNetworks = null;
 

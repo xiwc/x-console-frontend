@@ -84,8 +84,8 @@
         </div>
     </div>
     <ui-name-create-modal ui-name-create-modal.ref="createconfirm"></ui-name-create-modal>
-    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-confirm ui-confirm.ref="deleteconfirm"></ui-confirm>
     <ui-name-update-modal ui-name-update-modal.ref="updateconfirm"  name.bind="selectedPrivateNetwork.name" desc.bind="selectedPrivateNetwork.desc" show-desc.bind="!0"  title.bind="updateNameTitle"></ui-name-update-modal>
     <network-linkrouter network-linkrouter.ref="linRouterDialog"></network-linkrouter>
-    <ui-confirm ui-confirm.ref="deleteRouterconfirm" content.bind="deleteRouterContent"></ui-confirm>
+    <ui-confirm ui-confirm.ref="deleteRouterconfirm" ></ui-confirm>
 </template>

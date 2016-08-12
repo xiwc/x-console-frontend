@@ -4,7 +4,11 @@ import { HttpClient, json } from 'aurelia-fetch-client';
 @inject(Lazy.of(HttpClient))
 export class NetworkRouterDetails {
 
-    steps = ['上海一区', '云服务器', '路由器详情'];
+    steps = [
+        { name: '上海一区', href: '#' },
+        { name: '专用VPC网络', href: '/#/network/private' },
+        { name: '路由器', href: '/#/network/router' }
+    ];
 
     details = null;
     hostlist = null;
@@ -66,6 +70,7 @@ export class NetworkRouterDetails {
             return resp.json();
         }).then((data) => {
             this.details = data.properties;
+            this.steps.push({ name: this.details.name });
         });
 
         //this.getHostList();   
@@ -263,7 +268,7 @@ export class NetworkRouterDetails {
     }
 
     //添加端口转发规则
-    addPortRuler(){
+    addPortRuler() {
         this.portDialog.show({
             onapprove: (result) => {
 

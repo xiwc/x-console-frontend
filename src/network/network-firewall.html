@@ -1,11 +1,82 @@
 <template>
+    <require from="./network.css"></require>
     <require from="comp/ui/ui-nav"></require>
-    <div class="nx-network-public">
+    <require from="comp/ui/ui-confirm"></require>
+    <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
+    <require from="comp/vc/vc-common"></require>
+    <div class="nx-network-public-style">
         <ui-nav steps.bind="steps"></ui-nav>
-        <div class="ui basic segment">
-            <div class="ui message">
-                ${steps[2]}
+        <div class="ui basic segment nx-toolbar">
+            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新路由器" data-position="top left" data-inverted="">
+                <i class="refresh icon"></i>
+            </div>
+            <div class="ui primary button" click.delegate="createHandler()">
+                <i class="add icon"></i> 创建
+            </div>
+            <div class="ui red button" click.delegate="delMoreHandler()">
+                删除
+            </div>
+            <div class="ui search">
+                <div class="ui icon input">
+                    <input class="prompt" type="text" placeholder="检索...">
+                    <i class="search link icon"></i>
+                </div>
+                <div class="results"></div>
             </div>
         </div>
+        <div class="ui basic segment" ref="container">
+            <table class="ui compact sortable celled table">
+                <thead class="full-width">
+                    <tr class="no-sort">
+                        <th class="no-sort">
+                            <div class="ui checkbox" ref="uiChkAll" chk.bind="allChecked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </th>
+                        <!-- <th>ID</th> -->
+                        <th>名称</th>
+                        <th>创建时间</th>
+                        <th class="no-sort">操作</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody1">
+                    <tr>
+                        <td class="collapsing">
+                            <div class="ui fitted checkbox" ref="uiChk" task.call="selectHandler(uiChk, r)" chk.bind="r.checked">
+                                <input type="checkbox">
+                                <label></label>
+                            </div>
+                        </td>
+                        <!-- <td><a>${r.id}</a></td> -->
+                        <td><a href="">防火墙1</a></td>
+                        <td>2016-8-1 16:20:00</td>
+                        <td>
+                            <div ref="uiActions" class="ui dropdown item" task.bind="initActionsHandler(uiActions)">更多操作 <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item" click.delegate="updateName(r)">修改名称</div>
+                                    <div class="divider"></div>
+                                    <div class="item">新建规则</div>
+                                    <div class="item" click.delegate="addPrivatework(r)">加载路由器</div>
+                                    <div class="item" click.delegate="removePrivatework(r)">卸载跌路由器</div>
+                                    <div class="divider"></div>
+                                    <div class="item" click.delegate="delHandler(r)">删除</div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="10">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
     </div>
+    <ui-confirm ui-confirm.ref="deleteconfirm" title.bind="deleteTite" content.bind="deleteContent"></ui-confirm>
+    <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" name.bind="selectedRouter.name" desc.bind="selectedRouter.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
 </template>
