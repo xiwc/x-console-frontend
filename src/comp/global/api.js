@@ -301,12 +301,19 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '关闭路由器'
         },
-        'router.updatePublicIp.post': {
-            real: 'api/router/updatePublicIp',
+        'router.publciIp.add.post': {
+            real: 'api/router/publicIp/add',
             mock: '',
             ismock: false,
             method: 'post',
-            desc: '路由器修改公网IP'
+            desc: '路由器加载公网IP'
+        },
+        'router.publicIp.delete.post': {
+            real: 'api/router/publicIp/delete',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '路由器卸载公网IP'
         },
         'router.updateType.post': {
             real: 'api/router/updateType',
@@ -413,8 +420,8 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '获取可用的公网IP'
         },
-        'publicIp.unbindHost.post': {
-            real: 'api/publicIp/unbindHost',
+        'publicIp.host.delete.post': {
+            real: 'api/publicIp/host/delete',
             mock: '',
             ismock: false,
             method: 'post',
@@ -433,6 +440,13 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '绑定路由器'
+        },
+        'publicIp.host.listUnbind.get': {
+            real: 'api/publicIp/host/listUnbind',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '获取未绑定公网IP的主机列表'
         },
 
 

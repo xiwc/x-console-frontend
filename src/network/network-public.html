@@ -5,6 +5,7 @@
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
     <require from="comp/ui/ui-network-publicip-bindrouter-modal"></require>
+    <require from="comp/ui/ui-network-publicip-host-modal"></require>
     <require from="comp/ui/ui-pageable"></require>
     <require from="comp/vc/vc-common"></require>
     <div class="nx-network-public-style">
@@ -96,4 +97,5 @@
     <ui-confirm ui-confirm.ref="deleteconfirm"></ui-confirm>
     <ui-name-update-modal ui-name-update-modal.ref="updateconfirm" name.bind="selectedPublicNetwork.name" desc.bind="selectedPublicNetwork.desc" show-desc.bind="!0" title.bind="updateNameTitle"></ui-name-update-modal>
     <ui-network-publicip-bindrouter-modal ui-network-publicip-bindrouter-modal.ref='bindrouterDialog' ipname.bind="selectedPublicNetwork.name"></ui-network-publicip-bindrouter-modal>
+    <ui-network-publicip-host-modal ui-network-publicip-host-modal.ref="addHostDialog"></ui-network-publicip-host-modal>
 </template>

@@ -229,7 +229,11 @@ export class NetworkPublic {
 
     //绑定主机
     bindHost(o) {
-        toastr.warning("开发中...");
+        this.addHostDialog.show({
+            onapprove:(result) => {
+                console.log(result);
+            }
+        });
     }
 
     //移除主机
@@ -238,7 +242,7 @@ export class NetworkPublic {
             title: "卸载主机",
             content: "确定要卸载<code>" + o.name + "</code>绑定的主机吗？",
             onapprove: () => {
-                this.http.fetch(nsApi.url('publicIp.unbindHost.post'), {
+                this.http.fetch(nsApi.url('publicIp.host.delete.post'), {
                     method: 'post',
                     body: json({
                         id: o.id
