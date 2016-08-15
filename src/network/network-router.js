@@ -189,11 +189,11 @@ export class NetworkRouter {
         }));
     }
 
-    //修改公网IP;
-    updatePublicIp(rt) {
+    //加载公网IP;
+    addPublicIp(rt) {
         this.updatePublicIpDialog.show((result => {
             console.log(result);
-            this.http.fetch(nsApi.url('router.updatePublicIp.post'), {
+            this.http.fetch(nsApi.url('router.publciIp.add.post'), {
                 method: 'post',
                 body: json({
                     id: rt.id,
@@ -202,7 +202,7 @@ export class NetworkRouter {
             }).then((resp) => {
                 if (resp.ok) {
                     rt.ip = result.ipname;
-                    toastr.success('修改公网IP操作成功!');
+                    toastr.success('加载公网IP操作成功!');
                 }
             });
         }));
@@ -289,7 +289,7 @@ export class NetworkRouter {
                     body: json({
                         ids: [o.id]
                     })
-                }).then((resp) => { 
+                }).then((resp) => {
                     if (resp.ok) {
                         o.status = 1;
                         toastr.success('启动成功!');
@@ -346,7 +346,7 @@ export class NetworkRouter {
         this.addPrivateworkDialog.show({
             sth: { name: o.name },
             onapprove: (result) => {
-                console.log(result);
+                _.log(result);
                 this.http.fetch(nsApi.url('router.updateType.post'), {
                     method: 'post',
                     body: json({
@@ -365,6 +365,44 @@ export class NetworkRouter {
 
     //断开私有网络
     removePrivatework(o) {
-        toastr.warning("开发中......");
+        toastr.warning('开发中。。。');
+        // this.deleteconfirm.show({
+        //     title: "卸载私有网络",
+        //     content: "确定要卸载路由器<code>" + o.name + "</code>上的公网IP吗？",
+        //     onapprove: () => {
+        //         this.http.fetch(nsApi.url('router.stop.post'), {
+        //             method: 'post',
+        //             body: json({
+        //                 ids: [o.id]
+        //             })
+        //         }).then((resp) => {
+        //             if (resp.ok) {
+        //                 o.status = 2;
+        //                 toastr.success('关闭成功!');
+        //             }
+        //         });
+        //     }
+        // });
+    }
+
+    //卸载公网IP
+    removePublicIp(o) {
+        this.deleteconfirm.show({
+            title: "卸载公网IP",
+            content: "确定要卸载路由器<code>" + o.name + "</code>上的公网IP吗？",
+            onapprove: () => {
+                this.http.fetch(nsApi.url('router.publicIp.delete.post'), {
+                    method: 'post',
+                    body: json({
+                        id: o.id
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        o.ip = null;
+                        toastr.success('已成功卸载路由器${o.name}上的公网IP!');
+                    }
+                });
+            }
+        });
     }
 }

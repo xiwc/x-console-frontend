@@ -125,4 +125,23 @@ export class NetworkFirewall {
         });
     }
 
+    //创建
+    createHandler() {
+        this.createconfirm.show((result => {
+            //console.log(result.name);
+            // this.http.fetch(nsApi.url('privateNetwork.create.post'), {
+            //     method: 'post',
+            //     body: json({
+            //         name: result.name
+            //     })
+            // }).then((resp) => {
+            //     // this. = resp.data;
+            //     if (resp.ok) {
+            //         this.getPrivateNetwork();
+            //         toastr.success('创建成功!');
+            //     }
+            // });
+        }));
+    }
+
 }

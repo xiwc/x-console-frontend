@@ -78,8 +78,8 @@
                                     <div class="item ${r.status == 1 ? 'disabled' : ''}" click.delegate="startRouter(r)">启动</div>
                                     <div class="item ${r.status == 1 ? '' : 'disabled'}" click.delegate="stopRouter(r)">关闭</div>
                                     <div class="item" click.delegate="updateRouterType(r)">调整类型</div>
-                                    <div class="item" click.delegate="updatePublicIp(r)">加载公网IP</div>
-                                    <div class="item" click.delegate="">卸载公网IP</div>
+                                    <div class="item ${r.ip ? 'disabled' : ''}" click.delegate="addPublicIp(r)">加载公网IP</div>
+                                    <div class="item ${r.ip ? '' : 'disabled'}" click.delegate="removePublicIp(r)">卸载公网IP</div>
                                     <div class="item" click.delegate="addPrivatework(r)">加载私有网络</div>
                                     <div class="item" click.delegate="removePrivatework(r)">卸载私有网络</div>
                                     <div class="divider"></div>

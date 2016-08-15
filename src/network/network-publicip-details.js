@@ -113,15 +113,14 @@ export class NetworkPublicDetails {
             title: "卸载主机",
             content: "确定要卸载<code>" + this.details.name + "</code>绑定的主机吗？",
             onapprove: () => {
-                this.http.fetch(nsApi.url('publicIp.unbindHost.post'), {
+                this.http.fetch(nsApi.url('publicIp.host.delete.post'), {
                     method: 'post',
                     body: json({
                         id: this.details.id
                     })
                 }).then((resp) => {
                     if (resp.ok) {
-                        // pn.name = result.name;
-                        // pn.desc = result.desc;
+                        this.details.status = 1;
                         toastr.success('卸载主机成功!');
                     }
                 });
