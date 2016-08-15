@@ -12,10 +12,11 @@ export class Menu {
      */
     attached() {
         nsCtx.topMenuHeight = $(this.uiMenu).height();
-        $(this.uiAccount).dropdown({
+        $([this.uiAccount]).dropdown({
             action: 'hide',
             on: 'hover'
         });
+        $([this.uiZone]).dropdown().dropdown('set selected', 'sh');
 
         // $('.nx-top-fixed-menu .nx-menu-item-pp')
         //     .popup({
