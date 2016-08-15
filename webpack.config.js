@@ -74,8 +74,8 @@ let envs = [
     {
         active: true,
         console: 'http://x-proxy.sh1.newtouch.com',
-        sso: 'http://220.248.17.34:8074',
-        // sso: 'http://218.245.64.3:45434', // 压测环境SSO
+        // sso: 'http://220.248.17.34:8074',
+        sso: 'http://218.245.64.3:45434', // 压测环境SSO
         yangyang: 'https://step.newtouch.com',
         platform: 'https://www.newtouch.com'
     }

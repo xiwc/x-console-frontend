@@ -75,10 +75,13 @@ export class ServerDisk {
             pageNo: pageNo,
             pageSize: nsConfig.pageSize
         })).then((resp) => {
-            return resp.json();
-        }).then((data) => {
-            this.disks = data.list;
-            this.page = data;
+            if (resp.ok) {
+                return resp.json().then((data) => {
+                    this.disks = data.list;
+                    this.page = data;
+                });
+            }
+            return resp;
         }).then(() => {
             this.allChecked = false;
         });
