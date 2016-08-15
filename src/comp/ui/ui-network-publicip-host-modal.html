@@ -1,0 +1,39 @@
+<template>
+    <require from="comp/ui/ui-pageable"></require>
+    <div ref="md" class="ui small modal nx-ui-host-select-modal">
+        <!-- <i class="close icon"></i> -->
+        <div class="header">
+            选择主机
+        </div>
+        <div class="content">
+            <div class="ui message">
+                <i class="yellow warning sign icon"></i> 默认情况下，除了少数安全端口之外，主机的大部分端口都是关闭的，您需要在防火墙中打开相应的下行规则以允许外网访问.
+            </div>
+            <table class="ui selectable striped table">
+                <tbody>
+                    <tr repeat.for="h of hosts">
+                        <td>
+                            <div ref="uiSelect" class="ui fitted radio checkbox" task.call="$parent.initChkHandler(uiSelect, h, $first)">
+                                <input type="radio" name="hostradio">
+                                <label></label>
+                            </div>
+                        </td>
+                        <td>${h.name}</td>
+                        <td>${h.id + ' (' + h.type + ')'}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="10">
+                            <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="actions">
+            <div class="ui cancel basic blue left floated button">取消</div>
+            <div class="ui ok blue button">确认</div>
+        </div>
+    </div>
+</template>
