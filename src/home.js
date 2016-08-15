@@ -25,20 +25,20 @@ export class Home {
      */
     activate(params, routeConfig, navigationInstruction) {
         // TODO ajax api mock demo.
-        $.get(nsApi['host.hostList.get'], function(data) {
-            if (data.success) {
-                console.log(data.data);
-            } else {
-                console.log(data);
-            }
-        });
-        // TODO ajax api mock demo.
-        $.get(nsApi['user.userInfo.get'], function(data) {
-            if (data.success) {
-                console.log(data.data);
-            } else {
-                console.log(data);
-            }
-        });
+        // $.get(nsApi['host.hostList.get'], function(data) {
+        //     if (data.success) {
+        //         console.log(data.data);
+        //     } else {
+        //         console.log(data);
+        //     }
+        // });
+        // // TODO ajax api mock demo.
+        // $.get(nsApi['user.userInfo.get'], function(data) {
+        //     if (data.success) {
+        //         console.log(data.data);
+        //     } else {
+        //         console.log(data);
+        //     }
+        // });
     }
 }
