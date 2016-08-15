@@ -5,6 +5,18 @@
             <i class="indent icon"></i>
             <i class="outdent icon"></i>
         </a>
+        <div class="ui dropdown link item" ref="uiZone">
+            <i class="marker icon"></i>
+            <div class="text">
+                地区
+            </div>
+            <div class="menu">
+                <div class="header">选择地区</div>
+                <div class="item" data-value="sh">上海</div>
+                <div class="item" data-value="bj">北京</div>
+                <div class="item" data-value="dl">大连</div>
+            </div>
+        </div>
         <div class="right menu">
             <!-- <a class="item"><i class="bullseye icon"></i>Insight大会</a>
             <a class="item"><i class="mobile icon"></i>App</a> -->
@@ -100,8 +112,8 @@
                 <i class="yen icon"></i> 47.00
             </a>
             <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover" ref="uiAccount">
-                <img src="https://x.newtouchwork.com/images/head.png" class="ui avatar image" />
-                <span style="position: relative;">jack2chen<a class="floating ui yellow empty circular label nx-floating-lbl"></a></span>
+                <img src="${loginUser.icon}" class="ui avatar image" />
+                <span style="position: relative;">${loginUser.realName ? loginUser.realName : loginUser.loginName}<!-- <a class="floating ui yellow empty circular label nx-floating-lbl"></a> --></span>
                 <div class="menu">
                     <div class="header">选择账户操作</div>
                     <!-- <div class="item">

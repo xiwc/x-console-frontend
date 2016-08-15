@@ -8,7 +8,7 @@ export class Config {
             config
             // .withBaseUrl(nsParam.baseUrl)
                 .withDefaults({
-                    // credentials: 'same-origin',
+                    credentials: 'same-origin',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'

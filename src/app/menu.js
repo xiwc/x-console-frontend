@@ -3,19 +3,50 @@ import {
     containerless
 }
 from 'aurelia-framework';
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
 
+@inject(Lazy.of(HttpClient))
 @containerless
 export class Menu {
+
+    loginUser;
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
+
+    /**
+     * 当数据绑定引擎绑定到视图时被调用
+     * @param  {[object]} ctx 视图绑定上下文环境对象
+     */
+    bind(ctx) {
+        this.http.fetch(nsApi.url('user.userInfo.get', {}))
+            .then((resp) => {
+                if (resp.ok) {
+                    return resp.json().then((data) => {
+                        nsCtx.userInfo = data.entity;
+                        this.loginUser = nsCtx.userInfo;
+                    });
+                }
+
+                return resp;
+            });
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
      */
     attached() {
         nsCtx.topMenuHeight = $(this.uiMenu).height();
-        $(this.uiAccount).dropdown({
+        $([this.uiAccount]).dropdown({
             action: 'hide',
             on: 'hover'
         });
+        $([this.uiZone]).dropdown().dropdown('set selected', 'sh');
 
         // $('.nx-top-fixed-menu .nx-menu-item-pp')
         //     .popup({
