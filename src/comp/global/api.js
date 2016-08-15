@@ -117,18 +117,6 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '根据区域id跟cpu获取内存'
         },
-        'user.userInfo.get': { // TODO demo ajax method config.
-            real: '/v2/user/userInfo',
-            mock: 'mock/v2/user/userInfo.get.json',
-            ismock: false,
-            method: 'get'
-        },
-        'server.mirrors.get': { // TODO demo ajax method config.
-            real: 'mirrors.json',
-            mock: 'mock/v2/server/mirror/mirrors.get.json',
-            ismock: false,
-            method: 'get'
-        },
         'image.list.get': {
             real: 'api/image/list',
             mock: 'mock/image/list.get.json',
@@ -546,6 +534,13 @@ window.nsApiFunc = (function() {
             ismock: false,
             method: 'post',
             desc: '创建安全组'
+        },
+        'user.userInfo.get': {
+            real: '/v2/user/userInfo',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据用户名，获得用户详细信息'
         },
     };
 

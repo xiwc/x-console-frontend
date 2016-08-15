@@ -112,8 +112,8 @@
                 <i class="yen icon"></i> 47.00
             </a>
             <div class="ui dropdown top right link item nx-menu-item-user nx-dd-action-hide-on-hover" ref="uiAccount">
-                <img src="https://x.newtouchwork.com/images/head.png" class="ui avatar image" />
-                <span style="position: relative;">jack2chen<a class="floating ui yellow empty circular label nx-floating-lbl"></a></span>
+                <img src="${loginUser.icon}" class="ui avatar image" />
+                <span style="position: relative;">${loginUser.realName ? loginUser.realName : loginUser.loginName}<!-- <a class="floating ui yellow empty circular label nx-floating-lbl"></a> --></span>
                 <div class="menu">
                     <div class="header">选择账户操作</div>
                     <!-- <div class="item">

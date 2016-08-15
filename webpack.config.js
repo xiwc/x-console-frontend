@@ -34,8 +34,8 @@ let envs = [
         console: 'http://218.245.64.3:45417',
         sso: 'http://220.248.17.34:8074',
         // sso: 'http://218.245.64.3:45434', // 压测环境SSO
-        yangyang: 'http://192.168.7.254:8081/yangyang/',
-        platform: 'http://192.168.7.254:8080/platform/'
+        step: 'http://218.245.64.3:45090',
+        work: 'http://218.245.64.3:45089'
     },
     // 测试
     {
@@ -43,14 +43,14 @@ let envs = [
         console: 'http://220.248.17.34:8061',
         sso: 'http://220.248.17.34:8074',
         // sso: 'http://218.245.64.3:45434', // 压测环境SSO
-        yangyang: 'https://step.newtouchwork.com',
-        platform: 'https://www.newtouchwork.com'
+        step: 'http://218.245.64.3:45090',
+        work: 'http://218.245.64.3:45089'
     },
     // 生产
     {
         // active: true,
-        yangyang: 'https://step.newtouch.com',
-        platform: 'https://www.newtouch.com'
+        step: 'http://218.245.64.3:45090',
+        work: 'http://218.245.64.3:45089'
     },
     // 李康华
     {
@@ -58,8 +58,8 @@ let envs = [
         console: 'http://192.168.40.14:8080',
         sso: 'http://220.248.17.34:8074',
         // sso: 'http://218.245.64.3:45434', // 压测环境SSO
-        yangyang: 'https://step.newtouch.com',
-        platform: 'https://www.newtouch.com'
+        step: 'http://218.245.64.3:45090',
+        work: 'http://218.245.64.3:45089'
     },
     // 邓雷
     {
@@ -67,8 +67,8 @@ let envs = [
         console: 'http://192.168.40.13:8080',
         sso: 'http://220.248.17.34:8074',
         // sso: 'http://218.245.64.3:45434', // 压测环境SSO
-        yangyang: 'https://step.newtouch.com',
-        platform: 'https://www.newtouch.com'
+        step: 'http://218.245.64.3:45090',
+        work: 'http://218.245.64.3:45089'
     },
     // 席维成(自定义可切换后端代理)
     {
@@ -76,8 +76,8 @@ let envs = [
         console: 'http://x-proxy.sh1.newtouch.com',
         // sso: 'http://220.248.17.34:8074',
         sso: 'http://218.245.64.3:45434', // 压测环境SSO
-        yangyang: 'https://step.newtouch.com',
-        platform: 'https://www.newtouch.com'
+        step: 'http://218.245.64.3:45090',
+        work: 'http://218.245.64.3:45089'
     }
 ];
 
@@ -269,13 +269,8 @@ if (ENV === 'test' || ENV === 'development') {
     // http://webpack.github.io/docs/webpack-dev-server.html#proxy 
     // https://github.com/nodejitsu/node-http-proxy#options
     config.devServer.proxy = {
-        '/v2/authentication/login/token': {
-            target: env.platform,
-            changeOrigin: true,
-            secure: false
-        },
         '/v2/*': {
-            target: env.yangyang,
+            target: env.step,
             changeOrigin: true,
             secure: false
         },
