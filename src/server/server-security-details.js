@@ -8,6 +8,16 @@ export class ServerSecurityDetails {
 
     details;
 
+    page = {
+        currentPage: 1,
+        pageSize: 10,
+        size: 10,
+        total: 10,
+        pageCount: 10,
+        hasPreviousPage: false,
+        hasNextPage: true
+    };
+
     /**
      * 构造函数
      */

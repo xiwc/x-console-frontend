@@ -3,46 +3,154 @@
     <require from="comp/ui/ui-nav"></require>
     <require from="comp/ui/ui-confirm"></require>
     <require from="comp/ui/ui-name-update-modal"></require>
+    <require from="comp/ui/ui-pageable"></require>
     <div class="nx-server-security-details">
         <ui-nav steps.bind="steps"></ui-nav>
         <div class="ui basic segment" ref="container">
             <div class="ui celled grid">
-                <div class="three column row">
-                    <div class="column nx-basic-info">
-                        <h3 class="ui header">基本属性</h3>
-                        <table class="ui very basic table">
-                            <tbody>
-                                <tr>
-                                    <th>ID</th>
-                                    <td>${details.id}</td>
-                                </tr>
-                                <tr>
-                                    <th>名称</th>
-                                    <td>${details.name}</td>
-                                </tr>
-                                <tr>
-                                    <th>描述</th>
-                                    <td>${details.desc}</td>
-                                </tr>
-                                <tr>
-                                    <th>创建时间</th>
-                                    <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
-                            <div class="text">更多操作</div>
-                            <i class="dropdown icon"></i>
-                            <div class="left menu">
-                                <div click.delegate="newRuleHandler(details)" class="item">新建规则</div>
-                                <div click.delegate="updateHandler(details)" class="item">修改名称</div>
-                                <div click.delegate="addToHostHandler(details)" class="item disabled">关联到主机</div>
-                                <!-- <div click.delegate="delHandler(details)" class="item">删除</div> -->
+                <div class="column row">
+                    <div class="five wide column">
+                        <div class="column nx-basic-info">
+                            <h3 class="ui header">基本属性</h3>
+                            <table class="ui very basic table">
+                                <tbody>
+                                    <tr>
+                                        <th>ID</th>
+                                        <td>${details.id}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>名称</th>
+                                        <td>${details.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>描述</th>
+                                        <td>${details.desc}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>创建时间</th>
+                                        <td title="${details.createTime | dateFormat}">${details.createTime | timeago}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide">
+                                <div class="text">更多操作</div>
+                                <i class="dropdown icon"></i>
+                                <div class="left menu">
+                                    <div click.delegate="newRuleHandler(details)" class="item">新建规则</div>
+                                    <div click.delegate="updateHandler(details)" class="item">修改名称</div>
+                                    <div click.delegate="addToHostHandler(details)" class="item disabled">关联到主机</div>
+                                    <!-- <div click.delegate="delHandler(details)" class="item">删除</div> -->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class="column"></div>
+                        <!-- <div class="column"></div>
                     <div class="column"></div> -->
+                    </div>
+                    <div class="eleven wide column row">
+                        <h3><i class="list layout icon"></i>规则</h3>
+                        <div class="ui basic segment nx-toolbar" style="padding-left: 0;">
+                            <div class="ui black icon button" click.delegate="refreshHandler()" data-tooltip="刷新硬盘列表" data-position="top left" data-inverted="">
+                                <i class="refresh icon"></i>
+                            </div>
+                            <div class="ui primary button">
+                                <i class="add icon"></i> 创建
+                            </div>
+                            <div class="ui primary button">
+                                应用修改
+                            </div>
+                            <div class="ui red button">
+                                删除
+                            </div>
+                        </div>
+                        <div>下行规则<i>（从外部访问云资源）</i></div>
+                        <div class="ui warning message">
+                            <p>提示：TCP端口445/5554/9996是病毒“震荡波”所使用的端口，可能会被IDC屏蔽，为保证资源正常访问，建议使用其他端口。</p>
+                        </div>
+                        <table class="ui celled table">
+                            <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>协议</th>
+                                    <th>行为</th>
+                                    <th>起始端口</th>
+                                    <th>结束端口</th>
+                                    <th>源IP</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>i-acorr5wy</td>
+                                    <td>TCP</td>
+                                    <td>接受</td>
+                                    <td>22</td>
+                                    <td>22</td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0)">禁用</a></td>
+                                </tr>
+                                <tr>
+                                    <td>i-acorr5wy</td>
+                                    <td>TCP</td>
+                                    <td>接受</td>
+                                    <td>22</td>
+                                    <td>22</td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0)">禁用</a></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="10">
+                                        <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div>上行规则<i>（从云资源访问外部）</i></div>
+                        <div class="ui warning message">
+                            <p>为保证安全，对于加入到基础网络的Windows主机默认限制了几个“上行防火墙”规则</p>
+                        </div>
+                        <table class="ui celled table">
+                            <thead>
+                                <tr>
+                                    <th>名称</th>
+                                    <th>协议</th>
+                                    <th>行为</th>
+                                    <th>起始端口</th>
+                                    <th>结束端口</th>
+                                    <th>目标IP</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>i-acorr5wy</td>
+                                    <td>TCP</td>
+                                    <td>拒绝</td>
+                                    <td>22</td>
+                                    <td>22</td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0)">禁用</a></td>
+                                </tr>
+                                <tr>
+                                    <td>i-acorr5wy</td>
+                                    <td>TCP</td>
+                                    <td>接受</td>
+                                    <td>22</td>
+                                    <td>22</td>
+                                    <td></td>
+                                    <td><a href="javascript:void(0)">禁用</a></td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="10">
+                                        <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
+                                    </th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
