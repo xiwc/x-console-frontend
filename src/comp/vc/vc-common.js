@@ -46,11 +46,23 @@ export class MappingValueConverter {
     };
 
     diskStatus = {
+        '0': {
+            zh: '错误'
+        },
         '1': {
-            zh: '未使用'
+            zh: '正常'
         },
         '2': {
             zh: '使用中'
+        },
+        '3': {
+            zh: '创建中'
+        },
+        '4': {
+            zh: '删除中'
+        },
+        '8': {
+            zh: '扩容中'
         }
     };
 
@@ -111,7 +123,7 @@ export class MappingValueConverter {
             zh: "BGP线路"
         }
     };
-    
+
     hostStatus = {
         '0': {
             zh: '主机错误'
