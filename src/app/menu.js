@@ -24,7 +24,7 @@ export class Menu {
      * @param  {[object]} ctx 视图绑定上下文环境对象
      */
     bind(ctx) {
-        this.http.fetch(nsApi.url('user.userInfo.get', {}))
+        this.http.fetch(nsApi.url('user.userInfo.get'))
             .then((resp) => {
                 if (resp.ok) {
                     return resp.json().then((data) => {

@@ -556,6 +556,27 @@ window.nsApiFunc = (function() {
             method: 'get',
             desc: '根据用户名，获得用户详细信息'
         },
+        'snapshot.list.get': {
+            real: 'api/snapshot/list',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '根据区域id获取快照链详情列表'
+        },
+        'snapshot.restore.post': {
+            real: 'api/snapshot/restore',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '根根据快照id恢复快照'
+        },
+        'snapshot.updateName.post': {
+            real: 'api/snapshot/updateName',
+            mock: '',
+            ismock: false,
+            method: 'post',
+            desc: '根据快照id修改快照名称'
+        },
     };
 
     // api debug配置初始化

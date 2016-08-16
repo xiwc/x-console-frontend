@@ -3,9 +3,17 @@ import {
 }
 from 'aurelia-framework';
 
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 export class UiSnapshotRecoverModal {
 
-    constructor() { // 通过构造函数注入
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
     }
 
     attached() {
@@ -13,12 +21,34 @@ export class UiSnapshotRecoverModal {
         $(this.md).modal({
             closable: false,
             onApprove: () => {
-                this.onapprove && this.onapprove();
+
+                this.http.fetch(nsApi.url('snapshot.restore.post'), {
+                    method: 'post',
+                    body: json({
+                        "id": "string" // TODO
+                    })
+                }).then((resp) => {
+                    if (resp.ok) {
+                        toastr.success('快照恢复操作成功!');
+                        this.onapprove && this.onapprove();
+                    }
+                });
+
             },
             onDeny: () => {
                 this.ondeny && this.ondeny();
             }
         });
+
+        $(this.md).on('click', '.tree li > a', (event) => {
+            event.preventDefault();
+            this.clearSelected();
+            $(event.target).addClass('nx-selected');
+        });
+    }
+
+    clearSelected() {
+        $(this.md).find('.tree li > a.nx-selected').removeClass('nx-selected');
     }
 
     /**

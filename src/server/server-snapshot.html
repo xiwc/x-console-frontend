@@ -37,12 +37,12 @@
                                 <label></label>
                             </div>
                         </td>
-                        <td>${s.name}</td>
-                        <td>${s.count}</td>
-                        <td>${s.resource}</td>
+                        <td>${s.snapshotLink}</td>
+                        <td>${s.snapshotNumber}</td>
+                        <td>${s.hostName}</td>
                         <!-- TODO mapping -->
                         <td>${s.capacity}</td>
-                        <td>${s.createPeriod}</td>
+                        <td>${s.createTime | dateFormat}</td>
                     </tr>
                 </tbody>
                 <tfoot>

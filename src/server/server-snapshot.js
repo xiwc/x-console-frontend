@@ -1,18 +1,23 @@
+import { inject, Lazy } from 'aurelia-framework';
+import { HttpClient, json } from 'aurelia-fetch-client';
+
+@inject(Lazy.of(HttpClient))
 export class ServerSnapshot {
 
     steps = ['上海一区', nsCtx.serverInfo, '快照'];
 
     page = {
-        currentPage: 1,
-        pageSize: 10,
-        size: 10,
-        total: 75,
-        pageCount: 8,
-        hasPreviousPage: false,
-        hasNextPage: true
+        currentPage: 1
     };
 
     snapshots;
+
+    /**
+     * 构造函数
+     */
+    constructor(getHttp) {
+        this.http = getHttp();
+    }
 
     /**
      * 当视图被附加到DOM中时被调用
@@ -32,45 +37,59 @@ export class ServerSnapshot {
         this.getSnapshots();
     }
 
+    getCheckedItem() {
+        return _.find(this.snapshots, 'checked');
+    }
+
     recoverHandler() {
 
+        if (!this.getCheckedItem()) {
+            toastr.error('请先选择需要恢复的快照链!');
+            return;
+        }
+
         this.uiSnapshotRecoverModal.show(() => {
-            toastr.info('恢复...!');
+
         });
     }
 
-    getSnapshots() {
-        return this.snapshots = [
-            { name: 'host01-snap', count: 5, resource: 'host01', capacity: 50, createPeriod: '两天前' },
-            { name: 'host02-snap', count: 3, resource: 'host02', capacity: 50, createPeriod: '两天前' }
-        ];
+    getSnapshots(pageNo = 1) {
+
+        return this.http.fetch(nsApi.url('snapshot.list.get', {
+            pageNo: pageNo,
+            pageSize: nsConfig.pageSize
+        })).then((resp) => {
+            if (resp.ok) {
+                return resp.json().then((data) => {
+                    this.snapshots = data.list;
+                    this.page = data;
+                });
+            }
+
+            return resp;
+        });
     }
 
     refreshHandler() {
 
-        this.getSnapshots();
-        toastr.info('刷新成功!');
+        this.getSnapshots(this.page.currentPage).then(() => {
+            toastr.info('刷新成功!');
+        });
     }
 
     selectHandler(uiChk, snapshot) {
         $(uiChk).checkbox({
             onChecked: () => {
                 this.selectSnapshot = snapshot;
-                // console.log(snapshot);
+                snapshot.checked = true;
+            },
+            onUnChecked: () => {
+                snapshot.checked = false;
             }
         });
     }
 
     onpageHandler(selectedPage) {
-        console.log(selectedPage);
-        this.page = {
-            currentPage: selectedPage,
-            pageSize: 10,
-            size: 10,
-            total: 75,
-            pageCount: 8,
-            hasPreviousPage: false,
-            hasNextPage: true
-        };
+        this.getSnapshots(selectedPage);
     }
 }
