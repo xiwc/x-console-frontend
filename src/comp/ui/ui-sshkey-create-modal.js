@@ -36,11 +36,13 @@ export class UiSshkeyCreateModal {
         $(this.uiCreateSshkey).checkbox({
             onChecked: () => {
                 this.way = '1';
+                this.formValidateNew();
             }
         });
         $(this.uiExistSshkey).checkbox({
             onChecked: () => {
                 this.way = '2';
+                this.formValidateExists();
             }
         });
 
@@ -68,7 +70,7 @@ export class UiSshkeyCreateModal {
                     "type": this.way
                 };
 
-                if(this.way == 1) {
+                if (this.way == 1) {
                     body.encryptMode = $(this.uiEncrypt).dropdown('get value');
                 }
 
@@ -90,6 +92,11 @@ export class UiSshkeyCreateModal {
             }
         });
 
+        this.formValidateNew();
+
+    }
+
+    formValidateNew() {
         $(this.form).form({
             on: 'blur',
             inline: true,
@@ -102,6 +109,35 @@ export class UiSshkeyCreateModal {
                     }, {
                         type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{1,16}$/]',
                         prompt: '1-16个字符(大小字母、数字、_、-、汉字)!'
+                    }]
+                }
+            }
+        });
+    }
+
+    formValidateExists() {
+        $(this.form).form({
+            on: 'blur',
+            inline: true,
+            fields: {
+                name: {
+                    identifier: 'name',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '密钥名称不能为空!'
+                    }, {
+                        type: 'regExp[/^[\u4E00-\u9FA5a-zA-Z0-9\-_]{1,16}$/]',
+                        prompt: '1-16个字符(大小字母、数字、_、-、汉字)!'
+                    }]
+                },
+                publicKey: {
+                    identifier: 'publicKey',
+                    rules: [{
+                        type: 'empty',
+                        prompt: '公钥不能为空!'
+                    }, {
+                        type: 'pubkey',
+                        prompt: '公钥校验不合法!'
                     }]
                 }
             }

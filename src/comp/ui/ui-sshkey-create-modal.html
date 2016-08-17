@@ -27,7 +27,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="inline field" if.bind="way == '1'">
+                <div class="inline field" show.bind="way == '1'">
                     <label>加密</label>
                     <div class="ui selection dropdown" ref="uiEncrypt">
                         <input type="hidden" name="encrypt" value="1">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="inline field" if.bind="way == '2'">
+                <div class="field" show.bind="way == '2'">
                     <label>公钥</label>
                     <textarea rows="3" name="publicKey" value.bind="publicKey"></textarea>
                 </div>

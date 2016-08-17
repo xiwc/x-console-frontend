@@ -209,6 +209,7 @@ export class Config {
         this.aurelia = aurelia;
         return this;
     }
+
 }
 
 export default new Config();
