@@ -165,3 +165,12 @@ body {
     top:2px;
     margin-right: 2px;
 }
+
+.ui.modal > .header > code {
+    background-color: #F8F8F8;
+    border: 1px solid #EAEAEA;
+    border-radius: 3px 3px 3px 3px;
+    margin: 0 2px;
+    padding: 0 5px;
+    white-space: nowrap;
+}
