@@ -36,6 +36,7 @@ export class UiSshkeyDownloadModal {
     show(config) {
 
         this.id = config.id;
+        this.name = config.name;
 
         $(this.md).modal('show');
     }
