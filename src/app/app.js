@@ -22,7 +22,7 @@ export class App {
     config() {
         // custom form validation rule
         $.fn.form.settings.rules.pubkey = function(value) {
-            return /((^ssh-(rsa|dss))|^ecdsa-sha2-nistp256)\s(.{125,})\s\w+/.test(value);
+            return /((^ssh-(rsa|dss))|^ecdsa-sha2-nistp256)\s(.{125,})\s.+@.+/.test(value);
         };
     }
 
