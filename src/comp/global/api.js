@@ -550,7 +550,7 @@ window.nsApiFunc = (function() {
             desc: '创建安全组'
         },
         'user.userInfo.get': {
-            real: '/v2/user/userInfo',
+            real: '/step/v2/user/userInfo',
             mock: '',
             ismock: false,
             method: 'get',

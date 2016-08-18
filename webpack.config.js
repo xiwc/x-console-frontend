@@ -268,8 +268,12 @@ if (ENV === 'test') {
 if (ENV === 'test' || ENV === 'development') {
     // http://webpack.github.io/docs/webpack-dev-server.html#proxy 
     // https://github.com/nodejitsu/node-http-proxy#options
+    // pathRewrite:
+    // https://github.com/webpack/webpack-dev-server/issues/424
+    // https://github.com/chimurai/http-proxy-middleware#http-proxy-middleware-options
     config.devServer.proxy = {
-        '/v2/*': {
+        '/step/*': {
+            pathRewrite: { '^/step': '' },
             target: env.step,
             changeOrigin: true,
             secure: false
@@ -284,9 +288,6 @@ if (ENV === 'test' || ENV === 'development') {
             // ignorePath: true,
             changeOrigin: true,
             secure: false
-                // rewrite: function(req) {
-                //     req.url = req.url.replace(/^\/api/, '');
-                // }
         }
     }
 }
