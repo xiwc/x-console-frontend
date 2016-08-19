@@ -38,6 +38,7 @@
                         <th>类型</th>
                         <!-- <th>备份于</th> -->
                         <th>创建时间</th>
+                        <th>到期时间</th>
                         <th class="no-sort">操作</th>
                     </tr>
                 </thead>
@@ -57,6 +58,7 @@
                         <td>${d.type | mapping:'diskType'}</td>
                         <!-- <td>${d.backupPeriod}</td> -->
                         <td>${d.createTime | dateFormat}</td>
+                        <td>${d.expireTime | dateFormat}</td>
                         <td>
                             <div ref="uiActions" class="ui top right pointing dropdown nx-dd-action-hide" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
@@ -74,7 +76,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="10">
+                        <th colspan="11">
                             <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
                         </th>
                     </tr>

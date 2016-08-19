@@ -64,6 +64,7 @@
                         <th>公网IP</th>
                         <th>安全组</th>
                         <th>创建时间</th>
+                        <th>到期时间</th>
                         <th class="no-sort">操作</th>
                     </tr>
                 </thead>
@@ -85,6 +86,7 @@
                         <td>${item.ip}</td>
                         <td>${item.securityGroupName}</td>
                         <td>${item.createTime | dateFormat}</td>
+                        <td>${item.expireTime | dateFormat}</td>
                         <td>
                             <div class="ui top right pointing dropdown nx-dd-action-hide" ref="uiActions" task.bind="initActionsHandler(uiActions)">
                                 <div class="text">更多操作</div>
@@ -132,7 +134,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="12">
+                        <th colspan="13">
                             <ui-pageable page.bind="page" onpage.call="onpageHandler($event)"></ui-pageable>
                         </th>
                     </tr>
