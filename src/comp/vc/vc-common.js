@@ -50,7 +50,7 @@ export class MappingValueConverter {
             zh: '错误'
         },
         '1': {
-            zh: '正常'
+            zh: '未使用'
         },
         '2': {
             zh: '使用中'
