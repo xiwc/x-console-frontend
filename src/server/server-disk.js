@@ -76,10 +76,9 @@ export class ServerDisk {
     }
 
     /**
-     * 在当前视图模型(ViewModel)切换离开后执行一些自定义代码逻辑
-     * @return {[promise]}                      你可以可选的返回一个延迟许诺(promise), 告诉路由等待, 直到你完成你的处理工作.
+     * 当数据绑定引擎从视图解除绑定时被调用
      */
-    deactivate() {
+    unbind() {
         poll.stop();
     }
 
