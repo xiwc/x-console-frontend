@@ -18,7 +18,7 @@
                 <div class="inline field">
                     <label>数量</label>
                     <div class="ui input">
-                        <input type="text" name="count" value.bind="count" placeholder="">
+                        <input type="text" maxlength="2" keypress.trigger="keypressHandler($event)" name="count" value.bind="count" placeholder="">
                     </div>
                 </div>
                 <div class="inline fields">

@@ -171,4 +171,17 @@ export class UiDiskCreateModal {
     hide() {
         $(this.md).modal('hide');
     }
+
+    keypressHandler(e) {
+        var k = window.event ? e.keyCode : e.which;
+        if (((k >= 48) && (k <= 57)) || k == 8 || k == 0) {
+            return true;
+        } else {
+            if (window.event) {
+                window.event.returnValue = false;
+            } else {
+                e.preventDefault(); // for firefox 
+            }
+        }
+    }
 }
