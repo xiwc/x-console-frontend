@@ -24,6 +24,21 @@ export class Menu {
      * @param  {[object]} ctx 视图绑定上下文环境对象
      */
     bind(ctx) {
+
+        // 区域(大区)列表获取
+        this.http.fetch(nsApi.url('vm.top-regions.get'))
+            .then((resp) => {
+                if (resp.ok) {
+                    return resp.json().then((data) => {
+                        nsCtx.regions = data.entity.regionList;
+                        this.regions = nsCtx.regions;
+                    });
+                }
+
+                return resp;
+            });
+
+        // 用户信息获取
         this.http.fetch(nsApi.url('user.userInfo.get'))
             .then((resp) => {
                 if (resp.ok) {

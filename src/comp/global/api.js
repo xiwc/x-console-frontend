@@ -577,6 +577,13 @@ window.nsApiFunc = (function() {
             method: 'post',
             desc: '根据快照id修改快照名称'
         },
+        'vm.top-regions.get': {
+            real: '/step/v3/vm/top-regions',
+            mock: '',
+            ismock: false,
+            method: 'get',
+            desc: '查询区域顶级区域'
+        },
     };
 
     // api debug配置初始化

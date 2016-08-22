@@ -42,6 +42,15 @@ window.nsCtx = (function() {
         // TODO 设置全局访问token
         accessToken: '1',
         regionId: '1',
+        regions: [{
+            "image": "",
+            "name": "",
+            "newConsoleUrl": "",
+            "paasUrl": "",
+            "region": "",
+            "stepUrl": ""
+        }], // 大区列表
+        region: {}, // 当前选择区
 
         isDebug: false, // 是否为debug
 
